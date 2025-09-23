@@ -1,0 +1,116 @@
+@using GurventVantilator.Application.DTOs
+@model IEnumerable<CommentDto>
+
+@{
+    ViewData["Title"] = "Yorum Yönetimi";
+}
+
+<div class="row">
+    <div class="col">
+        <div class="card card-modern">
+            <div class="card-body">
+                <div class="datatables-header-footer-wrapper mt-2">
+                    <table class="table table-ecommerce-simple table-striped mb-0" id="datatable-ecommerce-list"
+                        style="min-width: 550px;">
+                        <thead>
+                            <tr>
+
+                                <th width="30" class="text-center">Id</th>
+                                <th class="text-center">Blog Başlığı</th>
+                                <th class="text-center">Ad Soyad</th>
+                                <th class="text-center">Yorum</th>
+                                <th class="text-center">Tarih</th>
+                                <th class="text-center">Durum</th>
+                                <th width="30" class="text-center">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model == null || !Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="7" class="text-center text-muted">
+                                        Hiç kayıt bulunamadı.
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="text-center"><strong><a href="#">@item.Id</a></strong></td>
+                                        <td class="text-center"><strong><a href="#">@item.BlogTitle</a></strong></td>
+                                        <td class="text-center">@item.FullName</td>
+                                        <td class="text-center">@item.Text</td>
+                                        <td class="text-center">@item.CreatedAt.ToString("dd.MM.yyyy HH:mm")</td>
+                                        <td class="text-center">
+                                            @if (item.IsApproved)
+                                            {
+                                                <span class="badge badge-success">Yayında</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge badge-warning">Bekliyor</span>
+                                            }
+                                        </td>
+                                        <td width="200" class="text-center">
+                                            <div class="btn-group d-flex" role="group">
+                                                <a class="btn @(item.IsApproved ? "btn-warning" : "btn-success") btn-xs w-100 m-1 rounded"
+                                                    role="button" asp-action="ToggleApproval" asp-route-commentId="@item.Id">
+                                                    <i class="far @(item.IsApproved ? "fa-hand" : "fa-check")"></i>
+                                                    @(item.IsApproved ? "Beklet" : "Onayla")
+                                                </a>
+                                                <a href="#deleteModal"
+                                                    class="btn btn-danger btn-xs w-100 m-1 rounded modal-basic"
+                                                    onclick="setDeleteCommentId(@item.Id)">
+                                                    <i class='far fa-trash-alt'></i> Sil
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    <hr class="solid mt-5 opacity-4">
+                    <div id="deleteModal" class="modal-block mfp-hide">
+                        <section class="card">
+                            <header class="card-header">
+                                <h2 class="card-title">Yorum Silme</h2>
+                            </header>
+                            <div class="card-body">
+                                <div class="modal-wrapper">
+                                    <div class="modal-text">
+                                        <p class="mb-0">Bu yorumu silmek istediğinize emin misiniz?</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <form id="Delete" asp-action="Delete" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="commentId" id="commentId" />
+                                    <div class="row">
+                                        <div class="col-md-12 text-end">
+                                            <button type="submit" class="btn btn-danger">Sil</button>
+                                            <button type="button" class="btn btn-default modal-dismiss">Vazgeç</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </footer>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/examples/examples.modals.js"></script>
+    <script src="~/vendor/pnotify/pnotify.custom.js"></script>
+    <script>
+        function setDeleteCommentId(commentId) {
+            document.getElementById("commentId").value = commentId;
+        }
+    </script>
+}

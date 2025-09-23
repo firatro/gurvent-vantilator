@@ -1,0 +1,45 @@
+@model DashboardDto
+
+<section class="card">
+    <header class="card-header card-header-transparent">
+        <div class="card-actions">
+            <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+            <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+        </div>
+
+        <h2 class="card-title">Son Ekip Üyeleri</h2>
+    </header>
+    <div class="card-body">
+        <table class="table table-responsive-md table-striped mb-0">
+            <thead>
+                <tr>
+                    <th class="text-center">Ad Soyad</th>
+                    <th class="text-center">Ünvan</th>
+                    <th class="text-center">Fotoğraf</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var t in Model.LatestTeamMembers)
+                {
+                    <tr>
+                        <td class="text-center" style="vertical-align: middle;"><strong><a href="#">@t.FullName</a></strong>
+                        </td>
+                        <td class="text-center" style="vertical-align: middle;">@t.Title</td>
+                        <td class="text-center" style="vertical-align: middle;">
+                            @if (!string.IsNullOrEmpty(t.ImagePath))
+                            {
+                                <img src="@t.ImagePath" alt="Profil" height="30px" width="30px" style="object-fit: cover;"
+                                    class="rounded-circle" />
+                            }
+                            else
+                            {
+                                <img src="~/img/team-member/default-image.jpg" alt="Profil" height="30px" width="30px"
+                                    style="object-fit: cover;" class="rounded-circle" />
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

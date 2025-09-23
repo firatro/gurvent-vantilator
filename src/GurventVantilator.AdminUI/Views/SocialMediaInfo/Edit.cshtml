@@ -1,0 +1,109 @@
+@using GurventVantilator.Application.DTOs
+@model SocialMediaInfoDto
+@{
+    ViewData["Title"] = "Sosyal Medya Güncelle";
+}
+
+<form class="ecommerce-form action-buttons-fixed" asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+    <div class="row mt-2">
+        <div class="col">
+            <section class="card card-modern card-big-info">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-2-5 col-xl-1-5">
+                            <i class="card-big-info-icon bx bxl-meta"></i>
+                            <h2 class="card-big-info-title">Sosyal Medya Güncelle</h2>
+                            <p class="card-big-info-desc">Sosyal Medya bilgilerini güncellemek için bilgileri
+                                değiştirin.
+                            </p>
+                        </div>
+                        <div class="col-lg-3-5 col-xl-4-5">
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="Facebook">Facebook</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="Facebook" />
+                                    <span asp-validation-for="Facebook" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="Instagram">Instagram</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="Instagram" />
+                                    <span asp-validation-for="Instagram" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="Youtube">Youtube</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="Youtube" />
+                                    <span asp-validation-for="Youtube" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="X">X</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable" asp-for="X" />
+                                    <span asp-validation-for="X" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="Tiktok">Tiktok</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="Tiktok" />
+                                    <span asp-validation-for="Tiktok" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="row action-buttons">
+        <div class="col-12 col-md-auto px-md-0 mt-3 mt-md-0">
+            <button id="btnEnableEdit" type="button"
+                class="btn btn-warning btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1">
+                <i class="bx bx-edit text-4 me-2"></i> Güncelle
+            </button>
+        </div>
+        <div class="col-12 col-md-auto">
+            <button type="submit"
+                class="submit-button btn btn-primary btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1 editable"
+                data-loading-text="Loading...">
+                <i class="bx bx-save text-4 me-2"></i> Kaydet
+            </button>
+        </div>
+        @* <div class="col-12 col-md-auto px-md-0 mt-3 mt-md-0">
+        <a asp-controller="Home" asp-action="Index"
+        class="cancel-button btn btn-light btn-px-4 py-3 border font-weight-semibold text-color-dark text-3">Geri
+        Dön</a>
+        </div> *@
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Sayfa açıldığında inputları kapat
+            $(".editable").prop("disabled", true);
+            $("#btnSave").prop("disabled", true);
+
+            $("#btnEnableEdit").click(function () {
+                $(".editable").prop("disabled", false);
+                $("#btnSave").prop("disabled", false);
+
+                // Güncelle butonunu pasifleştir
+                $(this).prop("disabled", true);
+            });
+        });
+    </script>
+}

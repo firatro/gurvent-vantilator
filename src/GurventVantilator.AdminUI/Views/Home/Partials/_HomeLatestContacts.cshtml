@@ -1,0 +1,47 @@
+@model DashboardDto
+
+<section class="card">
+    <header class="card-header card-header-transparent">
+        <div class="card-actions">
+            <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+            <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+        </div>
+
+        <h2 class="card-title">Son İletişimler</h2>
+    </header>
+    <div class="card-body">
+        <table class="table table-responsive-md table-striped mb-0">
+            <thead>
+                <tr>
+                    <th class="text-center">Ad Soyad</th>
+                    <th class="text-center">E-Posta Adresi</th>
+                    <th class="text-center">Tarih</th>
+                    <th class="text-center">Durum</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var c in Model.LatestContacts)
+                {
+                    <tr>
+                        <td class="text-center"><strong><a href="#">@c.FullName</a></strong></td>
+                        <td class="text-center">@c.Email</td>
+                        <td class="text-center">@c.CreatedAt.ToShortDateString()</td>
+                        <td class="text-center">
+
+                            @if (string.IsNullOrEmpty(c.Notes))
+                            {
+                                <span class="badge badge-success">Cevaplandı</span>
+                            }
+                            else
+                            {
+                                <span class="badge badge-warning">Yanıtlanmadı</span>
+                            }
+
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

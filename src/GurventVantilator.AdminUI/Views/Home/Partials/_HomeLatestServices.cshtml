@@ -1,0 +1,31 @@
+@model DashboardDto
+
+<section class="card">
+    <header class="card-header card-header-transparent">
+        <div class="card-actions">
+            <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+            <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+        </div>
+
+        <h2 class="card-title">Son Hizmetler</h2>
+    </header>
+    <div class="card-body">
+        <table class="table table-responsive-md table-striped mb-0">
+            <thead>
+                <tr>
+                    <th class="text-center">Hizmet Adı</th>
+                    <th class="text-center">Başlık</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var s in Model.LatestServices)
+                {
+                    <tr>
+                        <td class="text-center"><strong><a href="#">@s.Name</a></strong></td>
+                        <td class="text-center">@s.Title</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

@@ -1,0 +1,23 @@
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    @ViewBag.ErrorMessage
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true" aria-label="Close" />
+</div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+    @TempData["Error"]
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true" aria-label="Close" />
+</div>
+}
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+    @TempData["SuccessMessage"]
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true" aria-label="Close" />
+</div>
+}

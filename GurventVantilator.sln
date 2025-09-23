@@ -1,0 +1,78 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F2DAA09F-2E0C-4AE4-A251-3E0C19DDE620}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GurventVantilator.Domain", "src\GurventVantilator.Domain\GurventVantilator.Domain.csproj", "{DC7239D8-78C7-4113-A836-110B2694E844}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GurventVantilator.Application", "src\GurventVantilator.Application\GurventVantilator.Application.csproj", "{BC83F31B-22BD-4522-83E9-09126FD5894A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GurventVantilator.Infrastructure", "src\GurventVantilator.Infrastructure\GurventVantilator.Infrastructure.csproj", "{DFD5BE5C-123E-4274-8474-127DD0AA2558}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GurventVantilator.WebUI", "src\GurventVantilator.WebUI\GurventVantilator.WebUI.csproj", "{3FE0288C-AD32-421A-B745-A90D1E261C44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GurventVantilator.AdminUI", "src\GurventVantilator.AdminUI\GurventVantilator.AdminUI.csproj", "{54645946-F9F4-497F-AAED-817F155857D7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{C8A3B31D-B57B-48C8-A027-34520E30F5B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GurventVantilator.Domain.Tests", "tests\GurventVantilator.Domain.Tests\GurventVantilator.Domain.Tests.csproj", "{0BD4E1A4-C244-42C5-B267-8F3E358437A6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GurventVantilator.Application.Tests", "tests\GurventVantilator.Application.Tests\GurventVantilator.Application.Tests.csproj", "{1B2E70C2-3D94-4F99-8F93-28455151136F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GurventVantilator.Infrastructure.Tests", "tests\GurventVantilator.Infrastructure.Tests\GurventVantilator.Infrastructure.Tests.csproj", "{0D36D77D-457E-4DA7-BF8F-AF326CE2C274}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC7239D8-78C7-4113-A836-110B2694E844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC7239D8-78C7-4113-A836-110B2694E844}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC7239D8-78C7-4113-A836-110B2694E844}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC7239D8-78C7-4113-A836-110B2694E844}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC83F31B-22BD-4522-83E9-09126FD5894A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC83F31B-22BD-4522-83E9-09126FD5894A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC83F31B-22BD-4522-83E9-09126FD5894A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC83F31B-22BD-4522-83E9-09126FD5894A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFD5BE5C-123E-4274-8474-127DD0AA2558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFD5BE5C-123E-4274-8474-127DD0AA2558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFD5BE5C-123E-4274-8474-127DD0AA2558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFD5BE5C-123E-4274-8474-127DD0AA2558}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3FE0288C-AD32-421A-B745-A90D1E261C44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FE0288C-AD32-421A-B745-A90D1E261C44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FE0288C-AD32-421A-B745-A90D1E261C44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FE0288C-AD32-421A-B745-A90D1E261C44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54645946-F9F4-497F-AAED-817F155857D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54645946-F9F4-497F-AAED-817F155857D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54645946-F9F4-497F-AAED-817F155857D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54645946-F9F4-497F-AAED-817F155857D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BD4E1A4-C244-42C5-B267-8F3E358437A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BD4E1A4-C244-42C5-B267-8F3E358437A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BD4E1A4-C244-42C5-B267-8F3E358437A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BD4E1A4-C244-42C5-B267-8F3E358437A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B2E70C2-3D94-4F99-8F93-28455151136F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B2E70C2-3D94-4F99-8F93-28455151136F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B2E70C2-3D94-4F99-8F93-28455151136F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B2E70C2-3D94-4F99-8F93-28455151136F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D36D77D-457E-4DA7-BF8F-AF326CE2C274}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D36D77D-457E-4DA7-BF8F-AF326CE2C274}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D36D77D-457E-4DA7-BF8F-AF326CE2C274}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D36D77D-457E-4DA7-BF8F-AF326CE2C274}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DC7239D8-78C7-4113-A836-110B2694E844} = {F2DAA09F-2E0C-4AE4-A251-3E0C19DDE620}
+		{BC83F31B-22BD-4522-83E9-09126FD5894A} = {F2DAA09F-2E0C-4AE4-A251-3E0C19DDE620}
+		{DFD5BE5C-123E-4274-8474-127DD0AA2558} = {F2DAA09F-2E0C-4AE4-A251-3E0C19DDE620}
+		{3FE0288C-AD32-421A-B745-A90D1E261C44} = {F2DAA09F-2E0C-4AE4-A251-3E0C19DDE620}
+		{54645946-F9F4-497F-AAED-817F155857D7} = {F2DAA09F-2E0C-4AE4-A251-3E0C19DDE620}
+		{0BD4E1A4-C244-42C5-B267-8F3E358437A6} = {C8A3B31D-B57B-48C8-A027-34520E30F5B3}
+		{1B2E70C2-3D94-4F99-8F93-28455151136F} = {C8A3B31D-B57B-48C8-A027-34520E30F5B3}
+		{0D36D77D-457E-4DA7-BF8F-AF326CE2C274} = {C8A3B31D-B57B-48C8-A027-34520E30F5B3}
+	EndGlobalSection
+EndGlobal

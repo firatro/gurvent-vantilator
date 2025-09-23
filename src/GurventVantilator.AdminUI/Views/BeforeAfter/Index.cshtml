@@ -1,0 +1,149 @@
+@using GurventVantilator.Application.DTOs
+@model IEnumerable<BeforeAfterDto>
+
+@{
+    ViewData["Title"] = "Before-After Yönetimi";
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<div class="row">
+    <div class="col">
+        <div class="card card-modern">
+            <div class="card-body">
+                <div class="datatables-header-footer-wrapper mt-2">
+                    <div class="datatable-header">
+                        <div class="row align-items-center mb-3">
+                            <div class="col-12 col-lg-auto mb-3 mb-lg-0">
+                                <a asp-action="Create"
+                                    class="btn btn-primary btn-md font-weight-semibold btn-py-2 px-4">+ Before-After
+                                    Ekle</a>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-ecommerce-simple table-striped mb-0" id="datatable-ecommerce-list"
+                        style="min-width: 550px;">
+                        <thead>
+                            <tr>
+
+                                <th width="30" class="text-center">Id</th>
+                                <th class="text-center">Başlık</th>
+                                <th class="text-center">Alt Başlık</th>
+                                <th class="text-center">Açıklama</th>
+                                <th class="text-center">Before</th>
+                                <th class="text-center">After</th>
+                                <th width="30" class="text-center">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model == null || !Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="7" class="text-center text-muted">
+                                        Hiç kayıt bulunamadı.
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="text-center"><strong><a href="#">@item.Id</a></strong></td>
+                                        <td class="text-center"><strong><a href="#">@item.Title</a></strong></td>
+                                        <td class="text-center">@item.Subtitle</td>
+                                        <td class="text-center">@item.Description</td>
+                                        <td class="text-center">
+                                            @if (!string.IsNullOrEmpty(item.BeforeImagePath))
+                                            {
+                                                <img src="@item.BeforeImagePath" alt="Before Resmi" style="max-width:50px;"
+                                                    class="img-thumbnail" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/img/before-after/default-image.jpg" alt="Before Resmi"
+                                                    style="max-width:50px;" class="img-thumbnail" />
+                                            }
+                                        </td>
+                                        <td class="text-center">
+                                            @if (!string.IsNullOrEmpty(item.AfterImagePath))
+                                            {
+                                                <img src="@item.AfterImagePath" alt="After Resmi" style="max-width:50px;"
+                                                    class="img-thumbnail" />
+                                            }
+                                            else
+                                            {
+                                                <img src="~/img/before-after/default-image.jpg" alt="After Resmi"
+                                                    style="max-width:50px;" class="img-thumbnail" />
+                                            }
+                                        </td>
+                                        <td width="200" class="text-center">
+                                            <div class="btn-group d-flex" role="group">
+                                                <a class="btn btn-primary btn-xs w-100 m-1 rounded" role="button"
+                                                    asp-action="Edit" asp-route-beforeAfterId="@item.Id">
+                                                    <i class='far fa-edit'></i>
+                                                    Düzenle
+                                                </a>
+
+                                                <a href="#deleteModal"
+                                                    class="btn btn-danger btn-xs w-100 m-1 rounded modal-basic"
+                                                    onclick="setDeleteBeforeAfterId(@item.Id)">
+                                                    <i class='far fa-trash-alt'></i> Sil
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    <hr class="solid mt-5 opacity-4">
+                    <div id="deleteModal" class="modal-block mfp-hide">
+                        <section class="card">
+                            <header class="card-header">
+                                <h2 class="card-title">Before-After Silme</h2>
+                            </header>
+                            <div class="card-body">
+                                <div class="modal-wrapper">
+                                    <div class="modal-text">
+                                        <p class="mb-0">Bu Before-After'ı silmek istediğinize emin misiniz?</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <form id="Delete" asp-action="Delete" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="beforeAfterId" id="beforeAfterId" />
+                                    <div class="row">
+                                        <div class="col-md-12 text-end">
+                                            <button type="submit" class="btn btn-danger">Sil</button>
+                                            <button type="button" class="btn btn-default modal-dismiss">Vazgeç</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </footer>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/examples/examples.modals.js"></script>
+    <script src="~/vendor/pnotify/pnotify.custom.js"></script>
+    <script>
+        function setDeleteBeforeAfterId(beforeAfterId) {
+            document.getElementById("beforeAfterId").value = beforeAfterId;
+        }
+    </script>
+}

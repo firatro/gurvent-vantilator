@@ -1,0 +1,30 @@
+﻿@model DashboardDto
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="row">
+    <partial name="Partials/_HomeStats" model="Model" />
+</div>
+
+<hr />
+
+<div class="row mt-4">
+    <!-- Son Contact Mesajları -->
+    <div class="col-md-6">
+        <partial name="Partials/_HomeLatestContacts" model="Model" />
+    </div>
+    <div class="col-md-6">
+        <partial name="Partials/_HomeLatestBlogs" model="Model" />
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <partial name="Partials/_HomeLatestServices" model="Model" />
+    </div>
+    <div class="col-md-6">
+        <partial name="Partials/_HomeLatestTeamMembers" model="Model" />
+    </div>
+</div>

@@ -1,0 +1,282 @@
+@using GurventVantilator.Application.Interfaces.Services
+@inject IVersionInfoService VersionService
+@{
+    var activeVersion = await VersionService.GetActiveAsync();
+}
+
+
+<aside id="sidebar-left" class="sidebar-left">
+
+    <div class="sidebar-header">
+        <div class="sidebar-title">
+            MENÜLER
+        </div>
+        <div class="sidebar-toggle d-none d-md-block" data-toggle-class="sidebar-left-collapsed" data-target="html"
+            data-fire-event="sidebar-left-toggle">
+            <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+        </div>
+    </div>
+
+    <div class="nano">
+        <div class="nano-content">
+            <div class="sidebar-widget widget-tasks">
+                <div class="widget-header">
+                    <h6>Genel Yönetim</h6>
+                </div>
+            </div>
+            <nav id="menu" class="nav-main" role="navigation">
+                <ul class="nav nav-main">
+                    <li>
+                        <a asp-controller="Home" asp-action="Index" class="nav-link">
+                            <i class='bx bx-home'></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "SiteInfo" ? "nav-active" : "")">
+                        <a asp-controller="SiteInfo" asp-action="Edit">
+                            <i class='bx bx-planet'></i>
+                            <span>Site Bilgileri</span>
+                        </a>
+                    </li>
+
+                    <li
+                        class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "SocialMediaInfo" ? "nav-active" : "")">
+                        <a asp-controller="SocialMediaInfo" asp-action="Edit">
+                            <i class='bx bxl-meta'></i>
+                            <span>Sosyal Medya</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <hr class="separator" />
+
+            <div class="sidebar-widget widget-tasks">
+                <div class="widget-header">
+                    <h6>İçerik Yönetimi</h6>
+                </div>
+            </div>
+            <nav id="menu" class="nav-main" role="navigation">
+                <ul class="nav nav-main">
+                    <li
+                        class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "Service" || ViewContext.RouteData.Values["controller"]!.ToString() == "ServiceFeature" || ViewContext.RouteData.Values["controller"]!.ToString() == "ServiceFaq" ? "nav-active" : "")">
+                        <a asp-controller="Service" asp-action="Index">
+                            <i class='bx bx-dish'></i>
+                            <span>Hizmetler</span>
+                        </a>
+                    </li>
+                    <li
+                        class="nav-parent @(ViewContext.RouteData.Values["controller"]!.ToString() == "Project" || ViewContext.RouteData.Values["controller"]!.ToString() == "ProjectFeature" ? "nav-expanded nav-active" : "")">
+                        <a class="nav-link" href="#">
+                            <i class="bx bx-cube" aria-hidden="true"></i>
+                            <span>Projeler</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li>
+                                <a class="nav-link" asp-controller="Project" asp-action="Index">
+                                    - Projeleri Yönet
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" asp-controller="ProjectFeature" asp-action="Index">
+                                    - Proje Özellik Yönet
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li
+                        class="nav-parent @(ViewContext.RouteData.Values["controller"]!.ToString() == "Blog" || ViewContext.RouteData.Values["controller"]!.ToString() == "Category" || ViewContext.RouteData.Values["controller"]!.ToString() == "Tag" || ViewContext.RouteData.Values["controller"]!.ToString() == "Comment"? "nav-expanded nav-active" : "")">
+                        <a class="nav-link" href="#">
+                            <i class="bx bx-spreadsheet" aria-hidden="true"></i>
+                            <span>Blog Yönetimi</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li>
+                                <a class="nav-link" asp-controller="Blog" asp-action="Index">
+                                    - Blogları Yönet
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" asp-controller="Category" asp-action="Index">
+                                    - Kategorileri Yönet
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" asp-controller="Tag" asp-action="Index">
+                                    - Etiketleri Yönet
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" asp-controller="Comment" asp-action="Index">
+                                    - Yorumlar
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "Faq" ? "nav-active" : "")">
+                        <a asp-controller="Faq" asp-action="Index">
+                            <i class='bx bx-question-mark'></i>
+                            <span>Sıkça Sorulan Sorular</span>
+                        </a>
+                    </li>
+                    <li
+                        class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "PageImage" ? "nav-active" : "")">
+                        <a asp-controller="PageImage" asp-action="Index">
+                            <i class='bx bx-images'></i>
+                            <span>Sayfa İçerik Yönetimi</span>
+                        </a>
+                    </li>
+                    <li
+                        class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "Slider" ? "nav-active" : "")">
+                        <a asp-controller="Slider" asp-action="Index">
+                            <i class='bx bx-slideshow'></i>
+                            <span>Slider</span>
+                        </a>
+                    </li>
+                    <li
+                        class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "BeforeAfter" ? "nav-active" : "")">
+                        <a asp-controller="BeforeAfter" asp-action="Index">
+                            <i class='bx bx-exclude'></i>
+                            <span>Before After</span>
+                        </a>
+                    </li>
+                    <li
+                        class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "Testimonial" ? "nav-active" : "")">
+                        <a asp-controller="Testimonial" asp-action="Index">
+                            <i class='bx bx-chat'></i>
+                            <span>Müşteri Yorumları</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <hr class="separator" />
+
+            <div class="sidebar-widget widget-tasks">
+                <div class="widget-header">
+                    <h6>Kurumsal Bilgiler</h6>
+                </div>
+            </div>
+            <nav id="menu" class="nav-main" role="navigation">
+                <ul class="nav nav-main">
+                    <li
+                        class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "AboutUs" ? "nav-active" : "")">
+                        <a asp-controller="AboutUs" asp-action="Edit">
+                            <i class='bx bx-news'></i>
+                            <span>Hakkımızda</span>
+                        </a>
+                    </li>
+                    <li
+                        class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "VisionMission" ? "nav-active" : "")">
+                        <a asp-controller="VisionMission" asp-action="Edit">
+                            <i class='bx bx-analyse'></i>
+                            <span>Vizyon/Misyon</span>
+                        </a>
+                    </li>
+                    <li
+                        class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "TeamMember" ? "nav-active" : "")">
+                        <a asp-controller="TeamMember" asp-action="Index">
+                            <i class='bx bx-group'></i>
+                            <span>Ekibimiz</span>
+                        </a>
+                    </li>
+                    <li
+                        class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "Company" ? "nav-active" : "")">
+                        <a asp-controller="Company" asp-action="Index">
+                            <i class='bx bx-building'></i>
+                            <span>Firmalar</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <hr class="separator" />
+
+            <div class="sidebar-widget widget-tasks">
+                <div class="widget-header">
+                    <h6>İletişim & Etkileşim</h6>
+                </div>
+            </div>
+            <nav id="menu" class="nav-main" role="navigation">
+                <ul class="nav nav-main">
+                    <li
+                        class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "Contact" ? "nav-active" : "")">
+                        <a asp-controller="Contact" asp-action="Index">
+                            <i class='bx bx-phone'></i>
+                            <span>İletişim Formu</span>
+                        </a>
+                    </li>
+                    <li
+                        class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "ChatBotQA" ? "nav-active" : "")">
+                        <a asp-controller="ChatBotQA" asp-action="Index">
+                            <i class='bx bx-bot'></i>
+                            <span>ChatBot Yönetimi</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <hr class="separator" />
+
+            <div class="sidebar-widget widget-tasks">
+                <div class="widget-header">
+                    <h6>Geliştirici</h6>
+                </div>
+            </div>
+            <nav id="menu" class="nav-main" role="navigation">
+                <ul class="nav nav-main">
+                    <li class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "Menu" ? "nav-active" : "")">
+                        <a asp-controller="Menu" asp-action="Index">
+                            <i class='bx bx-menu'></i>
+                            <span>Menü Yönetimi</span>
+                        </a>
+                    </li>
+                    <li
+                        class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "SeoSetting" ? "nav-active" : "")">
+                        <a asp-controller="SeoSetting" asp-action="Edit">
+                            <i class='bx bx-globe'></i>
+                            <span>SEO Yönetimi</span>
+                        </a>
+                    </li>
+                    <li
+                        class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "VersionInfo" ? "nav-active" : "")">
+                        <a asp-controller="VersionInfo" asp-action="Index">
+                            <i class='bx bx-code'></i>
+                            <span>Sürüm Yönetimi</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <hr class="separator" />
+
+            <div class="sidebar-footer text-center p-2"
+                style="font-size: 12px; color: #aaa; border-top: 1px solid #444;">
+                @if (activeVersion.Data != null)
+                {
+                    <span>Versiyon: @activeVersion.Data.VersionNumber</span>
+                }
+                else
+                {
+                    <span>Versiyon: -</span>
+                }
+            </div>
+        </div>
+
+        <script>
+            // Maintain Scroll Position
+            if (typeof localStorage !== 'undefined') {
+                if (localStorage.getItem('sidebar-left-position') !== null) {
+                    var initialPosition = localStorage.getItem('sidebar-left-position'),
+                        sidebarLeft = document.querySelector('#sidebar-left .nano-content');
+
+                    sidebarLeft.scrollTop = initialPosition;
+                }
+            }
+        </script>
+
+    </div>
+
+</aside>

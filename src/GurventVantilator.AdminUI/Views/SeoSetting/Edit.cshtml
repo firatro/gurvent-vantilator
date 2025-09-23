@@ -1,0 +1,152 @@
+@using GurventVantilator.AdminUI.Models.SeoSetting
+@model SeoSettingEditViewModel
+@{
+    ViewData["Title"] = "SEO Yönetimi";
+}
+
+<form class="ecommerce-form action-buttons-fixed" asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+    <div class="row mt-2">
+        <div class="col">
+            <section class="card card-modern card-big-info">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-2-5 col-xl-1-5">
+                            <i class="card-big-info-icon bx bx-globe"></i>
+                            <h2 class="card-big-info-title">SEO Güncelle</h2>
+                            <p class="card-big-info-desc">SEO bilgilerini güncellemek için bilgileri değiştirin.</p>
+                        </div>
+                        <div class="col-lg-3-5 col-xl-4-5">
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="SiteName">Site
+                                    Adı</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="SiteName" />
+                                    <span asp-validation-for="SiteName" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="DefaultTitle">Default Title</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="DefaultTitle" />
+                                    <span asp-validation-for="DefaultTitle" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="DefaultMetaDescription">Default Meta Description</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <textarea type="text" class="form-control form-control-modern editable"
+                                        asp-for="DefaultMetaDescription" rows="4"></textarea>
+                                    <span asp-validation-for="DefaultMetaDescription" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="DefaultMetaKeywords">Default Meta Keywords</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <textarea type="text" class="form-control form-control-modern editable"
+                                        asp-for="DefaultMetaKeywords" rows="4"></textarea>
+                                    <span asp-validation-for="DefaultMetaKeywords" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="DefaultOgImageFile">Default OG Image</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    @if (!string.IsNullOrEmpty(Model.DefaultOgImagePath))
+                                    {
+                                        <img src="@Model.DefaultOgImagePath" alt="SEO Görsel" style="max-width:100px;"
+                                            class="img-thumbnail mb-2" />
+                                    }
+                                    <input type="file" asp-for="DefaultOgImageFile"
+                                        class="form-control form-control-modern editable"
+                                        accept=".jpg,.jpeg,.png,.webp" />
+                                    <input type="hidden" asp-for="DefaultOgImageFile" />
+                                    <span asp-validation-for="DefaultOgImageFile" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="RobotsTxtContent">Robots.txt İçerik</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="RobotsTxtContent" />
+                                    <span asp-validation-for="RobotsTxtContent" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="GoogleAnalyticsId">Google Analytics ID</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="GoogleAnalyticsId" />
+                                    <span asp-validation-for="GoogleAnalyticsId" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="GoogleTagManagerId">Google Tag Manager ID</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="GoogleTagManagerId" />
+                                    <span asp-validation-for="GoogleTagManagerId" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="FacebookPixelId">Facebook Pixel ID</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="FacebookPixelId" />
+                                    <span asp-validation-for="FacebookPixelId" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="row action-buttons">
+        <div class="col-12 col-md-auto px-md-0 mt-3 mt-md-0">
+            <button id="btnEnableEdit" type="button"
+                class="btn btn-warning btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1">
+                <i class="bx bx-edit text-4 me-2"></i> Güncelle
+            </button>
+        </div>
+        <div class="col-12 col-md-auto">
+            <button type="submit"
+                class="submit-button btn btn-primary btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1 editable"
+                data-loading-text="Loading...">
+                <i class="bx bx-save text-4 me-2"></i> Kaydet
+            </button>
+        </div>
+        @* <div class="col-12 col-md-auto px-md-0 mt-3 mt-md-0">
+        <a asp-controller="Home" asp-action="Index"
+        class="cancel-button btn btn-light btn-px-4 py-3 border font-weight-semibold text-color-dark text-3">Geri
+        Dön</a>
+        </div> *@
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Sayfa açıldığında inputları kapat
+            $(".editable").prop("disabled", true);
+            $("#btnSave").prop("disabled", true);
+
+            $("#btnEnableEdit").click(function () {
+                $(".editable").prop("disabled", false);
+                $("#btnSave").prop("disabled", false);
+
+                // Güncelle butonunu pasifleştir
+                $(this).prop("disabled", true);
+            });
+        });
+    </script>
+}

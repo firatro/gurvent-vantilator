@@ -1,0 +1,241 @@
+@using GurventVantilator.AdminUI.Models.SiteInfo
+@model SiteInfoEditViewModel
+@{
+    ViewData["Title"] = "Site Bilgi Güncelle";
+}
+
+<form class="ecommerce-form action-buttons-fixed" asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+    <div class="row mt-2">
+        <div class="col">
+            <section class="card card-modern card-big-info">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-2-5 col-xl-1-5">
+                            <i class="card-big-info-icon bx bx-planet"></i>
+                            <h2 class="card-big-info-title">Site Bilgilerini Güncelle</h2>
+                            <p class="card-big-info-desc">Site bilgilerini güncellemek için bilgileri değiştirin.</p>
+                        </div>
+                        <div class="col-lg-3-5 col-xl-4-5">
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="LogoFile">Site
+                                    Logosu</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    @if (!string.IsNullOrEmpty(Model.LogoPath))
+                                    {
+                                        <img src="@Model.LogoPath" alt="Site Logo" style="max-width:100px;"
+                                            class="img-thumbnail mb-2" />
+                                    }
+                                    <input type="file" asp-for="LogoFile"
+                                        class="form-control form-control-modern editable" accept=".jpg,.jpeg,.png,.webp" />
+                                    <input type="hidden" asp-for="LogoFile" />
+                                    <span asp-validation-for="LogoFile" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Phone1">Telefon
+                                    Numarası (1)</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="Phone1" />
+                                    <span asp-validation-for="Phone1" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Phone2">Telefon
+                                    Numarası (2)</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="Phone2" />
+                                    <span asp-validation-for="Phone2" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Fax1">Faks
+                                    Numarası (1)</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="Fax1" />
+                                    <span asp-validation-for="Fax1" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Fax2">Faks
+                                    Numarası (2)</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="Fax2" />
+                                    <span asp-validation-for="Fax2" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="WaNumber">WhatsApp Numarası</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="WaNumber" />
+                                    <span asp-validation-for="WaNumber" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="TNumber">Telegram Numarası</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="TNumber" />
+                                    <span asp-validation-for="TNumber" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Email1">E-Posta
+                                    Adresi (1)</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="Email1" />
+                                    <span asp-validation-for="Email1" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Email2">E-Posta
+                                    Adresi (2)</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="Email2" />
+                                    <span asp-validation-for="Email2" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="SiteName">Site
+                                    Adı</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="SiteName" />
+                                    <span asp-validation-for="SiteName" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="SiteInformation">Site Tanıtım</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="SiteInformation" />
+                                    <span asp-validation-for="SiteInformation" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="SiteOwner">Site
+                                    Sahibi</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="SiteOwner" />
+                                    <span asp-validation-for="SiteOwner" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="CompanyName">Firma Adı</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="CompanyName" />
+                                    <span asp-validation-for="CompanyName" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="CompanyOwner">Firma Sahibi</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="CompanyOwner" />
+                                    <span asp-validation-for="CompanyOwner" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="GoogleMapsApi">Google Maps API Kodu</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <textarea type="text" class="form-control form-control-modern editable"
+                                        asp-for="GoogleMapsApi" rows="4"></textarea>
+                                    <span asp-validation-for="GoogleMapsApi" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="Address">Adres</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <textarea type="text" class="form-control form-control-modern editable"
+                                        asp-for="Address" rows="4"></textarea>
+                                    <span asp-validation-for="Address" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="WorkingHours">Çalışma Saatleri</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="WorkingHours" />
+                                    <span asp-validation-for="WorkingHours" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="TaxNumber">Vergi Numarası</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="TaxNumber" />
+                                    <span asp-validation-for="TaxNumber" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="TaxOffice">Vergi Dairesi</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern editable"
+                                        asp-for="TaxOffice" />
+                                    <span asp-validation-for="TaxOffice" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="row action-buttons">
+        <div class="col-12 col-md-auto px-md-0 mt-3 mt-md-0">
+            <button id="btnEnableEdit" type="button"
+                class="btn btn-warning btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1">
+                <i class="bx bx-edit text-4 me-2"></i> Güncelle
+            </button>
+        </div>
+        <div class="col-12 col-md-auto">
+            <button type="submit"
+                class="submit-button btn btn-primary btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1 editable"
+                data-loading-text="Loading...">
+                <i class="bx bx-save text-4 me-2"></i> Kaydet
+            </button>
+        </div>
+        @* <div class="col-12 col-md-auto px-md-0 mt-3 mt-md-0">
+        <a asp-controller="Home" asp-action="Index"
+        class="cancel-button btn btn-light btn-px-4 py-3 border font-weight-semibold text-color-dark text-3">Geri
+        Dön</a>
+        </div> *@
+    </div>
+</form>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Sayfa açıldığında inputları kapat
+            $(".editable").prop("disabled", true);
+            $("#btnSave").prop("disabled", true);
+
+            $("#btnEnableEdit").click(function () {
+                $(".editable").prop("disabled", false);
+                $("#btnSave").prop("disabled", false);
+
+                // Güncelle butonunu pasifleştir
+                $(this).prop("disabled", true);
+            });
+        });
+    </script>
+}

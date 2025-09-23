@@ -1,0 +1,123 @@
+@model List<GurventVantilator.Application.DTOs.ContactDto>
+
+@{
+    ViewData["Title"] = "İletişim Formu Yönetimi";
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">
+    @ViewBag.ErrorMessage
+</div>
+}
+
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+    @TempData["Error"]
+</div>
+}
+
+<div class="row">
+    <div class="col">
+        <div class="card card-modern">
+            <div class="card-body">
+                <div class="datatables-header-footer-wrapper mt-2">
+                    <table class="table table-ecommerce-simple table-striped mb-0" id="datatable-ecommerce-list"
+                        style="min-width: 550px;">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Id</th>
+                                <th class="text-center">Ad Soyad</th>
+                                <th class="text-center">E-Posta Adresi</th>
+                                <th class="text-center">Telefon</th>
+                                <th class="text-center">Konu</th>
+                                <th class="text-center">Tarih</th>
+                                <th class="text-center">Notlar</th>
+                                <th class="text-center">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model == null || !Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="8" class="text-center text-muted">
+                                        Hiç kayıt bulunamadı.
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td width="30" class="text-center">
+                                            <strong><a href="#">@item.Id</a></strong>
+                                        </td>
+                                        <td class="text-center"><strong><a href="#">@item.FullName</a></strong></td>
+                                        <td class="text-center">@item.Email</td>
+                                        <td class="text-center">@item.Phone</td>
+                                        <td class="text-center">@item.Subject</td>
+                                        <td class="text-center">@item.CreatedAt.ToString("dd.MM.yyyy HH:mm")</td>
+                                        <td class="text-center">@item.Notes</td>
+                                        <td width="200" class="text-center">
+                                            <div class="btn-group d-flex" role="group">
+                                                <a class="btn btn-success btn-xs w-100 m-1 rounded" role="button"
+                                                    asp-action="Edit" asp-route-contactId="@item.Id"><i class='far fa-edit'></i>
+                                                    Düzenle</a>
+                                                <a href="#deleteModal"
+                                                    class="btn btn-danger btn-xs w-100 m-1 rounded modal-basic"
+                                                    onclick="setDeleteContactId(@item.Id)">
+                                                    <i class='far fa-trash-alt'></i> Sil
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                    <hr class="solid mt-5 opacity-4">
+                    <!-- Modal -->
+                    <div id="deleteModal" class="modal-block mfp-hide">
+                        <section class="card">
+                            <header class="card-header">
+                                <h2 class="card-title">İletişim Formu Silme</h2>
+                            </header>
+                            <div class="card-body">
+                                <div class="modal-wrapper">
+                                    <div class="modal-text">
+                                        <p class="mb-0">Bu iletişim formunu silmek istediğinize emin misiniz?</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <form id="Delete" asp-action="Delete" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="contactId" id="contactId" />
+                                    <div class="row">
+                                        <div class="col-md-12 text-end">
+                                            <button type="submit" class="btn btn-danger">Sil</button>
+                                            <button type="button" class="btn btn-default modal-dismiss">Vazgeç</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </footer>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/examples/examples.modals.js"></script>
+    <script src="~/vendor/pnotify/pnotify.custom.js"></script>
+    <script>
+        function setDeleteContactId(contactId) {
+            document.getElementById("contactId").value = contactId;
+        }
+    </script>
+}

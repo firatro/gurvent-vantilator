@@ -1,0 +1,210 @@
+@using GurventVantilator.AdminUI.Models.Blog
+@model BlogEditViewModel
+
+@{
+    ViewData[index: "Title"] = "Blog Güncelle";
+}
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data" class="ecommerce-form action-buttons-fixed">
+    <input type="hidden" asp-for="Id" />
+    <div class="row mt-2">
+        <div class="col">
+            <section class="card card-modern card-big-info">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-2-5 col-xl-1-5">
+                            <i class="card-big-info-icon bx bx-spreadsheet"></i>
+                            <h2 class="card-big-info-title">Blog Düzenle</h2>
+                            <p class="card-big-info-desc">Blog güncellemek için bilgileri değiştirin.</p>
+                        </div>
+                        <div class="col-lg-3-5 col-xl-4-5">
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="Title">Başlık</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <textarea type="text" class="form-control form-control-modern" asp-for="Title"
+                                        rows="4"></textarea>
+                                    <span asp-validation-for="Title" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Subtitle">Alt
+                                    Başlık</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <textarea type="text" class="form-control form-control-modern" asp-for="Subtitle"
+                                        rows="4"></textarea>
+                                    <span asp-validation-for="Subtitle" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="Description">Açıklama</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <textarea type="text" class="form-control form-control-modern" asp-for="Description"
+                                        rows="4"></textarea>
+                                    <span asp-validation-for="Description" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="FullName">Yazar</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern" asp-for="FullName" />
+                                    <span asp-validation-for="FullName" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="CategoryId">Kategori</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <select asp-for="CategoryId" class="form-control populate" data-plugin-selectTwo
+                                        asp-items="ViewBag.CategoryList">
+                                        <option value="0">Seçim Yapınız</option>
+                                    </select>
+                                    <span asp-validation-for="CategoryId" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Etiketler</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <select multiple asp-for="TagIds" class="form-control populate"
+                                        data-plugin-selectTwo asp-items="ViewBag.TagList">
+                                    </select>
+                                    <small class="form-text text-muted">Birden fazla etiket seçebilirsiniz.</small>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="EntryTitle">Giriş Başlık</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <textarea type="text" class="form-control form-control-modern" asp-for="EntryTitle"
+                                        rows="4"></textarea>
+                                    <span asp-validation-for="EntryTitle" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="EntryDescription">Giriş Açıklama</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <textarea type="text" class="form-control form-control-modern"
+                                        asp-for="EntryDescription" rows="4"></textarea>
+                                    <span asp-validation-for="EntryDescription" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="ExtraTitle">Ekstra Başlık</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <textarea type="text" class="form-control form-control-modern" asp-for="ExtraTitle"
+                                        rows="4"></textarea>
+                                    <span asp-validation-for="ExtraTitle" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="EntryDescription">Ekstra Açıklama</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <textarea type="text" class="form-control form-control-modern"
+                                        asp-for="ExtraDescription" rows="4"></textarea>
+                                    <span asp-validation-for="ExtraDescription" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="Quote">Alıntı</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <textarea type="text" class="form-control form-control-modern" asp-for="Quote"
+                                        rows="4"></textarea>
+                                    <span asp-validation-for="Quote" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="QuoteSource">Alıntı Kaynağı</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern" asp-for="QuoteSource" />
+                                    <span asp-validation-for="QuoteSource" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="MainImageFile">Ana Görsel</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    @if (!string.IsNullOrEmpty(Model.MainImagePath))
+                                    {
+                                        <img src="@Model.MainImagePath" alt="Ana Görsel" style="max-width:100px;"
+                                            class="img-thumbnail mb-2" />
+                                    }
+                                    <input type="file" asp-for="MainImageFile" class="form-control form-control-modern"
+                                        accept=".jpg,.jpeg,.png,.webp" />
+                                    <input type="hidden" asp-for="MainImageFile" />
+                                    <span asp-validation-for="MainImageFile" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="ContentImage1File">İçerik Görsel (1)</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    @if (!string.IsNullOrEmpty(Model.ContentImage1Path))
+                                    {
+                                        <img src="@Model.ContentImage1Path" alt="İçerik Görsel" style="max-width:100px;"
+                                            class="img-thumbnail mb-2" />
+                                    }
+                                    <input type="file" asp-for="ContentImage1File"
+                                        class="form-control form-control-modern" accept=".jpg,.jpeg,.png,.webp" />
+                                    <input type="hidden" asp-for="ContentImage1File" />
+                                    <span asp-validation-for="ContentImage1File" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="ContentImage2File">İçerik Görsel (2)</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    @if (!string.IsNullOrEmpty(Model.ContentImage2Path))
+                                    {
+                                        <img src="@Model.ContentImage2Path" alt="İçerik Görsel" style="max-width:100px;"
+                                            class="img-thumbnail mb-2" />
+                                    }
+                                    <input type="file" asp-for="ContentImage2File"
+                                        class="form-control form-control-modern" accept=".jpg,.jpeg,.png,.webp" />
+                                    <input type="hidden" asp-for="ContentImage2File" />
+                                    <span asp-validation-for="ContentImage2File" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="YoutubeVideoUrl">Youtube Video Url</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" class="form-control form-control-modern"
+                                        asp-for="YoutubeVideoUrl" />
+                                    <span asp-validation-for="YoutubeVideoUrl" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="row action-buttons">
+        <div class="col-12 col-md-auto">
+            <button type="submit"
+                class="submit-button btn btn-primary btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1"
+                data-loading-text="Loading...">
+                <i class="bx bx-save text-4 me-2"></i> Kaydet
+            </button>
+        </div>
+        <div class="col-12 col-md-auto px-md-0 mt-3 mt-md-0">
+            <a asp-action="Index"
+                class="cancel-button btn btn-light btn-px-4 py-3 border font-weight-semibold text-color-dark text-3">Geri
+                Dön</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

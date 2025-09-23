@@ -1,0 +1,141 @@
+@model IEnumerable<GurventVantilator.Application.DTOs.ServiceDto>
+
+@{
+    ViewData["Title"] = "Hizmet Yönetimi";
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger">@ViewBag.ErrorMessage</div>
+}
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+
+<div class="row">
+    <div class="col">
+        <div class="card card-modern">
+            <div class="card-body">
+                <div class="datatables-header-footer-wrapper mt-2">
+                    <div class="datatable-header">
+                        <div class="row align-items-center mb-3">
+                            <div class="col-12 col-lg-auto mb-3 mb-lg-0">
+                                <a asp-action="Create"
+                                    class="btn btn-primary btn-md font-weight-semibold btn-py-2 px-4">+ Hizmet
+                                    Ekle</a>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-ecommerce-simple table-striped mb-0" id="datatable-ecommerce-list"
+                        style="min-width: 550px;">
+                        <thead>
+                            <tr>
+                                <th class="text-center">ID</th>
+                                <th class="text-center">Ad</th>
+                                <th class="text-center">Başlık</th>
+                                <th class="text-center">Açıklama</th>
+                                <th class="text-center">Ana Resim</th>
+                                <th class="text-center">Ek Bilgiler</th>
+                                <th class="text-center">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model == null || !Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="7" class="text-center text-muted">
+                                        Hiç kayıt bulunamadı.
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td width="30" class="text-center"><strong><a href="#">@item.Id</a></strong></td>
+                                        <td class="text-center"><strong><a href="#">@item.Name</a></strong></td>
+                                        <td class="text-center">@item.Title</td>
+                                        <td class="text-center">@item.Description</td>
+                                        <td class="text-center">
+                                            @if (!string.IsNullOrEmpty(item.MainImagePath))
+                                            {
+                                                <img src="@item.MainImagePath" alt="Hizmet Resmi" style="max-width:50px;"
+                                                    class="img-thumbnail" />
+                                            }
+                                        </td>
+                                        <td width="200" class="text-center">
+                                            <div class="btn-group d-flex" role="group">
+                                                <a class="btn btn-default btn-xs w-100 m-1 rounded" role="button"
+                                                    asp-controller="ServiceFeature" asp-action="Index"
+                                                    asp-route-serviceId="@item.Id">Özellikler</a>
+                                                <a class="btn btn-default btn-xs w-100 m-1 rounded" role="button"
+                                                    asp-controller="ServiceFaq" asp-action="Index"
+                                                    asp-route-serviceId="@item.Id">SSS</a>
+                                            </div>
+                                        </td>
+                                        <td width="200" class="text-center">
+                                            <div class="btn-group d-flex" role="group">
+                                                <a class="btn btn-primary btn-xs w-100 m-1 rounded" role="button"
+                                                    asp-action="Edit" asp-route-serviceId="@item.Id"><i class='far fa-edit'></i>
+                                                    Düzenle</a>
+                                                <a href="#deleteModal"
+                                                    class="btn btn-danger btn-xs w-100 m-1 rounded modal-basic"
+                                                    onclick="setDeleteServiceId(@item.Id)">
+                                                    <i class='far fa-trash-alt'></i> Sil
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+                    <hr class="solid mt-5 opacity-4">
+                    <!-- Modal -->
+                    <div id="deleteModal" class="modal-block mfp-hide">
+                        <section class="card">
+                            <header class="card-header">
+                                <h2 class="card-title">Hizmet Silme</h2>
+                            </header>
+                            <div class="card-body">
+                                <div class="modal-wrapper">
+                                    <div class="modal-text">
+                                        <p class="mb-0">Bu hizmeti silmek istediğinize emin misiniz?</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <form id="Delete" asp-action="Delete" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="serviceId" id="serviceId" />
+                                    <div class="row">
+                                        <div class="col-md-12 text-end">
+                                            <button type="submit" class="btn btn-danger">Sil</button>
+                                            <button type="button" class="btn btn-default modal-dismiss">Vazgeç</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </footer>
+                        </section>
+                    </div>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    <script src="~/js/examples/examples.modals.js"></script>
+    <script src="~/vendor/pnotify/pnotify.custom.js"></script>
+    <script>
+        function setDeleteServiceId(serviceId) {
+            document.getElementById("serviceId").value = serviceId;
+        }
+    </script>
+}

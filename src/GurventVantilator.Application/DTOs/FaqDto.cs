@@ -1,0 +1,10 @@
+namespace GurventVantilator.Application.DTOs
+{
+    public class FaqDto
+    {
+        public int Id { get; set; } 
+        public string Question { get; set; } = string.Empty;
+        public string Answer { get; set; } = string.Empty;
+        public DateTime CreatedAt { get; set; }
+    }
+}
