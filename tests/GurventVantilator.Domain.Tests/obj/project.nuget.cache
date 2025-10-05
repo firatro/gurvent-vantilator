@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "J2Reki9lqBY=",
+  "dgSpecHash": "w935dQpiTsE=",
   "success": true,
-  "projectFilePath": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Fan_Secim_Otomasyonu/03_Source_Code/GurventVantilator/tests/GurventVantilator.Domain.Tests/GurventVantilator.Domain.Tests.csproj",
+  "projectFilePath": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/tests/GurventVantilator.Domain.Tests/GurventVantilator.Domain.Tests.csproj",
   "expectedPackageFiles": [
     "/Users/firatramazano/.nuget/packages/coverlet.collector/6.0.0/coverlet.collector.6.0.0.nupkg.sha512",
     "/Users/firatramazano/.nuget/packages/microsoft.codecoverage/17.8.0/microsoft.codecoverage.17.8.0.nupkg.sha512",

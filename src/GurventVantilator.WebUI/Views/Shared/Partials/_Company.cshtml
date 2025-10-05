@@ -1,0 +1,30 @@
+@using GurventVantilator.Application.DTOs
+@model IEnumerable<CompanyDto>
+
+<div class="it-brand-area">
+    <div class="container">
+        <div class="it-brand-ptb">
+            <div class="row align-items-center">
+                <div class="col-xl-3 col-lg-3 col-md-4">
+                    <div class="it-brand-text">
+                        <span class="it-split-text it-split-in-right">Trusted By Companies</span>
+                    </div>
+                </div>
+                <div class="col-xl-9 col-lg-9 col-md-8">
+                    <div class="swiper-container it-brand-active">
+                        <div class="swiper-wrapper slider-transtion d-flex align-items-center">
+                            @foreach (var company in Model)
+                            {
+                                <div class="swiper-slide">
+                                    <div class="it-brand-item">
+                                        <img ssrc="http://localhost:5034/@company.LogoPath" alt="">
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

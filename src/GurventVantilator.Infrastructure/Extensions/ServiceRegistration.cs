@@ -45,6 +45,8 @@ namespace GurventVantilator.Infrastructure.Extensions
             services.AddScoped<IChatBotQARepository, ChatBotQARepository>();
             services.AddScoped<IPageImageRepository, PageImageRepository>();
             services.AddScoped<IVersionInfoRepository, VersionInfoRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
 
             // File Upload
             services.AddScoped<IFileService, FileService>();

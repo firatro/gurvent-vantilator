@@ -5,17 +5,48 @@ namespace GurventVantilator.AdminUI.Validators.Common
 {
     public static class ValidationRules
     {
-        private static readonly string[] _allowedExtensions = { ".jpg", ".jpeg", ".png", ".webp" };
-        private const long _maxFileSize = 2 * 1024 * 1024; // 2 MB
+        // Görseller
+        private static readonly string[] _allowedImageExtensions = { ".jpg", ".jpeg", ".png", ".webp" };
+        // PDF dosyaları
+        private static readonly string[] _allowedPdfExtensions = { ".pdf" };
+        // 3D model dosyaları
+        private static readonly string[] _allowed3DExtensions = { ".glb", ".stl" };
 
+        private const long _maxImageFileSize = 10 * 1024 * 1024; // 10 MB
+        private const long _maxPdfFileSize = 10 * 1024 * 1024;   // 10 MB
+        private const long _max3DFileSize = 10 * 1024 * 1024;    // 10 MB
+
+        // 🔹 Görsel dosyalar için doğrulama
         public static IRuleBuilderOptions<T, IFormFile?> ValidImageFile<T>(
             this IRuleBuilder<T, IFormFile?> ruleBuilder)
         {
             return ruleBuilder
-                .Must(file => file == null || file.Length <= _maxFileSize)
-                    .WithMessage($"Dosya boyutu {_maxFileSize / 1024 / 1024} MB’ı geçemez.")
-                .Must(file => file == null || _allowedExtensions.Contains(Path.GetExtension(file.FileName).ToLower()))
+                .Must(file => file == null || file.Length <= _maxImageFileSize)
+                    .WithMessage($"Görsel dosya boyutu {_maxImageFileSize / 1024 / 1024} MB’ı geçemez.")
+                .Must(file => file == null || _allowedImageExtensions.Contains(Path.GetExtension(file.FileName).ToLower()))
                     .WithMessage("Sadece .jpg, .jpeg, .png, .webp formatları desteklenmektedir.");
+        }
+
+        // 🔹 PDF dosyalar için doğrulama
+        public static IRuleBuilderOptions<T, IFormFile?> ValidPdfFile<T>(
+            this IRuleBuilder<T, IFormFile?> ruleBuilder)
+        {
+            return ruleBuilder
+                .Must(file => file == null || file.Length <= _maxPdfFileSize)
+                    .WithMessage($"PDF dosya boyutu {_maxPdfFileSize / 1024 / 1024} MB’ı geçemez.")
+                .Must(file => file == null || _allowedPdfExtensions.Contains(Path.GetExtension(file.FileName).ToLower()))
+                    .WithMessage("Sadece .pdf formatı desteklenmektedir.");
+        }
+
+        // 🔹 3D model dosyalar için doğrulama
+        public static IRuleBuilderOptions<T, IFormFile?> Valid3DFile<T>(
+            this IRuleBuilder<T, IFormFile?> ruleBuilder)
+        {
+            return ruleBuilder
+                .Must(file => file == null || file.Length <= _max3DFileSize)
+                    .WithMessage($"3D model dosya boyutu {_max3DFileSize / 1024 / 1024} MB’ı geçemez.")
+                .Must(file => file == null || _allowed3DExtensions.Contains(Path.GetExtension(file.FileName).ToLower()))
+                    .WithMessage("Sadece .glb ve .stl formatları desteklenmektedir.");
         }
     }
 }

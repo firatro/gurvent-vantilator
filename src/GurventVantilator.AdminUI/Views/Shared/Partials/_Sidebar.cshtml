@@ -87,6 +87,25 @@
                         </ul>
                     </li>
                     <li
+                        class="nav-parent @(ViewContext.RouteData.Values["controller"]!.ToString() == "Product" || ViewContext.RouteData.Values["controller"]!.ToString() == "ProductCategory" ? "nav-expanded nav-active" : "")">
+                        <a class="nav-link" href="#">
+                            <i class='bx bx-purchase-tag'></i>
+                            <span>Ürünler</span>
+                        </a>
+                        <ul class="nav nav-children">
+                            <li>
+                                <a class="nav-link" asp-controller="Product" asp-action="Index">
+                                    - Ürünleri Yönet
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" asp-controller="ProductCategory" asp-action="Index">
+                                    - Ürün Kategori Yönet
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li
                         class="nav-parent @(ViewContext.RouteData.Values["controller"]!.ToString() == "Blog" || ViewContext.RouteData.Values["controller"]!.ToString() == "Category" || ViewContext.RouteData.Values["controller"]!.ToString() == "Tag" || ViewContext.RouteData.Values["controller"]!.ToString() == "Comment"? "nav-expanded nav-active" : "")">
                         <a class="nav-link" href="#">
                             <i class="bx bx-spreadsheet" aria-hidden="true"></i>

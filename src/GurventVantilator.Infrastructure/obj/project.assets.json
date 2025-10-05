@@ -4822,11 +4822,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Fan_Secim_Otomasyonu/03_Source_Code/GurventVantilator/src/GurventVantilator.Infrastructure/GurventVantilator.Infrastructure.csproj",
+      "projectUniqueName": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.Infrastructure/GurventVantilator.Infrastructure.csproj",
       "projectName": "GurventVantilator.Infrastructure",
-      "projectPath": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Fan_Secim_Otomasyonu/03_Source_Code/GurventVantilator/src/GurventVantilator.Infrastructure/GurventVantilator.Infrastructure.csproj",
+      "projectPath": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.Infrastructure/GurventVantilator.Infrastructure.csproj",
       "packagesPath": "/Users/firatramazano/.nuget/packages/",
-      "outputPath": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Fan_Secim_Otomasyonu/03_Source_Code/GurventVantilator/src/GurventVantilator.Infrastructure/obj/",
+      "outputPath": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.Infrastructure/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/firatramazano/.nuget/NuGet/NuGet.Config"
@@ -4841,11 +4841,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Fan_Secim_Otomasyonu/03_Source_Code/GurventVantilator/src/GurventVantilator.Application/GurventVantilator.Application.csproj": {
-              "projectPath": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Fan_Secim_Otomasyonu/03_Source_Code/GurventVantilator/src/GurventVantilator.Application/GurventVantilator.Application.csproj"
+            "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.Application/GurventVantilator.Application.csproj": {
+              "projectPath": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.Application/GurventVantilator.Application.csproj"
             },
-            "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Fan_Secim_Otomasyonu/03_Source_Code/GurventVantilator/src/GurventVantilator.Domain/GurventVantilator.Domain.csproj": {
-              "projectPath": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Fan_Secim_Otomasyonu/03_Source_Code/GurventVantilator/src/GurventVantilator.Domain/GurventVantilator.Domain.csproj"
+            "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.Domain/GurventVantilator.Domain.csproj": {
+              "projectPath": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.Domain/GurventVantilator.Domain.csproj"
             }
           }
         }

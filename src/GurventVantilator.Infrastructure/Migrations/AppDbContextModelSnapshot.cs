@@ -978,6 +978,183 @@ namespace GurventVantilator.Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AirFlowMax")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AirFlowMin")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DataSheetPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Diameter")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Frequency")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Model3DPath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NoiseLevel")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Power")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PressureMax")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PressureMin")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Speed")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Voltage")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductCategoryId");
+
+                    b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AirFlowMax = "550 m³/h",
+                            AirFlowMin = "200 m³/h",
+                            Code = "12F",
+                            CreatedAt = new DateTime(2025, 9, 10, 14, 30, 0, 0, DateTimeKind.Unspecified),
+                            DataSheetPath = "/uploads/datasheets/rsd12f.pdf",
+                            Description = "Ø100mm fan, yüksek verimli kompakt tasarım. Orta debili sistemler için uygundur.",
+                            Diameter = "Ø100mm",
+                            Frequency = "50Hz",
+                            ImagePath = "/uploads/products/rsd12f.webp",
+                            IsActive = true,
+                            Model3DPath = "/uploads/models/rsd12f.glb",
+                            Name = "RSD 12F",
+                            NoiseLevel = "65 dB(A)",
+                            Order = 1,
+                            Power = "0.25 kW",
+                            PressureMax = "600 Pa",
+                            PressureMin = "50 Pa",
+                            ProductCategoryId = 1,
+                            Speed = "2800 RPM",
+                            Voltage = "220V / 380V"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            AirFlowMax = "400 m³/h",
+                            AirFlowMin = "150 m³/h",
+                            Code = "9F",
+                            CreatedAt = new DateTime(2025, 9, 10, 14, 30, 0, 0, DateTimeKind.Unspecified),
+                            DataSheetPath = "/uploads/datasheets/rsd9f.pdf",
+                            Description = "Ø80mm fan, küçük hacimli sistemler için ideal.",
+                            Diameter = "Ø80mm",
+                            Frequency = "50Hz",
+                            ImagePath = "/uploads/products/rsd9f.webp",
+                            IsActive = true,
+                            Model3DPath = "/uploads/models/rsd9f.glb",
+                            Name = "RSD 9F",
+                            NoiseLevel = "62 dB(A)",
+                            Order = 2,
+                            Power = "0.18 kW",
+                            PressureMax = "500 Pa",
+                            PressureMin = "40 Pa",
+                            ProductCategoryId = 1,
+                            Speed = "2800 RPM",
+                            Voltage = "220V"
+                        });
+                });
+
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductCategories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 9, 10, 14, 30, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Yüksek basınç ve verimlilik gerektiren endüstriyel uygulamalar için radyal fanlar.",
+                            ImagePath = "/uploads/categories/radyal-fanlar.webp",
+                            IsActive = true,
+                            Name = "Radyal Fanlar",
+                            Order = 1
+                        });
+                });
+
             modelBuilder.Entity("GurventVantilator.Domain.Entities.Project", b =>
                 {
                     b.Property<int>("Id")
@@ -2219,6 +2396,17 @@ namespace GurventVantilator.Infrastructure.Migrations
                     b.Navigation("Parent");
                 });
 
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.Product", b =>
+                {
+                    b.HasOne("GurventVantilator.Domain.Entities.ProductCategory", "ProductCategory")
+                        .WithMany("Products")
+                        .HasForeignKey("ProductCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductCategory");
+                });
+
             modelBuilder.Entity("GurventVantilator.Domain.Entities.ProjectFeature", b =>
                 {
                     b.HasOne("GurventVantilator.Domain.Entities.Project", "Project")
@@ -2267,6 +2455,11 @@ namespace GurventVantilator.Infrastructure.Migrations
             modelBuilder.Entity("GurventVantilator.Domain.Entities.Menu", b =>
                 {
                     b.Navigation("Children");
+                });
+
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductCategory", b =>
+                {
+                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("GurventVantilator.Domain.Entities.Project", b =>

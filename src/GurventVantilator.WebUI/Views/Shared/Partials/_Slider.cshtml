@@ -1,0 +1,146 @@
+@using GurventVantilator.Application.DTOs
+@model SliderDto
+
+<div class="it-hero-2-area pt-150">
+    <div class="it-hero-2-overlay fix gray-bg z-index-1" data-background="http://localhost:5034/@Model.ImagePath">
+        <div class="it-hero-shape-1"><img src="~/img/shape/hero-2-1.png" alt=""></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-6 col-lg-6">
+                    <div class="it-hero-2-content">
+                        <h1 class="it-hero-2-title it-split-text it-split-in-right">
+                            @Model.Title
+                        </h1>
+                        <div class="it-hero-2-text  wow itfadeUp" data-wow-duration=".9s" data-wow-delay=".5s">
+                            <p class="mb-30">
+                                @Model.Subtitle
+                            </p>
+                        </div>
+                        <div class="it-hero-btn d-sm-flex align-items-center">
+                            <div class="it-fade-anim" data-fade-from="top" data-ease="bounce" data-delay=".8">
+                                <a href="@Url.Action("Index", "About")" class="it-btn-orange mr-30  wow itfadeUp"
+                                    data-wow-duration=".9s" data-wow-delay=".7s">
+
+                                    <span>
+                                        <span class="text-1">BİZE ULAŞIN</span>
+                                        <span class="text-2">BİZE ULAŞIN</span>
+                                    </span>
+                                    <i>
+                                        <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M10.0035 3.90804L1.41153 12.5L0 11.0885L8.59097 2.49651H1.01922V0.5H12V11.4808H10.0035V3.90804Z"
+                                                fill="white" />
+                                        </svg>
+                                        <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M10.0035 3.90804L1.41153 12.5L0 11.0885L8.59097 2.49651H1.01922V0.5H12V11.4808H10.0035V3.90804Z"
+                                                fill="white" />
+                                        </svg>
+                                    </i>
+                                </a>
+                            </div>
+                            <div class="it-fade-anim" data-fade-from="top" data-ease="bounce" data-delay="1">
+                                <a href="@Url.Action("Index", "Service")" class="it-btn-border  wow itfadeUp"
+                                    data-wow-duration=".9s" data-wow-delay=".9s">
+                                    <span>
+                                        <span class="text-1">HİZMETLERİMİZ</span>
+                                        <span class="text-2">HİZMETLERİMİZ</span>
+                                    </span>
+                                    <i>
+                                        <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M10.0035 3.90804L1.41153 12.5L0 11.0885L8.59097 2.49651H1.01922V0.5H12V11.4808H10.0035V3.90804Z"
+                                                fill="white" />
+                                        </svg>
+                                        <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M10.0035 3.90804L1.41153 12.5L0 11.0885L8.59097 2.49651H1.01922V0.5H12V11.4808H10.0035V3.90804Z"
+                                                fill="white" />
+                                        </svg>
+                                    </i>
+
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-6">
+                    <div class="it-contact-form-box z-index-1 p-relative wow img-anim-top" data-wow-duration="1.5s"
+                        data-wow-delay="0.1">
+                        <h4 class="it-contact-form-title mb-10">Bize Ulaşın!</h4>
+                        <p>Hassasiyet tutkusu ve kaliteye olan bağlılığımızla endüstrileri güçlendiriyor ve ilerlemeyi
+                            yönlendiriyoruz.</p>
+                        <form action="#">
+                            <div class="it-contact-input-wrap">
+                                <div class="row gx-30">
+                                    <div class="col-sm-6 mb-20">
+                                        <div class="it-contact-input-box">
+                                            <input type="text" placeholder="Adınız Soyadınız">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 mb-20">
+                                        <div class="it-contact-input-box">
+                                            <input type="email" placeholder="E-Posta Adresiniz">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 mb-20">
+                                        <div class="it-contact-input-box">
+                                            <input type="text" placeholder="Telefon Numaranız">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 mb-20">
+                                        <div class="it-contact-input-box">
+                                            <div class="postbox__select">
+                                                <select>
+                                                    <option>Konu*</option>
+                                                    <option>Konu 1</option>
+                                                    <option>Konu 2</option>
+                                                    <option>Konu 3</option>
+                                                    <option>Konu 4</option>
+                                                    <option>Konu 5</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 mb-40">
+                                        <div class="it-contact-input-box">
+                                            <textarea placeholder="Mesajınız*"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="it-contact-btn">
+                                    <button type="submit" class="it-btn-orange">
+
+                                        <span>
+                                            <span class="text-1">GÖNDER</span>
+                                            <span class="text-2">GÖNDER</span>
+                                        </span>
+                                        <i>
+                                            <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M10.0035 3.90804L1.41153 12.5L0 11.0885L8.59097 2.49651H1.01922V0.5H12V11.4808H10.0035V3.90804Z"
+                                                    fill="white" />
+                                            </svg>
+                                            <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M10.0035 3.90804L1.41153 12.5L0 11.0885L8.59097 2.49651H1.01922V0.5H12V11.4808H10.0035V3.90804Z"
+                                                    fill="white" />
+                                            </svg>
+                                        </i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <img class="it-contact-shape-1" ssrc="~/img/shape/contact-1-1.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

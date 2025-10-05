@@ -1,4 +1,23 @@
+using GurventVantilator.Application.Extensions;
+using GurventVantilator.Infrastructure.Data;
+using GurventVantilator.Infrastructure.Extensions;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
+
+// DbContext kaydı
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddApplicationServices();
+
+builder.Services.AddInfrastructureServices(builder.Configuration);
+
+// Add services to the container.
+builder.Services.AddControllersWithViews();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

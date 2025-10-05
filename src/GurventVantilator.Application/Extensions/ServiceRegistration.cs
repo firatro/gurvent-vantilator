@@ -36,6 +36,8 @@ namespace GurventVantilator.Application.Extensions
             services.AddScoped<IDashboardService, DashboardManager>();
             services.AddScoped<IPageImageService, PageImageManager>();
             services.AddScoped<IVersionInfoService, VersionInfoManager>();
+            services.AddScoped<IProductService, ProductManager>();
+            services.AddScoped<IProductCategoryService, ProductCategoryManager>();
 
             return services;
         }

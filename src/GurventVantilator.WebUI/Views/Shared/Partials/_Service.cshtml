@@ -1,0 +1,51 @@
+@using GurventVantilator.Application.DTOs
+@model IEnumerable<ServiceDto>
+
+<div class="it-about-3-area p-relative pt-125 pb-130">
+    <img class="it-about-shape-1" ssrc="~/img/webgl/pattern-1.jpg" alt="">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="it-section-title-box text-center mb-65">
+                    <span class="it-section-subtitle">Başlıca Hizmetlerimiz</span>
+                    <h4 class="it-section-title it-split-text it-split-in-right mb-0">The United Way To Find <br>
+                        Specialist Services</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row gx-35">
+            <div class="col-xl-6 col-lg-6 col-md-12 order-1 order-lg-0 wow img-anim-top" data-wow-duration="1.5s"
+                data-wow-delay="0.1">
+                <div class="it-about-3-thumb it-img-anim-wrap p-relative">
+                    <div class="it-about-3-thumb it-img-anim" data-displacement="assets/img/webgl/pattern-1.jpg"
+                        data-intensity="0.6" data-speedin="1" data-speedout="1">
+                        <img class="w-100" src="http://localhost:5034/@Model.First().MainImagePath"
+                            style="object-fit: cover;" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 wow itfadeRight" data-wow-duration=".9s" data-wow-delay=".7s">
+                <div class="it-about-3-right">
+                    @foreach (var service in Model)
+                    {
+                        <div class="it-about-3-item d-flex justify-content-between align-items-center mb-20">
+                            <h4 class="it-about-3-title mb-0"><a class="border-line-white"
+                                    href="service-details.html">@service.Name</a>
+                            </h4>
+                            <div class="it-about-3-arrow">
+                                <a href="service-details.html">
+                                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M10.0035 3.40804L1.41153 12L0 10.5885L8.59097 1.99651H1.01922V0H12V10.9808H10.0035V3.40804Z"
+                                            fill="currentcolor" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

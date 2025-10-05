@@ -1,31 +1,35 @@
-using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
+using GurventVantilator.Application.DTOs;
+using GurventVantilator.Application.Interfaces.Services;
 using GurventVantilator.WebUI.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GurventVantilator.WebUI.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    private readonly IServiceService _serviceService;
+    private readonly ISliderService _sliderService;
+    private readonly ICompanyService _companyService;
+    public HomeController(IServiceService serviceService, ISliderService sliderService, ICompanyService companyService)
     {
-        _logger = logger;
+        _sliderService = sliderService;
+        _serviceService = serviceService;
+        _companyService = companyService;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
-    }
+        var sliders = await _sliderService.GetAllAsync();
+        var services = await _serviceService.GetAllAsync();
+        var companies = await _companyService.GetAllAsync();
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
+        var vm = new HomeViewModel
+        {
+            Slider = sliders.Data?.First() ?? new SliderDto(),
+            Services = services.Data ?? new List<ServiceDto>(),
+            Companies = companies.Data ?? new List<CompanyDto>(),
+        };
 
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        return View(vm);
     }
 }

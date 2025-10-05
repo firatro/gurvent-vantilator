@@ -37,6 +37,8 @@ namespace GurventVantilator.Infrastructure.Data
         public DbSet<ChatBotQA> ChatBotQAs { get; set; }
         public DbSet<PageImage> PageImages { get; set; }
         public DbSet<VersionInfo> VersionInfos { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);

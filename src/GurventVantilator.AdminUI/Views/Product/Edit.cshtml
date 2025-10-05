@@ -1,0 +1,185 @@
+@using GurventVantilator.AdminUI.Models.Product
+@model ProductEditViewModel
+
+@{
+    ViewData[index: "Title"] = "Ürün Güncelle";
+}
+
+<form class="ecommerce-form action-buttons-fixed" asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+    <div class="row mt-2">
+        <div class="col">
+            <section class="card card-modern card-big-info">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-2-5 col-xl-1-5">
+                            <i class="card-big-info-icon bx bx-spreadsheet"></i>
+                            <h2 class="card-big-info-title">Ürün Güncelle</h2>
+                            <p class="card-big-info-desc">Ürün güncellemek için bilgileri değiştirin.</p>
+                        </div>
+                        <div class="col-lg-3-5 col-xl-4-5">
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Name">Ürün Adı</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" asp-for="Name" class="form-control form-control-modern" />
+                                    <span asp-validation-for="Name" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Code">Ürün Kodu</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="text" asp-for="Code" class="form-control form-control-modern" />
+                                    <span asp-validation-for="Code" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Description">Açıklama</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <textarea asp-for="Description" rows="4" class="form-control form-control-modern"></textarea>
+                                    <span asp-validation-for="Description" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="ProductCategoryId">Kategori</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <select asp-for="ProductCategoryId" class="form-control populate" data-plugin-selectTwo
+                                        asp-items="ViewBag.ProductCategoryList">
+                                        <option value="0">Seçim Yapınız</option>
+                                    </select>
+                                    <span asp-validation-for="ProductCategoryId" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Diameter">Çap</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="Diameter" class="form-control form-control-modern" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Hava Debisi (Min - Max)</label>
+                                <div class="col-lg-3">
+                                    <input asp-for="AirFlowMin" class="form-control form-control-modern" placeholder="Min" />
+                                </div>
+                                <div class="col-lg-3">
+                                    <input asp-for="AirFlowMax" class="form-control form-control-modern" placeholder="Max" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Basınç (Min - Max)</label>
+                                <div class="col-lg-3">
+                                    <input asp-for="PressureMin" class="form-control form-control-modern" placeholder="Min" />
+                                </div>
+                                <div class="col-lg-3">
+                                    <input asp-for="PressureMax" class="form-control form-control-modern" placeholder="Max" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Power">Güç (kW)</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="Power" class="form-control form-control-modern" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Voltage">Voltaj</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="Voltage" class="form-control form-control-modern" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Frequency">Frekans</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="Frequency" class="form-control form-control-modern" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Speed">Devir (RPM)</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="Speed" class="form-control form-control-modern" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="NoiseLevel">Ses Seviyesi (dB)</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="NoiseLevel" class="form-control form-control-modern" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="ImageFile">Ana Görsel</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    @if (!string.IsNullOrEmpty(Model.ImagePath))
+                                    {
+                                        <img src="@Model.ImagePath" alt="Firma Logosu" style="max-width:100px;"
+                                            class="img-thumbnail mb-2" />
+                                    }
+                                    <input type="file" asp-for="ImageFile" class="form-control form-control-modern"
+                                        accept=".jpg,.jpeg,.png,.webp" />
+                                    <input type="hidden" asp-for="ImageFile" />
+                                    <span asp-validation-for="ImageFile" class="badge badge-danger"></span>
+                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: JPG, PNG, WEBP. Maks 10MB.</small>
+                                </div>
+                            </div>
+
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="DataSheetFile">Teknik Döküman (PDF)</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="file" asp-for="DataSheetFile" class="form-control form-control-modern" accept=".pdf" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Model3DFile">3D Model</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="file" asp-for="Model3DFile" class="form-control form-control-modern" accept=".glb,.stl" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="IsActive">Durum</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="checkbox" asp-for="IsActive" />
+                                    <label class="ms-2">Aktif</label>
+                                </div>
+                            </div>
+
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Order">Sıra</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="Order" type="number" class="form-control form-control-modern" />
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <div class="row action-buttons">
+        <div class="col-12 col-md-auto">
+            <button type="submit"
+                class="submit-button btn btn-primary btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1"
+                data-loading-text="Loading...">
+                <i class="bx bx-save text-4 me-2"></i> Kaydet
+            </button>
+        </div>
+        <div class="col-12 col-md-auto px-md-0 mt-3 mt-md-0">
+            <a asp-action="Index"
+                class="cancel-button btn btn-light btn-px-4 py-3 border font-weight-semibold text-color-dark text-3">Geri
+                Dön</a>
+        </div>
+    </div>
+</form>
