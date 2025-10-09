@@ -12,34 +12,34 @@ namespace GurventVantilator.Infrastructure.Data.Configurations
                 new Slider
                 {
                     Id = 1,
-                    Tag = "Web",
-                    ImagePath = "img/slider/default-image1.jpg",
-                    Title = "Modern web uygulamaları",
-                    Subtitle = "Ölçeklenebilir ve güvenli çözümler"
+                    Tag = "Üretim",
+                    ImagePath = "/img/slider/factory1.jpg",
+                    Title = "Endüstriyel Fan Üretiminde 40 Yıllık Tecrübe",
+                    Subtitle = "Güçlü mühendislik, kaliteli üretim, maksimum verim."
                 },
                 new Slider
                 {
                     Id = 2,
-                    Tag = "Mobil",
-                    ImagePath = "img/slider/default-image2.jpg",
-                    Title = "Mobil dünyada güçlü uygulamalar",
-                    Subtitle = "iOS ve Android için performanslı çözümler"
+                    Tag = "Havalandırma",
+                    ImagePath = "/img/slider/ventilation1.jpg",
+                    Title = "Havalandırma Sistemlerinde Profesyonel Çözümler",
+                    Subtitle = "Enerji verimli, sessiz ve güvenilir sistemler."
                 },
                 new Slider
                 {
                     Id = 3,
-                    Tag = "E-Ticaret",
-                    ImagePath = "img/slider/default-image3.jpg",
-                    Title = "Dijital mağazanızı büyütün",
-                    Subtitle = "Güvenli ve kullanıcı dostu e-ticaret platformları"
+                    Tag = "Filtrasyon",
+                    ImagePath = "/img/slider/filtration1.jpg",
+                    Title = "Temiz Hava, Sağlıklı Çalışma Ortamı",
+                    Subtitle = "Toz toplama ve hava filtrasyon sistemlerinde lider marka."
                 },
                 new Slider
                 {
                     Id = 4,
-                    Tag = "SEO",
-                    ImagePath = "img/slider/default-image4.jpg",
-                    Title = "Google’da daha görünür olun",
-                    Subtitle = "SEO ve dijital pazarlama stratejileri"
+                    Tag = "Servis",
+                    ImagePath = "/img/slider/service1.jpg",
+                    Title = "Bakım ve Onarımda Güvenilir Hizmet",
+                    Subtitle = "Her marka fan için profesyonel servis desteği."
                 }
             );
         }

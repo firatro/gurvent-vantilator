@@ -11,11 +11,13 @@ namespace GurventVantilator.Application.Services
     public class ProductManager : IProductService
     {
         private readonly IProductRepository _productRepository;
+        private readonly IProductCategoryRepository _productCategoryRepository;
         private readonly ILogger<ProductManager> _logger;
 
-        public ProductManager(IProductRepository productRepository, ILogger<ProductManager> logger)
+        public ProductManager(IProductRepository productRepository, IProductCategoryRepository productCategoryRepository, ILogger<ProductManager> logger)
         {
             _productRepository = productRepository;
+            _productCategoryRepository = productCategoryRepository;
             _logger = logger;
         }
 
@@ -103,6 +105,61 @@ namespace GurventVantilator.Application.Services
             }
         }
 
+        public async Task<Result<List<ProductDto>>> GetProductsByCategoryAsync(int categoryId, bool includeSubCategories)
+        {
+            try
+            {
+                var allProducts = await _productRepository.GetAllAsync();
+
+                if (allProducts == null)
+                    return Result<List<ProductDto>>.Fail("Ürün bulunamadı.");
+
+                IEnumerable<Product> filteredProducts;
+
+                if (includeSubCategories)
+                {
+                    // Alt kategorileri bul
+                    var allCategoryIds = await GetAllSubCategoryIdsAsync(categoryId);
+                    allCategoryIds.Add(categoryId);
+
+                    filteredProducts = allProducts.Where(p => allCategoryIds.Contains(p.ProductCategoryId));
+                }
+                else
+                {
+                    filteredProducts = allProducts.Where(p => p.ProductCategoryId == categoryId);
+                }
+
+                var products = filteredProducts
+                    .Select(MapToDto)
+                    .ToList();
+
+                return Result<List<ProductDto>>.Ok(products);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Ürünler listelenirken hata oluştu.");
+                return Result<List<ProductDto>>.Fail("Ürünler yüklenemedi.");
+            }
+        }
+
+        private async Task<List<int>> GetAllSubCategoryIdsAsync(int parentId)
+        {
+            var categories = await _productCategoryRepository.GetAllAsync();
+            var subIds = new List<int>();
+
+            void AddSubCategories(int parent)
+            {
+                var children = categories.Where(c => c.ParentCategoryId == parent).ToList();
+                foreach (var child in children)
+                {
+                    subIds.Add(child.Id);
+                    AddSubCategories(child.Id);
+                }
+            }
+
+            AddSubCategories(parentId);
+            return subIds;
+        }
 
         #region Mapping
         private static ProductDto MapToDto(Product entity)

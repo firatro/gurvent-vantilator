@@ -74,6 +74,31 @@
                                 </div>
                             </div>
 
+                            <div class="form-group row align-items-center pb-3" id="productWrapper"
+                                style="display:none;">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="ProductId">Ürün Kategorisi</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <select asp-for="ProductId" class="form-control populate"
+                                        data-plugin-selectTwo asp-items="ViewBag.Products">
+                                        <option value="">Seçim Yapınız</option>
+                                    </select>
+                                </div>
+                            </div>
+                           
+                            <div class="form-group row align-items-center pb-3" id="productCategoryWrapper"
+                                style="display:none;">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                    asp-for="ProductCategoryId">Ürün Kategorisi</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <select asp-for="ProductCategoryId" class="form-control populate"
+                                        data-plugin-selectTwo asp-items="ViewBag.ProductCategories">
+                                        <option value="">Seçim Yapınız</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
                             <div class="form-group row align-items-center pb-3">
                                 <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
                                     asp-for="Order">Sıra</label>
@@ -143,6 +168,12 @@
                 }
                 else if (linkType === "2") { // Project
                     $("#projectWrapper").show();
+                }
+                else if (linkType === "7") { // Product
+                    $("#productWrapper").show();
+                }
+                else if (linkType === "8") { // ProductCategory
+                    $("#productCategoryWrapper").show();
                 }
             }
 

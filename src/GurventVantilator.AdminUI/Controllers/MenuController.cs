@@ -10,12 +10,17 @@ public class MenuController : Controller
     private readonly IMenuService _menuService;
     private readonly IServiceService _serviceService;
     private readonly IProjectService _projectService;
+    private readonly IProductService _productService;
+    private readonly IProductCategoryService _productCategoryService;
 
-    public MenuController(IMenuService menuService, IServiceService serviceService, IProjectService projectService)
+
+    public MenuController(IMenuService menuService, IServiceService serviceService, IProjectService projectService, IProductService productService, IProductCategoryService productCategoryService)
     {
         _menuService = menuService;
         _serviceService = serviceService;
         _projectService = projectService;
+        _productService = productService;
+        _productCategoryService = productCategoryService;
     }
 
     public async Task<IActionResult> Index()
@@ -47,7 +52,7 @@ public class MenuController : Controller
         {
             await LoadParentMenusAsync(menu.ParentId);
             LoadLinkTypes(menu.LinkType);
-            await LoadRelatedDataAsync(menu.ServiceId, menu.ProjectId);
+            await LoadRelatedDataAsync(menu.ServiceId, menu.ProjectId, menu.ProductId,  menu.ProductCategoryId);
             return View(menu);
         }
 
@@ -58,7 +63,7 @@ public class MenuController : Controller
             ModelState.AddModelError("", result.ErrorMessage ?? "Menü eklenemedi.");
             await LoadParentMenusAsync(menu.ParentId);
             LoadLinkTypes(menu.LinkType);
-            await LoadRelatedDataAsync(menu.ServiceId, menu.ProjectId);
+            await LoadRelatedDataAsync(menu.ServiceId, menu.ProjectId, menu.ProductId, menu.ProductCategoryId);
             return View(menu);
         }
 
@@ -74,7 +79,7 @@ public class MenuController : Controller
 
         await LoadParentMenusAsync(menuResult.Data.ParentId, menuResult.Data.Id); // kendisini parent olmasın
         LoadLinkTypes(menuResult.Data.LinkType);
-        await LoadRelatedDataAsync(menuResult.Data.ServiceId, menuResult.Data.ProjectId);
+        await LoadRelatedDataAsync(menuResult.Data.ServiceId, menuResult.Data.ProjectId, menuResult.Data.ProductId, menuResult.Data.ProductCategoryId);
 
         return View(menuResult.Data);
     }
@@ -87,7 +92,7 @@ public class MenuController : Controller
         {
             await LoadParentMenusAsync(menu.ParentId, menu.Id);
             LoadLinkTypes(menu.LinkType);
-            await LoadRelatedDataAsync(menu.ServiceId, menu.ProjectId);
+            await LoadRelatedDataAsync(menu.ServiceId, menu.ProjectId, menu.ProductId,  menu.ProductCategoryId);
             return View(menu);
         }
 
@@ -98,7 +103,7 @@ public class MenuController : Controller
             ModelState.AddModelError("", result.ErrorMessage ?? "Menü güncellenemedi.");
             await LoadParentMenusAsync(menu.ParentId, menu.Id);
             LoadLinkTypes(menu.LinkType);
-            await LoadRelatedDataAsync(menu.ServiceId, menu.ProjectId);
+            await LoadRelatedDataAsync(menu.ServiceId, menu.ProjectId, menu.ProductId,  menu.ProductCategoryId);
             return View(menu);
         }
 
@@ -156,7 +161,7 @@ public class MenuController : Controller
         ViewBag.LinkTypes = new SelectList(types, "Id", "Name", selectedType);
     }
 
-    private async Task LoadRelatedDataAsync(int? selectedServiceId = null, int? selectedProjectId = null)
+    private async Task LoadRelatedDataAsync(int? selectedServiceId = null, int? selectedProjectId = null, int? selectedProductId = null, int? selectedProductCategoryId = null)
     {
         var services = await _serviceService.GetAllAsync();
         if (services.Success && services.Data != null)
@@ -169,6 +174,19 @@ public class MenuController : Controller
             ViewBag.Projects = new SelectList(projects.Data, "Id", "Title", selectedProjectId);
         else
             ViewBag.Projects = new SelectList(new List<object>(), "Id", "Title");
+
+        var products = await _productService.GetAllAsync();
+        if (products.Success && products.Data != null)
+            ViewBag.Products = new SelectList(products.Data, "Id", "Name", selectedProductId);
+        else
+            ViewBag.Products = new SelectList(new List<object>(), "Id", "Name");
+
+        var productCategories = await _productCategoryService.GetAllAsync();
+        if (productCategories.Success && productCategories.Data != null)
+            ViewBag.ProductCategories = new SelectList(productCategories.Data, "Id", "Name", selectedProductCategoryId);
+        else
+            ViewBag.ProductCategories = new SelectList(new List<object>(), "Id", "Name");
+
     }
 
     #endregion

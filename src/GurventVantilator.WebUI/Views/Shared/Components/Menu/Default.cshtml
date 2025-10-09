@@ -5,60 +5,11 @@
     <div class="it-header-menu it-header-dropdown">
         <nav class="it-menu-content">
             <ul>
-                @foreach (var menu in Model.Where(m => m.IsActive && m.ParentId == null).OrderBy(m => m.Order))
+                @foreach (var menu in Model)
                 {
-                    var currentPath = ViewContext.HttpContext.Request.Path.ToString().ToLower();
-                    var menuUrl = GetMenuUrl(menu).ToLower();
-                    var isActive = currentPath == menuUrl;
-
-                    if (menu.SubMenus.Any(s => s.IsActive))
-                    {
-                        <li
-                            class="has-dropdown">
-                            <a href="javascript:void(0);">@menu.Title</a>
-                            <ul class="it-submenu submenu">
-                                @foreach (var sub in menu.SubMenus.Where(s => s.IsActive).OrderBy(s => s.Order))
-                                {
-                                    <li>
-                                        <a href="@GetMenuUrl(sub)">@sub.Title</a>
-                                    </li>
-                                }
-                            </ul>
-                        </li>
-                    }
-                    else
-                    {
-                        <li>
-                            <a href="@menuUrl">@menu.Title</a>
-                        </li>
-                    }
+                    @await Html.PartialAsync("Components/Menu/_MenuRecursive", menu)
                 }
             </ul>
         </nav>
     </div>
 </div>
-
-@functions {
-    private string GetMenuUrl(MenuDto menu)
-    {
-        switch (menu.LinkType.ToString())
-        {
-            case "HomePage":
-                return Url.Action("Index", "Home") ?? "#";
-            case "CustomPage":
-                return Url.Action("Detail", "Page", new { slug = menu.Slug }) ?? "#";
-            case "Service":
-                return Url.Action("Detail", "Service", new { id = menu.ServiceId }) ?? "#";
-            case "Project":
-                return Url.Action("Index", "Project", new { id = menu.ProjectId }) ?? "#";
-            case "Blog":
-                return Url.Action("Index", "Blog") ?? "#";
-            case "Contact":
-                return Url.Action("Index", "Contact") ?? "#";
-            case "AboutUs":
-                return Url.Action("Index", "AboutUs") ?? "#";
-            default:
-                return "#";
-        }
-    }
-}

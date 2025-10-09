@@ -12,15 +12,15 @@ namespace GurventVantilator.Infrastructure.Data.Configurations
                 new SeoSetting
                 {
                     Id = 1,
-                    SiteName = "Fırat Ramazano Software",
-                    DefaultTitle = "Fırat Ramazano | Yazılım Geliştirme ve Teknoloji Çözümleri",
-                    DefaultMetaDescription = "Fırat Ramazano, modern web, mobil ve yapay zeka tabanlı yazılım çözümleri geliştirir. Güvenli, ölçeklenebilir ve kullanıcı dostu uygulamalar için profesyonel destek sunar.",
-                    DefaultMetaKeywords = "yazılım geliştirme, web uygulamaları, mobil uygulama, yapay zeka, siber güvenlik, bulut, devops, firat ramazano",
-                    DefaultOgImagePath = "/img/seo-setting/default-image.jpg",
+                    SiteName = "Gurvent Vantilatör",
+                    DefaultTitle = "Gurvent Vantilatör | Endüstriyel Fan ve Havalandırma Sistemleri",
+                    DefaultMetaDescription = "Gurvent, santrifüj, aksiyel ve ATEX sertifikalı endüstriyel fan üretiminde liderdir. Enerji verimli ve uzun ömürlü çözümler için doğru adres.",
+                    DefaultMetaKeywords = "endüstriyel fan, havalandırma, santrifüj fan, ATEX, filtrasyon, toz toplama, enerji verimliliği, gurvent",
+                    DefaultOgImagePath = "/img/seo/default-image.jpg",
                     RobotsTxtContent = "User-agent: *\nAllow: /",
-                    GoogleAnalyticsId = "G-XXXXXXX",
-                    GoogleTagManagerId = "GTM-XXXXXXX",
-                    FacebookPixelId = "1234567890"
+                    GoogleAnalyticsId = "G-GURVENT1234",
+                    GoogleTagManagerId = "GTM-GURVENT01",
+                    FacebookPixelId = "999888777"
                 }
             );
         }

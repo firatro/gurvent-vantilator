@@ -1,6 +1,7 @@
 using GurventVantilator.AdminUI.Mappings;
 using GurventVantilator.AdminUI.Models.VisionMission;
 using GurventVantilator.Application.DTOs;
+using GurventVantilator.Application.Enums;
 using GurventVantilator.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -43,11 +44,11 @@ namespace GurventVantilator.AdminUI.Controllers
             var existing = existingResult.Data;
 
             var visionImagePath = vm.VisionImageFile != null
-                ? await _fileService.SaveFileAsync(vm.VisionImageFile, "uploads/images/vision-mission")
+                ? await _fileService.SaveFileAsync(vm.VisionImageFile, "uploads/images/vision-mission", FileType.Image)
                 : existing.VisionImagePath;
 
             var missionImagePath = vm.MissionImageFile != null
-                ? await _fileService.SaveFileAsync(vm.MissionImageFile, "uploads/images/vision-mission")
+                ? await _fileService.SaveFileAsync(vm.MissionImageFile, "uploads/images/vision-mission", FileType.Image)
                 : existing.MissionImagePath;
 
             var dto = vm.ToDto(visionImagePath, missionImagePath);

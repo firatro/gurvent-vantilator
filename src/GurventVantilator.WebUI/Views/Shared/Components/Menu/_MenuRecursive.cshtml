@@ -1,0 +1,57 @@
+@using GurventVantilator.Application.DTOs
+@model MenuDto
+
+@{
+    var currentPath = ViewContext.HttpContext.Request.Path.ToString().ToLower();
+    var menuUrl = GetMenuUrl(Model).ToLower();
+    var isActive = currentPath == menuUrl;
+}
+
+@if (Model.SubMenus != null && Model.SubMenus.Any(s => s.IsActive))
+{
+    <li>
+        <a href="javascript:void(0);">@Model.Title</a>
+        <ul class="it-submenu submenu">
+            @foreach (var sub in Model.SubMenus.Where(s => s.IsActive).OrderBy(s => s.Order))
+            {
+                @await Html.PartialAsync("Components/Menu/_MenuRecursive", sub)
+            }
+        </ul>
+    </li>
+}
+else
+{
+    <li>
+        <a href="@menuUrl">@Model.Title</a>
+    </li>
+}
+
+@functions {
+    private string GetMenuUrl(MenuDto menu)
+    {
+        switch (menu.LinkType.ToString())
+        {
+            case "HomePage":
+                return Url.Action("Index", "Home") ?? "#";
+            case "CustomPage":
+                return Url.Action("Detail", "Page", new { slug = menu.Slug }) ?? "#";
+            case "Service":
+                return Url.Action("Detail", "Service", new { id = menu.ServiceId }) ?? "#";
+            case "Project":
+                return Url.Action("Index", "Project", new { id = menu.ProjectId }) ?? "#";
+            case "Product":
+                return Url.Action("Detail", "Product", new { id = menu.ProductId }) ?? "#";
+            case "ProductCategory":
+                return Url.Action(action: "ListByCategory", "Product", new { id = menu.ProductCategoryId }) ?? "#";
+            case "Blog":
+                return Url.Action("Index", "Blog") ?? "#";
+            case "Contact":
+                return Url.Action("Index", "Contact") ?? "#";
+            case "AboutUs":
+                return Url.Action("Index", "AboutUs") ?? "#";
+
+            default:
+                return "#";
+        }
+    }
+}

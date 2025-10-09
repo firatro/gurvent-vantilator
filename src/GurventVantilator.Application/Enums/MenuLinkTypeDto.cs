@@ -23,6 +23,12 @@ namespace GurventVantilator.Application.Enums
         AboutUs = 5,
 
         [Display(Name = "HomePage")]
-        HomePage = 6
+        HomePage = 6,
+
+        [Display(Name = "Ürünler")]
+        Product = 7,
+
+        [Display(Name = "Ürün Kategorileri")]
+        ProductCategory = 8
     }
 }

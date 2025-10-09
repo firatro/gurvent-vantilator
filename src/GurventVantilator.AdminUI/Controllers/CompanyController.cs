@@ -3,6 +3,7 @@ using GurventVantilator.AdminUI.Mappings;
 using GurventVantilator.Application.DTOs;
 using GurventVantilator.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
+using GurventVantilator.Application.Enums;
 
 public class CompanyController : Controller
 {
@@ -40,7 +41,7 @@ public class CompanyController : Controller
         if (!ModelState.IsValid) return View(vm);
 
         var logoPath = vm.LogoFile != null
-            ? await _fileService.SaveFileAsync(vm.LogoFile, "uploads/images/company")
+            ? await _fileService.SaveFileAsync(vm.LogoFile, "uploads/images/company", FileType.Image)
             : null;
 
         var dto = vm.ToDto(logoPath);
@@ -81,7 +82,7 @@ public class CompanyController : Controller
         var existing = existingResult.Data;
 
         var logoPath = vm.LogoFile != null
-            ? await _fileService.SaveFileAsync(vm.LogoFile, "uploads/images/company")
+            ? await _fileService.SaveFileAsync(vm.LogoFile, "uploads/images/company", FileType.Image)
             : existing.LogoPath;
 
         var dto = vm.ToDto(logoPath);

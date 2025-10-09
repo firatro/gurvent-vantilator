@@ -3,6 +3,7 @@ using GurventVantilator.Application.DTOs;
 using GurventVantilator.Application.Interfaces.Services;
 using GurventVantilator.AdminUI.Mappings;
 using Microsoft.AspNetCore.Mvc;
+using GurventVantilator.Application.Enums;
 
 namespace GurventVantilator.AdminUI.Controllers
 {
@@ -43,7 +44,7 @@ namespace GurventVantilator.AdminUI.Controllers
             var existing = existingResult.Data;
 
             var imagePath = vm.DefaultOgImageFile != null
-                ? await _fileService.SaveFileAsync(vm.DefaultOgImageFile, "uploads/images/seo-setting")
+                ? await _fileService.SaveFileAsync(vm.DefaultOgImageFile, "uploads/images/seo-setting", FileType.Image)
                 : existing.DefaultOgImagePath;
 
             var dto = vm.ToDto(imagePath);

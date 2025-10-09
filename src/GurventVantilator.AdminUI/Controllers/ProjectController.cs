@@ -3,6 +3,7 @@ using GurventVantilator.AdminUI.Mappings;
 using GurventVantilator.Application.DTOs;
 using GurventVantilator.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
+using GurventVantilator.Application.Enums;
 
 public class ProjectController : Controller
 {
@@ -40,15 +41,15 @@ public class ProjectController : Controller
         if (!ModelState.IsValid) return View(vm);
 
         var mainImagePath = vm.MainImageFile != null
-            ? await _fileService.SaveFileAsync(vm.MainImageFile, "uploads/images/project")
+            ? await _fileService.SaveFileAsync(vm.MainImageFile, "uploads/images/project", FileType.Image)
             : null;
 
         var contentImage1Path = vm.ContentImage1File != null
-            ? await _fileService.SaveFileAsync(vm.ContentImage1File, "uploads/images/project")
+            ? await _fileService.SaveFileAsync(vm.ContentImage1File, "uploads/images/project", FileType.Image)
             : null;
 
         var contentImage2Path = vm.ContentImage2File != null
-            ? await _fileService.SaveFileAsync(vm.ContentImage2File, "uploads/images/project")
+            ? await _fileService.SaveFileAsync(vm.ContentImage2File, "uploads/images/project", FileType.Image)
             : null;
 
         var dto = vm.ToDto(mainImagePath, contentImage1Path, contentImage2Path);
@@ -89,15 +90,15 @@ public class ProjectController : Controller
         var existing = existingResult.Data;
 
         var mainImagePath = vm.MainImageFile != null
-            ? await _fileService.SaveFileAsync(vm.MainImageFile, "uploads/images/project")
+            ? await _fileService.SaveFileAsync(vm.MainImageFile, "uploads/images/project", FileType.Image)
             : existing.MainImagePath;
 
         var contentImage1Path = vm.ContentImage1File != null
-            ? await _fileService.SaveFileAsync(vm.ContentImage1File, "uploads/images/project")
+            ? await _fileService.SaveFileAsync(vm.ContentImage1File, "uploads/images/project", FileType.Image)
             : existing.ContentImage1Path;
 
         var contentImage2Path = vm.ContentImage2File != null
-            ? await _fileService.SaveFileAsync(vm.ContentImage2File, "uploads/images/project")
+            ? await _fileService.SaveFileAsync(vm.ContentImage2File, "uploads/images/project", FileType.Image)
             : existing.ContentImage2Path;
 
         var dto = vm.ToDto(mainImagePath, contentImage1Path, contentImage2Path, existing.CreatedAt);

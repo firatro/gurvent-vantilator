@@ -137,6 +137,7 @@
                                 <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="DataSheetFile">Teknik Döküman (PDF)</label>
                                 <div class="col-lg-7 col-xl-6">
                                     <input type="file" asp-for="DataSheetFile" class="form-control form-control-modern" accept=".pdf" />
+                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: PDF. Maks 10MB.</small>
                                 </div>
                             </div>
 
@@ -144,6 +145,7 @@
                                 <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Model3DFile">3D Model</label>
                                 <div class="col-lg-7 col-xl-6">
                                     <input type="file" asp-for="Model3DFile" class="form-control form-control-modern" accept=".glb,.stl" />
+                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: GLB, STL. Maks 10MB.</small>
                                 </div>
                             </div>
 
@@ -159,6 +161,7 @@
                                 <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Order">Sıra</label>
                                 <div class="col-lg-7 col-xl-6">
                                     <input asp-for="Order" type="number" class="form-control form-control-modern" />
+                                    <span asp-validation-for="Order" class="badge badge-danger"></span>
                                 </div>
                             </div>
                             

@@ -14,7 +14,7 @@ namespace GurventVantilator.AdminUI.Mappings
                 Description = vm.Description,
                 ImagePath = imagePath,
                 IsActive = vm.IsActive,
-                Order = vm.Order
+                Order = vm.Order ?? 0
             };
         }
         #endregion
@@ -44,7 +44,7 @@ namespace GurventVantilator.AdminUI.Mappings
                 Description = vm.Description,
                 ImagePath = imagePath ?? vm.ImagePath, // yeni yüklenmediyse eskiyi koru
                 IsActive = vm.IsActive,
-                Order = vm.Order
+                Order = vm.Order ?? 0
             };
         }
         #endregion

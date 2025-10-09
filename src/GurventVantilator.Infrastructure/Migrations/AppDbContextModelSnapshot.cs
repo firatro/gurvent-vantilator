@@ -72,15 +72,15 @@ namespace GurventVantilator.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Awards = 1,
-                            CompletedProjects = 85,
-                            Description = "Yazılım geliştirme alanında freelance olarak uzun süredir hizmet veriyorum. Amacım yalnızca kod yazmak değil, her müşterime özel, esnek ve yenilikçi çözümler üretmektir. Bugüne kadar farklı sektörlerden bireyler ve işletmeler için web, mobil ve özel yazılım projeleri geliştirdim. Projelerde sadece teknik değil, kullanıcı dostu ve sürdürülebilir çözümler üretmeye odaklanıyorum.",
-                            ExperienceYear = 7,
-                            ExtraDescription = "Misyonum, müşterilerime ihtiyaçlarına uygun, hızlı ve güvenilir yazılım çözümleri sunmaktır. Vizyonum ise, freelance yazılım geliştirme alanında global ölçekte tanınan ve tercih edilen bir çözüm ortağı olmaktır. Esnek çalışma tarzım, güncel teknolojileri yakından takip eden yaklaşımım ve müşteri odaklı bakış açımla her zaman yanınızdayım. Projelerinize değer katmak için çevik, yaratıcı ve yenilikçi yöntemler kullanıyorum.",
-                            ExtraTitle = "Özgür Ruh, Yaratıcı Çözümler",
-                            HappyClients = 120,
-                            ImagePath = "img/about-us/default-image.jpg",
-                            Title = "Ben Kimim?"
+                            Awards = 8,
+                            CompletedProjects = 750,
+                            Description = "Gurvent Vantilatör, endüstriyel fan ve havalandırma sistemleri alanında uzmanlaşmış bir mühendislik firmasıdır. 1984 yılından bu yana sanayi tesislerinden sağlık kurumlarına kadar birçok sektöre yenilikçi ve güvenilir çözümler sunmaktayız.",
+                            ExperienceYear = 40,
+                            ExtraDescription = "Kaliteli üretim, mühendislik tecrübesi ve müşteri memnuniyetine dayalı yaklaşımımızla, Türkiye'nin önde gelen endüstriyel fan üreticilerinden biriyiz. Ürünlerimiz CE ve ISO 9001 kalite standartlarına uygun olarak üretilmektedir.",
+                            ExtraTitle = "40 Yıllık Deneyim, Güçlü Çözümler",
+                            HappyClients = 1200,
+                            ImagePath = "/img/about-us/factory-team.jpg",
+                            Title = "Hakkımızda"
                         });
                 });
 
@@ -213,121 +213,61 @@ namespace GurventVantilator.Infrastructure.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            ContentImage1Path = "/img/blog/default-image2.jpg",
-                            ContentImage2Path = "/img/blog/default-image3.jpg",
+                            ContentImage1Path = "/img/blog/energy2.jpg",
+                            ContentImage2Path = "/img/blog/energy3.jpg",
                             CreatedAt = new DateTime(2025, 9, 5, 9, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Yazılım geliştirme, yalnızca kod yazmaktan ibaret değildir; sürdürülebilir, ölçeklenebilir ve kullanıcı odaklı çözümler üretmeyi hedefleyen kapsamlı bir süreçtir. Günümüzde modern yazılım mimarileri sayesinde daha çevik geliştirme süreçleri ve işlevsel açıdan tatmin edici sonuçlar elde edilmektedir.",
-                            EntryDescription = "Monolitik yapılardan mikroservislere geçiş, DevOps kültürü ve otomasyon araçlarının yaygınlaşması yazılım ekiplerinin daha hızlı, güvenilir ve esnek ürünler geliştirmesine olanak sağlamaktadır.",
-                            EntryTitle = "Neden Modern Yazılım Yaklaşımları Tercih Ediliyor?",
-                            ExtraDescription = "Proje öncesinde detaylı bir analiz ve planlama yapılır. Agile metodolojileri sayesinde değişen ihtiyaçlara hızlı şekilde uyum sağlanır. Temiz kod ve test odaklı geliştirme ise uzun vadede sürdürülebilirliği artırır.",
-                            ExtraTitle = "Geliştirme Süreci ve Sürdürülebilirlik",
-                            FullName = "Admin User",
-                            MainImagePath = "/img/blog/default-image1.jpg",
-                            Quote = "Temiz kod, iyi bir yazılımcının en önemli imzasıdır.",
-                            QuoteSource = "Robert C. Martin (Uncle Bob)",
-                            Subtitle = "Temiz Kod, Mikroservisler ve Bulut Tabanlı Çözümler",
-                            Title = "Yazılım Geliştirmede Modern Yaklaşımlar",
-                            YoutubeVideoUrl = "https://www.youtube.com/watch?v=O8N1lvkYykg"
+                            Description = "Enerji verimliliği, modern fan sistemlerinin en kritik tasarım kriterlerinden biridir. Gurvent olarak yüksek verimli motorlar, optimize edilmiş fan kanatları ve akıllı kontrol sistemleri kullanıyoruz.",
+                            EntryDescription = "Yüksek verimli fan sistemleri, düşük enerji tüketimiyle maksimum hava debisi sağlar.",
+                            EntryTitle = "Enerji Verimli Fan Nedir?",
+                            ExtraDescription = "Motor verimi, aerodinamik kanat tasarımı ve frekans invertörü kullanımı ile sistemlerde %30’a kadar enerji tasarrufu sağlanabilir.",
+                            ExtraTitle = "Verimliliği Artıran Faktörler",
+                            FullName = "Gurvent Editör",
+                            MainImagePath = "/img/blog/energy1.jpg",
+                            Quote = "Verimlilik, sürdürülebilir üretimin temelidir.",
+                            QuoteSource = "Gürbüz Yılmaz",
+                            Subtitle = "Daha az enerjiyle daha fazla performans",
+                            Title = "Endüstriyel Fanlarda Enerji Verimliliği",
+                            YoutubeVideoUrl = "https://www.youtube.com/watch?v=aKx3Wxz3E5M"
                         },
                         new
                         {
                             Id = 2,
                             CategoryId = 2,
-                            ContentImage1Path = "/img/blog/default-image5.jpg",
-                            ContentImage2Path = "/img/blog/default-image6.jpg",
-                            CreatedAt = new DateTime(2025, 9, 10, 14, 30, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Yapay zeka ve makine öğrenmesi, günümüzde sağlık, finans, eğitim ve yazılım geliştirme dahil pek çok sektörde devrim yaratmaktadır. Otomasyon ve öngörü yetenekleri sayesinde iş süreçleri daha verimli hale gelmektedir.",
-                            EntryDescription = "Veri odaklı karar verme süreçlerinde yapay zeka, hızlı ve doğru analiz yapabilme kapasitesi ile öne çıkmaktadır.",
-                            EntryTitle = "Yapay Zeka Neden Önemli?",
-                            ExtraDescription = "Görüntü işleme, doğal dil işleme ve öneri sistemleri günümüzün en yaygın makine öğrenmesi uygulamaları arasında yer almaktadır.",
-                            ExtraTitle = "Makine Öğrenmesi Uygulamaları",
-                            FullName = "Admin User",
-                            MainImagePath = "/img/blog/default-image4.jpg",
-                            Quote = "Yapay zeka, insanlığın yeni elektrik kaynağıdır.",
-                            QuoteSource = "Andrew Ng",
-                            Subtitle = "Geleceği Şekillendiren Teknolojiler",
-                            Title = "Yapay Zeka ve Makine Öğrenmesi",
-                            YoutubeVideoUrl = "https://www.youtube.com/watch?v=aircAruvnKk"
+                            ContentImage1Path = "/img/blog/atex2.jpg",
+                            ContentImage2Path = "/img/blog/atex3.jpg",
+                            CreatedAt = new DateTime(2025, 9, 10, 11, 30, 0, 0, DateTimeKind.Unspecified),
+                            Description = "ATEX standartları, yanıcı ve patlayıcı gazların bulunduğu ortamlarda fanların güvenli çalışmasını sağlar. Gurvent, ATEX direktiflerine uygun fan üretiminde uzmanlaşmıştır.",
+                            EntryDescription = "Avrupa Birliği tarafından belirlenen ATEX standardı, patlayıcı ortamlarda kullanılan ekipmanların güvenliğini tanımlar.",
+                            EntryTitle = "ATEX Standardı Nedir?",
+                            ExtraDescription = "Yüksek güvenlik seviyesi, uzun ömür ve uluslararası uyumluluk sağlar.",
+                            ExtraTitle = "ATEX Fanların Avantajları",
+                            FullName = "Gurvent Editör",
+                            MainImagePath = "/img/blog/atex1.jpg",
+                            Quote = "Güvenlik, verimlilik kadar önemlidir.",
+                            QuoteSource = "Gurvent Ar-Ge Ekibi",
+                            Subtitle = "Patlayıcı ortamlarda güvenli hava akışı",
+                            Title = "ATEX Sertifikalı Fanlar Hakkında Bilmeniz Gerekenler",
+                            YoutubeVideoUrl = "https://www.youtube.com/watch?v=r9C6n3lM1Ck"
                         },
                         new
                         {
                             Id = 3,
                             CategoryId = 3,
-                            ContentImage1Path = "/img/blog/default-image8.jpg",
-                            ContentImage2Path = "/img/blog/default-image9.jpg",
-                            CreatedAt = new DateTime(2025, 9, 12, 11, 15, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Mobil uygulamalar, dijital dönüşümün merkezinde yer almaktadır. Günümüzde cross-platform teknolojiler sayesinde tek kod tabanı ile hem iOS hem Android uygulamaları geliştirmek mümkün hale gelmiştir.",
-                            EntryDescription = "Teknoloji maliyetleri azaltır, geliştirme sürecini hızlandırır ve bakım kolaylığı sağlar.",
-                            EntryTitle = "Neden Cross-Platform?",
-                            ExtraDescription = "5G, artırılmış gerçeklik (AR) ve yapay zeka destekli uygulamalar mobil dünyayı yeniden şekillendirmektedir.",
-                            ExtraTitle = "Geleceğin Mobil Teknolojileri",
-                            FullName = "Admin User",
-                            MainImagePath = "/img/blog/default-image7.jpg",
-                            Quote = "Mobil, insanın yeni uzvu haline geldi.",
-                            QuoteSource = "Eric Schmidt",
-                            Subtitle = "Flutter, React Native ve Cross-Platform Çözümler",
-                            Title = "Mobil Uygulama Geliştirmede Trendler",
-                            YoutubeVideoUrl = "https://www.youtube.com/watch?v=fq4N0hgOWzU"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CategoryId = 4,
-                            ContentImage1Path = "/img/blog/default-image11.jpg",
-                            ContentImage2Path = "/img/blog/default-image12.jpg",
-                            CreatedAt = new DateTime(2025, 9, 15, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Siber saldırıların çeşitliliği ve şiddeti her geçen gün artıyor. Yeni nesil güvenlik çözümleri ise şirketlerin verilerini ve kullanıcılarını daha iyi korumayı amaçlıyor.",
-                            EntryDescription = "Veri ihlalleri, kimlik avı saldırıları ve fidye yazılımları hem bireyler hem de kurumlar için ciddi riskler taşımaktadır.",
-                            EntryTitle = "Neden Siber Güvenlik?",
-                            ExtraDescription = "Kullanıcılar ve cihazlar sürekli doğrulanır, hiçbir şeye otomatik güven duyulmaz. Bu yaklaşım güvenlik risklerini önemli ölçüde azaltır.",
-                            ExtraTitle = "Zero Trust Yaklaşımı",
-                            FullName = "Admin User",
-                            MainImagePath = "/img/blog/default-image10.jpg",
-                            Quote = "En zayıf halka genellikle insan faktörüdür.",
-                            QuoteSource = "Bruce Schneier",
-                            Subtitle = "Zero Trust, Ransomware ve Yapay Zeka Destekli Savunmalar",
-                            Title = "Siber Güvenlikte Yeni Nesil Tehditler",
-                            YoutubeVideoUrl = "https://www.youtube.com/watch?v=inWWhr5tnEA"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CategoryId = 5,
-                            ContentImage1Path = "/img/blog/default-image14.jpg",
-                            ContentImage2Path = "/img/blog/default-image15.jpg",
-                            CreatedAt = new DateTime(2025, 9, 18, 16, 45, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Bulut teknolojileri ve DevOps uygulamaları, yazılım geliştirme süreçlerinde esneklik, hız ve güvenilirlik sağlamaktadır. CI/CD boru hatları sayesinde ekipler daha kısa sürede kaliteli ürünler çıkarabilmektedir.",
-                            EntryDescription = "Geliştirme ve operasyon ekipleri arasındaki iş birliğini artırır, yazılım teslimat süreçlerini hızlandırır.",
-                            EntryTitle = "DevOps Neden Tercih Ediliyor?",
-                            ExtraDescription = "AWS, Azure ve Google Cloud gibi bulut servisleri, ölçeklenebilir ve güvenilir altyapılar sunarak şirketlere büyük avantaj sağlamaktadır.",
-                            ExtraTitle = "Bulutun Gücü",
-                            FullName = "Admin User",
-                            MainImagePath = "/img/blog/default-image13.jpg",
-                            Quote = "Otomasyon, modern yazılım geliştirmede en büyük müttefiktir.",
-                            QuoteSource = "Gene Kim",
-                            Subtitle = "Sürekli Entegrasyon ve Sürekli Teslimat (CI/CD)",
-                            Title = "Bulut Bilişim ve DevOps Kültürü",
-                            YoutubeVideoUrl = "https://www.youtube.com/watch?v=scEDHsr3APg"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CategoryId = 6,
-                            ContentImage1Path = "/img/blog/default-image17.jpg",
-                            ContentImage2Path = "/img/blog/default-image18.jpg",
-                            CreatedAt = new DateTime(2025, 9, 20, 13, 0, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Tasarım kalıpları, yazılım geliştiricilerin tekrar eden problemleri daha kolay ve düzenli bir şekilde çözmesine yardımcı olur. Bu kalıplar, yazılım projelerinin daha esnek ve sürdürülebilir olmasını sağlar.",
-                            EntryDescription = "Kodun okunabilirliğini artırır, bakım sürecini kolaylaştırır ve ekip içi standartlaşmayı sağlar.",
-                            EntryTitle = "Tasarım Kalıpları Neden Kullanılır?",
-                            ExtraDescription = "Singleton, Factory Method, Observer ve Strategy kalıpları yazılım projelerinde sıkça kullanılan örneklerdendir.",
-                            ExtraTitle = "En Yaygın Kalıplar",
-                            FullName = "Admin User",
-                            MainImagePath = "/img/blog/default-image16.jpg",
-                            Quote = "İyi bir yazılım tasarımı, kötü kodu bile taşıyabilir.",
-                            QuoteSource = "Erich Gamma (Gang of Four)",
-                            Subtitle = "Singleton, Factory, Observer ve Daha Fazlası",
-                            Title = "Yazılımda Yapısal Tasarım Kalıpları",
-                            YoutubeVideoUrl = "https://www.youtube.com/watch?v=NU_1StN5Tkk"
+                            ContentImage1Path = "/img/blog/filter2.jpg",
+                            ContentImage2Path = "/img/blog/filter3.jpg",
+                            CreatedAt = new DateTime(2025, 9, 15, 14, 15, 0, 0, DateTimeKind.Unspecified),
+                            Description = "Toz toplama ve filtrasyon sistemleri, endüstriyel tesislerde hava kalitesini korur. Gurvent, kompakt ve yüksek verimli sistemlerle çevre dostu çözümler sunar.",
+                            EntryDescription = "Üretim alanında toz yoğunluğu, çalışan sağlığı ve ekipman ömrünü doğrudan etkiler.",
+                            EntryTitle = "Toz Kontrolünün Önemi",
+                            ExtraDescription = "Yüksek kaliteli filtre malzemeleri ve doğru sistem tasarımı ile %99’a varan filtrasyon oranı elde edilir.",
+                            ExtraTitle = "Filtrasyon Verimini Artırma Yöntemleri",
+                            FullName = "Gurvent Editör",
+                            MainImagePath = "/img/blog/filter1.jpg",
+                            Quote = "Temiz hava, üretkenliğin temelidir.",
+                            QuoteSource = "Gurvent Filtrasyon Ekibi",
+                            Subtitle = "Sağlıklı çalışma alanları için etkili çözümler",
+                            Title = "Filtrasyon Sistemlerinde Toz Kontrolü",
+                            YoutubeVideoUrl = "https://www.youtube.com/watch?v=yPD7kBfxEZM"
                         });
                 });
 
@@ -366,32 +306,27 @@ namespace GurventVantilator.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Genel"
+                            Name = "Enerji Verimliliği"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Yapay Zeka"
+                            Name = "ATEX ve Güvenlik"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Mobil Geliştirme"
+                            Name = "Filtrasyon ve Toz Kontrolü"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Siber Güvenlik"
+                            Name = "Havalandırma Sistemleri"
                         },
                         new
                         {
                             Id = 5,
-                            Name = "Bulut ve DevOps"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Tasarım Kalıpları"
+                            Name = "Bakım ve Servis"
                         });
                 });
 
@@ -493,64 +428,28 @@ namespace GurventVantilator.Infrastructure.Migrations
                         {
                             Id = 1,
                             BlogId = 1,
-                            CreatedAt = new DateTime(2025, 9, 5, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            FullName = "Ahmet Yılmaz",
+                            CreatedAt = new DateTime(2025, 9, 5, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            FullName = "Mehmet Akın",
                             IsApproved = true,
-                            Text = "Çok faydalı bir yazı olmuş, mikroservisler ve temiz kod bölümleri özellikle dikkat çekiciydi."
+                            Text = "Enerji verimliliği konusunda çok bilgilendirici bir içerik, teşekkürler!"
                         },
                         new
                         {
                             Id = 2,
-                            BlogId = 1,
-                            CreatedAt = new DateTime(2025, 9, 5, 11, 0, 0, 0, DateTimeKind.Unspecified),
-                            FullName = "Ayşe Demir",
+                            BlogId = 2,
+                            CreatedAt = new DateTime(2025, 9, 5, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            FullName = "Selin Yılmaz",
                             IsApproved = true,
-                            Text = "Agile metodolojiler konusunda kafamda soru işaretleri vardı, yazı çok net bir şekilde açıklamış."
+                            Text = "ATEX hakkında net bilgiler bulmak zordu, bu makale çok yardımcı oldu."
                         },
                         new
                         {
                             Id = 3,
-                            BlogId = 2,
-                            CreatedAt = new DateTime(2025, 9, 6, 9, 30, 0, 0, DateTimeKind.Unspecified),
-                            FullName = "Mehmet Aksoy",
-                            IsApproved = false,
-                            Text = "Makine öğrenmesi örnekleri çok açıklayıcı olmuş, özellikle öneri sistemleri kısmı ilgimi çekti."
-                        },
-                        new
-                        {
-                            Id = 4,
                             BlogId = 3,
-                            CreatedAt = new DateTime(2025, 9, 7, 14, 15, 0, 0, DateTimeKind.Unspecified),
-                            FullName = "Zeynep Kaya",
+                            CreatedAt = new DateTime(2025, 9, 5, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            FullName = "Ali Demirtaş",
                             IsApproved = true,
-                            Text = "React Native ve Flutter karşılaştırması çok işime yaradı, teşekkürler."
-                        },
-                        new
-                        {
-                            Id = 5,
-                            BlogId = 4,
-                            CreatedAt = new DateTime(2025, 9, 8, 18, 45, 0, 0, DateTimeKind.Unspecified),
-                            FullName = "Selin Arslan",
-                            IsApproved = true,
-                            Text = "Zero Trust yaklaşımı hakkında bu kadar detaylı bilgi bulmak çok güzel. Gerçekten açıklayıcı."
-                        },
-                        new
-                        {
-                            Id = 6,
-                            BlogId = 5,
-                            CreatedAt = new DateTime(2025, 9, 9, 12, 20, 0, 0, DateTimeKind.Unspecified),
-                            FullName = "Can Demirtaş",
-                            IsApproved = false,
-                            Text = "CI/CD süreci hakkında yanlış bildiklerim varmış, bu yazı gerçekten aydınlatıcı oldu."
-                        },
-                        new
-                        {
-                            Id = 7,
-                            BlogId = 6,
-                            CreatedAt = new DateTime(2025, 9, 10, 15, 10, 0, 0, DateTimeKind.Unspecified),
-                            FullName = "Murat Özkan",
-                            IsApproved = true,
-                            Text = "Observer ve Singleton örnekleri çok açıklayıcı, uygulamamda hemen deneyeceğim."
+                            Text = "Filtrasyon sistemlerinin bu kadar etkili olabileceğini bilmiyordum."
                         });
                 });
 
@@ -577,14 +476,20 @@ namespace GurventVantilator.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            LogoPath = "img/company/default-image.png",
-                            Name = "Promed Clinic"
+                            LogoPath = "/img/company/gurvent-logo.png",
+                            Name = "Gurvent Vantilatör"
                         },
                         new
                         {
                             Id = 2,
-                            LogoPath = "img/company/default-image.png",
-                            Name = "Gürvent Vantilatör"
+                            LogoPath = "/img/company/ventpro-logo.png",
+                            Name = "VentPro Teknik"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            LogoPath = "/img/company/airflow-logo.png",
+                            Name = "AirFlow Engineering"
                         });
                 });
 
@@ -630,13 +535,13 @@ namespace GurventVantilator.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 9, 5, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "ahmet.yilmaz@example.com",
-                            FullName = "Ahmet Yılmaz",
-                            Message = "Merhaba, web tabanlı bir proje geliştirmeyi planlıyorum. Proje süresi, teknoloji seçimi ve maliyetlendirme hakkında detaylı bilgi verebilir misiniz?",
-                            Notes = "İlk kez iletişime geçti.",
-                            Phone = "+90 532 111 22 33",
-                            Subject = "Yazılım geliştirme hizmetleri hakkında bilgi"
+                            CreatedAt = new DateTime(2025, 9, 10, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "ali.korkmaz@example.com",
+                            FullName = "Ali Korkmaz",
+                            Message = "Fabrikamız için yüksek debili santrifüj fan ihtiyacımız bulunmaktadır. Ürün kataloğu ve fiyat teklifi rica ediyorum.",
+                            Notes = "Teklif gönderilecek müşteri.",
+                            Phone = "+90 533 222 33 44",
+                            Subject = "Endüstriyel fan teklifi hakkında bilgi"
                         });
                 });
 
@@ -667,72 +572,37 @@ namespace GurventVantilator.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Answer = "Web ve mobil uygulama geliştirme, yapay zeka çözümleri, siber güvenlik danışmanlığı, bulut ve DevOps hizmetleri, yazılım bakım ve destek hizmetleri sunuyoruz.",
+                            Answer = "Santrifüj, aksiyel, çatı tipi, kanal tipi ve özel proje fanları üretiyoruz.",
                             CreatedAt = new DateTime(2025, 9, 5, 9, 0, 0, 0, DateTimeKind.Unspecified),
-                            Question = "Hangi hizmetleri sunuyorsunuz?"
+                            Question = "Hangi tür fanları üretiyorsunuz?"
                         },
                         new
                         {
                             Id = 2,
-                            Answer = "Web sitemizdeki iletişim formunu doldurarak veya doğrudan bize e-posta/telefon yoluyla ulaşarak proje talebinizi iletebilirsiniz.",
-                            CreatedAt = new DateTime(2025, 9, 5, 9, 10, 0, 0, DateTimeKind.Unspecified),
-                            Question = "Nasıl proje talebi oluşturabilirim?"
+                            Answer = "Alan ölçüsü, debi ihtiyacı, statik basınç ve kullanım amacına göre mühendis ekibimiz fan seçimini yapmaktadır.",
+                            CreatedAt = new DateTime(2025, 9, 5, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            Question = "Fan seçimi nasıl yapılır?"
                         },
                         new
                         {
                             Id = 3,
-                            Answer = "Evet, tüm proje süreçlerimizi online toplantılarla yönetebiliyor ve müşterilerimizle uzaktan iş birliği yapabiliyoruz.",
-                            CreatedAt = new DateTime(2025, 9, 5, 9, 20, 0, 0, DateTimeKind.Unspecified),
-                            Question = "Uzaktan çalışma veya online toplantı imkanınız var mı?"
+                            Answer = "Evet, patlayıcı ortamlarda kullanılmak üzere ATEX standartlarına uygun fan üretimi yapıyoruz.",
+                            CreatedAt = new DateTime(2025, 9, 5, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            Question = "ATEX sertifikalı fanlarınız var mı?"
                         },
                         new
                         {
                             Id = 4,
-                            Answer = "Projenin kapsamına bağlıdır. Küçük projeler ortalama 1-2 ay, orta ölçekli projeler 3-6 ay, büyük ölçekli projeler ise daha uzun sürede tamamlanabilmektedir.",
-                            CreatedAt = new DateTime(2025, 9, 5, 9, 30, 0, 0, DateTimeKind.Unspecified),
-                            Question = "Bir yazılım projesi ne kadar sürede tamamlanır?"
+                            Answer = "Kullanım yoğunluğuna göre yılda en az bir kez periyodik bakım öneriyoruz.",
+                            CreatedAt = new DateTime(2025, 9, 5, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            Question = "Fan bakımı ne sıklıkla yapılmalı?"
                         },
                         new
                         {
                             Id = 5,
-                            Answer = "İhtiyaç analizi, tasarım, geliştirme, test ve yayınlama aşamalarından oluşmaktadır. Ayrıca yayın sonrası bakım ve destek de sağlıyoruz.",
-                            CreatedAt = new DateTime(2025, 9, 5, 9, 40, 0, 0, DateTimeKind.Unspecified),
-                            Question = "Mobil uygulama geliştirme süreci nasıl ilerliyor?"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Answer = "Evet, projeler tamamlandıktan sonra güncelleme, hata düzeltme ve performans optimizasyonu için destek ve bakım hizmeti sunuyoruz.",
-                            CreatedAt = new DateTime(2025, 9, 5, 9, 50, 0, 0, DateTimeKind.Unspecified),
-                            Question = "Destek ve bakım hizmeti veriyor musunuz?"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Answer = "Evet, veri analizi, öneri sistemleri, doğal dil işleme ve görüntü işleme alanlarında yapay zeka çözümleri sunuyoruz.",
-                            CreatedAt = new DateTime(2025, 9, 5, 10, 0, 0, 0, DateTimeKind.Unspecified),
-                            Question = "Yapay zeka ve makine öğrenmesi çözümleri geliştiriyor musunuz?"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Answer = "AWS, Azure ve Google Cloud üzerinde ölçeklenebilir ve güvenilir bulut çözümleri geliştiriyoruz.",
-                            CreatedAt = new DateTime(2025, 9, 5, 10, 10, 0, 0, DateTimeKind.Unspecified),
-                            Question = "Bulut çözümleriniz hangi platformlarda?"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Answer = "Penetrasyon testleri, güvenlik açığı analizi, ağ güvenliği, Zero Trust mimarisi danışmanlığı ve güvenlik farkındalık eğitimleri sunuyoruz.",
-                            CreatedAt = new DateTime(2025, 9, 5, 10, 20, 0, 0, DateTimeKind.Unspecified),
-                            Question = "Siber güvenlik hizmetleriniz neleri kapsıyor?"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Answer = "Tüm projelerimiz güvenlik standartlarına uygun geliştirilmekte, düzenli testlerden geçirilmekte ve uluslararası en iyi uygulamalar temel alınmaktadır.",
-                            CreatedAt = new DateTime(2025, 9, 5, 10, 30, 0, 0, DateTimeKind.Unspecified),
-                            Question = "Projeleriniz güvenli midir?"
+                            Answer = "Standart ürünlerde 10-15 iş günü, özel üretimlerde 20-30 iş günü aralığındadır.",
+                            CreatedAt = new DateTime(2025, 9, 5, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            Question = "Teslimat süreniz ne kadar?"
                         });
                 });
 
@@ -760,6 +630,12 @@ namespace GurventVantilator.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<int?>("ParentId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
                     b.Property<int?>("ProjectId")
@@ -804,108 +680,28 @@ namespace GurventVantilator.Infrastructure.Migrations
                             LinkType = 5,
                             Order = 2,
                             Slug = "hakkimizda",
-                            Title = "Hakkımızda",
+                            Title = "Kurumsal",
                             Url = "/hakkimizda"
                         },
                         new
                         {
                             Id = 3,
                             IsActive = true,
-                            LinkType = 1,
+                            LinkType = 8,
                             Order = 3,
-                            Slug = "hizmetler",
-                            Title = "Hizmetler",
-                            Url = "/hizmetler"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            IsActive = true,
-                            LinkType = 2,
-                            Order = 4,
-                            Slug = "projeler",
-                            Title = "Projeler",
-                            Url = "/projeler"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            IsActive = true,
-                            LinkType = 3,
-                            Order = 5,
-                            Slug = "blog",
-                            Title = "Blog",
-                            Url = "/blog"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            IsActive = true,
-                            LinkType = 4,
-                            Order = 6,
-                            Slug = "iletisim",
-                            Title = "İletişim",
-                            Url = "/iletisim"
+                            Slug = "urunler",
+                            Title = "Ürünler",
+                            Url = "/urunler"
                         },
                         new
                         {
                             Id = 7,
                             IsActive = true,
-                            LinkType = 1,
-                            Order = 1,
-                            ParentId = 3,
-                            ServiceId = 1,
-                            Slug = "web",
-                            Title = "Web Projeleri",
-                            Url = "/hizmetler/web"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            IsActive = true,
-                            LinkType = 1,
-                            Order = 2,
-                            ParentId = 3,
-                            ServiceId = 2,
-                            Slug = "mobil",
-                            Title = "Mobil Uygulamalar",
-                            Url = "/hizmetler/mobil"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            IsActive = true,
-                            LinkType = 1,
-                            Order = 3,
-                            ParentId = 3,
-                            ServiceId = 3,
-                            Slug = "masaustu-yazilim",
-                            Title = "Masaüstü Yazılım",
-                            Url = "/hizmetler/dudak-dolgusu"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            IsActive = true,
-                            LinkType = 1,
-                            Order = 4,
-                            ParentId = 3,
-                            ServiceId = 4,
-                            Slug = "e-ticaret",
-                            Title = "E-Ticaret",
-                            Url = "/hizmetler/e-ticaret"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            IsActive = true,
-                            LinkType = 1,
-                            Order = 4,
-                            ParentId = 3,
-                            ServiceId = 4,
-                            Slug = "seo",
-                            Title = "SEO Çalışması",
-                            Url = "/hizmetler/seo"
+                            LinkType = 4,
+                            Order = 7,
+                            Slug = "iletisim",
+                            Title = "İletişim",
+                            Url = "/iletisim"
                         });
                 });
 
@@ -937,44 +733,51 @@ namespace GurventVantilator.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            ImagePath = "img/page-image/default-image.jpg",
+                            ImagePath = "/img/page-image/aboutus-factory.jpg",
                             ImageType = "Breadcrumb",
                             PageKey = "AboutUs"
                         },
                         new
                         {
                             Id = 2,
-                            ImagePath = "img/page-image/default-image.jpg",
+                            ImagePath = "/img/page-image/contact-office.jpg",
                             ImageType = "Breadcrumb",
                             PageKey = "Contact"
                         },
                         new
                         {
                             Id = 3,
-                            ImagePath = "img/page-image/default-image.jpg",
+                            ImagePath = "/img/page-image/blog-industrial.jpg",
                             ImageType = "Breadcrumb",
                             PageKey = "Blog"
                         },
                         new
                         {
                             Id = 4,
-                            ImagePath = "img/page-image/default-image.jpg",
+                            ImagePath = "/img/page-image/project-site.jpg",
                             ImageType = "Breadcrumb",
                             PageKey = "Project"
                         },
                         new
                         {
                             Id = 5,
-                            ImagePath = "img/page-image/default-image.jpg",
+                            ImagePath = "/img/page-image/service-production.jpg",
                             ImageType = "Breadcrumb",
                             PageKey = "Service"
                         },
                         new
                         {
                             Id = 6,
-                            ImagePath = "img/page-image/default-image.jpg",
+                            ImagePath = "/img/page-image/product-line.jpg",
                             ImageType = "Breadcrumb",
-                            PageKey = "Page"
+                            PageKey = "Product"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ImagePath = "/img/page-image/home-header.jpg",
+                            ImageType = "Breadcrumb",
+                            PageKey = "Home"
                         });
                 });
 
@@ -1027,7 +830,7 @@ namespace GurventVantilator.Infrastructure.Migrations
                     b.Property<string>("NoiseLevel")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Order")
+                    b.Property<int?>("Order")
                         .HasColumnType("int");
 
                     b.Property<string>("Power")
@@ -1065,20 +868,20 @@ namespace GurventVantilator.Infrastructure.Migrations
                             AirFlowMin = "200 m³/h",
                             Code = "12F",
                             CreatedAt = new DateTime(2025, 9, 10, 14, 30, 0, 0, DateTimeKind.Unspecified),
-                            DataSheetPath = "/uploads/datasheets/rsd12f.pdf",
+                            DataSheetPath = "/datasheet/rsd12f.pdf",
                             Description = "Ø100mm fan, yüksek verimli kompakt tasarım. Orta debili sistemler için uygundur.",
                             Diameter = "Ø100mm",
                             Frequency = "50Hz",
-                            ImagePath = "/uploads/products/rsd12f.webp",
+                            ImagePath = "/img/product/rsd12f.webp",
                             IsActive = true,
-                            Model3DPath = "/uploads/models/rsd12f.glb",
+                            Model3DPath = "/model/rsd12f.glb",
                             Name = "RSD 12F",
                             NoiseLevel = "65 dB(A)",
                             Order = 1,
                             Power = "0.25 kW",
                             PressureMax = "600 Pa",
                             PressureMin = "50 Pa",
-                            ProductCategoryId = 1,
+                            ProductCategoryId = 2,
                             Speed = "2800 RPM",
                             Voltage = "220V / 380V"
                         },
@@ -1089,20 +892,20 @@ namespace GurventVantilator.Infrastructure.Migrations
                             AirFlowMin = "150 m³/h",
                             Code = "9F",
                             CreatedAt = new DateTime(2025, 9, 10, 14, 30, 0, 0, DateTimeKind.Unspecified),
-                            DataSheetPath = "/uploads/datasheets/rsd9f.pdf",
+                            DataSheetPath = "/datasheet/rsd9f.pdf",
                             Description = "Ø80mm fan, küçük hacimli sistemler için ideal.",
                             Diameter = "Ø80mm",
                             Frequency = "50Hz",
-                            ImagePath = "/uploads/products/rsd9f.webp",
+                            ImagePath = "/img/product/rsd9f.webp",
                             IsActive = true,
-                            Model3DPath = "/uploads/models/rsd9f.glb",
+                            Model3DPath = "/model/rsd9f.glb",
                             Name = "RSD 9F",
                             NoiseLevel = "62 dB(A)",
                             Order = 2,
                             Power = "0.18 kW",
                             PressureMax = "500 Pa",
                             PressureMin = "40 Pa",
-                            ProductCategoryId = 1,
+                            ProductCategoryId = 3,
                             Speed = "2800 RPM",
                             Voltage = "220V"
                         });
@@ -1132,7 +935,10 @@ namespace GurventVantilator.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Order")
+                    b.Property<int?>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ParentCategoryId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdatedAt")
@@ -1140,18 +946,36 @@ namespace GurventVantilator.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ParentCategoryId");
+
                     b.ToTable("ProductCategories");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 9, 10, 14, 30, 0, 0, DateTimeKind.Unspecified),
-                            Description = "Yüksek basınç ve verimlilik gerektiren endüstriyel uygulamalar için radyal fanlar.",
-                            ImagePath = "/uploads/categories/radyal-fanlar.webp",
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
-                            Name = "Radyal Fanlar",
+                            Name = "Santrifuj Fanlar",
                             Order = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Metal Fanlar",
+                            Order = 1,
+                            ParentCategoryId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsActive = true,
+                            Name = "Plastik Fanlar",
+                            Order = 2,
+                            ParentCategoryId = 1
                         });
                 });
 
@@ -1209,50 +1033,50 @@ namespace GurventVantilator.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            ContentImage1Path = "/img/project/default-image2.jpg",
-                            ContentImage2Path = "/img/project/default-image3.jpg",
-                            CreatedAt = new DateTime(2025, 9, 5, 9, 0, 0, 0, DateTimeKind.Unspecified),
-                            CustomerInfo = "Elif Yılmaz",
-                            Description = "E-ticaret projesinde React tabanlı modern bir frontend, .NET Core tabanlı güçlü bir backend ve MSSQL veritabanı kullanıldı. Projede mikroservis mimarisi tercih edilerek ölçeklenebilirlik sağlandı. Ayrıca kullanıcı deneyimi için dinamik filtreleme, ürün öneri sistemi ve güvenli ödeme entegrasyonu geliştirildi. Bulut tabanlı dağıtım sayesinde sistem performansı ve güvenliği üst seviyeye çıkarıldı.",
-                            ExtraDescription = "Proje tamamlandıktan sonra CI/CD süreçleriyle canlıya alındı. Müşteriye eğitim verildi ve bakım-destek süreci başlatıldı. Kullanıcı geri bildirimlerine göre düzenli güncellemeler yapılmaktadır.",
-                            ExtraTitle = "Canlıya Alım ve Destek",
-                            IntroText = "Proje başlangıcında müşterinin ihtiyaçları, hedef kitlesi ve iş modeli detaylı şekilde analiz edilerek yazılım mimarisi planlandı. Kullanıcı dostu arayüz, güvenli ödeme altyapısı ve hızlı ürün yönetimi ön planda tutuldu.",
-                            MainImagePath = "/img/project/default-image1.jpg",
-                            ProjectDate = new DateTime(2023, 5, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Subtitle = "Ölçeklenebilir Web Uygulaması",
-                            Title = "E-Ticaret Platformu"
+                            ContentImage1Path = "/img/project/factory2.jpg",
+                            ContentImage2Path = "/img/project/factory3.jpg",
+                            CreatedAt = new DateTime(2025, 9, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CustomerInfo = "XYZ Otomotiv A.Ş.",
+                            Description = "Toplam 24 adet endüstriyel fan üretimi, montajı ve devreye alma süreci 45 gün içinde tamamlandı. Sistem, otomasyon paneline entegre çalışmaktadır.",
+                            ExtraDescription = "Yeni sistem sayesinde enerji tüketiminde %18 tasarruf sağlandı.",
+                            ExtraTitle = "Enerji Verimliliği",
+                            IntroText = "Fabrikanın üretim alanları için yüksek debili, düşük ses seviyeli santrifüj fanlar tasarlandı.",
+                            MainImagePath = "/img/project/factory1.jpg",
+                            ProjectDate = new DateTime(2024, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Subtitle = "Santrifüj Fan Sistemleri",
+                            Title = "Otomotiv Fabrikası Havalandırma Projesi"
                         },
                         new
                         {
                             Id = 2,
-                            ContentImage1Path = "/img/project/default-image5.jpg",
-                            ContentImage2Path = "/img/project/default-image6.jpg",
-                            CreatedAt = new DateTime(2025, 9, 5, 9, 0, 0, 0, DateTimeKind.Unspecified),
-                            CustomerInfo = "Zeynep Kaya",
-                            Description = "Flutter kullanılarak hem iOS hem Android platformlarında çalışan mobil uygulama geliştirildi. Uygulamada para transferi, fatura ödeme, QR ile işlem ve anlık bildirim gibi özellikler yer aldı. Güvenlik için çift faktörlü kimlik doğrulama ve SSL şifreleme entegre edildi. Backend kısmında .NET Core API kullanıldı ve yüksek trafik altında sorunsuz çalışması için bulut tabanlı servisler tercih edildi.",
-                            ExtraDescription = "Uygulama, farklı cihazlarda kapsamlı testlerden geçirildi. Yayın sürecinde App Store ve Google Play standartlarına uygun hale getirildi. Yayın sonrası müşteri destek ekibiyle birlikte kullanıcı geri bildirimleri sürekli olarak değerlendirilmektedir.",
-                            ExtraTitle = "Test ve Yayınlama",
-                            IntroText = "Proje öncesinde müşterinin mevcut bankacılık altyapısı incelendi ve güvenlik, performans ve kullanıcı deneyimi açısından ihtiyaçlar belirlendi. Kullanıcıların hızlı ve güvenli bir şekilde finansal işlemler yapabilmesi hedeflendi.",
-                            MainImagePath = "/img/project/default-image4.jpg",
-                            ProjectDate = new DateTime(2023, 7, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Subtitle = "iOS ve Android için Cross-Platform Çözüm",
-                            Title = "Mobil Bankacılık Uygulaması"
+                            ContentImage1Path = "/img/project/hospital2.jpg",
+                            ContentImage2Path = "/img/project/hospital3.jpg",
+                            CreatedAt = new DateTime(2025, 9, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CustomerInfo = "Sağlık Grup Hastanesi",
+                            Description = "HEPA filtreli havalandırma sistemi ile temiz hava sirkülasyonu sağlanarak uluslararası standartlara uygun hale getirildi.",
+                            ExtraDescription = "Fanlar 24 saat kesintisiz çalışmada dahi düşük gürültü seviyesini koruyor.",
+                            ExtraTitle = "Sessiz ve Güvenli Çalışma",
+                            IntroText = "Steril ortamlarda kullanılmak üzere özel filtreli ve sessiz aksiyel fanlar tasarlandı.",
+                            MainImagePath = "/img/project/hospital1.jpg",
+                            ProjectDate = new DateTime(2023, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Subtitle = "Hijyenik Aksiyel Fan Sistemleri",
+                            Title = "Hastane Ameliyathane Havalandırma Projesi"
                         },
                         new
                         {
                             Id = 3,
-                            ContentImage1Path = "/img/project/default-image8.jpg",
-                            ContentImage2Path = "/img/project/default-image9.jpg",
-                            CreatedAt = new DateTime(2025, 9, 5, 9, 0, 0, 0, DateTimeKind.Unspecified),
-                            CustomerInfo = "Derya Demir",
-                            Description = "Proje kapsamında .NET Core ile geliştirilen güçlü bir backend ve Angular tabanlı modern bir frontend tasarlandı. CRM sistemi; müşteri segmentasyonu, otomatik görev atamaları ve e-posta entegrasyonu özelliklerini içeriyor. Yapay zeka destekli tahminleme modülü sayesinde satış fırsatları önceden öngörülerek ekiplerin stratejileri optimize edildi.",
-                            ExtraDescription = "Sistem devreye alındıktan sonra satış ekibinin verimliliğinde %35 artış gözlemlendi. Düzenli güncellemelerle yeni özellikler eklenmeye devam ediliyor. Müşteri, uzun vadeli destek paketimizden faydalanıyor.",
-                            ExtraTitle = "Uygulama Sonrası",
-                            IntroText = "Proje öncesinde satış ekiplerinin ihtiyaçları analiz edildi. Müşteri verilerinin daha verimli yönetilmesi, satış süreçlerinin hızlanması ve yapay zeka destekli tahminleme hedeflendi.",
-                            MainImagePath = "/img/project/default-image7.jpg",
-                            ProjectDate = new DateTime(2023, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Subtitle = "Müşteri İlişkileri Yönetiminde Akıllı Çözümler",
-                            Title = "Yapay Zeka Destekli CRM Sistemi"
+                            ContentImage1Path = "/img/project/mine2.jpg",
+                            ContentImage2Path = "/img/project/mine3.jpg",
+                            CreatedAt = new DateTime(2025, 9, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            CustomerInfo = "Delta Madencilik Ltd.",
+                            Description = "Fanlar yüksek toz, nem ve sıcaklık koşullarına dayanıklı olacak şekilde özel malzemelerden imal edilmiştir.",
+                            ExtraDescription = "Sistem uluslararası patlama koruma standartlarına uygun şekilde devreye alınmıştır.",
+                            ExtraTitle = "ATEX Güvenliği",
+                            IntroText = "Zorlu çalışma koşullarında güvenli hava dolaşımı sağlamak için ATEX sertifikalı fanlar üretildi.",
+                            MainImagePath = "/img/project/mine1.jpg",
+                            ProjectDate = new DateTime(2023, 9, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Subtitle = "Patlamaya Dayanıklı Fan Çözümü",
+                            Title = "Maden Ocağı Hava Sirkülasyon Sistemi"
                         });
                 });
 
@@ -1281,73 +1105,73 @@ namespace GurventVantilator.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Ölçeklenebilir mimari",
+                            Name = "Yüksek debili santrifüj fanlar",
                             ProjectId = 1
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Güvenli ödeme altyapısı",
+                            Name = "Enerji verimli motor sistemi",
                             ProjectId = 1
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Kullanıcı dostu arayüz",
+                            Name = "Otomasyon kontrol paneli",
                             ProjectId = 1
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Mikroservis tabanlı yapı",
+                            Name = "Sessiz çalışma standardı",
                             ProjectId = 1
                         },
                         new
                         {
                             Id = 5,
-                            Name = "Çift platform desteği (iOS & Android)",
+                            Name = "HEPA filtre entegrasyonu",
                             ProjectId = 2
                         },
                         new
                         {
                             Id = 6,
-                            Name = "Yüksek güvenlik (2FA, SSL)",
+                            Name = "Hijyenik paslanmaz fan gövdesi",
                             ProjectId = 2
                         },
                         new
                         {
                             Id = 7,
-                            Name = "Gerçek zamanlı bildirimler",
+                            Name = "Sürekli çalışma için optimize motor",
                             ProjectId = 2
                         },
                         new
                         {
                             Id = 8,
-                            Name = "Kolay para transferi ve fatura ödeme",
+                            Name = "Düşük gürültü seviyesi (<45 dB)",
                             ProjectId = 2
                         },
                         new
                         {
                             Id = 9,
-                            Name = "Yapay zeka destekli tahminleme",
+                            Name = "ATEX sertifikalı fan üretimi",
                             ProjectId = 3
                         },
                         new
                         {
                             Id = 10,
-                            Name = "Müşteri segmentasyonu",
+                            Name = "Korozyona dayanıklı malzeme",
                             ProjectId = 3
                         },
                         new
                         {
                             Id = 11,
-                            Name = "Otomatik görev atama",
+                            Name = "Yüksek sıcaklığa dayanıklı yataklama",
                             ProjectId = 3
                         },
                         new
                         {
                             Id = 12,
-                            Name = "Satış ekibi verimliliğini artıran çözümler",
+                            Name = "Basınç kontrollü hava akışı",
                             ProjectId = 3
                         });
                 });
@@ -1404,15 +1228,15 @@ namespace GurventVantilator.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            DefaultMetaDescription = "Fırat Ramazano, modern web, mobil ve yapay zeka tabanlı yazılım çözümleri geliştirir. Güvenli, ölçeklenebilir ve kullanıcı dostu uygulamalar için profesyonel destek sunar.",
-                            DefaultMetaKeywords = "yazılım geliştirme, web uygulamaları, mobil uygulama, yapay zeka, siber güvenlik, bulut, devops, firat ramazano",
-                            DefaultOgImagePath = "/img/seo-setting/default-image.jpg",
-                            DefaultTitle = "Fırat Ramazano | Yazılım Geliştirme ve Teknoloji Çözümleri",
-                            FacebookPixelId = "1234567890",
-                            GoogleAnalyticsId = "G-XXXXXXX",
-                            GoogleTagManagerId = "GTM-XXXXXXX",
+                            DefaultMetaDescription = "Gurvent, santrifüj, aksiyel ve ATEX sertifikalı endüstriyel fan üretiminde liderdir. Enerji verimli ve uzun ömürlü çözümler için doğru adres.",
+                            DefaultMetaKeywords = "endüstriyel fan, havalandırma, santrifüj fan, ATEX, filtrasyon, toz toplama, enerji verimliliği, gurvent",
+                            DefaultOgImagePath = "/img/seo/default-image.jpg",
+                            DefaultTitle = "Gurvent Vantilatör | Endüstriyel Fan ve Havalandırma Sistemleri",
+                            FacebookPixelId = "999888777",
+                            GoogleAnalyticsId = "G-GURVENT1234",
+                            GoogleTagManagerId = "GTM-GURVENT01",
                             RobotsTxtContent = "User-agent: *\nAllow: /",
-                            SiteName = "Fırat Ramazano Software"
+                            SiteName = "Gurvent Vantilatör"
                         });
                 });
 
@@ -1461,67 +1285,67 @@ namespace GurventVantilator.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            ContentImage1Path = "/img/service/default-image2.jpg",
-                            ContentImage2Path = "/img/service/default-image3.jpg",
-                            Description = "Web uygulama geliştirme, işletmelerin dijital dönüşüm süreçlerinde en önemli adımlardan biridir. .NET Core, Node.js ve modern frontend teknolojileri (React, Angular, Vue) kullanılarak geliştirilen web uygulamaları; güvenli, ölçeklenebilir ve kullanıcı dostu çözümler sunar. E-ticaret, CRM, ERP ve kurumsal portallar başta olmak üzere birçok alanda modern web çözümleri geliştiriyoruz. Tüm projelerimizde yüksek performans, güvenlik ve kullanıcı deneyimini önceliklendiriyoruz.",
-                            ExtraDescription = "Projelerimizde çevik (Agile) metodolojiler kullanarak müşterilerimizle sürekli iletişim halinde çalışıyoruz. Her aşamada şeffaflık ve kalite kontrolü sağlıyor, test odaklı geliştirme (TDD) ve otomasyon süreçleri ile hatasız ve sürdürülebilir çözümler üretiyoruz. Bu sayede müşterilerimiz, hızlı, güvenli ve uzun vadeli yazılım yatırımlarına sahip oluyor.",
-                            ExtraTitle = "Profesyonel Yazılım Geliştirme Yaklaşımı",
-                            LogoPath = "/img/service/default-image4.png",
-                            MainImagePath = "/img/service/default-image1.jpg",
-                            Name = "Web Uygulama Geliştirme",
-                            Title = "Modern ve Ölçeklenebilir Web Uygulamaları"
+                            ContentImage1Path = "/img/service/fan-uretim2.jpg",
+                            ContentImage2Path = "/img/service/fan-uretim3.jpg",
+                            Description = "Gurvent, endüstriyel ihtiyaçlara özel olarak santrifüj, aksiyel, kanal tipi ve çatı tipi fan üretimi yapmaktadır. Üretim sürecinde yüksek verimli motorlar, kaliteli malzeme ve modern üretim teknolojileri kullanılmaktadır.",
+                            ExtraDescription = "Tüm fanlarımız uluslararası standartlara uygun olarak test edilmekte, uzun ömürlü ve sessiz çalışma prensipleriyle üretilmektedir. Müşteri taleplerine göre özel boyut ve kapasitede üretim yapılabilmektedir.",
+                            ExtraTitle = "Kalite ve Güvenilirlik Odaklı Üretim",
+                            LogoPath = "/img/service/fan-logo1.png",
+                            MainImagePath = "/img/service/fan-uretim1.jpg",
+                            Name = "Endüstriyel Fan Üretimi",
+                            Title = "Yüksek Performanslı Endüstriyel Fan Sistemleri"
                         },
                         new
                         {
                             Id = 2,
-                            ContentImage1Path = "/img/service/default-image6.jpg",
-                            ContentImage2Path = "/img/service/default-image7.jpg",
-                            Description = "Mobil uygulamalar günümüzün dijital dünyasında işletmeler için en önemli iletişim araçlarından biridir. Flutter, React Native ve Swift/Kotlin teknolojilerini kullanarak hem iOS hem Android cihazlarda sorunsuz çalışan, performanslı ve kullanıcı dostu mobil uygulamalar geliştiriyoruz. Müşteri ihtiyaçlarına göre özelleştirilmiş çözümler sunuyoruz.",
-                            ExtraDescription = "Hem native hem de cross-platform geliştirme tecrübemiz sayesinde projeleriniz için en uygun teknolojiyi seçiyoruz. Kullanıcı deneyimini en üst seviyeye çıkarırken bakım ve güncelleme maliyetlerini minimumda tutuyoruz.",
-                            ExtraTitle = "Çapraz Platform ve Yerel Uygulamalar",
-                            LogoPath = "/img/service/default-image8.png",
-                            MainImagePath = "/img/service/default-image5.jpg",
-                            Name = "Mobil Uygulama Geliştirme",
-                            Title = "iOS ve Android için Profesyonel Mobil Çözümler"
+                            ContentImage1Path = "/img/service/havalandirma2.jpg",
+                            ContentImage2Path = "/img/service/havalandirma3.jpg",
+                            Description = "Endüstriyel tesisler, otoparklar, restoranlar ve üretim alanları için havalandırma sistemlerinin mühendislik hesapları, proje tasarımı ve montaj süreçlerini anahtar teslim gerçekleştiriyoruz.",
+                            ExtraDescription = "Hava debisi, statik basınç ve ses seviyesi kriterlerine uygun sistem tasarımları yaparak işletmelerde maksimum enerji verimliliği sağlıyoruz.",
+                            ExtraTitle = "Mühendislik Odaklı Yaklaşım",
+                            LogoPath = "/img/service/havalandirma-logo.png",
+                            MainImagePath = "/img/service/havalandirma1.jpg",
+                            Name = "Havalandırma Sistemleri Tasarımı ve Montajı",
+                            Title = "Verimli ve Sessiz Havalandırma Çözümleri"
                         },
                         new
                         {
                             Id = 3,
-                            ContentImage1Path = "/img/service/default-image10.jpg",
-                            ContentImage2Path = "/img/service/default-image11.jpg",
-                            Description = "Windows, macOS ve Linux platformları için performanslı ve güvenilir masaüstü yazılımlar geliştiriyoruz. .NET, WPF, Electron ve Java teknolojilerini kullanarak işletmelerin özel ihtiyaçlarına uygun ERP, CRM ve üretim takip sistemleri tasarlıyoruz.",
-                            ExtraDescription = "Masaüstü yazılımlarımız offline çalışma imkanı, güvenli veri yönetimi ve kullanıcı dostu arayüzleri ile şirketlerin iş süreçlerini hızlandırır. Ayrıca bulut ve API entegrasyonları ile modern altyapılarla uyumlu çalışır.",
-                            ExtraTitle = "Dayanıklı ve Güvenli Masaüstü Çözümler",
-                            LogoPath = "/img/service/default-image12.png",
-                            MainImagePath = "/img/service/default-image9.jpg",
-                            Name = "Masaüstü Yazılım Geliştirme",
-                            Title = "Kurumsal Çözümler İçin Güçlü Masaüstü Uygulamaları"
+                            ContentImage1Path = "/img/service/fan-uretim2.jpg",
+                            ContentImage2Path = "/img/service/fan-uretim3.jpg",
+                            Description = "Deneyimli teknik ekibimiz, arızalı veya performansı düşen fanların bakım ve onarımını orijinal yedek parçalarla gerçekleştirir. Dengeleme, rulman değişimi ve balans ayarları yapılmaktadır.",
+                            ExtraDescription = "Türkiye genelinde yerinde servis hizmeti sunuyor, fanlarınızın uzun ömürlü çalışmasını garanti altına alıyoruz.",
+                            ExtraTitle = "Yerinde Servis Desteği",
+                            LogoPath = "/img/service/bakim-logo.png",
+                            MainImagePath = "/img/service/fan-uretim1.jpg",
+                            Name = "Fan Bakım ve Onarım Hizmetleri",
+                            Title = "Tüm Marka Fanlarda Profesyonel Bakım ve Onarım"
                         },
                         new
                         {
                             Id = 4,
-                            ContentImage1Path = "/img/service/default-image14.jpg",
-                            ContentImage2Path = "/img/service/default-image15.jpg",
-                            Description = "KOBİ’lerden büyük ölçekli işletmelere kadar her seviyede e-ticaret çözümleri sunuyoruz. ASP.NET Core, Shopify, WooCommerce ve özel yazılım altyapılarıyla hızlı, güvenli ve kullanıcı dostu e-ticaret platformları geliştiriyoruz.",
-                            ExtraDescription = "Ürün yönetimi, güvenli ödeme sistemleri, stok takibi, kargo entegrasyonları ve kullanıcı deneyimi odaklı arayüzler ile müşterilerinize en iyi alışveriş deneyimini sunmanıza yardımcı oluyoruz.",
-                            ExtraTitle = "Modern E-Ticaret Deneyimi",
-                            LogoPath = "/img/service/default-image16.png",
-                            MainImagePath = "/img/service/default-image13.jpg",
-                            Name = "E-Ticaret Çözümleri",
-                            Title = "Ölçeklenebilir ve Güvenli E-Ticaret Platformları"
+                            ContentImage1Path = "/img/service/havalandirma2.jpg",
+                            ContentImage2Path = "/img/service/havalandirma3.jpg",
+                            Description = "Üretim tesislerinde oluşan toz, duman ve partikül kirliliğini minimize etmek için gelişmiş filtrasyon sistemleri tasarlayıp kuruyoruz.",
+                            ExtraDescription = "Kompakt tasarımlar, yüksek filtrasyon verimi ve kolay bakım özellikleriyle işletmelerde hijyen ve güvenliği artırıyoruz.",
+                            ExtraTitle = "Enerji Verimli Filtrasyon Teknolojisi",
+                            LogoPath = "/img/service/filtrasyon-logo.png",
+                            MainImagePath = "/img/service/havalandirma1.jpg",
+                            Name = "Hava Filtrasyon ve Toz Toplama Sistemleri",
+                            Title = "Temiz ve Sağlıklı Çalışma Ortamları İçin Filtrasyon Çözümleri"
                         },
                         new
                         {
                             Id = 5,
-                            ContentImage1Path = "/img/service/default-image18.jpg",
-                            ContentImage2Path = "/img/service/default-image19.jpg",
-                            Description = "SEO hizmetlerimiz ile web sitenizin Google ve diğer arama motorlarında üst sıralarda yer almasını sağlıyoruz. Teknik SEO, içerik optimizasyonu ve backlink çalışmaları ile markanızın dijital görünürlüğünü artırıyoruz.",
-                            ExtraDescription = "Anahtar kelime analizi, rakip araştırması, performans raporları ve sürekli iyileştirme adımları ile uzun vadeli başarı hedefliyoruz. Dijital pazarlama stratejilerimizle organik trafiğinizi ve müşteri dönüşüm oranlarınızı yükseltiyoruz.",
-                            ExtraTitle = "Stratejik SEO Yaklaşımı",
-                            LogoPath = "/img/service/default-image20.png",
-                            MainImagePath = "/img/service/default-image17.jpg",
-                            Name = "SEO ve Dijital Pazarlama",
-                            Title = "Arama Motoru Optimizasyonu ve Görünürlük Artırma"
+                            ContentImage1Path = "/img/service/fan-uretim2.jpg",
+                            ContentImage2Path = "/img/service/fan-uretim3.jpg",
+                            Description = "Müşterilerimizin özel ihtiyaçlarına yönelik fan ve havalandırma sistemleri geliştiriyoruz. Yüksek sıcaklık, korozyon veya patlama riski gibi özel çalışma koşullarına uygun çözümler üretiyoruz.",
+                            ExtraDescription = "Ar-Ge ekibimiz, aerodinamik verimlilik, enerji tasarrufu ve sessiz çalışma için sürekli olarak yeni teknolojiler üzerinde çalışmaktadır.",
+                            ExtraTitle = "Mühendislikte Yenilikçi Yaklaşım",
+                            LogoPath = "/img/service/arge-logo.png",
+                            MainImagePath = "/img/service/fan-uretim1.jpg",
+                            Name = "Ar-Ge ve Özel Üretim Çözümleri",
+                            Title = "İhtiyaca Özel Fan ve Havalandırma Sistemleri"
                         });
                 });
 
@@ -1554,141 +1378,141 @@ namespace GurventVantilator.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Answer = "ASP.NET Core, Node.js, React, Angular ve Vue.js gibi modern teknolojilerle güvenli ve ölçeklenebilir web uygulamaları geliştiriyoruz.",
-                            Question = "Web uygulamalarınız hangi teknolojilerle geliştiriliyor?",
+                            Answer = "Santrifüj, aksiyel, çatı tipi, kanal tipi ve özel amaçlı fanlar üretiyoruz.",
+                            Question = "Fanlarınız hangi türlerde üretiliyor?",
                             ServiceId = 1
                         },
                         new
                         {
                             Id = 2,
-                            Answer = "Projenin kapsamına göre değişmekle birlikte, küçük projeler 1-2 ayda, daha kapsamlı projeler 3-6 ayda teslim edilebilmektedir.",
-                            Question = "Web projelerinin teslim süresi ne kadar?",
+                            Answer = "Galvaniz, alüminyum ve paslanmaz çelik gövdeli modellerimiz bulunmaktadır. Kullanım alanına göre özel kaplama seçenekleri sunuyoruz.",
+                            Question = "Fan üretiminde hangi malzemeleri kullanıyorsunuz?",
                             ServiceId = 1
                         },
                         new
                         {
                             Id = 3,
-                            Answer = "Evet, tüm web projelerimiz responsive (mobil uyumlu) olarak tasarlanmakta ve farklı cihazlarda sorunsuz çalışmaktadır.",
-                            Question = "Web uygulamalarınız mobil uyumlu mu?",
+                            Answer = "Tüm fanlarımız balans testlerinden geçirilir ve düşük gürültü seviyesiyle çalışacak şekilde tasarlanır.",
+                            Question = "Fanlarınız sessiz çalışıyor mu?",
                             ServiceId = 1
                         },
                         new
                         {
                             Id = 4,
-                            Answer = "Evet, projeler teslim edildikten sonra bakım, güvenlik güncellemeleri ve teknik destek hizmetleri sunuyoruz.",
-                            Question = "Bakım ve destek hizmeti veriyor musunuz?",
+                            Answer = "Tüm ürünlerimiz 2 yıl üretim hatalarına karşı garanti kapsamındadır.",
+                            Question = "Fanlarınızın garanti süresi nedir?",
                             ServiceId = 1
                         },
                         new
                         {
                             Id = 5,
-                            Answer = "Flutter ve React Native ile geliştirdiğimiz uygulamalar hem iOS hem Android cihazlarda sorunsuz çalışmaktadır.",
-                            Question = "Mobil uygulamalarınız hangi platformlarda çalışıyor?",
+                            Answer = "Fabrikalar, otoparklar, restoranlar, hastaneler, atölyeler ve AVM’ler için sistem tasarımı ve montajı yapıyoruz.",
+                            Question = "Hangi alanlara havalandırma sistemi kuruyorsunuz?",
                             ServiceId = 2
                         },
                         new
                         {
                             Id = 6,
-                            Answer = "Projenin ihtiyaçlarına göre karar veriyoruz. Performans kritikse native, bütçe ve hız öncelikliyse cross-platform tercih ediyoruz.",
-                            Question = "Native mi yoksa cross-platform mu tercih ediyorsunuz?",
+                            Answer = "Evet, mühendis ekibimiz ücretsiz keşif ve debi hesabı hizmeti sunmaktadır.",
+                            Question = "Proje öncesi keşif hizmetiniz var mı?",
                             ServiceId = 2
                         },
                         new
                         {
                             Id = 7,
-                            Answer = "SSL, veri şifreleme, 2FA ve güvenlik testleri kullanarak uygulamalarımızın güvenliğini sağlıyoruz.",
-                            Question = "Mobil uygulamalarda güvenlik nasıl sağlanıyor?",
+                            Answer = "Sistemlerimizi enerji tasarrufu sağlayacak şekilde mühendislik hesaplarıyla optimize ediyoruz.",
+                            Question = "Havalandırma sistemi enerji verimli mi?",
                             ServiceId = 2
                         },
                         new
                         {
                             Id = 8,
-                            Answer = "Evet, hem App Store hem de Google Play’e yükleme ve yayın sürecinde destek sağlıyoruz.",
-                            Question = "Uygulama mağazalarına yükleme desteğiniz var mı?",
+                            Answer = "Proje büyüklüğüne göre değişmekle birlikte ortalama 3 ila 10 iş günü arasında tamamlanır.",
+                            Question = "Montaj süresi ne kadar sürer?",
                             ServiceId = 2
                         },
                         new
                         {
                             Id = 9,
-                            Answer = "Windows, macOS ve Linux için masaüstü çözümleri geliştiriyoruz.",
-                            Question = "Masaüstü uygulamalar hangi platformlarda çalışıyor?",
+                            Answer = "Evet, marka bağımsız olarak tüm endüstriyel fanların bakım ve onarımını yapıyoruz.",
+                            Question = "Tüm marka fanlara bakım yapıyor musunuz?",
                             ServiceId = 3
                         },
                         new
                         {
                             Id = 10,
-                            Answer = "Evet, ihtiyaç halinde internet bağlantısı olmadan da çalışan offline çözümler geliştiriyoruz.",
-                            Question = "Masaüstü yazılımlarınız offline çalışabilir mi?",
+                            Answer = "Özel balans cihazlarımızla fanlar yerinde veya atölyemizde dengelenir.",
+                            Question = "Fan balans ayarı nasıl yapılır?",
                             ServiceId = 3
                         },
                         new
                         {
                             Id = 11,
-                            Answer = "Evet, masaüstü uygulamalarımız bulut servisleri ve API’lerle entegre çalışacak şekilde tasarlanabilmektedir.",
-                            Question = "Masaüstü yazılımlar bulut ile entegre edilebilir mi?",
+                            Answer = "Evet, işletmelere özel yıllık bakım sözleşmeleri sunuyoruz.",
+                            Question = "Periyodik bakım hizmeti sunuyor musunuz?",
                             ServiceId = 3
                         },
                         new
                         {
                             Id = 12,
-                            Answer = "Uzaktan bağlantı ve düzenli sürüm güncellemeleriyle bakım hizmeti veriyoruz.",
-                            Question = "Bakım ve güncellemeler nasıl yapılıyor?",
+                            Answer = "Genellikle 1-3 iş günü içinde bakım ve test süreci tamamlanır.",
+                            Question = "Arızalı fan ne kadar sürede onarılır?",
                             ServiceId = 3
                         },
                         new
                         {
                             Id = 13,
-                            Answer = "Ürün yönetimi, güvenli ödeme, stok takibi, kargo entegrasyonu ve kullanıcı dostu arayüzler temel özelliklerimizdir.",
-                            Question = "E-ticaret siteniz hangi özellikleri içeriyor?",
+                            Answer = "0.3 mikrona kadar olan partikülleri yüksek verimli filtrelerle tutabiliyoruz.",
+                            Question = "Filtrasyon sisteminiz hangi partikül boyutlarını tutar?",
                             ServiceId = 4
                         },
                         new
                         {
                             Id = 14,
-                            Answer = "Evet, tüm e-ticaret çözümlerimiz SEO uyumlu geliştirilmekte ve Google’da daha iyi sıralamalar almanıza yardımcı olmaktadır.",
-                            Question = "E-ticaret siteleriniz SEO uyumlu mu?",
+                            Answer = "Kullanım yoğunluğuna bağlı olarak genellikle 3 ila 6 ayda bir değişim önerilmektedir.",
+                            Question = "Filtre değişim sıklığı nedir?",
                             ServiceId = 4
                         },
                         new
                         {
                             Id = 15,
-                            Answer = "Evet, tüm e-ticaret projelerimiz responsive tasarıma sahiptir.",
-                            Question = "E-ticaret siteleriniz mobil uyumlu mu?",
+                            Answer = "Evet, düşük basınç kayıplı tasarımlar sayesinde enerji verimliliği sağlıyoruz.",
+                            Question = "Toz toplama sistemleri enerji tasarruflu mu?",
                             ServiceId = 4
                         },
                         new
                         {
                             Id = 16,
-                            Answer = "Kredi kartı, banka transferi, PayPal, iyzico ve Stripe gibi popüler ödeme yöntemlerini entegre ediyoruz.",
-                            Question = "Hangi ödeme yöntemleri entegre edilebiliyor?",
+                            Answer = "Keşif sonrası mühendislik çizimleri yapılır, ardından üretim ve montaj aşamasına geçilir.",
+                            Question = "Kurulum süreci nasıl ilerliyor?",
                             ServiceId = 4
                         },
                         new
                         {
                             Id = 17,
-                            Answer = "Teknik SEO, içerik optimizasyonu, backlink çalışmaları ve hız iyileştirmelerini kapsıyoruz.",
-                            Question = "SEO çalışmalarınız neleri kapsıyor?",
+                            Answer = "Evet, proje ihtiyaçlarına göre özel çap, debi ve motor güçlerinde fan üretimi yapabiliyoruz.",
+                            Question = "Özel boyutlarda fan üretimi yapıyor musunuz?",
                             ServiceId = 5
                         },
                         new
                         {
                             Id = 18,
-                            Answer = "Genellikle 3-6 ay içinde gözle görülür sonuçlar alınmaya başlanır.",
-                            Question = "SEO çalışmalarının etkisi ne zaman görülür?",
+                            Answer = "Evet, 300°C’ye kadar dayanıklı fan çözümlerimiz mevcuttur.",
+                            Question = "Yüksek sıcaklığa dayanıklı fanlarınız var mı?",
                             ServiceId = 5
                         },
                         new
                         {
                             Id = 19,
-                            Answer = "Evet, proje başlangıcında detaylı anahtar kelime ve rakip analizi yapıyoruz.",
-                            Question = "Anahtar kelime analizi yapıyor musunuz?",
+                            Answer = "Patlayıcı ortamlarda kullanılabilecek ATEX standartlarına uygun fan üretimi yapıyoruz.",
+                            Question = "ATEX sertifikalı fan üretiyor musunuz?",
                             ServiceId = 5
                         },
                         new
                         {
                             Id = 20,
-                            Answer = "SEO uzun vadeli bir süreçtir, düzenli optimizasyon ve içerik güncellemeleri ile kalıcı başarı sağlıyoruz.",
-                            Question = "SEO çalışmalarınız kalıcı mıdır?",
+                            Answer = "Hava debisi, statik basınç, gürültü ve titreşim testleri düzenli olarak gerçekleştirilmektedir.",
+                            Question = "Ar-Ge sürecinde hangi testler yapılıyor?",
                             ServiceId = 5
                         });
                 });
@@ -1721,121 +1545,121 @@ namespace GurventVantilator.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Ölçeklenebilir altyapı",
+                            Name = "Yüksek verimli motor teknolojisi",
                             ServiceId = 1
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Modern frontend teknolojileri",
+                            Name = "Sessiz çalışma prensibi",
                             ServiceId = 1
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Yüksek güvenlik standartları",
+                            Name = "Uzun ömürlü rulman sistemi",
                             ServiceId = 1
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Kullanıcı dostu arayüz tasarımı",
+                            Name = "Farklı kapasite ve ölçü seçenekleri",
                             ServiceId = 1
                         },
                         new
                         {
                             Id = 5,
-                            Name = "iOS ve Android uyumluluk",
+                            Name = "Enerji verimli sistem tasarımı",
                             ServiceId = 2
                         },
                         new
                         {
                             Id = 6,
-                            Name = "Cross-platform geliştirme",
+                            Name = "Projeye özel mühendislik hesapları",
                             ServiceId = 2
                         },
                         new
                         {
                             Id = 7,
-                            Name = "Gerçek zamanlı bildirimler",
+                            Name = "Profesyonel montaj ekibi",
                             ServiceId = 2
                         },
                         new
                         {
                             Id = 8,
-                            Name = "Yüksek performanslı mobil deneyim",
+                            Name = "Bina otomasyon sistemleri entegrasyonu",
                             ServiceId = 2
                         },
                         new
                         {
                             Id = 9,
-                            Name = "Windows, macOS ve Linux desteği",
+                            Name = "Yerinde servis hizmeti",
                             ServiceId = 3
                         },
                         new
                         {
                             Id = 10,
-                            Name = "Offline çalışma imkanı",
+                            Name = "Balans ve titreşim kontrolü",
                             ServiceId = 3
                         },
                         new
                         {
                             Id = 11,
-                            Name = "Bulut entegrasyonu",
+                            Name = "Rulman ve kayış değişimi",
                             ServiceId = 3
                         },
                         new
                         {
                             Id = 12,
-                            Name = "Kurumsal iş süreçlerine özel çözümler",
+                            Name = "Periyodik bakım sözleşmesi imkanı",
                             ServiceId = 3
                         },
                         new
                         {
                             Id = 13,
-                            Name = "Güvenli ödeme sistemleri",
+                            Name = "Yüksek filtrasyon verimliliği",
                             ServiceId = 4
                         },
                         new
                         {
                             Id = 14,
-                            Name = "Stok ve sipariş yönetimi",
+                            Name = "Düşük enerji tüketimi",
                             ServiceId = 4
                         },
                         new
                         {
                             Id = 15,
-                            Name = "Kargo entegrasyonu",
+                            Name = "Kompakt ve modüler tasarım",
                             ServiceId = 4
                         },
                         new
                         {
                             Id = 16,
-                            Name = "Mobil uyumlu e-ticaret deneyimi",
+                            Name = "Kolay bakım ve temizlik",
                             ServiceId = 4
                         },
                         new
                         {
                             Id = 17,
-                            Name = "Anahtar kelime analizi",
+                            Name = "Yüksek sıcaklığa dayanıklı fan tasarımları",
                             ServiceId = 5
                         },
                         new
                         {
                             Id = 18,
-                            Name = "Teknik SEO optimizasyonu",
+                            Name = "Korozyona dayanıklı malzeme kullanımı",
                             ServiceId = 5
                         },
                         new
                         {
                             Id = 19,
-                            Name = "Backlink stratejileri",
+                            Name = "Sessiz çalışma optimizasyonu",
                             ServiceId = 5
                         },
                         new
                         {
                             Id = 20,
-                            Name = "Performans ve hız iyileştirmeleri",
+                            Name = "Prototip geliştirme ve performans testleri",
                             ServiceId = 5
                         });
                 });
@@ -1927,25 +1751,24 @@ namespace GurventVantilator.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Address = "Demirköprü Mah. Karşıyaka/İstanbul.",
-                            CompanyName = "Fırat Ramazano",
-                            CompanyOwner = "Fırat Ramazano",
-                            Email1 = "info@firatramazano.com",
-                            Email2 = "firatro@outlook.com",
-                            Fax1 = "+90 232 000 0000",
-                            Fax2 = "+90 232 000 0000",
-                            GoogleMapsApi = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d380.50129495713793!2d28.977997042359917!3d41.00806685326879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa7040068086b%3A0xe1ccfe98bc01b0d0!2zxLBzdGFuYnVs!5e0!3m2!1str!2str!4v1758490039045!5m2!1str!2str",
-                            LogoPath = "/img/site-info/logo.png",
-                            Phone1 = "+90 535 630 5220",
-                            Phone2 = "+90 232 000 0000",
-                            SiteInformation = "Modern teknolojileri yenilikçi yazılım çözümleriyle buluşturur. İşletmelerin dijital dönüşümünü hızlandırırken güvenilir, ölçeklenebilir ve kullanıcı dostu uygulamalar geliştirir.",
-                            SiteName = "Fırat Ramazano",
-                            SiteOwner = "Fırat Ramazano",
-                            TNumber = "+90 535 630 5220",
-                            TaxNumber = "1234567890",
+                            Address = "Atatürk Organize Sanayi Bölgesi, 10032 Sokak No:15, Çiğli / İzmir",
+                            CompanyName = "Gurvent Vantilatör ve Mühendislik A.Ş.",
+                            CompanyOwner = "Gürbüz Teknik",
+                            Email1 = "info@gurvent.com.tr",
+                            Email2 = "teknik@gurvent.com.tr",
+                            Fax1 = "+90 232 400 55 23",
+                            GoogleMapsApi = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3000.458293!2d27.133!3d38.435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14b970a6d8!2sGurvent%20Vantilatör!5e0!3m2!1str!2str!4v1712345678901!5m2!1str!2str",
+                            LogoPath = "/img/site-info/gurvent-logo.png",
+                            Phone1 = "+90 232 400 55 22",
+                            Phone2 = "+90 532 600 44 11",
+                            SiteInformation = "Gurvent, endüstriyel fan ve havalandırma sistemleri alanında yenilikçi, enerji verimli ve yüksek performanslı çözümler sunar.",
+                            SiteName = "Gurvent Vantilatör",
+                            SiteOwner = "Gurvent Mühendislik A.Ş.",
+                            TNumber = "+90 532 600 44 11",
+                            TaxNumber = "4567891230",
                             TaxOffice = "İzmir Vergi Dairesi",
-                            WaNumber = "+90 535 630 5220",
-                            WorkingHours = "Hafta içi: 09:00 - 18:00"
+                            WaNumber = "+90 532 600 44 11",
+                            WorkingHours = "Hafta içi: 08:30 - 18:00, Cumartesi: 08:30 - 13:00"
                         });
                 });
 
@@ -1981,34 +1804,34 @@ namespace GurventVantilator.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            ImagePath = "img/slider/default-image1.jpg",
-                            Subtitle = "Ölçeklenebilir ve güvenli çözümler",
-                            Tag = "Web",
-                            Title = "Modern web uygulamaları"
+                            ImagePath = "/img/slider/factory1.jpg",
+                            Subtitle = "Güçlü mühendislik, kaliteli üretim, maksimum verim.",
+                            Tag = "Üretim",
+                            Title = "Endüstriyel Fan Üretiminde 40 Yıllık Tecrübe"
                         },
                         new
                         {
                             Id = 2,
-                            ImagePath = "img/slider/default-image2.jpg",
-                            Subtitle = "iOS ve Android için performanslı çözümler",
-                            Tag = "Mobil",
-                            Title = "Mobil dünyada güçlü uygulamalar"
+                            ImagePath = "/img/slider/ventilation1.jpg",
+                            Subtitle = "Enerji verimli, sessiz ve güvenilir sistemler.",
+                            Tag = "Havalandırma",
+                            Title = "Havalandırma Sistemlerinde Profesyonel Çözümler"
                         },
                         new
                         {
                             Id = 3,
-                            ImagePath = "img/slider/default-image3.jpg",
-                            Subtitle = "Güvenli ve kullanıcı dostu e-ticaret platformları",
-                            Tag = "E-Ticaret",
-                            Title = "Dijital mağazanızı büyütün"
+                            ImagePath = "/img/slider/filtration1.jpg",
+                            Subtitle = "Toz toplama ve hava filtrasyon sistemlerinde lider marka.",
+                            Tag = "Filtrasyon",
+                            Title = "Temiz Hava, Sağlıklı Çalışma Ortamı"
                         },
                         new
                         {
                             Id = 4,
-                            ImagePath = "img/slider/default-image4.jpg",
-                            Subtitle = "SEO ve dijital pazarlama stratejileri",
-                            Tag = "SEO",
-                            Title = "Google’da daha görünür olun"
+                            ImagePath = "/img/slider/service1.jpg",
+                            Subtitle = "Her marka fan için profesyonel servis desteği.",
+                            Tag = "Servis",
+                            Title = "Bakım ve Onarımda Güvenilir Hizmet"
                         });
                 });
 
@@ -2043,11 +1866,11 @@ namespace GurventVantilator.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Facebook = "https://facebook.com/firatro",
-                            Instagram = "https://instagram.com/firatro",
-                            Tiktok = "https://tiktok.com/",
-                            X = "https://x.com/_firatro",
-                            Youtube = "https://youtube.com/firatro"
+                            Facebook = "https://facebook.com/gurventvantilator",
+                            Instagram = "https://instagram.com/gurventvantilator",
+                            Tiktok = "https://tiktok.com/@gurventvantilator",
+                            X = "https://x.com/gurventfan",
+                            Youtube = "https://youtube.com/@gurventvantilator"
                         });
                 });
 
@@ -2071,32 +1894,32 @@ namespace GurventVantilator.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Web Geliştirme"
+                            Name = "Enerji Verimli Fan"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Mobil Uygulama"
+                            Name = "ATEX Sertifikalı"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Yapay Zeka"
+                            Name = "Santrifüj Fan"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "Siber Güvenlik"
+                            Name = "Filtrasyon"
                         },
                         new
                         {
                             Id = 5,
-                            Name = "E-Ticaret"
+                            Name = "Hava Kalitesi"
                         },
                         new
                         {
                             Id = 6,
-                            Name = "SEO ve Dijital Pazarlama"
+                            Name = "Bakım ve Servis"
                         });
                 });
 
@@ -2172,20 +1995,20 @@ namespace GurventVantilator.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Biography = "15 yılı aşkın süredir yazılım geliştirme ve teknoloji girişimciliği alanında deneyime sahip. Modern yazılım mimarileri, yapay zeka ve bulut tabanlı çözümler konusunda uzman.",
-                            Email = "firat.ramazano@company.com",
-                            Experience = "15+ yıl yazılım geliştirme, girişimcilik ve uluslararası teknoloji konferanslarında konuşmacı.",
-                            Facebook = "https://facebook.com/firatro",
-                            FullName = "Fırat Ramazano",
-                            ImagePath = "/img/team-member/default-image1.jpg",
-                            Instagram = "https://instagram.com/firatro",
-                            Linkedin = "https://linkedin.com/in/firatro",
-                            Phone = "+90-532-111-2233",
-                            Skills = "[\"Liderlik\", \"Yazılım Mimarisi\", \"İş Stratejisi\", \"Bulut Teknolojileri\"]",
-                            Title = "Kurucu & CEO",
-                            Twitter = "https://twitter.com/_firatro",
-                            Website = "https://www.firatramazano.com",
-                            Youtube = "https://youtube.com/@firatro"
+                            Biography = "Makine mühendisi olarak 30 yılı aşkın süredir endüstriyel fan tasarımı ve üretimi alanında faaliyet göstermektedir. Enerji verimli sistemler konusunda uzmandır.",
+                            Email = "gurbuz.yilmaz@gurvent.com.tr",
+                            Experience = "30+ yıl endüstriyel fan üretimi ve mühendislik tecrübesi.",
+                            Facebook = "https://facebook.com/gurventvantilator",
+                            FullName = "Gürbüz Yılmaz",
+                            ImagePath = "/img/team-member/gurbuz-yilmaz.jpg",
+                            Instagram = "https://instagram.com/gurventvantilator",
+                            Linkedin = "https://linkedin.com/in/gurbuzyilmaz",
+                            Phone = "+90 532 600 44 11",
+                            Skills = "[\"Mekanik Tasarım\", \"Fan Mühendisliği\", \"Proje Yönetimi\", \"Üretim Süreçleri\"]",
+                            Title = "Kurucu & Genel Müdür",
+                            Twitter = "https://x.com/gurventfan",
+                            Website = "https://www.gurvent.com.tr",
+                            Youtube = "https://youtube.com/@gurventvantilator"
                         });
                 });
 
@@ -2223,47 +2046,47 @@ namespace GurventVantilator.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            Comment = "E-ticaret platformumuzu Fırat Ramazano Software ekibi geliştirdi. Kullanıcı dostu arayüz ve güvenli ödeme altyapısı sayesinde satışlarımız ciddi şekilde arttı. Profesyonel ve güvenilir bir ekip.",
-                            FullName = "Elif Yılmaz",
-                            ImagePath = "/img/testimonial/default-image1.jpg",
+                            Comment = "Yeni fan sistemimiz sayesinde üretim alanımızdaki hava kalitesi belirgin şekilde arttı. Montaj ekibi profesyonel çalıştı.",
+                            FullName = "Mehmet Koç",
+                            ImagePath = "/img/testimonial/client1.jpg",
                             Rating = 5,
-                            Title = "E-Ticaret Projesi Müşterisi"
+                            Title = "Fabrika Müdürü"
                         },
                         new
                         {
                             Id = 2,
-                            Comment = "Uzun zamandır hayalini kurduğum mobil uygulamayı Flutter ile geliştirdiler. Hem iOS hem Android’de sorunsuz çalışıyor. Destek süreçleri de çok hızlı.",
-                            FullName = "Mehmet Demir",
-                            ImagePath = "/img/testimonial/default-image1.jpg",
+                            Comment = "Projeye özel fan tasarımı istedik, kısa sürede üretildi ve tam istediğimiz performansı sağladı.",
+                            FullName = "Ayşe Güler",
+                            ImagePath = "/img/testimonial/client2.jpg",
                             Rating = 5,
-                            Title = "Mobil Uygulama Müşterisi"
+                            Title = "Proje Mühendisi"
                         },
                         new
                         {
                             Id = 3,
-                            Comment = "Kurumsal web sitemizi yenilediler. Hızlı, modern ve SEO uyumlu bir site oldu. Süreç boyunca iletişimleri çok şeffaf ve profesyoneldi.",
-                            FullName = "Zeynep Kara",
-                            ImagePath = "/img/testimonial/default-image1.jpg",
+                            Comment = "Fan bakım hizmetleri hızlı ve güvenilir. Arızalı fanlarımız 2 gün içinde teslim edildi.",
+                            FullName = "Serkan Demirtaş",
+                            ImagePath = "/img/testimonial/client3.jpg",
                             Rating = 4,
-                            Title = "Web Uygulama Müşterisi"
+                            Title = "Tesis Sorumlusu"
                         },
                         new
                         {
                             Id = 4,
-                            Comment = "SEO çalışmaları sayesinde Google’da üst sıralara çıktık. Organik trafik ve müşteri dönüşüm oranlarımız gözle görülür şekilde arttı. Kesinlikle tavsiye ederim.",
-                            FullName = "Ahmet Çelik",
-                            ImagePath = "/img/testimonial/default-image1.jpg",
+                            Comment = "Filtrasyon sistemi kurulumu çok başarılı oldu. Artık toz oranı minimuma indi.",
+                            FullName = "Derya Akın",
+                            ImagePath = "/img/testimonial/client4.jpg",
                             Rating = 5,
-                            Title = "SEO Hizmeti Müşterisi"
+                            Title = "Endüstriyel Tesis Yöneticisi"
                         },
                         new
                         {
                             Id = 5,
-                            Comment = "Üretim takip sürecimizi masaüstü yazılım ile dijitalleştirdiler. Artık tüm operasyonlarımızı çok daha kolay yönetiyoruz. İşimize büyük değer kattı.",
-                            FullName = "Selin Arslan",
-                            ImagePath = "/img/testimonial/default-image1.jpg",
-                            Rating = 4,
-                            Title = "Masaüstü Yazılım Müşterisi"
+                            Comment = "Yüksek sıcaklık fanları projemizde kullanıldı. Dayanıklılığı ve sessiz çalışması bizi etkiledi.",
+                            FullName = "Kemal Aydın",
+                            ImagePath = "/img/testimonial/client5.jpg",
+                            Rating = 5,
+                            Title = "Makine Bakım Müdürü"
                         });
                 });
 
@@ -2336,11 +2159,11 @@ namespace GurventVantilator.Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            MissionDescription = "Misyonumuz; işletmelerin dijital dönüşüm süreçlerinde güvenilir, ölçeklenebilir ve kullanıcı dostu yazılım çözümleri geliştirmektir. Kişiye özel yaklaşımlar, uzman ekip ve modern teknolojilerle her müşterimizin ihtiyaçlarına uygun çözümler üretiyoruz. Etik kurallar çerçevesinde sunduğumuz hizmetlerle yalnızca teknoloji geliştirmek değil, aynı zamanda iş süreçlerine değer katmayı hedefliyoruz. Müşterilerimize güven veren, şeffaf ve sürdürülebilir bir hizmet anlayışıyla uzun vadeli başarılar yaratmak en büyük önceliğimizdir.",
-                            MissionImagePath = "/img/vision-mission/default-image2.jpg",
+                            MissionDescription = "Müşterilerimize güvenilir, yenilikçi ve mühendislik odaklı havalandırma çözümleri sunmak; üretim kalitemizi sürekli geliştirerek endüstriye değer katmak.",
+                            MissionImagePath = "/img/vision-mission/factory-mission.jpg",
                             MissionTitle = "Misyonumuz",
-                            VisionDescription = "Fırat Ramazano Software olarak vizyonumuz; yazılım geliştirme alanında ulusal ve uluslararası ölçekte güvenilir, yenilikçi ve tercih edilen bir teknoloji firması haline gelmektir. Amacımız, modern teknolojileri takip ederek işletmelere en güncel ve etkili çözümleri sunmak, aynı zamanda sektöre yön veren projeler geliştirmektir. Gelecek yıllarda etik değerlerden ödün vermeden sunduğumuz kaliteli hizmetlerle yazılım dünyasında öncü bir rol üstlenmek en büyük hedefimizdir.",
-                            VisionImagePath = "/img/vision-mission/default-image1.jpg",
+                            VisionDescription = "Enerji verimliliği yüksek, çevreye duyarlı fan sistemleriyle Türkiye’nin ve dünyanın lider havalandırma çözümleri üreticisi olmak.",
+                            VisionImagePath = "/img/vision-mission/factory-vision.jpg",
                             VisionTitle = "Vizyonumuz"
                         });
                 });
@@ -2407,6 +2230,16 @@ namespace GurventVantilator.Infrastructure.Migrations
                     b.Navigation("ProductCategory");
                 });
 
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductCategory", b =>
+                {
+                    b.HasOne("GurventVantilator.Domain.Entities.ProductCategory", "ParentCategory")
+                        .WithMany("SubCategories")
+                        .HasForeignKey("ParentCategoryId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("ParentCategory");
+                });
+
             modelBuilder.Entity("GurventVantilator.Domain.Entities.ProjectFeature", b =>
                 {
                     b.HasOne("GurventVantilator.Domain.Entities.Project", "Project")
@@ -2460,6 +2293,8 @@ namespace GurventVantilator.Infrastructure.Migrations
             modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductCategory", b =>
                 {
                     b.Navigation("Products");
+
+                    b.Navigation("SubCategories");
                 });
 
             modelBuilder.Entity("GurventVantilator.Domain.Entities.Project", b =>

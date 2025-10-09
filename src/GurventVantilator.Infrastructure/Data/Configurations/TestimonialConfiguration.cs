@@ -9,51 +9,11 @@ namespace GurventVantilator.Infrastructure.Data.Configurations
         public void Configure(EntityTypeBuilder<Testimonial> builder)
         {
             builder.HasData(
-                new Testimonial
-                {
-                    Id = 1,
-                    FullName = "Elif Yılmaz",
-                    Title = "E-Ticaret Projesi Müşterisi",
-                    Comment = "E-ticaret platformumuzu Fırat Ramazano Software ekibi geliştirdi. Kullanıcı dostu arayüz ve güvenli ödeme altyapısı sayesinde satışlarımız ciddi şekilde arttı. Profesyonel ve güvenilir bir ekip.",
-                    ImagePath = "/img/testimonial/default-image1.jpg",
-                    Rating = 5
-                },
-                new Testimonial
-                {
-                    Id = 2,
-                    FullName = "Mehmet Demir",
-                    Title = "Mobil Uygulama Müşterisi",
-                    Comment = "Uzun zamandır hayalini kurduğum mobil uygulamayı Flutter ile geliştirdiler. Hem iOS hem Android’de sorunsuz çalışıyor. Destek süreçleri de çok hızlı.",
-                    ImagePath = "/img/testimonial/default-image1.jpg",
-                    Rating = 5
-                },
-                new Testimonial
-                {
-                    Id = 3,
-                    FullName = "Zeynep Kara",
-                    Title = "Web Uygulama Müşterisi",
-                    Comment = "Kurumsal web sitemizi yenilediler. Hızlı, modern ve SEO uyumlu bir site oldu. Süreç boyunca iletişimleri çok şeffaf ve profesyoneldi.",
-                    ImagePath = "/img/testimonial/default-image1.jpg",
-                    Rating = 4
-                },
-                new Testimonial
-                {
-                    Id = 4,
-                    FullName = "Ahmet Çelik",
-                    Title = "SEO Hizmeti Müşterisi",
-                    Comment = "SEO çalışmaları sayesinde Google’da üst sıralara çıktık. Organik trafik ve müşteri dönüşüm oranlarımız gözle görülür şekilde arttı. Kesinlikle tavsiye ederim.",
-                    ImagePath = "/img/testimonial/default-image1.jpg",
-                    Rating = 5
-                },
-                new Testimonial
-                {
-                    Id = 5,
-                    FullName = "Selin Arslan",
-                    Title = "Masaüstü Yazılım Müşterisi",
-                    Comment = "Üretim takip sürecimizi masaüstü yazılım ile dijitalleştirdiler. Artık tüm operasyonlarımızı çok daha kolay yönetiyoruz. İşimize büyük değer kattı.",
-                    ImagePath = "/img/testimonial/default-image1.jpg",
-                    Rating = 4
-                }
+                new Testimonial { Id = 1, FullName = "Mehmet Koç", Title = "Fabrika Müdürü", Comment = "Yeni fan sistemimiz sayesinde üretim alanımızdaki hava kalitesi belirgin şekilde arttı. Montaj ekibi profesyonel çalıştı.", ImagePath = "/img/testimonial/client1.jpg", Rating = 5 },
+                new Testimonial { Id = 2, FullName = "Ayşe Güler", Title = "Proje Mühendisi", Comment = "Projeye özel fan tasarımı istedik, kısa sürede üretildi ve tam istediğimiz performansı sağladı.", ImagePath = "/img/testimonial/client2.jpg", Rating = 5 },
+                new Testimonial { Id = 3, FullName = "Serkan Demirtaş", Title = "Tesis Sorumlusu", Comment = "Fan bakım hizmetleri hızlı ve güvenilir. Arızalı fanlarımız 2 gün içinde teslim edildi.", ImagePath = "/img/testimonial/client3.jpg", Rating = 4 },
+                new Testimonial { Id = 4, FullName = "Derya Akın", Title = "Endüstriyel Tesis Yöneticisi", Comment = "Filtrasyon sistemi kurulumu çok başarılı oldu. Artık toz oranı minimuma indi.", ImagePath = "/img/testimonial/client4.jpg", Rating = 5 },
+                new Testimonial { Id = 5, FullName = "Kemal Aydın", Title = "Makine Bakım Müdürü", Comment = "Yüksek sıcaklık fanları projemizde kullanıldı. Dayanıklılığı ve sessiz çalışması bizi etkiledi.", ImagePath = "/img/testimonial/client5.jpg", Rating = 5 }
             );
         }
     }

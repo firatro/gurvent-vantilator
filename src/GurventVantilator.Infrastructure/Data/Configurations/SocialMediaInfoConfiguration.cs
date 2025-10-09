@@ -12,11 +12,11 @@ namespace GurventVantilator.Infrastructure.Data.Configurations
                  new SocialMediaInfo
                  {
                      Id = 1,
-                     Facebook = "https://facebook.com/firatro",
-                     Instagram = "https://instagram.com/firatro",
-                     Youtube = "https://youtube.com/firatro",
-                     X = "https://x.com/_firatro",
-                     Tiktok = "https://tiktok.com/"
+                     Facebook = "https://facebook.com/gurventvantilator",
+                     Instagram = "https://instagram.com/gurventvantilator",
+                     Youtube = "https://youtube.com/@gurventvantilator",
+                     X = "https://x.com/gurventfan",
+                     Tiktok = "https://tiktok.com/@gurventvantilator",
                  }
             );
         }

@@ -12,20 +12,20 @@ namespace GurventVantilator.Infrastructure.Data.Configurations
                  new TeamMember
                  {
                      Id = 1,
-                     Title = "Kurucu & CEO",
-                     FullName = "Fırat Ramazano",
-                     Biography = "15 yılı aşkın süredir yazılım geliştirme ve teknoloji girişimciliği alanında deneyime sahip. Modern yazılım mimarileri, yapay zeka ve bulut tabanlı çözümler konusunda uzman.",
-                     Phone = "+90-532-111-2233",
-                     Email = "firat.ramazano@company.com",
-                     Website = "https://www.firatramazano.com",
-                     Facebook = "https://facebook.com/firatro",
-                     Twitter = "https://twitter.com/_firatro",
-                     Youtube = "https://youtube.com/@firatro",
-                     Linkedin = "https://linkedin.com/in/firatro",
-                     Instagram = "https://instagram.com/firatro",
-                     Experience = "15+ yıl yazılım geliştirme, girişimcilik ve uluslararası teknoloji konferanslarında konuşmacı.",
-                     Skills = "[\"Liderlik\", \"Yazılım Mimarisi\", \"İş Stratejisi\", \"Bulut Teknolojileri\"]",
-                     ImagePath = "/img/team-member/default-image1.jpg"
+                     Title = "Kurucu & Genel Müdür",
+                     FullName = "Gürbüz Yılmaz",
+                     Biography = "Makine mühendisi olarak 30 yılı aşkın süredir endüstriyel fan tasarımı ve üretimi alanında faaliyet göstermektedir. Enerji verimli sistemler konusunda uzmandır.",
+                     Phone = "+90 532 600 44 11",
+                     Email = "gurbuz.yilmaz@gurvent.com.tr",
+                     Website = "https://www.gurvent.com.tr",
+                     Facebook = "https://facebook.com/gurventvantilator",
+                     Twitter = "https://x.com/gurventfan",
+                     Youtube = "https://youtube.com/@gurventvantilator",
+                     Linkedin = "https://linkedin.com/in/gurbuzyilmaz",
+                     Instagram = "https://instagram.com/gurventvantilator",
+                     Experience = "30+ yıl endüstriyel fan üretimi ve mühendislik tecrübesi.",
+                     Skills = "[\"Mekanik Tasarım\", \"Fan Mühendisliği\", \"Proje Yönetimi\", \"Üretim Süreçleri\"]",
+                     ImagePath = "/img/team-member/gurbuz-yilmaz.jpg"
                  }
             );
         }

@@ -3,6 +3,7 @@ using GurventVantilator.AdminUI.Mappings;
 using GurventVantilator.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 using GurventVantilator.Application.Interfaces;
+using GurventVantilator.Application.Enums;
 
 public class AboutUsController : Controller
 {
@@ -42,7 +43,7 @@ public class AboutUsController : Controller
         var existing = existingResult.Data;
 
         var imagePath = vm.ImageFile != null
-            ? await _fileService.SaveFileAsync(vm.ImageFile, "uploads/images/about-us")
+            ? await _fileService.SaveFileAsync(vm.ImageFile, "uploads/images/about-us", FileType.Image)
             : existing.ImagePath;
 
         var dto = vm.ToDto(imagePath);

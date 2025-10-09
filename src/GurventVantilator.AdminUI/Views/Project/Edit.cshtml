@@ -59,12 +59,14 @@
                                     @if (!string.IsNullOrEmpty(Model.MainImagePath))
                                     {
                                         <img src="@Model.MainImagePath" alt="Kapak Görsel" style="max-width:100px;"
-                                            class="img-thumbnail mb-2"/>
+                                            class="img-thumbnail mb-2" />
                                     }
-                                    <input type="file" asp-for="MainImageFile"
-                                        class="form-control form-control-modern" accept=".jpg,.jpeg,.png,.webp" />
+                                    <input type="file" asp-for="MainImageFile" class="form-control form-control-modern"
+                                        accept=".jpg,.jpeg,.png,.webp" />
                                     <input type="hidden" asp-for="MainImageFile" />
-                                    <span asp-validation-for="MainImageFile" class="badge badge-danger"></span>    
+                                    <span asp-validation-for="MainImageFile" class="badge badge-danger"></span>
+                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: JPG, PNG, WEBP. Maks
+                                        10MB.</small>
                                 </div>
                             </div>
 
@@ -80,7 +82,9 @@
                                     <input type="file" asp-for="ContentImage1File"
                                         class="form-control form-control-modern" accept=".jpg,.jpeg,.png,.webp" />
                                     <input type="hidden" asp-for="ContentImage1File" />
-                                    <span asp-validation-for="ContentImage1File" class="badge badge-danger"></span>    
+                                    <span asp-validation-for="ContentImage1File" class="badge badge-danger"></span>
+                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: JPG, PNG, WEBP. Maks
+                                        10MB.</small>
                                 </div>
                             </div>
 
@@ -96,7 +100,9 @@
                                     <input type="file" asp-for="ContentImage2File"
                                         class="form-control form-control-modern" accept=".jpg,.jpeg,.png,.webp" />
                                     <input type="hidden" asp-for="ContentImage2File" />
-                                    <span asp-validation-for="ContentImage2File" class="badge badge-danger"></span>    
+                                    <span asp-validation-for="ContentImage2File" class="badge badge-danger"></span>
+                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: JPG, PNG, WEBP. Maks
+                                        10MB.</small>
                                 </div>
                             </div>
 

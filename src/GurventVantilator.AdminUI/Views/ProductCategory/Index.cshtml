@@ -26,8 +26,9 @@
 
                                 <th width="30" class="text-center">Id</th>
                                 <th class="text-center">Ürün Kategori Adı</th>
+                                <th class="text-center">Üst Kategori</th>
                                 <th class="text-center">Görsel</th>
-                                <th class="text-center">Aktif</th>
+                                <th class="text-center">Durum</th>
                                 <th width="30" class="text-center">İşlemler</th>
                             </tr>
                         </thead>
@@ -35,7 +36,7 @@
                             @if (Model == null || !Model.Any())
                             {
                                 <tr>
-                                    <td colspan="3" class="text-center text-muted">
+                                    <td colspan="6" class="text-center text-muted">
                                         Hiç kayıt bulunamadı.
                                     </td>
                                 </tr>
@@ -47,6 +48,7 @@
                                     <tr>
                                         <td class="text-center"><strong><a href="#">@item.Id</a></strong></td>
                                         <td class="text-center"><strong><a href="#">@item.Name</a></strong></td>
+                                        <td class="text-center">@item.ParentCategoryName</td>
                                         <td class="text-center">
                                             @if (!string.IsNullOrEmpty(item.ImagePath))
                                             {
@@ -95,6 +97,7 @@
                                 <div class="modal-wrapper">
                                     <div class="modal-text">
                                         <p class="mb-0">Bu kategoriyi silmek istediğinize emin misiniz?</p>
+                                        <small class="text-muted">Lütfen kayıtlı alt kategorisi olmadığından emin olunuz.</small>
                                     </div>
                                 </div>
                             </div>

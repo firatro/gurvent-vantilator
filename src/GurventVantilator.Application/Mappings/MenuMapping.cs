@@ -17,9 +17,13 @@ namespace GurventVantilator.Application.Extensions
                 ContentHtml = entity.ContentHtml,
                 ServiceId = entity.ServiceId,
                 ProjectId = entity.ProjectId,
+                ProductId = entity.ProductId,
+                ProductCategoryId = entity.ProductCategoryId,
                 ParentId = entity.ParentId,
                 ParentTitle = entity.Parent?.Title,
-                SubMenus = entity.Children?.Select(c => c.MapToDto()).ToList() ?? new List<MenuDto>(),
+                SubMenus = entity.Children != null
+                    ? entity.Children.Select(MapToDto).ToList()
+                    : new List<MenuDto>(),
                 Order = entity.Order,
                 IsActive = entity.IsActive
             };
@@ -36,6 +40,8 @@ namespace GurventVantilator.Application.Extensions
                 ContentHtml = dto.ContentHtml,
                 ServiceId = dto.ServiceId,
                 ProjectId = dto.ProjectId,
+                ProductCategoryId = dto.ProductCategoryId,
+                ProductId = dto.ProductId,
                 ParentId = dto.ParentId,
                 Order = dto.Order,
                 IsActive = dto.IsActive

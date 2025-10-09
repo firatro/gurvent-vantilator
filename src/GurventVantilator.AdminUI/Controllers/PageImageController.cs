@@ -3,6 +3,7 @@ using GurventVantilator.AdminUI.Mappings;
 using GurventVantilator.Application.DTOs;
 using GurventVantilator.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
+using GurventVantilator.Application.Enums;
 
 public class PageImageController : Controller
 {
@@ -40,7 +41,7 @@ public class PageImageController : Controller
         if (!ModelState.IsValid) return View(vm);
 
         var imagePath = vm.ImageFile != null
-            ? await _fileService.SaveFileAsync(vm.ImageFile, "uploads/images/page-image")
+            ? await _fileService.SaveFileAsync(vm.ImageFile, "uploads/images/page-image", FileType.Image)
             : null;
 
         var dto = vm.ToDto(imagePath);
@@ -81,7 +82,7 @@ public class PageImageController : Controller
         var existing = existingResult.Data;
 
         var imagePath = vm.ImageFile != null
-            ? await _fileService.SaveFileAsync(vm.ImageFile, "uploads/images/page-image")
+            ? await _fileService.SaveFileAsync(vm.ImageFile, "uploads/images/page-image", FileType.Image)
             : existing.ImagePath;
 
         var dto = vm.ToDto(imagePath);

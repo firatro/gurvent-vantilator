@@ -13,11 +13,11 @@ namespace GurventVantilator.Infrastructure.Data.Configurations
                 {
                     Id = 1,
                     VisionTitle = "Vizyonumuz",
-                    VisionDescription = "Fırat Ramazano Software olarak vizyonumuz; yazılım geliştirme alanında ulusal ve uluslararası ölçekte güvenilir, yenilikçi ve tercih edilen bir teknoloji firması haline gelmektir. Amacımız, modern teknolojileri takip ederek işletmelere en güncel ve etkili çözümleri sunmak, aynı zamanda sektöre yön veren projeler geliştirmektir. Gelecek yıllarda etik değerlerden ödün vermeden sunduğumuz kaliteli hizmetlerle yazılım dünyasında öncü bir rol üstlenmek en büyük hedefimizdir.",
+                    VisionDescription = "Enerji verimliliği yüksek, çevreye duyarlı fan sistemleriyle Türkiye’nin ve dünyanın lider havalandırma çözümleri üreticisi olmak.",
                     MissionTitle = "Misyonumuz",
-                    MissionDescription = "Misyonumuz; işletmelerin dijital dönüşüm süreçlerinde güvenilir, ölçeklenebilir ve kullanıcı dostu yazılım çözümleri geliştirmektir. Kişiye özel yaklaşımlar, uzman ekip ve modern teknolojilerle her müşterimizin ihtiyaçlarına uygun çözümler üretiyoruz. Etik kurallar çerçevesinde sunduğumuz hizmetlerle yalnızca teknoloji geliştirmek değil, aynı zamanda iş süreçlerine değer katmayı hedefliyoruz. Müşterilerimize güven veren, şeffaf ve sürdürülebilir bir hizmet anlayışıyla uzun vadeli başarılar yaratmak en büyük önceliğimizdir.",
-                    VisionImagePath = "/img/vision-mission/default-image1.jpg",
-                    MissionImagePath = "/img/vision-mission/default-image2.jpg"
+                    MissionDescription = "Müşterilerimize güvenilir, yenilikçi ve mühendislik odaklı havalandırma çözümleri sunmak; üretim kalitemizi sürekli geliştirerek endüstriye değer katmak.",
+                    VisionImagePath = "/img/vision-mission/factory-vision.jpg",
+                    MissionImagePath = "/img/vision-mission/factory-mission.jpg"
                 }
             );
         }

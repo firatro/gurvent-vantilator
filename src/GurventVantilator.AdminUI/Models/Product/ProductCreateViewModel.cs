@@ -24,16 +24,16 @@ namespace GurventVantilator.AdminUI.Models.Product
         public string? NoiseLevel { get; set; }
 
         // 🔹 Dosyalar (IFormFile tipinde)
-        public IFormFile? ImageFile { get; set; }          
-        public IFormFile? DataSheetFile { get; set; }      
-        public IFormFile? Model3DFile { get; set; }        
+        public IFormFile? ImageFile { get; set; }
+        public IFormFile? DataSheetFile { get; set; }
+        public IFormFile? Model3DFile { get; set; }
 
         // 🔹 İlişkiler
-        public int ProductCategoryId { get; set; }         
+        public int ProductCategoryId { get; set; }
         public IEnumerable<SelectListItem>? ProductCategoryList { get; set; }
 
         // 🔹 Diğer
         public bool IsActive { get; set; } = true;
-        public int Order { get; set; } = 0;
+        public int? Order { get; set; } = 0;
     }
 }

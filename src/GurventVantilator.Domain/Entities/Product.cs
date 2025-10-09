@@ -32,7 +32,7 @@ namespace GurventVantilator.Domain.Entities
 
         // Diğer
         public bool IsActive { get; set; } = true;
-        public int Order { get; set; }
+        public int? Order { get; set; } = 0;
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }

@@ -23,7 +23,7 @@ namespace GurventVantilator.Application.Services
         {
             try
             {
-                var menus = await _menuRepository.GetMenusWithParentsAsync();
+                var menus = await _menuRepository.GetAllWithChildrenAsync();
 
                 var dtos = menus.Select(x => x.MapToDto()).ToList();
                 return Result<IEnumerable<MenuDto>>.Ok(dtos);
@@ -88,6 +88,8 @@ namespace GurventVantilator.Application.Services
                 entity.ContentHtml = dto.ContentHtml;
                 entity.ServiceId = dto.ServiceId;
                 entity.ProjectId = dto.ProjectId;
+                entity.ProductId = dto.ProductId;
+                entity.ProductCategoryId = dto.ProductCategoryId;
 
                 entity.ParentId = dto.ParentId;
                 entity.Order = dto.Order;

@@ -12,6 +12,7 @@ namespace GurventVantilator.Application.Interfaces.Services
         Task<Result<bool>> DeleteAsync(int id);
         Task<Result<PagedResult<ProductDto>>> GetPagedAsync(int pageNumber, int pageSize);
         Task<Result<PagedResult<ProductDto>>> GetPagedAsync(int? categoryId, int pageNumber, int pageSize);
+        Task<Result<List<ProductDto>>> GetProductsByCategoryAsync(int categoryId, bool includeSubCategories);
 
     }
 }

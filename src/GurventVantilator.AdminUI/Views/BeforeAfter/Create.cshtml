@@ -47,6 +47,7 @@
                                     asp-for="BeforeImageFile">Before Görsel</label>
                                 <div class="col-lg-7 col-xl-6">
                                     <input type="file" asp-for="BeforeImageFile" class="form-control form-control-modern" accept=".jpg,.jpeg,.png,.webp" />
+                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: JPG, PNG, WEBP. Maks 10MB.</small>
                                     <span asp-validation-for="BeforeImageFile" class="badge badge-danger"></span>
                                 </div>
                             </div>
@@ -55,6 +56,7 @@
                                     asp-for="AfterImageFile">After Görsel</label>
                                 <div class="col-lg-7 col-xl-6">
                                     <input type="file" asp-for="AfterImageFile" class="form-control form-control-modern" accept=".jpg,.jpeg,.png,.webp" />
+                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: JPG, PNG, WEBP. Maks 10MB.</small>
                                     <span asp-validation-for="AfterImageFile" class="badge badge-danger"></span>
                                 </div>
                             </div>

@@ -2,6 +2,7 @@ using GurventVantilator.AdminUI.Models.BeforeAfter;
 using GurventVantilator.Application.Interfaces.Services;
 using GurventVantilator.AdminUI.Mappings;
 using Microsoft.AspNetCore.Mvc;
+using GurventVantilator.Application.Enums;
 
 namespace GurventVantilator.AdminUI.Controllers
 {
@@ -39,11 +40,11 @@ namespace GurventVantilator.AdminUI.Controllers
             if (!ModelState.IsValid) return View(vm);
 
             var beforeImagePath = vm.BeforeImageFile != null
-                ? await _fileService.SaveFileAsync(vm.BeforeImageFile, "uploads/images/before-after")
+                ? await _fileService.SaveFileAsync(vm.BeforeImageFile, "uploads/images/before-after", FileType.Image)
                 : null;
 
             var afterImagePath = vm.AfterImageFile != null
-                ? await _fileService.SaveFileAsync(vm.AfterImageFile, "uploads/images/before-after")
+                ? await _fileService.SaveFileAsync(vm.AfterImageFile, "uploads/images/before-after", FileType.Image)
                 : null;
 
             var dto = vm.ToDto(beforeImagePath, afterImagePath);
@@ -84,11 +85,11 @@ namespace GurventVantilator.AdminUI.Controllers
             var existing = existingResult.Data;
 
             var afterImagePath = vm.AfterImageFile != null
-                ? await _fileService.SaveFileAsync(vm.AfterImageFile, "uploads/images/before-after")
+                ? await _fileService.SaveFileAsync(vm.AfterImageFile, "uploads/images/before-after", FileType.Image)
                 : existing.AfterImagePath;
 
             var beforeImagePath = vm.BeforeImageFile != null
-                ? await _fileService.SaveFileAsync(vm.BeforeImageFile, "uploads/images/before-after")
+                ? await _fileService.SaveFileAsync(vm.BeforeImageFile, "uploads/images/before-after", FileType.Image)
                 : existing.BeforeImagePath;
 
             var dto = vm.ToDto(beforeImagePath, afterImagePath);

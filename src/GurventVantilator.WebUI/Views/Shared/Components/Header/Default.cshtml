@@ -38,7 +38,7 @@
                                             </defs>
                                         </svg>
                                         <a class="border-line-white" target="_blank"
-                                            href="https://www.google.com/maps/23.843848,90.3081992,17.5z?entry=ttu&g_ep=EgoyMDI1MDEwMS4wIKXMDSoASAFQAw%3D%3D">@Model.SiteInfo.Address</a>
+                                            href="https://www.google.com/maps?q=@Uri.EscapeDataString(Model.SiteInfo.Address)">@Model.SiteInfo.Address</a>
                                     </span>
                                 </li>
                             </ul>
@@ -46,13 +46,6 @@
                     </div>
                     <div class="col-xxl-5 col-xl-4 col-lg-5 col-md-6 col-sm-6 d-none d-sm-block">
                         <div class="d-flex justify-content-end align-items-center">
-                            <div class="it-header-top-contact d-none d-xxl-inline-block">
-                                <a href="#">Yardım</a>
-                                <span>/</span>
-                                <a href="#">Destek</a>
-                                <span>/</span>
-                                <a href="#">Yorumlar</a>
-                            </div>
                             <div class="it-header-top-social-box text-end">
                                 <a href="@Model.SocialMediaInfo.Facebook" target="_blank">
                                     <svg width="12" height="16" viewBox="0 0 12 16" fill="none"
@@ -101,7 +94,7 @@
                     <div class="row align-items-center">
                         <div class="col-xxl-2 col-xl-2 col-lg-6 col-md-6 col-6">
                             <div class="it-header-logo-red">
-                                <a href="/"><img src="http://localhost:5034/@Model.SiteInfo.LogoPath" alt=""></a>
+                                <a href="/"><img src="https://admin.gurvent.firatramazano.com/@Model.SiteInfo.LogoPath" alt=""></a>
                             </div>
                         </div>
                         <!-- MENU -->
@@ -109,7 +102,7 @@
                         <!-- MENU -->
                         <div class="col-xxl-3 col-xl-3 col-lg-6 col-md-6 col-6">
                             <div class="it-header-right-action d-flex justify-content-end align-items-center">
-                                <a href="about-us-v1.html" class="it-btn-orange d-none d-md-flex">
+                                <a href="@Url.Action("Index", "FanSelector")" class="it-btn-orange d-none d-md-flex">
                                     <span>
                                         <span class="text-1">Fan Seçici</span>
                                         <span class="text-2">Fan Seçici</span>

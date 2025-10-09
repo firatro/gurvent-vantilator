@@ -33,6 +33,6 @@ namespace GurventVantilator.Application.DTOs
 
         // Diğer
         public bool IsActive { get; set; }
-        public int Order { get; set; }
+        public int? Order { get; set; } = 0;
     }
 }

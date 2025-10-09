@@ -1,0 +1,72 @@
+@using GurventVantilator.Application.DTOs
+@model AboutUsDto
+
+@await Component.InvokeAsync("Breadcrumb", new
+{
+    title = Model.Title,
+    pageTitle = "Hakkımızda",
+    pageKey = "AboutUs",
+    parentUrl = Url.Action("AboutUs")
+})
+
+<!-- about-area-start -->
+<div class="it-about-2-area p-relative pt-130 pb-130">
+    <img class="it-about-2-shape-1" src="~/img/shape/about-2-1.png" alt="">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-xl-6 col-lg-6 order-1 order-lg-0">
+                <div class="it-about-2-thumb p-relative">
+                    <img src="https://admin.gurvent.firatramazano.com/@Model.ImagePath" alt="">
+                    <div class="it-about-2-experience wow itfadeLeft" data-wow-duration=".9s" data-wow-delay=".5s">
+                        <span><i>@Model.ExperienceYear</i> +Years</span>
+                        <p>Deneyim</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 order-0 order-lg-1">
+                <div class="it-about-2-right">
+                    <div class="it-section-title-box mb-20">
+                        <span class="it-section-subtitle">Hakkımızda</span>
+                        <h4 class="it-section-title it-split-text it-split-in-right mb-0">@Model.Title</h4>
+                    </div>
+                    <div class="it-about-2-text">
+                        <p class="mb-30">@Model.Description</p>
+                    </div>
+                    <div class="it-section-title-box mb-20">
+                        <h4 class="it-section-title it-split-text it-split-in-right mb-0">@Model.ExtraTitle</h4>
+                    </div>
+                    <div class="it-about-2-text">
+                        <p class="mb-30">@Model.ExtraDescription</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-xxl-6 col-xl-7 col-lg-6 col-md-6">
+                            <div class="it-about-2-btn">
+                                <a href="contact.html" class="it-btn-orange black-bg">
+                                    <span>
+                                        <span class="text-1">İLETİŞİM</span>
+                                        <span class="text-2">TIKLA</span>
+                                    </span>
+                                    <i>
+                                        <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M10.0035 3.90804L1.41153 12.5L0 11.0885L8.59097 2.49651H1.01922V0.5H12V11.4808H10.0035V3.90804Z"
+                                                fill="white" />
+                                        </svg>
+                                        <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M10.0035 3.90804L1.41153 12.5L0 11.0885L8.59097 2.49651H1.01922V0.5H12V11.4808H10.0035V3.90804Z"
+                                                fill="white" />
+                                        </svg>
+                                    </i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- about-area-end -->

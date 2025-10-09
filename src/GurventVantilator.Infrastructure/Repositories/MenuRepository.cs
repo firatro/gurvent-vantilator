@@ -52,8 +52,10 @@ namespace GurventVantilator.Infrastructure.Repositories
 
         public async Task<List<Menu>> GetAllWithChildrenAsync()
         {
-            return await _context.Menus
+           return await _context.Menus
                 .Include(m => m.Children)
+                .ThenInclude(c => c.Children) // 2 seviye alt menüler için (isteğe bağlı)
+                .AsNoTracking()
                 .OrderBy(m => m.Order)
                 .ToListAsync();
         }

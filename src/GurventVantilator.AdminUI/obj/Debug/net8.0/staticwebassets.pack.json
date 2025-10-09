@@ -497,8 +497,20 @@
       "PackagePath": "staticwebassets/css/theme.css"
     },
     {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/datasheet/rsd12f.pdf",
+      "PackagePath": "staticwebassets/datasheet/rsd12f.pdf"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/datasheet/rsd9f.pdf",
+      "PackagePath": "staticwebassets/datasheet/rsd9f.pdf"
+    },
+    {
       "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/about-us/default-image.jpg",
       "PackagePath": "staticwebassets/img/about-us/default-image.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/about-us/factory-team.jpg",
+      "PackagePath": "staticwebassets/img/about-us/factory-team.jpg"
     },
     {
       "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/before-after/default-image1.jpg",
@@ -507,6 +519,18 @@
     {
       "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/before-after/default-image2.jpg",
       "PackagePath": "staticwebassets/img/before-after/default-image2.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/blog/atex1.jpg",
+      "PackagePath": "staticwebassets/img/blog/atex1.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/blog/atex2.jpg",
+      "PackagePath": "staticwebassets/img/blog/atex2.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/blog/atex3.jpg",
+      "PackagePath": "staticwebassets/img/blog/atex3.jpg"
     },
     {
       "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/blog/default-image1.jpg",
@@ -533,8 +557,44 @@
       "PackagePath": "staticwebassets/img/blog/default-image6.jpg"
     },
     {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/blog/energy1.jpg",
+      "PackagePath": "staticwebassets/img/blog/energy1.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/blog/energy2.jpg",
+      "PackagePath": "staticwebassets/img/blog/energy2.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/blog/energy3.jpg",
+      "PackagePath": "staticwebassets/img/blog/energy3.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/blog/filter1.jpg",
+      "PackagePath": "staticwebassets/img/blog/filter1.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/blog/filter2.jpg",
+      "PackagePath": "staticwebassets/img/blog/filter2.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/blog/filter3.jpg",
+      "PackagePath": "staticwebassets/img/blog/filter3.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/company/airflow-logo.png",
+      "PackagePath": "staticwebassets/img/company/airflow-logo.png"
+    },
+    {
       "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/company/default-image.png",
       "PackagePath": "staticwebassets/img/company/default-image.png"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/company/gurvent-logo.png",
+      "PackagePath": "staticwebassets/img/company/gurvent-logo.png"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/company/ventpro-logo.png",
+      "PackagePath": "staticwebassets/img/company/ventpro-logo.png"
     },
     {
       "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/favicon.ico",
@@ -545,8 +605,44 @@
       "PackagePath": "staticwebassets/img/logo.png"
     },
     {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/page-image/aboutus-factory.jpg",
+      "PackagePath": "staticwebassets/img/page-image/aboutus-factory.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/page-image/blog-industrial.jpg",
+      "PackagePath": "staticwebassets/img/page-image/blog-industrial.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/page-image/contact-office.jpg",
+      "PackagePath": "staticwebassets/img/page-image/contact-office.jpg"
+    },
+    {
       "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/page-image/default-image.jpg",
       "PackagePath": "staticwebassets/img/page-image/default-image.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/page-image/home-header.jpg",
+      "PackagePath": "staticwebassets/img/page-image/home-header.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/page-image/product-line.jpg",
+      "PackagePath": "staticwebassets/img/page-image/product-line.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/page-image/project-site.jpg",
+      "PackagePath": "staticwebassets/img/page-image/project-site.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/page-image/service-production.jpg",
+      "PackagePath": "staticwebassets/img/page-image/service-production.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/product/rsd12f.webp",
+      "PackagePath": "staticwebassets/img/product/rsd12f.webp"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/product/rsd9f.webp",
+      "PackagePath": "staticwebassets/img/product/rsd9f.webp"
     },
     {
       "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/project/default-image1.jpg",
@@ -559,6 +655,42 @@
     {
       "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/project/default-image3.jpg",
       "PackagePath": "staticwebassets/img/project/default-image3.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/project/factory1.jpg",
+      "PackagePath": "staticwebassets/img/project/factory1.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/project/factory2.jpg",
+      "PackagePath": "staticwebassets/img/project/factory2.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/project/factory3.jpg",
+      "PackagePath": "staticwebassets/img/project/factory3.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/project/hospital1.jpg",
+      "PackagePath": "staticwebassets/img/project/hospital1.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/project/hospital2.jpg",
+      "PackagePath": "staticwebassets/img/project/hospital2.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/project/hospital3.jpg",
+      "PackagePath": "staticwebassets/img/project/hospital3.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/project/mine1.jpg",
+      "PackagePath": "staticwebassets/img/project/mine1.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/project/mine2.jpg",
+      "PackagePath": "staticwebassets/img/project/mine2.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/project/mine3.jpg",
+      "PackagePath": "staticwebassets/img/project/mine3.jpg"
     },
     {
       "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/seo-setting/default-image.jpg",
@@ -597,6 +729,34 @@
       "PackagePath": "staticwebassets/img/service/default-image4.png"
     },
     {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/service/fan-uretim1.jpg",
+      "PackagePath": "staticwebassets/img/service/fan-uretim1.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/service/fan-uretim2.jpg",
+      "PackagePath": "staticwebassets/img/service/fan-uretim2.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/service/fan-uretim3.jpg",
+      "PackagePath": "staticwebassets/img/service/fan-uretim3.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/service/havalandirma1.jpg",
+      "PackagePath": "staticwebassets/img/service/havalandirma1.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/service/havalandirma2.jpg",
+      "PackagePath": "staticwebassets/img/service/havalandirma2.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/service/havalandirma3.jpg",
+      "PackagePath": "staticwebassets/img/service/havalandirma3.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/site-info/gurvent-logo.png",
+      "PackagePath": "staticwebassets/img/site-info/gurvent-logo.png"
+    },
+    {
       "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/site-info/logo.png",
       "PackagePath": "staticwebassets/img/site-info/logo.png"
     },
@@ -617,6 +777,22 @@
       "PackagePath": "staticwebassets/img/slider/default-image4.jpg"
     },
     {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/slider/factory1.jpg",
+      "PackagePath": "staticwebassets/img/slider/factory1.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/slider/filtration1.jpg",
+      "PackagePath": "staticwebassets/img/slider/filtration1.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/slider/service1.jpg",
+      "PackagePath": "staticwebassets/img/slider/service1.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/slider/ventilation1.jpg",
+      "PackagePath": "staticwebassets/img/slider/ventilation1.jpg"
+    },
+    {
       "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/team-member/default-image1.jpg",
       "PackagePath": "staticwebassets/img/team-member/default-image1.jpg"
     },
@@ -627,6 +803,30 @@
     {
       "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/team-member/default-image3.jpg",
       "PackagePath": "staticwebassets/img/team-member/default-image3.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/team-member/gurbuz-yilmaz.jpg",
+      "PackagePath": "staticwebassets/img/team-member/gurbuz-yilmaz.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/testimonial/client1.jpg",
+      "PackagePath": "staticwebassets/img/testimonial/client1.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/testimonial/client2.jpg",
+      "PackagePath": "staticwebassets/img/testimonial/client2.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/testimonial/client3.jpg",
+      "PackagePath": "staticwebassets/img/testimonial/client3.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/testimonial/client4.jpg",
+      "PackagePath": "staticwebassets/img/testimonial/client4.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/testimonial/client5.jpg",
+      "PackagePath": "staticwebassets/img/testimonial/client5.jpg"
     },
     {
       "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/testimonial/default-image1.jpg",
@@ -651,6 +851,14 @@
     {
       "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/vision-mission/default-image2.jpg",
       "PackagePath": "staticwebassets/img/vision-mission/default-image2.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/vision-mission/factory-mission.jpg",
+      "PackagePath": "staticwebassets/img/vision-mission/factory-mission.jpg"
+    },
+    {
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/vision-mission/factory-vision.jpg",
+      "PackagePath": "staticwebassets/img/vision-mission/factory-vision.jpg"
     },
     {
       "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/js/custom.js",
@@ -869,76 +1077,56 @@
       "PackagePath": "staticwebassets/master/style-switcher/style.switcher.localstorage.js"
     },
     {
-      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product-category/02aeb836-c932-421a-9300-f2be19f84b66.jpg",
-      "PackagePath": "staticwebassets/uploads/images/product-category/02aeb836-c932-421a-9300-f2be19f84b66.jpg"
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/model/rsd12f.glb",
+      "PackagePath": "staticwebassets/model/rsd12f.glb"
     },
     {
-      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product-category/389d1f11-2983-42ff-885f-6bb1e205e20c.jpg",
-      "PackagePath": "staticwebassets/uploads/images/product-category/389d1f11-2983-42ff-885f-6bb1e205e20c.jpg"
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/model/rsd9f.glb",
+      "PackagePath": "staticwebassets/model/rsd9f.glb"
     },
     {
-      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product-category/450e4483-bdd0-463e-884c-87142660ed74.jpg",
-      "PackagePath": "staticwebassets/uploads/images/product-category/450e4483-bdd0-463e-884c-87142660ed74.jpg"
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/categories/c9ac71e6-28ff-4a02-af66-9c92b2e756b3.jpg",
+      "PackagePath": "staticwebassets/uploads/categories/c9ac71e6-28ff-4a02-af66-9c92b2e756b3.jpg"
     },
     {
-      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product-category/c21c98f7-ea77-4dfc-96d3-4153867085e0.jpg",
-      "PackagePath": "staticwebassets/uploads/images/product-category/c21c98f7-ea77-4dfc-96d3-4153867085e0.jpg"
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product-category/8110a753-8ef2-4acd-8bde-ffa6b30b0546.jpg",
+      "PackagePath": "staticwebassets/uploads/images/product-category/8110a753-8ef2-4acd-8bde-ffa6b30b0546.jpg"
     },
     {
-      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product-category/e1b826ca-8c93-43d0-add7-ddb8a3df9782.jpg",
-      "PackagePath": "staticwebassets/uploads/images/product-category/e1b826ca-8c93-43d0-add7-ddb8a3df9782.jpg"
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product-category/ba9e35ed-35b5-443e-9987-81592c5c67d0.jpg",
+      "PackagePath": "staticwebassets/uploads/images/product-category/ba9e35ed-35b5-443e-9987-81592c5c67d0.jpg"
     },
     {
-      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product-category/ea540492-39a1-44ec-89e1-cbc332ed58b1.jpg",
-      "PackagePath": "staticwebassets/uploads/images/product-category/ea540492-39a1-44ec-89e1-cbc332ed58b1.jpg"
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product-category/bb0318e7-9d75-4026-8ff7-c27419b3b211.jpg",
+      "PackagePath": "staticwebassets/uploads/images/product-category/bb0318e7-9d75-4026-8ff7-c27419b3b211.jpg"
     },
     {
-      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product-category/f010290a-4a62-4d76-a710-100588d32e67.jpg",
-      "PackagePath": "staticwebassets/uploads/images/product-category/f010290a-4a62-4d76-a710-100588d32e67.jpg"
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product-category/d1c6e49f-cde7-4ce3-8056-d6542ec3883b.jpg",
+      "PackagePath": "staticwebassets/uploads/images/product-category/d1c6e49f-cde7-4ce3-8056-d6542ec3883b.jpg"
     },
     {
-      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product/0450a969-fd74-41db-a9a5-4970583d65f1.jpg",
-      "PackagePath": "staticwebassets/uploads/images/product/0450a969-fd74-41db-a9a5-4970583d65f1.jpg"
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product-category/eb637c3e-d33d-400c-9fe1-f327da251d9c.jpg",
+      "PackagePath": "staticwebassets/uploads/images/product-category/eb637c3e-d33d-400c-9fe1-f327da251d9c.jpg"
     },
     {
-      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product/0d2280a6-294a-46a7-ad21-46c46213b0fa.jpg",
-      "PackagePath": "staticwebassets/uploads/images/product/0d2280a6-294a-46a7-ad21-46c46213b0fa.jpg"
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product/2eee1c7a-a279-4449-a64c-8a964320cd54.jpg",
+      "PackagePath": "staticwebassets/uploads/images/product/2eee1c7a-a279-4449-a64c-8a964320cd54.jpg"
     },
     {
-      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product/221201a2-d12c-4367-95e2-caa61f2d12ca.jpg",
-      "PackagePath": "staticwebassets/uploads/images/product/221201a2-d12c-4367-95e2-caa61f2d12ca.jpg"
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product/51487da1-1b03-403e-879a-424e6e7f88c5.jpg",
+      "PackagePath": "staticwebassets/uploads/images/product/51487da1-1b03-403e-879a-424e6e7f88c5.jpg"
     },
     {
-      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product/47ea5c17-b491-4cb2-985e-110b4aae9fdb.jpg",
-      "PackagePath": "staticwebassets/uploads/images/product/47ea5c17-b491-4cb2-985e-110b4aae9fdb.jpg"
-    },
-    {
-      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product/4b952417-f36e-422c-9c44-ac80b0ec611f.jpg",
-      "PackagePath": "staticwebassets/uploads/images/product/4b952417-f36e-422c-9c44-ac80b0ec611f.jpg"
-    },
-    {
-      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product/58012e23-711c-4726-bcb9-2f630e3bcc40.jpg",
-      "PackagePath": "staticwebassets/uploads/images/product/58012e23-711c-4726-bcb9-2f630e3bcc40.jpg"
-    },
-    {
-      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product/7c3c06d7-e685-416b-a842-0099d8eeee96.jpg",
-      "PackagePath": "staticwebassets/uploads/images/product/7c3c06d7-e685-416b-a842-0099d8eeee96.jpg"
-    },
-    {
-      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product/887fe7c3-68d0-45b3-81b9-e5f29f2fe42c.jpg",
-      "PackagePath": "staticwebassets/uploads/images/product/887fe7c3-68d0-45b3-81b9-e5f29f2fe42c.jpg"
-    },
-    {
-      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product/973b772b-5a61-4276-9f2b-454b571b72e7.jpg",
-      "PackagePath": "staticwebassets/uploads/images/product/973b772b-5a61-4276-9f2b-454b571b72e7.jpg"
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/product/c9476406-b650-43c2-a576-44daa3d15123.jpg",
+      "PackagePath": "staticwebassets/uploads/images/product/c9476406-b650-43c2-a576-44daa3d15123.jpg"
     },
     {
       "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/site-info/abdfdcd9-35b3-4764-af89-0efc3230ddbd.jpeg",
       "PackagePath": "staticwebassets/uploads/images/site-info/abdfdcd9-35b3-4764-af89-0efc3230ddbd.jpeg"
     },
     {
-      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/site-info/cosmedest-logo.png",
-      "PackagePath": "staticwebassets/uploads/images/site-info/cosmedest-logo.png"
+      "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/uploads/images/site-info/logo.jpeg",
+      "PackagePath": "staticwebassets/uploads/images/site-info/logo.jpeg"
     },
     {
       "Id": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/vendor/animate/animate.compat.css",

@@ -36,6 +36,7 @@ namespace GurventVantilator.AdminUI.Validators
 
             // 🔹 Sıralama
             RuleFor(x => x.Order)
+                .NotNull().WithMessage("Sıra numarası boş bırakılamaz.")
                 .GreaterThanOrEqualTo(0).WithMessage("Sıra numarası negatif olamaz.");
 
             RuleFor(x => x.ImageFile).ValidImageFile();

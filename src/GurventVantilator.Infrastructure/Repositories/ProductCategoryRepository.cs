@@ -14,8 +14,13 @@ namespace GurventVantilator.Infrastructure.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<ProductCategory>> GetAllAsync()
+        public async Task<IEnumerable<ProductCategory>> GetAllAsync(bool asNoTracing = false)
         {
+            if (asNoTracing)
+            {
+                return await _context.ProductCategories.AsNoTracking().ToListAsync();
+            }
+
             return await _context.ProductCategories.ToListAsync();
         }
 

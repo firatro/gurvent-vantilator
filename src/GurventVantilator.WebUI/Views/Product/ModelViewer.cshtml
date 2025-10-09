@@ -1,0 +1,63 @@
+@{
+    var modelPath = Context.Request.Query["path"];
+}
+
+<div class="viewer-header">
+    <div class="viewer-logo">🔷 3D Model Görüntüleyici</div>
+    <button class="viewer-btn" onclick="window.close()">Geri Dön</button>
+</div>
+
+<model-viewer id="viewer" src="/model/rsd12f.glb"  camera-controls auto-rotate auto-rotate-delay="1000"
+    rotation-per-second="15deg" ar shadow-intensity="1" shadow-softness="0.8" exposure="1"
+    camera-orbit="0deg 75deg 0.8m" min-camera-orbit="auto 45deg 0.5m" max-camera-orbit="auto 85deg 3.5m"
+    min-field-of-view="25deg" max-field-of-view="60deg" environment-image="neutral"
+    style="max-height: 80vh; margin-top: 60px;">
+</model-viewer>
+
+<div class="viewer-footer">
+    <div class="control-panel">
+        <button id="zoomInBtn" title="Yakınlaştır"><i class="fa-solid fa-magnifying-glass-plus"></i></button>
+        <button id="zoomOutBtn" title="Uzaklaştır"><i class="fa-solid fa-magnifying-glass-minus"></i></button>
+        <button id="resetBtn" title="Sıfırla Görünüm"><i class="fa-solid fa-rotate-left"></i></button>
+        <button id="rotateBtn" class="active" title="Otomatik Döndür"><i class="fa-solid fa-rotate"></i></button>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="module" src="https://unpkg.com/@@google/model-viewer@3.5.0/dist/model-viewer.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const viewer = document.getElementById("viewer");
+            const zoomInBtn = document.getElementById("zoomInBtn");
+            const zoomOutBtn = document.getElementById("zoomOutBtn");
+            const resetBtn = document.getElementById("resetBtn");
+            const rotateBtn = document.getElementById("rotateBtn");
+
+            // 🔍 Yakınlaştır
+            zoomInBtn.addEventListener("click", () => {
+                const orbit = viewer.getCameraOrbit();
+                orbit.radius = Math.max(1, orbit.radius - 0.3);
+                viewer.cameraOrbit = `${orbit.theta}rad ${orbit.phi}rad ${orbit.radius}m`;
+            });
+
+            // 🔎 Uzaklaştır
+            zoomOutBtn.addEventListener("click", () => {
+                const orbit = viewer.getCameraOrbit();
+                orbit.radius = orbit.radius + 0.3;
+                viewer.cameraOrbit = `${orbit.theta}rad ${orbit.phi}rad ${orbit.radius}m`;
+            });
+
+            // ♻️ Reset
+            resetBtn.addEventListener("click", () => {
+                viewer.cameraOrbit = "0deg 75deg 2.5m";
+                viewer.fieldOfView = "45deg";
+            });
+
+            // 🔄 Otomatik Döndür Aç/Kapat
+            rotateBtn.addEventListener("click", () => {
+                const isActive = rotateBtn.classList.toggle("active");
+                viewer.autoRotate = isActive;
+            });
+        });
+    </script>
+}

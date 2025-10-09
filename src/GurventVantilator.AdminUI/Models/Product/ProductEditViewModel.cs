@@ -33,6 +33,6 @@ namespace GurventVantilator.AdminUI.Models.Product
         public int ProductCategoryId { get; set; }
 
         public bool IsActive { get; set; }
-        public int Order { get; set; }
+        public int? Order { get; set; } = 0;
     }
 }

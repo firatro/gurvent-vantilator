@@ -11,7 +11,9 @@ namespace GurventVantilator.Application.Validators
                 .NotEmpty().WithMessage("Kategori adı zorunludur.")
                 .MaximumLength(100).WithMessage("Kategori adı en fazla 100 karakter olabilir.");
 
+            // 🔹 Sıralama
             RuleFor(x => x.Order)
+                .NotNull().WithMessage("Sıra numarası boş bırakılamaz.")
                 .GreaterThanOrEqualTo(0).WithMessage("Sıra numarası negatif olamaz.");
         }
     }

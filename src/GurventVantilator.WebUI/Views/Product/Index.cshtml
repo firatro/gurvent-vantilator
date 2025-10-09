@@ -1,0 +1,33 @@
+@using GurventVantilator.Application.Common
+@using GurventVantilator.Application.DTOs
+@using GurventVantilator.WebUI.ViewComponents
+@model IEnumerable<ServiceDto>
+
+@await Component.InvokeAsync("Breadcrumb", new
+{
+title = "Ürünlerimiz",
+pageTitle = "Ürünler",
+pageKey = "Product",
+parentUrl = Url.Action("Index", "Product")
+})
+
+@if (Model != null && Model.Any())
+{
+    @foreach (var product in Model)
+    {
+        <div class="pq-grid-item pq-filter-items pq-col-6  ipq-lg-6  30 ">
+            <div class="pq-portfoliobox pq-style-1">
+                <div class="pq-portfolio-img"> <img src="https://admin.cosmedest.firatramazano.com/@product.MainImagePath"
+                        class="img-fluid" alt="" style="max-height: 300px; object-fit: cover;">
+                    <a href="@Url.Action("Detail", "Product", new { id = product.Id })">
+                        <div class="pq-portfolio-icon"><i class="ion ion-plus-round"></i></div>
+                    </a>
+                </div>
+                <div class="pq-portfolio-info"> <span>@product.Title</span>
+                    <h5><a href="@Url.Action("Detail", "Product", new { id = product.Id })">@product.Title</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    }
+}

@@ -9,12 +9,11 @@ namespace GurventVantilator.Infrastructure.Data.Configurations
         public void Configure(EntityTypeBuilder<Category> builder)
         {
             builder.HasData(
-                new Category { Id = 1, Name = "Genel" },
-                new Category { Id = 2, Name = "Yapay Zeka" },
-                new Category { Id = 3, Name = "Mobil Geliştirme" },
-                new Category { Id = 4, Name = "Siber Güvenlik" },
-                new Category { Id = 5, Name = "Bulut ve DevOps" },
-                new Category { Id = 6, Name = "Tasarım Kalıpları" }
+                new Category { Id = 1, Name = "Enerji Verimliliği" },
+                new Category { Id = 2, Name = "ATEX ve Güvenlik" },
+                new Category { Id = 3, Name = "Filtrasyon ve Toz Kontrolü" },
+                new Category { Id = 4, Name = "Havalandırma Sistemleri" },
+                new Category { Id = 5, Name = "Bakım ve Servis" }
             );
         }
     }

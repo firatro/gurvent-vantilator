@@ -1,6 +1,7 @@
 using GurventVantilator.AdminUI.Mappings;
 using GurventVantilator.AdminUI.Models.Testimonial;
 using GurventVantilator.Application.DTOs;
+using GurventVantilator.Application.Enums;
 using GurventVantilator.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -41,7 +42,7 @@ namespace GurventVantilator.AdminUI.Controllers
             if (!ModelState.IsValid) return View(vm);
 
             var imagePath = vm.ImageFile != null
-                ? await _fileService.SaveFileAsync(vm.ImageFile, "uploads/images/testimonial")
+                ? await _fileService.SaveFileAsync(vm.ImageFile, "uploads/images/testimonial", FileType.Image)
                 : null;
 
             var dto = vm.ToDto(imagePath);
@@ -80,7 +81,7 @@ namespace GurventVantilator.AdminUI.Controllers
             var existing = existingResult.Data;
 
             var imagePath = vm.ImageFile != null
-                ? await _fileService.SaveFileAsync(vm.ImageFile, "uploads/images/testimonial")
+                ? await _fileService.SaveFileAsync(vm.ImageFile, "uploads/images/testimonial", FileType.Image)
                 : existing.ImagePath;
 
             var dto = vm.ToDto(imagePath);

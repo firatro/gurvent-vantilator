@@ -19,21 +19,31 @@ namespace GurventVantilator.Application.Services
             _logger = logger;
         }
 
-        public async Task<Result<IEnumerable<ProductCategoryDto>>> GetAllAsync()
+        public async Task<Result<List<ProductCategoryDto>>> GetAllAsync(bool onlyTopLevel = false)
         {
             try
             {
-                var productCategories = await _productCategoryRepository.GetAllAsync();
-                var dtos = productCategories.Select(MapToDto).ToList();
+                // 🔹 Tüm kategorileri repository’den çek
+                var categories = await _productCategoryRepository.GetAllAsync();
 
-                return Result<IEnumerable<ProductCategoryDto>>.Ok(dtos);
+                if (categories == null || !categories.Any())
+                    return Result<List<ProductCategoryDto>>.Fail("Kategori bulunamadı.");
+
+                // 🔹 İlişkileri DTO’ya dönüştür
+                var categoryDtos = categories
+                    .Where(c => !onlyTopLevel || c.ParentCategoryId == null)
+                    .Select(MapToDto)
+                    .ToList();
+
+                return Result<List<ProductCategoryDto>>.Ok(categoryDtos);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Kategori listesi alınırken hata oluştu.");
-                return Result<IEnumerable<ProductCategoryDto>>.Fail("Kategori listesi getirilemedi.");
+                _logger.LogError(ex, "Kategoriler yüklenirken hata oluştu.");
+                return Result<List<ProductCategoryDto>>.Fail("Kategoriler getirilemedi.");
             }
         }
+
 
         public async Task<Result<ProductCategoryDto>> GetByIdAsync(int id)
         {
@@ -75,7 +85,19 @@ namespace GurventVantilator.Application.Services
         {
             try
             {
+                // Kendini üst kategori olarak seçmiş mi?
+                if (dto.ParentCategoryId == dto.Id)
+                    return Result<ProductCategoryDto>.Fail("Bir kategori kendi üst kategorisi olamaz.");
+
+                // Alt kategorilerinden biri üst kategori olarak seçilmiş mi?
+                var allCategories = await _productCategoryRepository.GetAllAsync(true);
+                var allSubIds = GetAllSubCategoryIds(allCategories, dto.Id);
+                if (allSubIds.Contains(dto.ParentCategoryId ?? 0))
+                    return Result<ProductCategoryDto>.Fail("Bir kategori kendi alt kategorisini üst kategori olarak seçemez.");
+
+                // Güncelleme işlemi
                 var entity = MapToEntity(dto);
+                entity.UpdatedAt = DateTime.UtcNow;
 
                 await _productCategoryRepository.UpdateAsync(entity);
 
@@ -88,21 +110,39 @@ namespace GurventVantilator.Application.Services
             }
         }
 
+        private List<int> GetAllSubCategoryIds(IEnumerable<ProductCategory> categories, int parentId)
+        {
+            var subIds = new List<int>();
+
+            void AddSubIds(int parent)
+            {
+                var children = categories.Where(c => c.ParentCategoryId == parent).ToList();
+                foreach (var child in children)
+                {
+                    subIds.Add(child.Id);
+                    AddSubIds(child.Id);
+                }
+            }
+
+            AddSubIds(parentId);
+            return subIds;
+        }
+
         public async Task<Result<bool>> DeleteAsync(int id)
         {
             try
             {
-                var productCategory = await _productCategoryRepository.GetByIdAsync(id);
-                if (productCategory == null)
-                    return Result<bool>.Fail("Silinecek kategori bulunamadı.");
+                var entity = await _productCategoryRepository.GetByIdAsync(id);
+                if (entity == null)
+                    return Result<bool>.Fail("Kategori bulunamadı.");
 
-                await _productCategoryRepository.DeleteAsync(productCategory);
+                await _productCategoryRepository.DeleteAsync(entity);
                 return Result<bool>.Ok(true);
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Kategori silinirken hata oluştu. Id={Id}", id);
-                return Result<bool>.Fail("Kategori silinemedi.");
+                _logger.LogError(ex, "Kategori silme hatası. Id={Id}", id);
+                return Result<bool>.Fail("Kategori silme işlemi başarısız oldu.");
             }
         }
 
@@ -116,10 +156,13 @@ namespace GurventVantilator.Application.Services
                 Description = entity.Description,
                 ImagePath = entity.ImagePath,
                 IsActive = entity.IsActive,
-                Order = entity.Order,
+                Order = entity.Order ?? 0,
+                ParentCategoryId = entity.ParentCategoryId,
+                ParentCategoryName = entity.ParentCategory?.Name,
+                ProductCount = entity.Products?.Count ?? 0,
 
-                // Ürün sayısını hesaplamak istiyorsan:
-                ProductCount = entity.Products?.Count ?? 0
+                // Alt kategoriler (isteğe bağlı recursive mapping)
+                SubCategories = entity.SubCategories?.Select(MapToDto).ToList() ?? new List<ProductCategoryDto>()
             };
         }
 
@@ -133,6 +176,7 @@ namespace GurventVantilator.Application.Services
                 ImagePath = dto.ImagePath,
                 IsActive = dto.IsActive,
                 Order = dto.Order,
+                ParentCategoryId = dto.ParentCategoryId,
                 UpdatedAt = DateTime.UtcNow
             };
         }

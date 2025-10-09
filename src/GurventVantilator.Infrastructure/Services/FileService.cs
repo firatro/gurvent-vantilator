@@ -1,3 +1,4 @@
+using GurventVantilator.Application.Enums;
 using GurventVantilator.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 
@@ -12,9 +13,10 @@ namespace GurventVantilator.Infrastructure.Services
             _validator = validator;
         }
 
-        public async Task<string?> SaveFileAsync(IFormFile file, string folder)
+        public async Task<string?> SaveFileAsync(IFormFile file, string folder, FileType fileType)
         {
-            _validator.Validate(file);
+             _validator.Validate(file, fileType);
+
             
             if (file == null || file.Length == 0)
                 return null;

@@ -4,16 +4,20 @@ namespace GurventVantilator.Domain.Entities
     {
         public int Id { get; set; }
 
-        public string Name { get; set; } = string.Empty;     
-        public string? Description { get; set; }             
-        public string? ImagePath { get; set; }               
-        public bool IsActive { get; set; } = true;           
-        public int Order { get; set; }                       
+        public string Name { get; set; } = string.Empty;
+        public string? Description { get; set; }
+        public string? ImagePath { get; set; }
+        public bool IsActive { get; set; } = true;
+        public int? Order { get; set; } = 0;
 
-        // Navigation Property
+        // 🔹 Parent-Child hiyerarşisi
+        public int? ParentCategoryId { get; set; }
+        public ProductCategory? ParentCategory { get; set; }
+        public ICollection<ProductCategory> SubCategories { get; set; } = new List<ProductCategory>();
+
+        // 🔹 Ürün ilişkisi
         public ICollection<Product> Products { get; set; } = new List<Product>();
 
-        // Base columns
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
     }

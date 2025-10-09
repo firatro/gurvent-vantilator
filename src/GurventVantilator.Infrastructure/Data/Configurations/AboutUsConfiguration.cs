@@ -12,15 +12,15 @@ namespace GurventVantilator.Infrastructure.Data.Configurations
                 new AboutUs
                 {
                     Id = 1,
-                    Title = "Ben Kimim?",
-                    ExtraTitle = "Özgür Ruh, Yaratıcı Çözümler",
-                    Description = "Yazılım geliştirme alanında freelance olarak uzun süredir hizmet veriyorum. Amacım yalnızca kod yazmak değil, her müşterime özel, esnek ve yenilikçi çözümler üretmektir. Bugüne kadar farklı sektörlerden bireyler ve işletmeler için web, mobil ve özel yazılım projeleri geliştirdim. Projelerde sadece teknik değil, kullanıcı dostu ve sürdürülebilir çözümler üretmeye odaklanıyorum.",
-                    ExtraDescription = "Misyonum, müşterilerime ihtiyaçlarına uygun, hızlı ve güvenilir yazılım çözümleri sunmaktır. Vizyonum ise, freelance yazılım geliştirme alanında global ölçekte tanınan ve tercih edilen bir çözüm ortağı olmaktır. Esnek çalışma tarzım, güncel teknolojileri yakından takip eden yaklaşımım ve müşteri odaklı bakış açımla her zaman yanınızdayım. Projelerinize değer katmak için çevik, yaratıcı ve yenilikçi yöntemler kullanıyorum.",
-                    ExperienceYear = 7,
-                    HappyClients = 120,
-                    CompletedProjects = 85,
-                    Awards = 1,
-                    ImagePath = "img/about-us/default-image.jpg"
+                    Title = "Hakkımızda",
+                    ExtraTitle = "40 Yıllık Deneyim, Güçlü Çözümler",
+                    Description = "Gurvent Vantilatör, endüstriyel fan ve havalandırma sistemleri alanında uzmanlaşmış bir mühendislik firmasıdır. 1984 yılından bu yana sanayi tesislerinden sağlık kurumlarına kadar birçok sektöre yenilikçi ve güvenilir çözümler sunmaktayız.",
+                    ExtraDescription = "Kaliteli üretim, mühendislik tecrübesi ve müşteri memnuniyetine dayalı yaklaşımımızla, Türkiye'nin önde gelen endüstriyel fan üreticilerinden biriyiz. Ürünlerimiz CE ve ISO 9001 kalite standartlarına uygun olarak üretilmektedir.",
+                    ExperienceYear = 40,
+                    HappyClients = 1200,
+                    CompletedProjects = 750,
+                    Awards = 8,
+                    ImagePath = "/img/about-us/factory-team.jpg"
                 }
             );
         }

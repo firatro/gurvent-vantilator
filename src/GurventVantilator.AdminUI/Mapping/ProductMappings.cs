@@ -67,7 +67,7 @@ namespace GurventVantilator.AdminUI.Mappings
 
                 ProductCategoryId = dto.ProductCategoryId,
                 IsActive = dto.IsActive,
-                Order = dto.Order
+                Order = dto.Order ?? 0
             };
         }
         #endregion
@@ -103,7 +103,7 @@ namespace GurventVantilator.AdminUI.Mappings
 
                 ProductCategoryId = vm.ProductCategoryId,
                 IsActive = vm.IsActive,
-                Order = vm.Order
+                Order = vm.Order ?? 0
             };
         }
         #endregion

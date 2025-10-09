@@ -5,6 +5,7 @@ using GurventVantilator.AdminUI.Mappings;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using GurventVantilator.AdminUI.Models.Product;
+using GurventVantilator.Application.Enums;
 
 namespace GurventVantilator.AdminUI.Controllers
 {
@@ -50,15 +51,15 @@ namespace GurventVantilator.AdminUI.Controllers
             }
 
             var imagePath = vm.ImageFile != null
-                ? await _fileService.SaveFileAsync(vm.ImageFile, "uploads/images/product")
+                ? await _fileService.SaveFileAsync(vm.ImageFile, "uploads/images/product", FileType.Image)
                 : null;
 
             var dataSheetPath = vm.DataSheetFile != null
-                ? await _fileService.SaveFileAsync(vm.DataSheetFile, "uploads/datasheets")
+                ? await _fileService.SaveFileAsync(vm.DataSheetFile, "uploads/datasheets/product", FileType.Pdf)
                 : null;
 
             var model3DPath = vm.Model3DFile != null
-                ? await _fileService.SaveFileAsync(vm.Model3DFile, "uploads/model3D")
+                ? await _fileService.SaveFileAsync(vm.Model3DFile, "uploads/model3D/product", FileType.Model3D)
                 : null;
 
             var dto = vm.ToDto(imagePath, dataSheetPath, model3DPath);
@@ -103,15 +104,15 @@ namespace GurventVantilator.AdminUI.Controllers
             var existing = existingResult.Data;
 
             var imagePath = vm.ImageFile != null
-                ? await _fileService.SaveFileAsync(vm.ImageFile, "uploads/images/product")
+                ? await _fileService.SaveFileAsync(vm.ImageFile, "uploads/images/product", FileType.Image)
                 : existing.ImagePath;
 
             var dataSheetPath = vm.DataSheetFile != null
-                ? await _fileService.SaveFileAsync(vm.DataSheetFile, "uploads/datasheets")
+                ? await _fileService.SaveFileAsync(vm.DataSheetFile, "uploads/datasheets/product", FileType.Pdf)
                 : existing.DataSheetPath;
 
             var model3DPath = vm.Model3DFile != null
-                ? await _fileService.SaveFileAsync(vm.Model3DFile, "uploads/model3D")
+                ? await _fileService.SaveFileAsync(vm.Model3DFile, "uploads/model3D/product", FileType.Model3D)
                 : existing.Model3DPath;
 
             var dto = vm.ToDto(imagePath, dataSheetPath, model3DPath, existing.CreatedAt);
@@ -146,8 +147,8 @@ namespace GurventVantilator.AdminUI.Controllers
                 if (product.Success && product.Data != null)
                 {
                     _fileService.DeleteFile(product.Data.ImagePath, "uploads/images/product");
-                    _fileService.DeleteFile(product.Data.DataSheetPath, "uploads/datasheets");
-                    _fileService.DeleteFile(product.Data.Model3DPath, "uploads/model3D");
+                    _fileService.DeleteFile(product.Data.DataSheetPath, "uploads/datasheets/product");
+                    _fileService.DeleteFile(product.Data.Model3DPath, "uploads/model3D/product");
                 }
             }
 

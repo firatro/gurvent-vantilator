@@ -1,5 +1,6 @@
 using GurventVantilator.AdminUI.Mappings;
 using GurventVantilator.AdminUI.Models.SiteInfo;
+using GurventVantilator.Application.Enums;
 using GurventVantilator.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,7 +43,7 @@ namespace GurventVantilator.AdminUI.Controllers
             var existing = existingResult.Data;
 
             var logoPath = vm.LogoFile != null
-                ? await _fileService.SaveFileAsync(vm.LogoFile, "uploads/images/site-info")
+                ? await _fileService.SaveFileAsync(vm.LogoFile, "uploads/images/site-info", FileType.Image)
                 : existing.LogoPath;
 
             var dto = vm.ToDto(logoPath);
