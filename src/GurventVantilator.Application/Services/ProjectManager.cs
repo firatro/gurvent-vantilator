@@ -207,7 +207,7 @@ namespace GurventVantilator.Application.Services
                     Items = pagedProjects,
                     TotalCount = totalCount,
                     PageNumber = pageNumber,
-                    PageSize = pageSize
+                    PageSize = pageSize,
                 };
 
                 return Result<PagedResult<ProjectDto>>.Ok(pagedResult);

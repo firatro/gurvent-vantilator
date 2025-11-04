@@ -1,4 +1,39 @@
+@using System.Globalization
+@using GurventVantilator.Application.DTOs
+@using GurventVantilator.Application.Enums
 @model FooterViewModel
+
+@functions {
+    string GetMenuUrl(MenuDto menu)
+    {
+        if (menu == null) return "#";
+
+        switch (menu.LinkType)
+        {
+
+            case MenuLinkTypeDto.Service:
+                return Url.Action("Index", "Service") ?? "#";
+
+            case MenuLinkTypeDto.Project:
+                return Url.Action("Index", "Project") ?? "#";
+
+            case MenuLinkTypeDto.Blog:
+                return Url.Action("Index", "Blog") ?? "#";
+
+            case MenuLinkTypeDto.Contact:
+                return Url.Action("Index", "Contact") ?? "#";
+
+            case MenuLinkTypeDto.AboutUs:
+                return Url.Action("Index", "AboutUs") ?? "#";
+
+            case MenuLinkTypeDto.ProductCategory:
+                return Url.Action("Index", "Product") ?? "#";
+
+            default:
+                return "#";
+        }
+    }
+}
 
 <footer>
 
@@ -14,9 +49,10 @@
                             <h4 class="it-footer-widget-title">Kurumsal</h4>
                             <div class="it-footer-widget-menu">
                                 <ul>
-                                    @foreach (var page in Model.Menus.Where(i => i.ParentId == null))
+                                    @foreach (var menu in Model.Menus.Where(m => m.IsActive && m.ParentId == null))
                                     {
-                                        <li><a href="#">@(page.Title)</a></li>
+                                        var url = GetMenuUrl(menu);
+                                        <li><a href="@url">@menu.Title</a></li>
                                     }
                                 </ul>
                             </div>
@@ -30,7 +66,9 @@
                                 <ul>
                                     @foreach (var service in Model.Services)
                                     {
-                                        <li><a href="#">@service.Name</a></li>
+                                        <li><a
+                                                href="@Url.Action("Detail", "Service", new { id = @service.Id })">@service.Name</a>
+                                        </li>
                                     }
                                 </ul>
                             </div>
@@ -78,7 +116,7 @@
                                                 fill="currentcolor" />
                                         </svg>
                                     </span>
-                                    <a href="tel:+9112345678989">@Model.SiteInfo.Phone1</a>
+                                    <a href="tel:@Model.SiteInfo.Phone1">@Model.SiteInfo.Phone1</a>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +132,7 @@
                                 <p>@Model.SiteInfo.SiteInformation</p>
                             </div>
                             <div class="it-footer-widget-btn">
-                                <a href="contact.html" class="it-btn-orange">
+                                <a href="@Url.Action("Index", "Contact")" class="it-btn-orange">
                                     <span>
                                         <span class="text-1">BİZE ULAŞIN</span>
                                         <span class="text-2">BİZE ULAŞIN</span>
@@ -133,7 +171,7 @@
                     </div>
                     <div class="col-lg-6 col-md-5 wow itfadeUp" data-wow-duration=".9s" data-wow-delay=".5s">
                         <div class="it-copyright-social text-center text-md-end">
-                            <a href="@Model.SocialMediaInfo.Facebook">
+                            <a href="@Model.SocialMediaInfo.Facebook" target="blank">
                                 <span>
                                     <svg width="12" height="16" viewBox="0 0 12 16" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -143,7 +181,7 @@
                                     </svg>
                                 </span>
                             </a>
-                            <a href="@Model.SocialMediaInfo.X">
+                            <a href="@Model.SocialMediaInfo.X" target="blank">
                                 <span>
                                     <svg width="14" height="13" viewBox="0 0 14 13" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -153,7 +191,7 @@
                                     </svg>
                                 </span>
                             </a>
-                            <a href="@Model.SocialMediaInfo.Youtube">
+                            <a href="@Model.SocialMediaInfo.Youtube" target="blank">
                                 <span>
                                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -164,7 +202,7 @@
                                     </svg>
                                 </span>
                             </a>
-                            <a href="@Model.SocialMediaInfo.Instagram">
+                            <a href="@Model.SocialMediaInfo.Instagram" target="blank">
                                 <span>
                                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">

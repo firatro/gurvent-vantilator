@@ -1,10 +1,14 @@
 
 
+using GurventVantilator.Application.Interfaces.Repositories;
 using GurventVantilator.Application.Interfaces.Services;
+using GurventVantilator.Domain.Identity;
 using GurventVantilator.Domain.Interfaces.Repositories;
 using GurventVantilator.Infrastructure.Data;
+using GurventVantilator.Infrastructure.Persistence.Repositories;
 using GurventVantilator.Infrastructure.Repositories;
 using GurventVantilator.Infrastructure.Services;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -47,10 +51,42 @@ namespace GurventVantilator.Infrastructure.Extensions
             services.AddScoped<IVersionInfoRepository, VersionInfoRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
+            services.AddScoped<IProductApplicationRepository, ProductApplicationRepository>();
+            services.AddScoped<IProductTestDataRepository, ProductTestDataRepository>();
+            services.AddScoped<IProductContentFeatureRepository, ProductContentFeatureRepository>();
 
             // File Upload
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<IFileValidator, FileValidator>();
+            services.AddScoped<IProductTestDataImportService, ProductTestDataImportService>();
+
+            // Authentication Kayıtları
+            services.AddScoped<IAuthRepository, AuthRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services
+                .AddIdentity<ApplicationUser, ApplicationRole>(options =>
+                {
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequiredLength = 6;
+                    options.User.RequireUniqueEmail = true;
+                    options.SignIn.RequireConfirmedAccount = false;
+                })
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/Login";
+                options.LogoutPath = "/Account/Logout";
+                options.AccessDeniedPath = "/Account/AccessDenied";
+
+                options.SlidingExpiration = true;
+                options.ExpireTimeSpan = TimeSpan.FromHours(8);
+
+            });
 
             return services;
         }

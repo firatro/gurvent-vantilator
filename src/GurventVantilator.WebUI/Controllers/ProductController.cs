@@ -3,18 +3,20 @@ using GurventVantilator.Application.Interfaces.Services;
 using GurventVantilator.WebUI.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cosmedest.WebUI.Controllers
+namespace GurventVantilator.WebUI.Controllers
 {
     public class ProductController : BaseController
     {
         private readonly IProductService _productService;
         private readonly IProductCategoryService _productCategoryService;
+        private readonly IProductTestDataService _productTestDataService;
 
-        public ProductController(IProductService productService, IProductCategoryService productCategoryService, IPageImageService pageImageService)
+        public ProductController(IProductService productService, IProductCategoryService productCategoryService, IPageImageService pageImageService, IProductTestDataService productTestDataService)
             : base(pageImageService)
         {
             _productService = productService;
             _productCategoryService = productCategoryService;
+            _productTestDataService = productTestDataService;
         }
 
         public async Task<IActionResult> Index()
@@ -34,14 +36,10 @@ namespace Cosmedest.WebUI.Controllers
             if (!result.Success || result.Data == null)
                 return HandleError(result);
 
-            var allProducts = await _productService.GetAllAsync();
-            if (allProducts != null && allProducts.Data != null)
-                ViewBag.AllProducts = allProducts.Data;
-
             await SetPageImageAsync("Product");
-
             return View(result.Data);
         }
+
 
         [Route("product/listbycategory/{id:int}")]
         public async Task<IActionResult> ListByCategory(int id)
@@ -77,6 +75,18 @@ namespace Cosmedest.WebUI.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetFanData(int productId)
+        {
+            var result = await _productTestDataService.GetCurvePointsByProductIdAsync(productId);
+
+            if (!result.Success || result.Data == null || result.Data.Count == 0)
+                return Json(new { success = false, data = new List<object>() });
+
+            var points = result.Data.Select(p => new { x = p.Q, y = p.Pt }).ToList();
+
+            return Json(new { success = true, data = points });
+        }
 
     }
 }

@@ -10,29 +10,59 @@ namespace GurventVantilator.Application.DTOs
         public string? Description { get; set; }
         public DateTime CreatedAt { get; set; }
 
-        // Teknik özellikler
-        public string? Diameter { get; set; }
-        public string? AirFlowMin { get; set; }
-        public string? AirFlowMax { get; set; }
-        public string? PressureMin { get; set; }
-        public string? PressureMax { get; set; }
-        public string? Power { get; set; }
-        public string? Voltage { get; set; }
-        public string? Frequency { get; set; }
-        public string? Speed { get; set; }
-        public string? NoiseLevel { get; set; }
+        // Boyut
+        public double? Diameter { get; set; }
+        public string? DiameterUnit { get; set; } // "mm", "cm", "inch"
 
-        // Dosyalar ve görseller
-        public string? ImagePath { get; set; }
+        // Hava debisi
+        public double? AirFlow { get; set; }
+        public string? AirFlowUnit { get; set; } // "m³/h", "m³/s", "L/s"
+
+        // Basınç
+        public double? Pressure { get; set; }
+        public string? PressureUnit { get; set; } // "Pa", "mmH₂O"
+
+        // Güç
+        public double? Power { get; set; }
+        public string? PowerUnit { get; set; } // "kW", "W", "HP"
+
+        // Elektriksel değerler
+        public double? Voltage { get; set; } // "V"
+        public double? Frequency { get; set; } // "Hz"
+
+        // Performans
+        public double? Speed { get; set; } // "rpm"
+        public string? SpeedUnit { get; set; }
+        public double? NoiseLevel { get; set; } // "dB(A)"
+        public string? NoiseLevelUnit { get; set; } // "dB(A)"
+        public string? SpeedControl { get; set; }
+
+        // Dosyalar
+        public string? Image1Path { get; set; }
+        public string? Image2Path { get; set; }
+        public string? Image3Path { get; set; }
+        public string? Image4Path { get; set; }
+        public string? Image5Path { get; set; }
         public string? DataSheetPath { get; set; }
         public string? Model3DPath { get; set; }
+        public string? TestDataPath { get; set; }
+        public string? ScaleImagePath { get; set; }
 
         // İlişkiler
         public int ProductCategoryId { get; set; }
-        public string? ProductCategoryName { get; set; }   // Listelemede kategori adını gösterir
+        public string? ProductCategoryName { get; set; }
 
-        // Diğer
+        public List<int> SelectedApplicationIds { get; set; } = new();
+        public List<ProductApplicationDto>? Applications { get; set; }
+
+        // Ortak alanlar
         public bool IsActive { get; set; }
         public int? Order { get; set; } = 0;
+
+
+        public string? ContentTitle { get; set; }
+        public string? ContentDescription { get; set; }
+        public List<ProductContentFeatureDto> ContentFeatures { get; set; } = new();
+
     }
 }

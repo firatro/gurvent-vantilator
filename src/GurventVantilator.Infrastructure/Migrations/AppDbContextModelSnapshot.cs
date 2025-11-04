@@ -17,7 +17,7 @@ namespace GurventVantilator.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.9")
+                .HasAnnotation("ProductVersion", "8.0.10")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -789,125 +789,328 @@ namespace GurventVantilator.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("AirFlowMax")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double?>("AirFlow")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
 
-                    b.Property<string>("AirFlowMin")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("AirFlowUnit")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<string>("Code")
                         .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ContentDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContentTitle")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("DataSheetPath")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<double?>("Diameter")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
+
+                    b.Property<string>("DiameterUnit")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<double?>("Frequency")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
+
+                    b.Property<string>("Image1Path")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Image2Path")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Diameter")
+                    b.Property<string>("Image3Path")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Frequency")
+                    b.Property<string>("Image4Path")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImagePath")
+                    b.Property<string>("Image5Path")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("Model3DPath")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
-                    b.Property<string>("NoiseLevel")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double?>("NoiseLevel")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
+
+                    b.Property<string>("NoiseLevelUnit")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<int?>("Order")
                         .HasColumnType("int");
 
-                    b.Property<string>("Power")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double?>("Power")
+                        .HasPrecision(10, 3)
+                        .HasColumnType("float(10)");
 
-                    b.Property<string>("PressureMax")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<string>("PowerUnit")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
-                    b.Property<string>("PressureMin")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double?>("Pressure")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
+
+                    b.Property<string>("PressureUnit")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<int>("ProductCategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Speed")
+                    b.Property<string>("ScaleImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("Speed")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
+
+                    b.Property<string>("SpeedControl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SpeedUnit")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("TestDataPath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Voltage")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<double?>("Voltage")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ProductCategoryId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            AirFlowMax = "550 m³/h",
-                            AirFlowMin = "200 m³/h",
-                            Code = "12F",
+                            AirFlow = 200.0,
+                            AirFlowUnit = "m³/h",
+                            Code = "25",
+                            ContentDescription = "RSD serisi fanlar, gelişmiş kanat geometrisi sayesinde düşük enerji tüketimiyle maksimum hava debisi sağlar. Bu tasarım, sessiz ve verimli çalışma performansı sunar.",
+                            ContentTitle = "Yüksek Verimli Fan Teknolojisi",
                             CreatedAt = new DateTime(2025, 9, 10, 14, 30, 0, 0, DateTimeKind.Unspecified),
-                            DataSheetPath = "/datasheet/rsd12f.pdf",
-                            Description = "Ø100mm fan, yüksek verimli kompakt tasarım. Orta debili sistemler için uygundur.",
-                            Diameter = "Ø100mm",
-                            Frequency = "50Hz",
-                            ImagePath = "/img/product/rsd12f.webp",
+                            DataSheetPath = "/datasheet/product/RSD25.pdf",
+                            Description = "Tek emişli Santrifuj gövdeye direk akuple bağlanmış geriye eğik seyrek aerofoil kanatlıdır. 80⁰C de daimi çalışmaya uygundur. Hafif hizmet modelidir. Gövde 4 değişik açıda çalışmaya uygun yapıya sahiptir ( 90⁰ - 180⁰ – 270 ⁰ – 360⁰ ). Detaylar Data-sheet sayfasında belirtilmiştir.",
+                            Diameter = 100.0,
+                            DiameterUnit = "mm",
+                            Frequency = 50.0,
+                            Image1Path = "/img/product/product1.webp",
+                            Image2Path = "/img/product/product1.webp",
+                            Image3Path = "/img/product/product1.webp",
+                            Image4Path = "/img/product/product1.webp",
+                            Image5Path = "/img/product/product1.webp",
                             IsActive = true,
-                            Model3DPath = "/model/rsd12f.glb",
-                            Name = "RSD 12F",
-                            NoiseLevel = "65 dB(A)",
+                            Model3DPath = "/model/product/RSD25.glb",
+                            Name = "RSD25",
+                            NoiseLevel = 65.0,
+                            NoiseLevelUnit = "dB(A)",
                             Order = 1,
-                            Power = "0.25 kW",
-                            PressureMax = "600 Pa",
-                            PressureMin = "50 Pa",
+                            Power = 0.25,
+                            PowerUnit = "kW",
+                            Pressure = 50.0,
+                            PressureUnit = "Pa",
                             ProductCategoryId = 2,
-                            Speed = "2800 RPM",
-                            Voltage = "220V / 380V"
+                            ScaleImagePath = "img/product/product1.webp",
+                            Speed = 2800.0,
+                            SpeedControl = "Hz - Frequency",
+                            SpeedUnit = "rpm",
+                            TestDataPath = "/test-data/product/RSD25.xslx",
+                            Voltage = 220.0
                         },
                         new
                         {
                             Id = 2,
-                            AirFlowMax = "400 m³/h",
-                            AirFlowMin = "150 m³/h",
-                            Code = "9F",
+                            AirFlow = 200.0,
+                            AirFlowUnit = "m³/h",
+                            Code = "22P2",
+                            ContentDescription = "Galvaniz kaplama çelik gövde yapısı sayesinde uzun ömürlü kullanım sunar. Korozyon ve dış etkenlere karşı yüksek direnç gösterir, bakım ihtiyacını en aza indirir.",
+                            ContentTitle = "Dayanıklı Gövde Yapısı",
                             CreatedAt = new DateTime(2025, 9, 10, 14, 30, 0, 0, DateTimeKind.Unspecified),
-                            DataSheetPath = "/datasheet/rsd9f.pdf",
-                            Description = "Ø80mm fan, küçük hacimli sistemler için ideal.",
-                            Diameter = "Ø80mm",
-                            Frequency = "50Hz",
-                            ImagePath = "/img/product/rsd9f.webp",
+                            DataSheetPath = "/datasheet/product/RSD22P2.pdf",
+                            Description = "Tek emişli Santrifuj gövdeye direk akuple bağlanmış geriye eğik seyrek aerofoil kanatlıdır. 80⁰C de daimi çalışmaya uygundur. Hafif hizmet modelidir. Gövde 4 değişik açıda çalışmaya uygun yapıya sahiptir ( 90⁰ - 180⁰ – 270 ⁰ – 360⁰ ). Detaylar Data-sheet sayfasında belirtilmiştir.",
+                            Diameter = 100.0,
+                            DiameterUnit = "mm",
+                            Frequency = 50.0,
+                            Image1Path = "/img/product/product2.webp",
+                            Image2Path = "/img/product/product2.webp",
+                            Image3Path = "/img/product/product2.webp",
+                            Image4Path = "/img/product/product2.webp",
+                            Image5Path = "/img/product/product2.webp",
                             IsActive = true,
-                            Model3DPath = "/model/rsd9f.glb",
-                            Name = "RSD 9F",
-                            NoiseLevel = "62 dB(A)",
+                            Model3DPath = "/model/product/RSD22P2.glb",
+                            Name = "RSD 22P2",
+                            NoiseLevel = 65.0,
+                            NoiseLevelUnit = "dB(A)",
                             Order = 2,
-                            Power = "0.18 kW",
-                            PressureMax = "500 Pa",
-                            PressureMin = "40 Pa",
+                            Power = 0.25,
+                            PowerUnit = "kW",
+                            Pressure = 50.0,
+                            PressureUnit = "Pa",
                             ProductCategoryId = 3,
-                            Speed = "2800 RPM",
-                            Voltage = "220V"
+                            ScaleImagePath = "img/product/product1.webp",
+                            Speed = 2800.0,
+                            SpeedControl = "Hz - Frequency",
+                            SpeedUnit = "rpm",
+                            TestDataPath = "/test-data/product/RSD22P2.xslx",
+                            Voltage = 220.0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            AirFlow = 200.0,
+                            AirFlowUnit = "m³/h",
+                            Code = "20B2",
+                            ContentDescription = "IE2 verimlilik sınıfına sahip motor, 80°C’de sürekli çalışmaya uygundur. Titreşim seviyesi minimize edilmiştir ve sessiz çalışma için özel dengeleme sistemi bulunur.",
+                            ContentTitle = "Motor Performansı ve Güvenilirlik",
+                            CreatedAt = new DateTime(2025, 9, 10, 14, 30, 0, 0, DateTimeKind.Unspecified),
+                            DataSheetPath = "/datasheet/product/RSD20B2.pdf",
+                            Description = "Tek emişli Santrifuj gövdeye direk akuple bağlanmış geriye eğik seyrek aerofoil kanatlıdır. 80⁰C de daimi çalışmaya uygundur. Hafif hizmet modelidir. Gövde 4 değişik açıda çalışmaya uygun yapıya sahiptir ( 90⁰ - 180⁰ – 270 ⁰ – 360⁰ ). Detaylar Data-sheet sayfasında belirtilmiştir.",
+                            Diameter = 100.0,
+                            DiameterUnit = "mm",
+                            Frequency = 50.0,
+                            Image1Path = "/img/product/product3.webp",
+                            Image2Path = "/img/product/product3.webp",
+                            Image3Path = "/img/product/product3.webp",
+                            Image4Path = "/img/product/product3.webp",
+                            Image5Path = "/img/product/product3.webp",
+                            IsActive = true,
+                            Model3DPath = "/model/product/RSD20B2.glb",
+                            Name = "RSD 20B2",
+                            NoiseLevel = 65.0,
+                            NoiseLevelUnit = "dB(A)",
+                            Order = 3,
+                            Power = 0.25,
+                            PowerUnit = "kW",
+                            Pressure = 50.0,
+                            PressureUnit = "Pa",
+                            ProductCategoryId = 3,
+                            ScaleImagePath = "img/product/product1.webp",
+                            Speed = 2800.0,
+                            SpeedControl = "Hz - Frequency",
+                            SpeedUnit = "rpm",
+                            TestDataPath = "/test-data/product/RSD20B2.xslx",
+                            Voltage = 220.0
+                        },
+                        new
+                        {
+                            Id = 4,
+                            AirFlow = 200.0,
+                            AirFlowUnit = "m³/h",
+                            Code = "18B2",
+                            ContentDescription = "Fan gövdesi, 90°, 180°, 270° ve 360° açılarda çalışmaya uygun şekilde tasarlanmıştır. Bu özellik, farklı uygulama senaryolarında kolay montaj ve kurulum avantajı sağlar.",
+                            ContentTitle = "Kolay Montaj ve Esnek Kullanım",
+                            CreatedAt = new DateTime(2025, 9, 10, 14, 30, 0, 0, DateTimeKind.Unspecified),
+                            DataSheetPath = "/datasheet/product/RSD18B2.pdf",
+                            Description = "Tek emişli Santrifuj gövdeye direk akuple bağlanmış geriye eğik seyrek aerofoil kanatlıdır. 80⁰C de daimi çalışmaya uygundur. Hafif hizmet modelidir. Gövde 4 değişik açıda çalışmaya uygun yapıya sahiptir ( 90⁰ - 180⁰ – 270 ⁰ – 360⁰ ). Detaylar Data-sheet sayfasında belirtilmiştir.",
+                            Diameter = 100.0,
+                            DiameterUnit = "mm",
+                            Frequency = 50.0,
+                            Image1Path = "/img/product/product4.webp",
+                            Image2Path = "/img/product/product4.webp",
+                            Image3Path = "/img/product/product4.webp",
+                            Image4Path = "/img/product/product4.webp",
+                            Image5Path = "/img/product/product4.webp",
+                            IsActive = true,
+                            Model3DPath = "/model/product/RSD18B2.glb",
+                            Name = "RSD 18B2",
+                            NoiseLevel = 65.0,
+                            NoiseLevelUnit = "dB(A)",
+                            Order = 4,
+                            Power = 0.25,
+                            PowerUnit = "kW",
+                            Pressure = 50.0,
+                            PressureUnit = "Pa",
+                            ProductCategoryId = 3,
+                            ScaleImagePath = "img/product/product1.webp",
+                            Speed = 2800.0,
+                            SpeedControl = "Hz - Frequency",
+                            SpeedUnit = "rpm",
+                            TestDataPath = "/test-data/product/RSD18B2.xslx",
+                            Voltage = 220.0
+                        });
+                });
+
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductApplication", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductApplications");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Endüstriyel Havalandırma"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Tarım ve Seracılık"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Gıda Üretimi"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Tünel ve Otopark Havalandırma"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Laboratuvar ve Kimya"
                         });
                 });
 
@@ -977,6 +1180,225 @@ namespace GurventVantilator.Infrastructure.Migrations
                             Order = 2,
                             ParentCategoryId = 1
                         });
+                });
+
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductContentFeature", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Key")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int?>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductContentFeatures", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Key = "Fan Tipi",
+                            Order = 1,
+                            ProductId = 1,
+                            Value = "Santrifüj Geriye Eğik Kanatlı"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Key = "Gövde Yapısı",
+                            Order = 2,
+                            ProductId = 1,
+                            Value = "Galvaniz kaplama çelik gövde"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Key = "Motor Tipi",
+                            Order = 3,
+                            ProductId = 1,
+                            Value = "Direk akuple, 80°C sürekli çalışma"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Key = "Fan Tipi",
+                            Order = 1,
+                            ProductId = 2,
+                            Value = "Geriye eğik seyrek aerofoil kanatlı"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Key = "Malzeme",
+                            Order = 2,
+                            ProductId = 2,
+                            Value = "Alüminyum pervane, çelik gövde"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Key = "Kullanım Alanı",
+                            Order = 3,
+                            ProductId = 2,
+                            Value = "Havalandırma ve soğutma sistemleri"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Key = "Fan Tipi",
+                            Order = 1,
+                            ProductId = 3,
+                            Value = "Tek emişli santrifüj fan"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Key = "Montaj Açısı",
+                            Order = 2,
+                            ProductId = 3,
+                            Value = "4 farklı açıda çalışmaya uygun (90°,180°,270°,360°)"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Key = "Verimlilik",
+                            Order = 3,
+                            ProductId = 3,
+                            Value = "Yüksek statik basınç ve düşük gürültü"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Key = "Fan Tipi",
+                            Order = 1,
+                            ProductId = 4,
+                            Value = "Geriye eğik seyrek aerofoil kanatlı"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Key = "Motor Sınıfı",
+                            Order = 2,
+                            ProductId = 4,
+                            Value = "IP55 koruma sınıfı, IE2 verimlilik"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Key = "Uygulama",
+                            Order = 3,
+                            ProductId = 4,
+                            Value = "Hafif hizmet tipi sanayi havalandırması"
+                        });
+                });
+
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductTestData", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Pt1")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Pt10")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Pt11")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Pt12")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Pt2")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Pt3")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Pt4")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Pt5")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Pt6")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Pt7")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Pt8")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Pt9")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Q1")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Q10")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Q11")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Q12")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Q2")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Q3")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Q4")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Q5")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Q6")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Q7")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Q8")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.Property<decimal>("Q9")
+                        .HasColumnType("decimal(18,3)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductTestData", (string)null);
                 });
 
             modelBuilder.Entity("GurventVantilator.Domain.Entities.Project", b =>
@@ -1739,6 +2161,9 @@ namespace GurventVantilator.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("WaSupportNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("WorkingHours")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -1768,6 +2193,7 @@ namespace GurventVantilator.Infrastructure.Migrations
                             TaxNumber = "4567891230",
                             TaxOffice = "İzmir Vergi Dairesi",
                             WaNumber = "+90 532 600 44 11",
+                            WaSupportNumber = "",
                             WorkingHours = "Hafta içi: 08:30 - 18:00, Cumartesi: 08:30 - 13:00"
                         });
                 });
@@ -1849,7 +2275,16 @@ namespace GurventVantilator.Infrastructure.Migrations
                     b.Property<string>("Instagram")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Linkedin")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Tiktok")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Vimeo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Vk")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("X")
@@ -2168,6 +2603,202 @@ namespace GurventVantilator.Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("GurventVantilator.Domain.Identity.ApplicationRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Roles", (string)null);
+                });
+
+            modelBuilder.Entity("GurventVantilator.Domain.Identity.ApplicationUser", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RoleClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserClaims", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.ToTable("UserLogins", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.ToTable("UserRoles", (string)null);
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("UserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("ProductProductApplication", b =>
+                {
+                    b.Property<int>("ApplicationsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ApplicationsId", "ProductsId");
+
+                    b.HasIndex("ProductsId");
+
+                    b.ToTable("ProductProductApplications", (string)null);
+                });
+
             modelBuilder.Entity("GurventVantilator.Domain.Entities.Blog", b =>
                 {
                     b.HasOne("GurventVantilator.Domain.Entities.Category", "Category")
@@ -2224,7 +2855,7 @@ namespace GurventVantilator.Infrastructure.Migrations
                     b.HasOne("GurventVantilator.Domain.Entities.ProductCategory", "ProductCategory")
                         .WithMany("Products")
                         .HasForeignKey("ProductCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("ProductCategory");
@@ -2238,6 +2869,28 @@ namespace GurventVantilator.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("ParentCategory");
+                });
+
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductContentFeature", b =>
+                {
+                    b.HasOne("GurventVantilator.Domain.Entities.Product", "Product")
+                        .WithMany("ContentFeatures")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductTestData", b =>
+                {
+                    b.HasOne("GurventVantilator.Domain.Entities.Product", "Product")
+                        .WithMany("TestData")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("GurventVantilator.Domain.Entities.ProjectFeature", b =>
@@ -2273,6 +2926,21 @@ namespace GurventVantilator.Infrastructure.Migrations
                     b.Navigation("Service");
                 });
 
+            modelBuilder.Entity("ProductProductApplication", b =>
+                {
+                    b.HasOne("GurventVantilator.Domain.Entities.ProductApplication", null)
+                        .WithMany()
+                        .HasForeignKey("ApplicationsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GurventVantilator.Domain.Entities.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("GurventVantilator.Domain.Entities.Blog", b =>
                 {
                     b.Navigation("BlogTags");
@@ -2288,6 +2956,13 @@ namespace GurventVantilator.Infrastructure.Migrations
             modelBuilder.Entity("GurventVantilator.Domain.Entities.Menu", b =>
                 {
                     b.Navigation("Children");
+                });
+
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.Product", b =>
+                {
+                    b.Navigation("ContentFeatures");
+
+                    b.Navigation("TestData");
                 });
 
             modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductCategory", b =>

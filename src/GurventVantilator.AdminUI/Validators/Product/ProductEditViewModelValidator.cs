@@ -1,15 +1,13 @@
 using FluentValidation;
 using GurventVantilator.AdminUI.Models.Product;
-using System.IO;
 using GurventVantilator.AdminUI.Validators.Common;
+using System.Globalization;
+using System.Linq.Expressions;
 
 namespace GurventVantilator.AdminUI.Validators
 {
     public class ProductEditViewModelValidator : AbstractValidator<ProductEditViewModel>
     {
-        private readonly string[] _allowedExtensions = { ".jpg", ".jpeg", ".png", ".webp" };
-        private const long _maxFileSize = 5 * 1024 * 1024;
-
         public ProductEditViewModelValidator()
         {
             // 🔹 Temel alanlar
@@ -24,23 +22,51 @@ namespace GurventVantilator.AdminUI.Validators
             RuleFor(x => x.ProductCategoryId)
                 .GreaterThan(0).WithMessage("Lütfen bir kategori seçiniz.");
 
-            // 🔹 Teknik bilgiler
-            RuleFor(x => x.Diameter)
-                .MaximumLength(50).WithMessage("Çap alanı en fazla 50 karakter olabilir.");
-            RuleFor(x => x.Power)
-                .MaximumLength(50).WithMessage("Güç alanı en fazla 50 karakter olabilir.");
-            RuleFor(x => x.Voltage)
-                .MaximumLength(50).WithMessage("Voltaj alanı en fazla 50 karakter olabilir.");
-            RuleFor(x => x.Frequency)
-                .MaximumLength(50).WithMessage("Frekans alanı en fazla 50 karakter olabilir.");
+            RuleFor(x => x.SpeedControl)
+                .NotEmpty().WithMessage("Speed Control zorunludur.");
+
+            // 🔹 Sayısal alanlar
+            ValidateNumeric(x => x.Diameter, "Çap değeri geçerli bir sayı olmalıdır.");
+            ValidateNumeric(x => x.AirFlow, "Hava debisi geçerli bir sayı olmalıdır.");
+            ValidateNumeric(x => x.Pressure, "Basınç geçerli bir sayı olmalıdır.");
+            ValidateNumeric(x => x.Power, "Güç değeri geçerli bir sayı olmalıdır.");
+            ValidateNumeric(x => x.Voltage, "Voltaj değeri geçerli bir sayı olmalıdır.");
+            ValidateNumeric(x => x.Frequency, "Frekans değeri geçerli bir sayı olmalıdır.");
+            ValidateNumeric(x => x.Speed, "Devir değeri geçerli bir sayı olmalıdır.");
+            ValidateNumeric(x => x.NoiseLevel, "Ses seviyesi geçerli bir sayı olmalıdır.");
+
+            // 🔹 Unit alanları
+            RuleFor(x => x.DiameterUnit).MaximumLength(10);
+            RuleFor(x => x.AirFlowUnit).MaximumLength(10);
+            RuleFor(x => x.PressureUnit).MaximumLength(10);
+            RuleFor(x => x.PowerUnit).MaximumLength(10);
+            RuleFor(x => x.SpeedUnit).MaximumLength(10);
+            RuleFor(x => x.NoiseLevelUnit).MaximumLength(10);
 
             // 🔹 Sıralama
             RuleFor(x => x.Order)
                 .NotNull().WithMessage("Sıra numarası boş bırakılamaz.")
                 .GreaterThanOrEqualTo(0).WithMessage("Sıra numarası negatif olamaz.");
 
-            RuleFor(x => x.ImageFile).ValidImageFile();
+            // 🔹 Dosyalar
+            RuleFor(x => x.Image1File).ValidImageFile();
+            RuleFor(x => x.Image2File).ValidImageFile();
+            RuleFor(x => x.Image3File).ValidImageFile();
+            RuleFor(x => x.Image4File).ValidImageFile();
+            RuleFor(x => x.Image5File).ValidImageFile();
+            RuleFor(x => x.DataSheetFile).ValidPdfFile();
+            RuleFor(x => x.Model3DFile).Valid3DFile();
+            RuleFor(x => x.TestDataFile).ValidXSLFile();
+            RuleFor(x => x.ScaleImageFile).ValidImageFile();
 
+        }
+
+        private void ValidateNumeric(Expression<Func<ProductEditViewModel, string?>> selector, string message)
+        {
+            RuleFor<string?>(selector)
+                .Must(v => string.IsNullOrWhiteSpace(v) ||
+                           double.TryParse(v.Replace(",", "."), NumberStyles.Any, CultureInfo.InvariantCulture, out _))
+                .WithMessage(message);
         }
     }
 }

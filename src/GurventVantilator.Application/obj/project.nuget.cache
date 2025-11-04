@@ -1,19 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "o0qbj7Zb5bM=",
+  "dgSpecHash": "lg7IL21B0aI=",
   "success": true,
-  "projectFilePath": "/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.Application/GurventVantilator.Application.csproj",
+  "projectFilePath": "/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.Application/GurventVantilator.Application.csproj",
   "expectedPackageFiles": [
-    "/Users/firatramazano/.nuget/packages/fluentvalidation/12.0.0/fluentvalidation.12.0.0.nupkg.sha512",
+    "/Users/firatramazano/.nuget/packages/fluentvalidation/11.11.0/fluentvalidation.11.11.0.nupkg.sha512",
+    "/Users/firatramazano/.nuget/packages/fluentvalidation.aspnetcore/11.3.1/fluentvalidation.aspnetcore.11.3.1.nupkg.sha512",
+    "/Users/firatramazano/.nuget/packages/fluentvalidation.dependencyinjectionextensions/11.11.0/fluentvalidation.dependencyinjectionextensions.11.11.0.nupkg.sha512",
     "/Users/firatramazano/.nuget/packages/microsoft.aspnetcore.http.abstractions/2.3.0/microsoft.aspnetcore.http.abstractions.2.3.0.nupkg.sha512",
     "/Users/firatramazano/.nuget/packages/microsoft.aspnetcore.http.features/2.3.0/microsoft.aspnetcore.http.features.2.3.0.nupkg.sha512",
-    "/Users/firatramazano/.nuget/packages/microsoft.extensions.dependencyinjection/9.0.9/microsoft.extensions.dependencyinjection.9.0.9.nupkg.sha512",
-    "/Users/firatramazano/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.9/microsoft.extensions.dependencyinjection.abstractions.9.0.9.nupkg.sha512",
-    "/Users/firatramazano/.nuget/packages/microsoft.extensions.logging/9.0.9/microsoft.extensions.logging.9.0.9.nupkg.sha512",
-    "/Users/firatramazano/.nuget/packages/microsoft.extensions.logging.abstractions/9.0.9/microsoft.extensions.logging.abstractions.9.0.9.nupkg.sha512",
-    "/Users/firatramazano/.nuget/packages/microsoft.extensions.options/9.0.9/microsoft.extensions.options.9.0.9.nupkg.sha512",
-    "/Users/firatramazano/.nuget/packages/microsoft.extensions.primitives/9.0.9/microsoft.extensions.primitives.9.0.9.nupkg.sha512",
-    "/Users/firatramazano/.nuget/packages/system.diagnostics.diagnosticsource/9.0.9/system.diagnostics.diagnosticsource.9.0.9.nupkg.sha512",
+    "/Users/firatramazano/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.8/microsoft.extensions.dependencyinjection.abstractions.9.0.8.nupkg.sha512",
+    "/Users/firatramazano/.nuget/packages/microsoft.extensions.primitives/8.0.0/microsoft.extensions.primitives.8.0.0.nupkg.sha512",
     "/Users/firatramazano/.nuget/packages/system.text.encodings.web/8.0.0/system.text.encodings.web.8.0.0.nupkg.sha512"
   ],
   "logs": []

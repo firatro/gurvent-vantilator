@@ -4,6 +4,7 @@ namespace GurventVantilator.Application.Enums
     {
         Image = 1,
         Pdf = 2,
-        Model3D = 3
+        Model3D = 3,
+        TestData = 4
     }
 }

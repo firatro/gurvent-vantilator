@@ -2,7 +2,6 @@ using GurventVantilator.Domain.Interfaces.Repositories;
 using GurventVantilator.Domain.Entities;
 using GurventVantilator.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using GurventVantilator.Application.Common;
 
 namespace GurventVantilator.Infrastructure.Repositories
 {
@@ -19,6 +18,7 @@ namespace GurventVantilator.Infrastructure.Repositories
         {
             return await _context.Products
                 .Include(p => p.ProductCategory)
+                .Include(p => p.Applications)
                 .ToListAsync();
         }
 
@@ -26,25 +26,48 @@ namespace GurventVantilator.Infrastructure.Repositories
         {
             return await _context.Products
                 .Include(p => p.ProductCategory)
+                .Include(p => p.Applications)
+                .Include(p => p.ContentFeatures)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public async Task AddAsync(Product product)
         {
+            if (product.Applications != null && product.Applications.Any())
+            {
+                foreach (var app in product.Applications)
+                {
+                    _context.Attach(app);
+                }
+            }
+
             await _context.Products.AddAsync(product);
             await _context.SaveChangesAsync();
         }
 
+
         public async Task UpdateAsync(Product product)
         {
             var existing = await _context.Products
-            .Include(p => p.ProductCategory)
-            .FirstOrDefaultAsync(p => p.Id == product.Id);
+                .Include(p => p.Applications)
+                .Include(p => p.ProductCategory)
+                .FirstOrDefaultAsync(p => p.Id == product.Id);
 
             if (existing != null)
             {
                 _context.Entry(existing).CurrentValues.SetValues(product);
+
+                existing.Applications.Clear();
+
+                if (product.Applications != null && product.Applications.Any())
+                {
+                    foreach (var app in product.Applications)
+                    {
+                        _context.Attach(app);
+                        existing.Applications.Add(app);
+                    }
+                }
             }
 
             await _context.SaveChangesAsync();
@@ -55,11 +78,12 @@ namespace GurventVantilator.Infrastructure.Repositories
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
         }
-        
+
         public async Task<(IEnumerable<Product> Items, int TotalCount)> GetPagedAsync(int pageNumber, int pageSize)
         {
             var query = _context.Products
                 .Include(p => p.ProductCategory)
+                .Include(p => p.Applications)
                 .OrderByDescending(p => p.CreatedAt);
 
             var totalCount = await query.CountAsync();
@@ -69,6 +93,5 @@ namespace GurventVantilator.Infrastructure.Repositories
 
             return (items, totalCount);
         }
-
     }
 }

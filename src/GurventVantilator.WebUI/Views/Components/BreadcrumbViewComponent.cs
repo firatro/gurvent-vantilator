@@ -1,7 +1,7 @@
 using GurventVantilator.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cosmedest.WebUI.ViewComponents
+namespace GurventVantilator.WebUI.ViewComponents
 {
     public class BreadcrumbViewComponent : ViewComponent
     {

@@ -11,10 +11,12 @@ namespace GurventVantilator.AdminUI.Validators.Common
         private static readonly string[] _allowedPdfExtensions = { ".pdf" };
         // 3D model dosyaları
         private static readonly string[] _allowed3DExtensions = { ".glb", ".stl" };
+        private static readonly string[] _allowedXLSExtensions = { ".xls", ".xlsx" };
 
         private const long _maxImageFileSize = 10 * 1024 * 1024; // 10 MB
         private const long _maxPdfFileSize = 10 * 1024 * 1024;   // 10 MB
         private const long _max3DFileSize = 10 * 1024 * 1024;    // 10 MB
+        private const long _maxXLSFileSize = 10 * 1024 * 1024;    // 10 MB
 
         // 🔹 Görsel dosyalar için doğrulama
         public static IRuleBuilderOptions<T, IFormFile?> ValidImageFile<T>(
@@ -47,6 +49,15 @@ namespace GurventVantilator.AdminUI.Validators.Common
                     .WithMessage($"3D model dosya boyutu {_max3DFileSize / 1024 / 1024} MB’ı geçemez.")
                 .Must(file => file == null || _allowed3DExtensions.Contains(Path.GetExtension(file.FileName).ToLower()))
                     .WithMessage("Sadece .glb ve .stl formatları desteklenmektedir.");
+        }
+        public static IRuleBuilderOptions<T, IFormFile?> ValidXSLFile<T>(
+            this IRuleBuilder<T, IFormFile?> ruleBuilder)
+        {
+            return ruleBuilder
+                .Must(file => file == null || file.Length <= _maxXLSFileSize)
+                    .WithMessage($"Test data dosya boyutu {_maxXLSFileSize / 1024 / 1024} MB’ı geçemez.")
+                .Must(file => file == null || _allowedXLSExtensions.Contains(Path.GetExtension(file.FileName).ToLower()))
+                    .WithMessage("Sadece .xls ve .xlsx formatları desteklenmektedir.");
         }
     }
 }

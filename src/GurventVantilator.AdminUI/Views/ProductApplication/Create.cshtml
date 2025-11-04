@@ -1,0 +1,56 @@
+@using GurventVantilator.Application.DTOs
+@model ProductApplicationDto
+
+@{
+    ViewData["Title"] = "Uygulama Alanı Ekle";
+}
+
+<form class="ecommerce-form action-buttons-fixed" asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="row mt-2">
+        <div class="col">
+            <section class="card card-modern card-big-info">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-2-5 col-xl-1-5">
+                            <i class="card-big-info-icon bx bx-spreadsheet"></i>
+                            <h2 class="card-big-info-title">Uygulama Alanı Ekle</h2>
+                            <p class="card-big-info-desc">Yeni bir uygulama alanı eklemek için bilgileri doldurun.</p>
+                        </div>
+                        <div class="col-lg-3-5 col-xl-4-5">
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Name">
+                                    Uygulama Alanı Adı
+                                </label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="Name" class="form-control form-control-modern"
+                                        placeholder="Örn: Endüstriyel Havalandırma" />
+                                    <span asp-validation-for="Name" class="text-danger small d-block mt-1"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="row action-buttons">
+        <div class="col-12 col-md-auto">
+            <button type="submit"
+                class="submit-button btn btn-primary btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1"
+                data-loading-text="Loading...">
+                <i class="bx bx-save text-4 me-2"></i> Kaydet
+            </button>
+        </div>
+        <div class="col-12 col-md-auto px-md-0 mt-3 mt-md-0">
+            <a asp-action="Index"
+                class="cancel-button btn btn-light btn-px-4 py-3 border font-weight-semibold text-color-dark text-3">
+                Geri Dön
+            </a>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

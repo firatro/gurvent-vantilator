@@ -2,7 +2,7 @@ using GurventVantilator.Application.DTOs;
 using GurventVantilator.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cosmedest.WebUI.ViewComponents
+namespace GurventVantilator.WebUI.ViewComponents
 {
     public class AboutUsViewComponent : ViewComponent
     {

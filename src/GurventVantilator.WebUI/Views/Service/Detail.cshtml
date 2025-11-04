@@ -1,0 +1,138 @@
+@using GurventVantilator.Application.DTOs
+@model ServiceDto
+
+<!-- breadcrumb-area-start -->
+@await Component.InvokeAsync("Breadcrumb", new
+{
+    title = "Hizmetlerimiz",
+pageTitle = Model.Name.ToString(),
+pageKey = "Service",
+parentUrl = Url.Action("Service")
+})
+<!-- breadcrumb-area-end -->
+
+<!-- details-area-start -->
+<div class="it-sv-details-area pt-130">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="it-sv-details-wrap">
+                    <div class="it-sv-details-thumb mb-30">
+                        <img class="w-100" style="height:500px;object-fit: cover"
+                            src="https://admin.gurvent.firatramazano.com/@Model.MainImagePath" alt="">
+                    </div>
+                    <div class="it-sv-details-content mb-25">
+                        <h5 class="it-inner-title mb-15">@Model.Title</h5>
+                        <p>
+                            @Model.Description
+                        </p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="it-sv-details-list mb-45">
+                                <ul>
+                                    @foreach (var item in Model.Features)
+                                    {
+                                        <li>
+                                            <span>
+                                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <mask id="mask0_2241_2446" style="mask-type:luminance"
+                                                        maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
+                                                        <path d="M20 0H0V20H20V0Z" fill="white" />
+                                                    </mask>
+                                                    <g mask="url(#mask0_2241_2446)">
+                                                        <path
+                                                            d="M10.7148 0.513672L11.4571 2.94776C12.6555 6.87762 15.8995 9.69541 19.75 10.1512C15.9196 10.5053 12.6638 13.2798 11.494 17.1865L10.7148 19.7888"
+                                                            stroke="#E03B3B" />
+                                                        <path d="M19.5833 10.1641H0" stroke="#E03B3B" />
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                            <p>@item.Name</p>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="it-sv-details-content mb-30">
+                        <h5 class="it-inner-title">@Model.ExtraTitle</h5>
+                        <p>
+                            @Model.ExtraDescription
+                        </p>
+                    </div>
+                    <div class="row gx-35">
+                        <div class="col-lg-4 col-md-6 mb-50">
+                            <div class="it-sv-details-thumb-sm">
+                                <img class="w-100" src="https://admin.gurvent.firatramazano.com/@Model.ContentImage1Path" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-50">
+                            <div class="it-sv-details-thumb-sm">
+                                <img class="w-100" src="https://admin.gurvent.firatramazano.com/@Model.ContentImage2Path" alt="">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 mb-50">
+                            <div class="it-sv-details-thumb-sm">
+                                <img class="w-100" src="https://admin.gurvent.firatramazano.com/@Model.MainImagePath" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- details-area-end -->
+
+<!-- faq-area-start -->
+<div class="it-faq-area z-index-1 gray-bg pt-130 pb-130">
+    <div class="container">
+        <div class="row align-items-end">
+            <div class="col-xl-12 col-lg-6">
+                <div class="it-faq-left">
+                    <div class="it-section-title-box mb-15">
+                        <span class="it-section-subtitle">Nasıl Yardımcı Olabiliriz?</span>
+                        <h4 class="it-section-title mb-0">Sıkça Sorulan Sorular</h4>
+                    </div>
+                    <div class="it-custom-accordion">
+                        <div class="accordion" id="accordionExample2">
+                        @foreach(var item in Model.Faqs)
+                        {
+                             <div class="accordion-items">
+                                <h4 class="accordion-header" id="headingOne2">
+                                    <button class="accordion-buttons " type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne2" aria-expanded="true"
+                                        aria-controls="collapseOne2">
+                                        @item.Question
+                                        <span class="it-accordion-btn">
+                                            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M10.0035 8.59196L1.41153 0L0 1.41153L8.59097 10.0035H1.01922V12H12V1.01922H10.0035V8.59196Z"
+                                                    fill="currentcolor" />
+                                            </svg>
+                                        </span>
+                                    </button>
+                                </h4>
+                                <div id="collapseOne2" class="accordion-collapse collapse show"
+                                    aria-labelledby="headingOne2" data-bs-parent="#accordionExample2">
+                                    <div class="accordion-body">
+                                        <p class="mb-0">
+                                            @item.Answer
+                                        </p>
+
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- faq-area-end -->

@@ -12,12 +12,14 @@ namespace GurventVantilator.Application.Services
     {
         private readonly IProductRepository _productRepository;
         private readonly IProductCategoryRepository _productCategoryRepository;
+        private readonly IProductApplicationRepository _productApplicationRepository;
         private readonly ILogger<ProductManager> _logger;
 
-        public ProductManager(IProductRepository productRepository, IProductCategoryRepository productCategoryRepository, ILogger<ProductManager> logger)
+        public ProductManager(IProductRepository productRepository, IProductCategoryRepository productCategoryRepository, IProductApplicationRepository productApplicationRepository, ILogger<ProductManager> logger)
         {
             _productRepository = productRepository;
             _productCategoryRepository = productCategoryRepository;
+            _productApplicationRepository = productApplicationRepository;
             _logger = logger;
         }
 
@@ -59,6 +61,16 @@ namespace GurventVantilator.Application.Services
             {
                 var entity = MapToEntity(dto);
 
+                if (dto.SelectedApplicationIds != null && dto.SelectedApplicationIds.Any())
+                {
+                    var allApplications = await _productApplicationRepository.GetAllAsync();
+                    var selectedApplications = allApplications
+                        .Where(a => dto.SelectedApplicationIds.Contains(a.Id))
+                        .ToList();
+
+                    entity.Applications = selectedApplications;
+                }
+
                 await _productRepository.AddAsync(entity);
 
                 return Result<ProductDto>.Ok(MapToDto(entity));
@@ -70,15 +82,36 @@ namespace GurventVantilator.Application.Services
             }
         }
 
+
         public async Task<Result<ProductDto>> UpdateAsync(ProductDto dto)
         {
             try
             {
-                var entity = MapToEntity(dto);
+                var existing = await _productRepository.GetByIdAsync(dto.Id);
+                if (existing == null)
+                    return Result<ProductDto>.Fail("Güncellenecek ürün bulunamadı.");
 
-                await _productRepository.UpdateAsync(entity);
+                var updatedEntity = MapToEntity(dto);
 
-                return Result<ProductDto>.Ok(MapToDto(entity));
+                if (dto.SelectedApplicationIds != null && dto.SelectedApplicationIds.Any())
+                {
+                    var allApplications = await _productApplicationRepository.GetAllAsync();
+                    var selectedApplications = allApplications
+                        .Where(a => dto.SelectedApplicationIds.Contains(a.Id))
+                        .ToList();
+
+                    updatedEntity.Applications = selectedApplications;
+                }
+                else
+                {
+                    updatedEntity.Applications = new List<ProductApplication>();
+                }
+
+                updatedEntity.UpdatedAt = DateTime.UtcNow;
+
+                await _productRepository.UpdateAsync(updatedEntity);
+
+                return Result<ProductDto>.Ok(MapToDto(updatedEntity));
             }
             catch (Exception ex)
             {
@@ -86,6 +119,7 @@ namespace GurventVantilator.Application.Services
                 return Result<ProductDto>.Fail("Ürün güncellenemedi.");
             }
         }
+
 
         public async Task<Result<bool>> DeleteAsync(int id)
         {
@@ -118,7 +152,6 @@ namespace GurventVantilator.Application.Services
 
                 if (includeSubCategories)
                 {
-                    // Alt kategorileri bul
                     var allCategoryIds = await GetAllSubCategoryIdsAsync(categoryId);
                     allCategoryIds.Add(categoryId);
 
@@ -161,6 +194,104 @@ namespace GurventVantilator.Application.Services
             return subIds;
         }
 
+        public async Task<Result<List<ProductDto>>> FilterAsync(ProductFilterRequest request)
+        {
+            try
+            {
+                var allProducts = await _productRepository.GetAllAsync();
+
+                if (allProducts == null || !allProducts.Any())
+                    return Result<List<ProductDto>>.Fail("Ürün bulunamadı.");
+
+                var query = allProducts.AsQueryable();
+
+                // 🔹 Uygulama Alanı filtresi
+                if (request.ApplicationId.HasValue && request.ApplicationId.Value > 0)
+                {
+                    query = query.Where(p =>
+                        p.Applications != null &&
+                        p.Applications.Any(a => a.Id == request.ApplicationId.Value));
+                }
+
+                // 🔹 Ürün Kategorisi filtresi
+                if (request.CategoryId.HasValue && request.CategoryId.Value > 0)
+                    query = query.Where(p => p.ProductCategoryId == request.CategoryId.Value);
+
+                // 🔹 Tolerans oranı (0–100 arası, default 0)
+                double tol = (request.TolerancePercent ?? 0) / 100.0;
+                tol = tol < 0 ? 0 : (tol > 1 ? 1 : tol); // güvenli sınır
+
+                // 🔹 Hava Debisi (AirFlow) filtresi
+                if (request.AirFlow.HasValue)
+                {
+                    double airFlow = request.AirFlow.Value;
+                    double min = airFlow * (1 - tol);
+                    double max = airFlow * (1 + tol);
+
+                    query = query.Where(p =>
+                        p.AirFlow.HasValue &&
+                        p.AirFlow.Value >= min &&
+                        p.AirFlow.Value <= max);
+                }
+
+                // 🔹 Statik Basınç (Pressure) filtresi
+                if (request.Pressure.HasValue)
+                {
+                    double pressure = request.Pressure.Value;
+                    double min = pressure * (1 - tol);
+                    double max = pressure * (1 + tol);
+
+                    query = query.Where(p =>
+                        p.Pressure.HasValue &&
+                        p.Pressure.Value >= min &&
+                        p.Pressure.Value <= max);
+                }
+
+                // 🔹 Frekans filtresi
+                if (request.Frequency.HasValue)
+                    query = query.Where(p => p.Frequency.HasValue && p.Frequency.Value == request.Frequency.Value);
+
+                // 🔹 Çap (Diameter)
+                if (request.Diameter.HasValue)
+                    query = query.Where(p => p.Diameter.HasValue && p.Diameter.Value >= request.Diameter.Value);
+
+                // 🔹 Motor Gücü (Power)
+                if (request.Power.HasValue)
+                    query = query.Where(p => p.Power.HasValue && p.Power.Value >= request.Power.Value);
+
+                // 🔹 Gerilim (Voltage)
+                if (request.Voltage.HasValue)
+                    query = query.Where(p => p.Voltage.HasValue && p.Voltage.Value == request.Voltage.Value);
+
+                // 🔹 Dönüş Hızı (Speed)
+                if (request.Speed.HasValue)
+                    query = query.Where(p => p.Speed.HasValue && p.Speed.Value >= request.Speed.Value);
+
+                // 🔹 Ses Seviyesi (NoiseLevel)
+                if (request.NoiseLevel.HasValue)
+                    query = query.Where(p => p.NoiseLevel.HasValue && p.NoiseLevel.Value <= request.NoiseLevel.Value);
+
+                // 🔹 Sadece aktif ürünler
+                query = query.Where(p => p.IsActive);
+
+                // 🔹 Sonuçları sırala
+                var filteredList = query
+                    .OrderBy(p => p.Order)
+                    .ThenBy(p => p.Name)
+                    .ToList();
+
+                // 🔹 DTO dönüşümü
+                var dtoList = filteredList.Select(MapToDto).ToList();
+
+                return Result<List<ProductDto>>.Ok(dtoList);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Filtreli ürün listesi alınırken hata oluştu.");
+                return Result<List<ProductDto>>.Fail("Filtreli ürün listesi alınamadı.");
+            }
+        }
+
         #region Mapping
         private static ProductDto MapToDto(Product entity)
         {
@@ -172,30 +303,79 @@ namespace GurventVantilator.Application.Services
                 Description = entity.Description,
                 CreatedAt = entity.CreatedAt,
 
+                // Boyut
                 Diameter = entity.Diameter,
-                AirFlowMin = entity.AirFlowMin,
-                AirFlowMax = entity.AirFlowMax,
-                PressureMin = entity.PressureMin,
-                PressureMax = entity.PressureMax,
+                DiameterUnit = entity.DiameterUnit,
+
+                // Hava debisi
+                AirFlow = entity.AirFlow,
+                AirFlowUnit = entity.AirFlowUnit,
+
+                // Basınç
+                Pressure = entity.Pressure,
+                PressureUnit = entity.PressureUnit,
+
+                // Güç
                 Power = entity.Power,
+                PowerUnit = entity.PowerUnit,
+
+                // Elektriksel
                 Voltage = entity.Voltage,
                 Frequency = entity.Frequency,
+
+                // Performans
                 Speed = entity.Speed,
                 NoiseLevel = entity.NoiseLevel,
+                SpeedControl = entity.SpeedControl,
 
-                ImagePath = entity.ImagePath,
+                // Dosyalar
+                Image1Path = entity.Image1Path,
+                Image2Path = entity.Image2Path,
+                Image3Path = entity.Image3Path,
+                Image4Path = entity.Image4Path,
+                Image5Path = entity.Image5Path,
                 DataSheetPath = entity.DataSheetPath,
                 Model3DPath = entity.Model3DPath,
+                TestDataPath = entity.TestDataPath,
+                ScaleImagePath = entity.ScaleImagePath,
 
+                // İlişkiler
                 ProductCategoryId = entity.ProductCategoryId,
                 ProductCategoryName = entity.ProductCategory?.Name ?? string.Empty,
 
+                // Ortak alanlar
                 IsActive = entity.IsActive,
-                Order = entity.Order
+                Order = entity.Order,
+                ContentTitle = entity.ContentTitle,
+                ContentDescription = entity.ContentDescription,
+                ContentFeatures = entity.ContentFeatures.Select(cf => new ProductContentFeatureDto
+                {
+                    Id = cf.Id,
+                    ProductId = cf.ProductId,
+                    Key = cf.Key,
+                    Value = cf.Value,
+                    Order = cf.Order
+                }).ToList(),
             };
+
+            if (entity.Applications != null && entity.Applications.Any())
+            {
+                dto.Applications = entity.Applications
+                    .Select(a => new ProductApplicationDto
+                    {
+                        Id = a.Id,
+                        Name = a.Name
+                    })
+                    .ToList();
+
+                dto.SelectedApplicationIds = entity.Applications
+                    .Select(a => a.Id)
+                    .ToList();
+            }
 
             return dto;
         }
+
 
         private static Product MapToEntity(ProductDto dto)
         {
@@ -207,28 +387,65 @@ namespace GurventVantilator.Application.Services
                 Description = dto.Description,
                 CreatedAt = dto.CreatedAt,
 
+                // Boyut
                 Diameter = dto.Diameter,
-                AirFlowMin = dto.AirFlowMin,
-                AirFlowMax = dto.AirFlowMax,
-                PressureMin = dto.PressureMin,
-                PressureMax = dto.PressureMax,
+                DiameterUnit = dto.DiameterUnit,
+
+                // Hava debisi
+                AirFlow = dto.AirFlow,
+                AirFlowUnit = dto.AirFlowUnit,
+
+                // Basınç
+                Pressure = dto.Pressure,
+                PressureUnit = dto.PressureUnit,
+
+                // Güç
                 Power = dto.Power,
+                PowerUnit = dto.PowerUnit,
+
+                // Elektriksel
                 Voltage = dto.Voltage,
                 Frequency = dto.Frequency,
-                Speed = dto.Speed,
-                NoiseLevel = dto.NoiseLevel,
 
-                ImagePath = dto.ImagePath,
+                // Performans
+                Speed = dto.Speed,
+                SpeedUnit = dto.SpeedUnit,
+                NoiseLevel = dto.NoiseLevel,
+                NoiseLevelUnit = dto.NoiseLevelUnit,
+                SpeedControl = dto.SpeedControl,
+
+                // Dosyalar
+                Image1Path = dto.Image1Path,
+                Image2Path = dto.Image2Path,
+                Image3Path = dto.Image3Path,
+                Image4Path = dto.Image4Path,
+                Image5Path = dto.Image5Path,
                 DataSheetPath = dto.DataSheetPath,
                 Model3DPath = dto.Model3DPath,
+                TestDataPath = dto.TestDataPath,
+                ScaleImagePath = dto.ScaleImagePath,
 
+                // İlişkiler
                 ProductCategoryId = dto.ProductCategoryId,
                 IsActive = dto.IsActive,
-                Order = dto.Order
+                Order = dto.Order,
+
+                Applications = new List<ProductApplication>(),
+                ContentTitle = dto.ContentTitle,
+                ContentDescription = dto.ContentDescription,
+                ContentFeatures = dto.ContentFeatures.Select(cf => new ProductContentFeature
+                {
+                    Id = cf.Id,
+                    ProductId = cf.ProductId,
+                    Key = cf.Key,
+                    Value = cf.Value,
+                    Order = cf.Order
+                }).ToList()
             };
 
             return entity;
         }
+
 
         public async Task<Result<PagedResult<ProductDto>>> GetPagedAsync(int pageNumber, int pageSize)
         {
@@ -256,21 +473,17 @@ namespace GurventVantilator.Application.Services
 
                 var query = products.AsQueryable();
 
-                // --- Category filtresi ---
                 if (productCategoryId.HasValue)
                     query = query.Where(b => b.ProductCategoryId == productCategoryId.Value);
 
-                // --- Total Count ---
                 var totalCount = query.Count();
 
-                // --- Sayfalama ---
                 var pagedProducts = query
                     .OrderByDescending(b => b.CreatedAt)
                     .Skip((pageNumber - 1) * pageSize)
                     .Take(pageSize)
                     .ToList();
 
-                // --- DTO Map ---
                 var dtoList = pagedProducts.Select(MapToDto).ToList();
 
                 var pagedResult = new PagedResult<ProductDto>

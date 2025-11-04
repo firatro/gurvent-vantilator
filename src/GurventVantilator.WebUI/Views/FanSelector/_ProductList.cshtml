@@ -1,0 +1,102 @@
+@model IEnumerable<GurventVantilator.Application.DTOs.ProductDto>
+@{
+    Layout = null;
+}
+
+@if (Model == null || !Model.Any())
+{
+    <div class="alert alert-warning text-center">
+        <i class="fas fa-info-circle me-1"></i> Uygun fan bulunamadı.
+    </div>
+}
+else
+{
+    <div class="row">
+        <div class="col-12">
+            <div class="table-content table-responsive wow tpfadeUp" data-wow-duration=".9s" data-wow-delay=".3s"
+                style="visibility: visible; animation-duration: 0.9s; animation-delay: 0.3s; animation-name: tpfadeUp;">
+                <table class="table table-hover align-middle text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="product-thumbnail">Görsel</th>
+                            <th class="cart-product-name">Ürün Adı</th>
+                            <th class="product-price">Kod</th>
+                            <th class="product-quantity">Hava Akışı</th>
+                            <th class="product-subtotal">Basınç</th>
+                            <th class="product-subtotal">Besleme</th>
+                            <th class="product-remove">Detay</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <!-- Görsel -->
+                                <td class="product-thumbnail" style="width: 120px;">
+                                    <a href="@Url.Action("Detail", "Product", new { id = item.Id })">
+                                        <img src="http://localhost:5034/img/product/rsd12f.webp" alt="@item.Name"
+                                            class="img-fluid rounded shadow-sm" style="max-height:80px; object-fit:cover;">
+                                    </a>
+                                </td>
+
+                                <!-- Ürün adı -->
+                                <td class="product-name text-start">
+                                    <strong>@item.Name</strong><br />
+                                    <small class="text-muted">@item.ProductCategoryName</small>
+                                </td>
+
+                                <!-- Kod -->
+                                <td class="product-price">
+                                    <span>@item.Code</span>
+                                </td>
+
+                                <!-- Hava Debisi -->
+                                <td class="product-quantity">
+                                    @if (item.AirFlow.HasValue)
+                                    {
+                                        <span>@item.AirFlow @item.AirFlowUnit</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">-</span>
+                                    }
+                                </td>
+
+                                <!-- Basınç -->
+                                <td class="product-subtotal">
+                                    @if (item.Pressure.HasValue)
+                                    {
+                                        <span>@item.Pressure @item.PressureUnit</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">-</span>
+                                    }
+                                </td>
+
+                                <!-- Basınç -->
+                                <td class="product-subtotal">
+                                    @if (item.Voltage.HasValue)
+                                    {
+                                        <span>@item.Voltage V</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-muted">-</span>
+                                    }
+                                </td>
+
+                                <!-- Detay butonu -->
+                                <td class="product-remove">
+                                    <a href="@Url.Action("Detail", "Product", new { id = item.Id })"
+                                        class="it-btn-orange d-md-inline-flex"> DETAY
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}

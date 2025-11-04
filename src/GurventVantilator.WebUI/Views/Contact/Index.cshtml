@@ -3,10 +3,10 @@
 
 @await Component.InvokeAsync("Breadcrumb", new
 {
-    title = "İletişim",
-    pageTitle = "İletişim",
-    pageKey = "Contact",
-    parentUrl = Url.Action("Contact")
+   title = "İletişim",
+pageTitle = "İletişim",
+pageKey = "Contact",
+parentUrl = Url.Action("Contact")
 })
 
 <!-- contact-area-start -->
@@ -34,7 +34,7 @@
                      <div class="it-contact-list">
                         <span>Telefon</span>
                         <p>Tüm sorularınız için bizi arayın.</p>
-                        <a class="border-line-orange" href="tel:+@Model.Contact.Phone">@Model.SiteInfo.Phone1</a>
+                        <a class="border-line-orange" href="tel:@Model.SiteInfo.Phone1">@Model.SiteInfo.Phone1</a>
                      </div>
                   </div>
                   <div class="it-contact-list-box d-flex align-items-center mb-30">
@@ -78,7 +78,8 @@
                      <div class="it-contact-list">
                         <span>Adresimiz</span>
                         <p>Bizi ziyaret edin.</p>
-                        <a class="border-line-orange" href="tel:+000123456789">@Model.SiteInfo.Address</a>
+                        <a class="border-line-orange" target="_blank"
+                           href="https://www.google.com/maps?q=@Uri.EscapeDataString(Model.SiteInfo.Address)">@Model.SiteInfo.Address</a>
                      </div>
                   </div>
                </div>
@@ -87,50 +88,51 @@
          <div class="col-xl-7 col-lg-7">
             <div class="it-contact-form-box z-index-1 p-relative">
                <h4 class="it-contact-form-title mb-10">Bize Ulaşın!</h4>
-               <p>Hassasiyet tutkumuz ve kaliteye olan bağlılığımızla, endüstrileri güçlendiriyor ve ilerlemeyi yönlendiriyoruz.</p>
-               <form action="#">
+               <p>Hassasiyet tutkumuz ve kaliteye olan bağlılığımızla, endüstrileri güçlendiriyor ve ilerlemeyi
+                  yönlendiriyoruz.</p>
+               <form id="homeContactForm">
+                  @Html.AntiForgeryToken()
                   <div class="it-contact-input-wrap">
                      <div class="row gx-30">
-                        <div class="col-sm-6 mb-35">
+                        <div class="col-sm-6 mb-20">
                            <div class="it-contact-input-box">
-                              <input type="text" placeholder="Adınız Soyadınız">
+                              <input type="text" name="FullName" placeholder="Adınız Soyadınız" required>
                            </div>
                         </div>
-                        <div class="col-sm-6 mb-35">
+                        <div class="col-sm-6 mb-20">
                            <div class="it-contact-input-box">
-                              <input type="email" placeholder="E-Postanız">
+                              <input type="email" name="Email" placeholder="E-Posta Adresiniz" required>
                            </div>
                         </div>
-                        <div class="col-sm-6 mb-35">
+                        <div class="col-sm-6 mb-20">
                            <div class="it-contact-input-box">
-                              <input type="text" placeholder="Telefonunuz">
+                              <input type="tel" name="Phone" placeholder="Telefon Numaranız" required pattern="[0-9]+"
+                                 inputmode="numeric" maxlength="15">
                            </div>
                         </div>
                         <div class="col-sm-6 mb-35">
                            <div class="it-contact-input-box">
                               <div class="postbox__select">
-                                 <select>
-                                    <option>Konu*</option>
-                                    <option>Konu 1</option>
-                                    <option>Konu 2</option>
-                                    <option>Konu 3</option>
-                                    <option>Konu 4</option>
-                                    <option>Konu 5</option>
+                                 <select name="Subject" id="subjectSelect">
+                                    <option value="">Konu*</option>
+                                    <option value="Bilgi">Bilgi</option>
+                                    <option value="Sipariş">Sipariş</option>
+                                    <option value="Diğer">Diğer</option>
                                  </select>
                               </div>
                            </div>
                         </div>
-                        <div class="col-sm-12 mb-60">
+                        <div class="col-sm-12 mb-40">
                            <div class="it-contact-input-box">
-                              <textarea placeholder="Mesajınız*"></textarea>
+                              <textarea name="Message" placeholder="Mesajınız*" required></textarea>
                            </div>
                         </div>
                      </div>
                      <div class="it-contact-btn">
                         <button type="submit" class="it-btn-orange">
                            <span>
-                              <span class="text-1">Gönder</span>
-                              <span class="text-2">Gönder</span>
+                              <span class="text-1">GÖNDER</span>
+                              <span class="text-2">GÖNDER</span>
                            </span>
                            <i>
                               <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
@@ -165,13 +167,50 @@
       <div class="row">
          <div class="col-12">
             <div class="it-map-wrap">
-               <iframe
-                  src="@Model.SiteInfo.GoogleMapsApi"
-                  width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"></iframe>
+               <iframe src="@Model.SiteInfo.GoogleMapsApi" width="600" height="450" style="border:0;" allowfullscreen=""
+                  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
          </div>
       </div>
    </div>
 </div>
 <!-- map-area-end -->
+
+<script>
+   document.getElementById("homeContactForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const form = this;
+      const subject = document.getElementById("subjectSelect");
+
+      // Konu kontrolü
+      if (!subject.value) {
+         alert("Lütfen bir konu seçiniz.");
+         subject.focus();
+         return;
+      }
+
+      // Diğer alanların manuel kontrolü (isteğe bağlı)
+      const requiredInputs = form.querySelectorAll("input[required], textarea[required]");
+      for (let input of requiredInputs) {
+         if (!input.value.trim()) {
+            alert(`Lütfen ${input.placeholder.toLowerCase()} alanını doldurunuz.`);
+            input.focus();
+            return;
+         }
+      }
+
+      const formData = new FormData(form);
+      const response = await fetch("@Url.Action("Create", "Contact")", {
+         method: "POST",
+         body: formData
+      });
+
+      if (response.ok) {
+         alert("Mesajınız başarıyla gönderildi!");
+         form.reset();
+      } else {
+         alert("Bir hata oluştu, lütfen tekrar deneyin.");
+      }
+   });
+</script>

@@ -1,0 +1,70 @@
+@{
+    Layout = "_LayoutLogin";
+    ViewData["Title"] = "Sign In";
+}
+
+<div class="center-sign">
+    <a asp-controller="Home" asp-action="Index" class="logo float-start">
+        <img src="~/img/site-info/gurvent-logo.png" class="rounded" height="70" alt="Cosmedest Admin" />
+    </a>
+
+    <div class="panel card-sign">
+        <div class="card-title-sign mt-3 text-end">
+            <h2 class="title text-uppercase font-weight-bold m-0">
+                <i class="bx bx-user-circle me-1 text-6 position-relative top-5"></i> Giriş Yap
+            </h2>
+        </div>
+
+        <div class="card-body">
+
+            @if (ViewData.ModelState.ErrorCount > 0)
+            {
+                <div class="alert alert-danger">
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <div>@error.ErrorMessage</div>
+                    }
+                </div>
+            }
+
+            <form asp-action="Login" asp-controller="Account" method="post">
+                @Html.AntiForgeryToken()
+
+                <div class="form-group mb-3">
+                    <label>Kullanıcı Adı</label>
+                    <div class="input-group">
+                        <input name="userNameOrEmail" type="text" class="form-control form-control-lg" />
+                        <span class="input-group-text">
+                            <i class="bx bx-user text-4"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group mb-3">
+                    <div class="clearfix">
+                        <label class="float-start">Şifre</label>
+                        @* <a href="#" class="float-end text-muted">Şifreni mi unuttun?</a> *@
+                    </div>
+                    <div class="input-group">
+                        <input name="password" type="password" class="form-control form-control-lg" />
+                        <span class="input-group-text">
+                            <i class="bx bx-lock text-4"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    @* <div class="col-sm-8">
+                        <div class="checkbox-custom checkbox-default">
+                            <input id="RememberMe" name="rememberMe" type="checkbox" />
+                            <label for="RememberMe">Beni Hatırla</label>
+                        </div>
+                    </div> *@
+                    <div class="col-sm-12 text-end">
+                        <button type="submit" class="btn btn-primary mt-2">Giriş Yap</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

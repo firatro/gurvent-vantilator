@@ -2,7 +2,8 @@
 @model SliderDto
 
 <div class="it-hero-2-area pt-150">
-    <div class="it-hero-2-overlay fix gray-bg z-index-1" data-background="https://admin.gurvent.firatramazano.com/@Model.ImagePath">
+    <div class="it-hero-2-overlay fix gray-bg z-index-1"
+        data-background="https://admin.gurvent.firatramazano.com/@Model.ImagePath">
         <div class="it-hero-shape-1"><img src="~/img/shape/hero-2-1.png" alt=""></div>
         <div class="container">
             <div class="row align-items-center">
@@ -45,8 +46,8 @@
                                 <a href="@Url.Action("Index", "Product")" class="it-btn-border  wow itfadeUp"
                                     data-wow-duration=".9s" data-wow-delay=".9s">
                                     <span>
-                                        <span class="text-1">Ürünlerimiz</span>
-                                        <span class="text-2">Ürünlerimiz</span>
+                                        <span class="text-1">ÜRÜNLERİMİZ</span>
+                                        <span class="text-2">ÜRÜNLERİMİZ</span>
                                     </span>
                                     <i>
                                         <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
@@ -74,41 +75,41 @@
                         <h4 class="it-contact-form-title mb-10">Bize Ulaşın!</h4>
                         <p>Hassasiyet tutkusu ve kaliteye olan bağlılığımızla endüstrileri güçlendiriyor ve ilerlemeyi
                             yönlendiriyoruz.</p>
-                        <form action="#">
+                        <form id="homeContactForm">
+                            @Html.AntiForgeryToken()
                             <div class="it-contact-input-wrap">
                                 <div class="row gx-30">
                                     <div class="col-sm-6 mb-20">
                                         <div class="it-contact-input-box">
-                                            <input type="text" placeholder="Adınız Soyadınız">
+                                            <input type="text" name="FullName" placeholder="Adınız Soyadınız" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 mb-20">
                                         <div class="it-contact-input-box">
-                                            <input type="email" placeholder="E-Posta Adresiniz">
+                                            <input type="email" name="Email" placeholder="E-Posta Adresiniz" required>
                                         </div>
                                     </div>
                                     <div class="col-sm-6 mb-20">
                                         <div class="it-contact-input-box">
-                                            <input type="text" placeholder="Telefon Numaranız">
+                                            <input type="tel" name="Phone" placeholder="Telefon Numaranız" required
+                                                pattern="[0-9]+" inputmode="numeric" maxlength="15">
                                         </div>
                                     </div>
                                     <div class="col-sm-6 mb-20">
                                         <div class="it-contact-input-box">
                                             <div class="postbox__select">
-                                                <select>
-                                                    <option>Konu*</option>
-                                                    <option>Konu 1</option>
-                                                    <option>Konu 2</option>
-                                                    <option>Konu 3</option>
-                                                    <option>Konu 4</option>
-                                                    <option>Konu 5</option>
+                                                <select name="Subject" id="subjectSelect">
+                                                    <option value="">Konu*</option>
+                                                    <option value="Bilgi">Bilgi</option>
+                                                    <option value="Sipariş">Sipariş</option>
+                                                    <option value="Diğer">Diğer</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-12 mb-40">
                                         <div class="it-contact-input-box">
-                                            <textarea placeholder="Mesajınız*"></textarea>
+                                            <textarea name="Message" placeholder="Mesajınız*" required></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -144,3 +145,42 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById("homeContactForm").addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const form = this;
+        const subject = document.getElementById("subjectSelect");
+
+        // Konu kontrolü
+        if (!subject.value) {
+            alert("Lütfen bir konu seçiniz.");
+            subject.focus();
+            return;
+        }
+
+        // Diğer alanların manuel kontrolü (isteğe bağlı)
+        const requiredInputs = form.querySelectorAll("input[required], textarea[required]");
+        for (let input of requiredInputs) {
+            if (!input.value.trim()) {
+                alert(`Lütfen ${input.placeholder.toLowerCase()} alanını doldurunuz.`);
+                input.focus();
+                return;
+            }
+        }
+
+        const formData = new FormData(form);
+        const response = await fetch("@Url.Action("Create", "Contact")", {
+            method: "POST",
+            body: formData
+        });
+
+        if (response.ok) {
+            alert("Mesajınız başarıyla gönderildi!");
+            form.reset();
+        } else {
+            alert("Bir hata oluştu, lütfen tekrar deneyin.");
+        }
+    });
+</script>

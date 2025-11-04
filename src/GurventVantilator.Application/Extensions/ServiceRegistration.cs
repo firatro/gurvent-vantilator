@@ -38,6 +38,11 @@ namespace GurventVantilator.Application.Extensions
             services.AddScoped<IVersionInfoService, VersionInfoManager>();
             services.AddScoped<IProductService, ProductManager>();
             services.AddScoped<IProductCategoryService, ProductCategoryManager>();
+            services.AddScoped<IProductApplicationService, ProductApplicationManager>();
+            services.AddScoped<IProductTestDataService, ProductTestDataManager>();
+            services.AddScoped<IProductContentFeatureService, ProductContentFeatureManager>();
+            services.AddScoped<IAuthService, AuthManager>();
+            services.AddScoped<IUserService, UserManager>();
 
             return services;
         }

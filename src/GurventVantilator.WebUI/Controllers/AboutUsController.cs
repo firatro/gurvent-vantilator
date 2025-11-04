@@ -1,9 +1,8 @@
 using GurventVantilator.Application.Interfaces;
 using GurventVantilator.Application.Interfaces.Services;
-using GurventVantilator.WebUI.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Cosmedest.WebUI.Controllers
+namespace GurventVantilator.WebUI.Controllers
 {
     public class AboutUsController : BaseController
     {

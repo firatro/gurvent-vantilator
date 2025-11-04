@@ -8,8 +8,8 @@
             <div class="col-xl-12">
                 <div class="it-section-title-box text-center mb-65">
                     <span class="it-section-subtitle">Başlıca Hizmetlerimiz</span>
-                    <h4 class="it-section-title it-split-text it-split-in-right mb-0">The United Way To Find <br>
-                        Specialist Services</h4>
+                    <h4 class="it-section-title it-split-text it-split-in-right mb-0">Başlıca Hizmetlerimize <br>
+                        Göz Atın</h4>
                 </div>
             </div>
         </div>
@@ -30,10 +30,10 @@
                     {
                         <div class="it-about-3-item d-flex justify-content-between align-items-center mb-20">
                             <h4 class="it-about-3-title mb-0"><a class="border-line-white"
-                                    href="service-details.html">@service.Name</a>
+                                    href="@Url.Action("Detail", "Service", new {id = @service.Id})">@service.Name</a>
                             </h4>
                             <div class="it-about-3-arrow">
-                                <a href="service-details.html">
+                                <a href="@Url.Action("Detail", "Service", new {id = @service.Id})">
                                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path

@@ -1,4 +1,6 @@
 using GurventVantilator.Domain.Entities;
+using GurventVantilator.Domain.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace GurventVantilator.Infrastructure.Data
@@ -9,8 +11,6 @@ namespace GurventVantilator.Infrastructure.Data
             : base(options)
         {
         }
-
-        // DbSet'ler
         public DbSet<Service> Services { get; set; }
         public DbSet<ServiceFeature> ServiceFeatures { get; set; }
         public DbSet<ServiceFaq> ServiceFaqs { get; set; }
@@ -39,6 +39,9 @@ namespace GurventVantilator.Infrastructure.Data
         public DbSet<VersionInfo> VersionInfos { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<ProductApplication> ProductApplications { get; set; }
+        public DbSet<ProductTestData> ProductTestDatas { get; set; }
+        public DbSet<ProductContentFeature> ProductContentFeatures { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
@@ -89,6 +92,40 @@ namespace GurventVantilator.Infrastructure.Data
                 .WithMany(m => m.Children)
                 .HasForeignKey(m => m.ParentId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<ApplicationUser>().ToTable("Users");
+            modelBuilder.Entity<ApplicationRole>().ToTable("Roles");
+
+            modelBuilder.Entity<IdentityUserRole<int>>(entity =>
+            {
+                entity.ToTable("UserRoles");
+                entity.HasKey(r => new { r.UserId, r.RoleId });
+            });
+
+            modelBuilder.Entity<IdentityUserLogin<int>>(entity =>
+            {
+                entity.ToTable("UserLogins");
+                entity.HasKey(l => new { l.LoginProvider, l.ProviderKey });
+            });
+
+            modelBuilder.Entity<IdentityUserToken<int>>(entity =>
+            {
+                entity.ToTable("UserTokens");
+                entity.HasKey(t => new { t.UserId, t.LoginProvider, t.Name });
+            });
+
+            modelBuilder.Entity<IdentityRoleClaim<int>>(entity =>
+            {
+                entity.ToTable("RoleClaims");
+                entity.HasKey(rc => rc.Id);
+            });
+
+            modelBuilder.Entity<IdentityUserClaim<int>>(entity =>
+            {
+                entity.ToTable("UserClaims");
+                entity.HasKey(uc => uc.Id);
+            });
+
         }
     }
 }

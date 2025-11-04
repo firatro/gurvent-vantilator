@@ -1,4 +1,3 @@
-using GurventVantilator.AdminUI.Models;
 using GurventVantilator.Application.DTOs;
 using GurventVantilator.Application.Interfaces.Services;
 using GurventVantilator.AdminUI.Mappings;
@@ -13,27 +12,60 @@ namespace GurventVantilator.AdminUI.Controllers
     {
         private readonly IProductService _productService;
         private readonly IProductCategoryService _productCategoryService;
+        private readonly IProductApplicationService _productApplicationService;
         private readonly IFileService _fileService;
+        private readonly IProductTestDataImportService _productTestDataImportService;
 
-        public ProductController(IProductService productService, IProductCategoryService productCategoryService, IFileService fileService)
+        public ProductController(
+            IProductService productService,
+            IProductCategoryService productCategoryService,
+            IProductApplicationService productApplicationService,
+            IFileService fileService, IProductTestDataImportService productTestDataImportService)
         {
             _productService = productService;
             _productCategoryService = productCategoryService;
+            _productApplicationService = productApplicationService;
             _fileService = fileService;
+            _productTestDataImportService = productTestDataImportService;
         }
 
-        public async Task<IActionResult> Index()
+        #region INDEX
+        public async Task<IActionResult> Index(string? search, int? categoryId, bool? isActive)
         {
             var result = await _productService.GetAllAsync();
-            if (!result.Success)
+            if (!result.Success || result.Data == null)
             {
-                TempData["Error"] = result.ErrorMessage;
-                return View(new List<ProductDto>()); // Boş liste dön
+                TempData["Error"] = result.ErrorMessage ?? "Ürün listesi alınamadı.";
+                return View(new List<ProductDto>());
             }
 
-            return View(result.Data);
-        }
+            var list = result.Data.AsEnumerable();
 
+            // 🔹 Arama (isim veya kod)
+            if (!string.IsNullOrWhiteSpace(search))
+                list = list.Where(p =>
+                    (p.Name?.Contains(search, StringComparison.OrdinalIgnoreCase) ?? false) ||
+                    (p.Code?.Contains(search, StringComparison.OrdinalIgnoreCase) ?? false));
+
+            // 🔹 Kategori filtresi
+            if (categoryId.HasValue && categoryId.Value > 0)
+                list = list.Where(p => p.ProductCategoryId == categoryId.Value);
+
+            // 🔹 Durum filtresi
+            if (isActive.HasValue)
+                list = list.Where(p => p.IsActive == isActive.Value);
+
+            // 🔹 Dropdown verileri
+            var categories = await _productCategoryService.GetAllAsync();
+            ViewBag.ProductCategories = categories.Success && categories.Data != null
+                ? new SelectList(categories.Data, "Id", "Name")
+                : new SelectList(Enumerable.Empty<SelectListItem>());
+
+            return View(list.ToList());
+        }
+        #endregion
+
+        #region CREATE
         public async Task<IActionResult> Create()
         {
             await FillDropdowns();
@@ -50,19 +82,20 @@ namespace GurventVantilator.AdminUI.Controllers
                 return View(vm);
             }
 
-            var imagePath = vm.ImageFile != null
-                ? await _fileService.SaveFileAsync(vm.ImageFile, "uploads/images/product", FileType.Image)
-                : null;
+            // 🔹 Dosyaları kaydet
+            var image1Path = await SaveFileIfExists(vm.Image1File, "uploads/images/product", FileType.Image);
+            var image2Path = await SaveFileIfExists(vm.Image2File, "uploads/images/product", FileType.Image);
+            var image3Path = await SaveFileIfExists(vm.Image3File, "uploads/images/product", FileType.Image);
+            var image4Path = await SaveFileIfExists(vm.Image4File, "uploads/images/product", FileType.Image);
+            var image5Path = await SaveFileIfExists(vm.Image5File, "uploads/images/product", FileType.Image);
 
-            var dataSheetPath = vm.DataSheetFile != null
-                ? await _fileService.SaveFileAsync(vm.DataSheetFile, "uploads/datasheets/product", FileType.Pdf)
-                : null;
+            var dataSheetPath = await SaveFileIfExists(vm.DataSheetFile, "uploads/datasheets/product", FileType.Pdf);
+            var model3DPath = await SaveFileIfExists(vm.Model3DFile, "uploads/model3D/product", FileType.Model3D);
+            var testDataPath = await SaveFileIfExists(vm.TestDataFile, "uploads/test-data/product", FileType.TestData);
+            var scaleImagePath = await SaveFileIfExists(vm.ScaleImageFile, "uploads/images/product", FileType.Image);
 
-            var model3DPath = vm.Model3DFile != null
-                ? await _fileService.SaveFileAsync(vm.Model3DFile, "uploads/model3D/product", FileType.Model3D)
-                : null;
-
-            var dto = vm.ToDto(imagePath, dataSheetPath, model3DPath);
+            // 🔹 DTO dönüşümü (testDataPath burada da kaydedilebilir)
+            var dto = vm.ToDto(image1Path, image2Path, image3Path, image4Path, image5Path, dataSheetPath, model3DPath, testDataPath, scaleImagePath);
 
             var result = await _productService.AddAsync(dto);
             if (!result.Success)
@@ -72,10 +105,26 @@ namespace GurventVantilator.AdminUI.Controllers
                 return View(vm);
             }
 
-            TempData["SuccessMessage"] = "Kayıt başarılı bir şekilde eklendi.";
+            // 🔹 Test datası dosyası yüklendiyse Excel'den veritabanına aktar
+            if (!string.IsNullOrEmpty(testDataPath))
+            {
+                try
+                {
+                    await _productTestDataImportService.ImportAsync(result.Data.Id, testDataPath);
+                }
+                catch (Exception ex)
+                {
+                    TempData["ErrorMessage"] = "Ürün eklendi ancak test datası içeri alınamadı: " + ex.Message;
+                }
+            }
+
+            TempData["SuccessMessage"] = "Ürün başarıyla eklendi.";
             return RedirectToAction(nameof(Index));
         }
 
+        #endregion
+
+        #region EDIT
         public async Task<IActionResult> Edit(int productId)
         {
             var result = await _productService.GetByIdAsync(productId);
@@ -103,19 +152,19 @@ namespace GurventVantilator.AdminUI.Controllers
 
             var existing = existingResult.Data;
 
-            var imagePath = vm.ImageFile != null
-                ? await _fileService.SaveFileAsync(vm.ImageFile, "uploads/images/product", FileType.Image)
-                : existing.ImagePath;
+            // 🔹 Dosya güncelleme
+            var image1Path = await SaveFileIfExists(vm.Image1File, "uploads/images/product", FileType.Image, existing.Image1Path);
+            var image2Path = await SaveFileIfExists(vm.Image2File, "uploads/images/product", FileType.Image, existing.Image2Path);
+            var image3Path = await SaveFileIfExists(vm.Image3File, "uploads/images/product", FileType.Image, existing.Image3Path);
+            var image4Path = await SaveFileIfExists(vm.Image4File, "uploads/images/product", FileType.Image, existing.Image4Path);
+            var image5Path = await SaveFileIfExists(vm.Image5File, "uploads/images/product", FileType.Image, existing.Image5Path);
+            var dataSheetPath = await SaveFileIfExists(vm.DataSheetFile, "uploads/datasheets/product", FileType.Pdf, existing.DataSheetPath);
+            var model3DPath = await SaveFileIfExists(vm.Model3DFile, "uploads/model3D/product", FileType.Model3D, existing.Model3DPath);
+            var testDataPath = await SaveFileIfExists(vm.TestDataFile, "uploads/test-data/product", FileType.TestData, existing.TestDataPath);
+            var scaleImagePath = await SaveFileIfExists(vm.ScaleImageFile, "uploads/images/product", FileType.Image, existing.ScaleImagePath);
 
-            var dataSheetPath = vm.DataSheetFile != null
-                ? await _fileService.SaveFileAsync(vm.DataSheetFile, "uploads/datasheets/product", FileType.Pdf)
-                : existing.DataSheetPath;
-
-            var model3DPath = vm.Model3DFile != null
-                ? await _fileService.SaveFileAsync(vm.Model3DFile, "uploads/model3D/product", FileType.Model3D)
-                : existing.Model3DPath;
-
-            var dto = vm.ToDto(imagePath, dataSheetPath, model3DPath, existing.CreatedAt);
+            // 🔹 DTO dönüşümü
+            var dto = vm.ToDto(image1Path, image2Path, image3Path, image4Path, image5Path, dataSheetPath, model3DPath, testDataPath, scaleImagePath, existing.CreatedAt);
 
             var result = await _productService.UpdateAsync(dto);
             if (!result.Success)
@@ -125,49 +174,89 @@ namespace GurventVantilator.AdminUI.Controllers
                 return View(vm);
             }
 
-            TempData["SuccessMessage"] = "Kayıt başarılı bir şekilde güncellendi.";
+            // 🔹 Test datası dosyası yüklendiyse, Excel'den yeniden veritabanına aktar
+            if (!string.IsNullOrEmpty(testDataPath))
+            {
+                try
+                {
+                    await _productTestDataImportService.ImportAsync(vm.Id, testDataPath);
+                    TempData["SuccessMessage"] = "Ürün ve test verileri başarıyla güncellendi.";
+                }
+                catch (Exception ex)
+                {
+                    TempData["ErrorMessage"] = "Ürün güncellendi ancak test datası içeri alınamadı: " + ex.Message;
+                }
+            }
+            else
+            {
+                TempData["SuccessMessage"] = "Ürün başarıyla güncellendi.";
+            }
+
             return RedirectToAction(nameof(Index));
         }
 
+        #endregion
+
+        #region DELETE
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int productId)
         {
-            var result = await _productService.DeleteAsync(productId);
-            if (!result.Success)
+            var productResult = await _productService.GetByIdAsync(productId);
+            if (!productResult.Success || productResult.Data == null)
             {
-                TempData["Error"] = result.ErrorMessage;
+                TempData["Error"] = "Ürün bulunamadı.";
                 return RedirectToAction(nameof(Index));
             }
 
-            // Silinen productun görsellerini de temizle
-            if (result.Success)
+            var result = await _productService.DeleteAsync(productId);
+            if (!result.Success)
             {
-                var product = await _productService.GetByIdAsync(productId);
-                if (product.Success && product.Data != null)
-                {
-                    _fileService.DeleteFile(product.Data.ImagePath, "uploads/images/product");
-                    _fileService.DeleteFile(product.Data.DataSheetPath, "uploads/datasheets/product");
-                    _fileService.DeleteFile(product.Data.Model3DPath, "uploads/model3D/product");
-                }
+                TempData["Error"] = result.ErrorMessage ?? "Ürün silinemedi.";
+                return RedirectToAction(nameof(Index));
             }
 
-            TempData["SuccessMessage"] = "Kayıt başarılı bir şekilde silindi.";
+            // 🔹 Dosyaları temizle
+            var p = productResult.Data;
+            _fileService.DeleteFile(p.Image1Path, "uploads/images/product");
+            _fileService.DeleteFile(p.Image2Path, "uploads/images/product");
+            _fileService.DeleteFile(p.Image3Path, "uploads/images/product");
+            _fileService.DeleteFile(p.Image4Path, "uploads/images/product");
+            _fileService.DeleteFile(p.Image5Path, "uploads/images/product");
+
+            _fileService.DeleteFile(p.DataSheetPath, "uploads/datasheets/product");
+            _fileService.DeleteFile(p.Model3DPath, "uploads/model3D/product");
+            _fileService.DeleteFile(p.TestDataPath, "uploads/test-data/product");
+            _fileService.DeleteFile(p.ScaleImagePath, "uploads/images/product");
+
+            TempData["SuccessMessage"] = "Ürün başarıyla silindi.";
             return RedirectToAction(nameof(Index));
+        }
+        #endregion
+
+        #region HELPERS
+        private async Task<string?> SaveFileIfExists(IFormFile? file, string folder, FileType type, string? existingPath = null)
+        {
+            if (file != null)
+                return await _fileService.SaveFileAsync(file, folder, type);
+
+            return existingPath;
         }
 
         private async Task FillDropdowns()
         {
+            // 🔹 Kategoriler
             var productCategoryList = await _productCategoryService.GetAllAsync();
-            if (productCategoryList.Success && productCategoryList.Data != null)
-            {
-                ViewBag.ProductCategoryList = new SelectList(productCategoryList.Data, "Id", "Name");
-            }
-            else
-            {
-                ViewBag.ProductCategoryList = new SelectList(Enumerable.Empty<SelectListItem>());
-                ViewBag.ProductCategoryError = productCategoryList.ErrorMessage ?? "Kategori listesi yüklenemedi.";
-            }
+            ViewBag.ProductCategoryList = productCategoryList.Success && productCategoryList.Data != null
+                ? new SelectList(productCategoryList.Data, "Id", "Name")
+                : new SelectList(Enumerable.Empty<SelectListItem>());
+
+            // 🔹 Uygulama Alanları
+            var appList = await _productApplicationService.GetAllAsync();
+            ViewBag.ProductApplications = appList.Success && appList.Data != null
+                ? new MultiSelectList(appList.Data, "Id", "Name")
+                : new MultiSelectList(Enumerable.Empty<SelectListItem>());
         }
+        #endregion
     }
 }

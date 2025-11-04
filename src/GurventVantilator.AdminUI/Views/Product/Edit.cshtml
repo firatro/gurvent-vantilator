@@ -2,11 +2,12 @@
 @model ProductEditViewModel
 
 @{
-    ViewData[index: "Title"] = "Ürün Güncelle";
+    ViewData["Title"] = "Ürün Güncelle";
 }
 
 <form class="ecommerce-form action-buttons-fixed" asp-action="Edit" method="post" enctype="multipart/form-data">
     <input type="hidden" asp-for="Id" />
+
     <div class="row mt-2">
         <div class="col">
             <section class="card card-modern card-big-info">
@@ -15,162 +16,336 @@
                         <div class="col-lg-2-5 col-xl-1-5">
                             <i class="card-big-info-icon bx bx-spreadsheet"></i>
                             <h2 class="card-big-info-title">Ürün Güncelle</h2>
-                            <p class="card-big-info-desc">Ürün güncellemek için bilgileri değiştirin.</p>
+                            <p class="card-big-info-desc">Ürün bilgilerini düzenleyin ve kaydedin.</p>
                         </div>
+
                         <div class="col-lg-3-5 col-xl-4-5">
+
+                            <!-- Ürün Adı -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Name">Ürün Adı</label>
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Ürün Adı</label>
                                 <div class="col-lg-7 col-xl-6">
-                                    <input type="text" asp-for="Name" class="form-control form-control-modern" />
+                                    <input asp-for="Name" class="form-control form-control-modern" />
                                     <span asp-validation-for="Name" class="badge badge-danger"></span>
                                 </div>
                             </div>
 
+                            <!-- Ürün Kodu -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Code">Ürün Kodu</label>
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Ürün Kodu</label>
                                 <div class="col-lg-7 col-xl-6">
-                                    <input type="text" asp-for="Code" class="form-control form-control-modern" />
+                                    <input asp-for="Code" class="form-control form-control-modern" />
                                     <span asp-validation-for="Code" class="badge badge-danger"></span>
                                 </div>
                             </div>
 
+                            <!-- Açıklama -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Description">Açıklama</label>
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Açıklama</label>
                                 <div class="col-lg-7 col-xl-6">
-                                    <textarea asp-for="Description" rows="4" class="form-control form-control-modern"></textarea>
-                                    <span asp-validation-for="Description" class="badge badge-danger"></span>
+                                    <textarea asp-for="Description" rows="4"
+                                        class="form-control form-control-modern"></textarea>
                                 </div>
                             </div>
 
+                            <!-- Kategori -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
-                                    asp-for="ProductCategoryId">Kategori</label>
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Kategori</label>
                                 <div class="col-lg-7 col-xl-6">
-                                    <select asp-for="ProductCategoryId" class="form-control populate" data-plugin-selectTwo
-                                        asp-items="ViewBag.ProductCategoryList">
-                                        <option value="0">Seçim Yapınız</option>
+                                    <select asp-for="ProductCategoryId" asp-items="ViewBag.ProductCategoryList"
+                                        class="form-control form-control-modern">
+                                        <option value="">Kategori Seçiniz</option>
                                     </select>
-                                    <span asp-validation-for="ProductCategoryId" class="badge badge-danger"></span>
                                 </div>
                             </div>
 
+                            <!-- Uygulama Alanları -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Diameter">Çap</label>
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Uygulama
+                                    Alanları</label>
                                 <div class="col-lg-7 col-xl-6">
-                                    <input asp-for="Diameter" class="form-control form-control-modern" />
+                                    <select asp-for="SelectedApplicationIds" asp-items="ViewBag.ProductApplications"
+                                        class="form-control form-control-modern" multiple size="5"></select>
+                                    <small class="text-muted d-block mt-1">Birden fazla uygulama alanı
+                                        seçebilirsiniz.</small>
                                 </div>
                             </div>
 
+                            <!-- Çap -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Hava Debisi (Min - Max)</label>
-                                <div class="col-lg-3">
-                                    <input asp-for="AirFlowMin" class="form-control form-control-modern" placeholder="Min" />
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Çap</label>
+                                <div class="col-lg-4 col-xl-4">
+                                    <input asp-for="Diameter" class="form-control form-control-modern"
+                                        placeholder="Değer giriniz" />
                                 </div>
-                                <div class="col-lg-3">
-                                    <input asp-for="AirFlowMax" class="form-control form-control-modern" placeholder="Max" />
+                                <div class="col-lg-3 col-xl-2">
+                                    <select asp-for="DiameterUnit" class="form-control form-control-modern">
+                                        <option value="mm">mm</option>
+                                        <option value="cm">cm</option>
+                                        <option value="inch">inch</option>
+                                    </select>
                                 </div>
                             </div>
 
+                            <!-- Hava Debisi -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Basınç (Min - Max)</label>
-                                <div class="col-lg-3">
-                                    <input asp-for="PressureMin" class="form-control form-control-modern" placeholder="Min" />
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Hava Debisi</label>
+                                <div class="col-lg-4 col-xl-4">
+                                    <input asp-for="AirFlow" class="form-control form-control-modern"
+                                        placeholder="AirFlow" />
                                 </div>
-                                <div class="col-lg-3">
-                                    <input asp-for="PressureMax" class="form-control form-control-modern" placeholder="Max" />
+                                <div class="col-lg-3 col-xl-2">
+                                    <select asp-for="AirFlowUnit" class="form-control form-control-modern">
+                                        <option value="m³/h">m³/h</option>
+                                        <option value="m³/s">m³/s</option>
+                                        <option value="L/s">L/s</option>
+                                    </select>
                                 </div>
                             </div>
 
+                            <!-- Basınç -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Power">Güç (kW)</label>
-                                <div class="col-lg-7 col-xl-6">
-                                    <input asp-for="Power" class="form-control form-control-modern" />
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Basınç</label>
+                                <div class="col-lg-4 col-xl-4">
+                                    <input asp-for="Pressure" class="form-control form-control-modern"
+                                        placeholder="Pressure" />
+                                </div>
+                                <div class="col-lg-3 col-xl-2">
+                                    <select asp-for="PressureUnit" class="form-control form-control-modern">
+                                        <option value="Pa">Pa</option>
+                                        <option value="mmH₂O">mmH₂O</option>
+                                        <option value="inH₂O">inH₂O</option>
+                                    </select>
                                 </div>
                             </div>
 
+                            <!-- Güç -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Voltage">Voltaj</label>
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Güç</label>
+                                <div class="col-lg-4 col-xl-4">
+                                    <input asp-for="Power" class="form-control form-control-modern"
+                                        placeholder="Değer giriniz" />
+                                </div>
+                                <div class="col-lg-3 col-xl-2">
+                                    <select asp-for="PowerUnit" class="form-control form-control-modern">
+                                        <option value="kW">kW</option>
+                                        <option value="W">W</option>
+                                        <option value="HP">HP</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Voltaj / Frekans / Devir / Ses -->
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Voltaj (V)</label>
                                 <div class="col-lg-7 col-xl-6">
                                     <input asp-for="Voltage" class="form-control form-control-modern" />
                                 </div>
                             </div>
 
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Frequency">Frekans</label>
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Frekans (Hz)</label>
                                 <div class="col-lg-7 col-xl-6">
                                     <input asp-for="Frequency" class="form-control form-control-modern" />
                                 </div>
                             </div>
 
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Speed">Devir (RPM)</label>
-                                <div class="col-lg-7 col-xl-6">
-                                    <input asp-for="Speed" class="form-control form-control-modern" />
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Devir</label>
+                                <div class="col-lg-4 col-xl-4">
+                                    <input asp-for="Speed" class="form-control form-control-modern"
+                                        placeholder="Değer giriniz" />
+                                </div>
+                                <div class="col-lg-3 col-xl-2">
+                                    <select asp-for="SpeedUnit" class="form-control form-control-modern">
+                                        <option value="rpm">rpm</option>
+                                        <option value="rps">rps</option>
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="NoiseLevel">Ses Seviyesi (dB)</label>
-                                <div class="col-lg-7 col-xl-6">
-                                    <input asp-for="NoiseLevel" class="form-control form-control-modern" />
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Ses Seviyesi</label>
+                                <div class="col-lg-4 col-xl-4">
+                                    <input asp-for="NoiseLevel" class="form-control form-control-modern"
+                                        placeholder="Değer giriniz" />
+                                </div>
+                                <div class="col-lg-3 col-xl-2">
+                                    <select asp-for="NoiseLevelUnit" class="form-control form-control-modern">
+                                        <option value="dB(A)">dB(A)</option>
+                                        <option value="dB">dB</option>
+                                    </select>
                                 </div>
                             </div>
 
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
-                                    asp-for="ImageFile">Ana Görsel</label>
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Speed Control
+                                    Method</label>
                                 <div class="col-lg-7 col-xl-6">
-                                    @if (!string.IsNullOrEmpty(Model.ImagePath))
+                                    <select asp-for="SpeedControl" class="form-control form-control-modern">
+                                        <option value="No Regulation">No Regulation</option>
+                                        <option value="V - Voltage">V - Voltage</option>
+                                        <option value="Hz - Frequency">Hz - Frequency</option>
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">İçerik Başlık</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="ContentTitle" class="form-control form-control-modern" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">İçerik Detay</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <textarea asp-for="ContentDescription" class="form-control form-control-modern"
+                                        rows="4"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Ana Görsel -->
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Görsel</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    @if (!string.IsNullOrEmpty(Model.Image1Path))
                                     {
-                                        <img src="@Model.ImagePath" alt="Firma Logosu" style="max-width:100px;"
-                                            class="img-thumbnail mb-2" />
+                                        <img src="@Model.Image1Path" alt="Ürün Görseli" class="img-thumbnail mb-2"
+                                            style="max-width: 100px;" />
                                     }
-                                    <input type="file" asp-for="ImageFile" class="form-control form-control-modern"
+                                    <input type="file" asp-for="Image1File" class="form-control form-control-modern"
                                         accept=".jpg,.jpeg,.png,.webp" />
-                                    <input type="hidden" asp-for="ImageFile" />
-                                    <span asp-validation-for="ImageFile" class="badge badge-danger"></span>
-                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: JPG, PNG, WEBP. Maks 10MB.</small>
+                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: JPG, PNG, WEBP. Maks
+                                        10MB.</small>
                                 </div>
                             </div>
-
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="DataSheetFile">Teknik Döküman (PDF)</label>
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Görsel</label>
                                 <div class="col-lg-7 col-xl-6">
-                                    <input type="file" asp-for="DataSheetFile" class="form-control form-control-modern" accept=".pdf" />
-                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: PDF. Maks 10MB.</small>
+                                    @if (!string.IsNullOrEmpty(Model.Image2Path))
+                                    {
+                                        <img src="@Model.Image2Path" alt="Ürün Görseli" class="img-thumbnail mb-2"
+                                            style="max-width: 100px;" />
+                                    }
+                                    <input type="file" asp-for="Image2File" class="form-control form-control-modern"
+                                        accept=".jpg,.jpeg,.png,.webp" />
+                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: JPG, PNG, WEBP. Maks
+                                        10MB.</small>
                                 </div>
                             </div>
-
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Model3DFile">3D Model</label>
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Görsel</label>
                                 <div class="col-lg-7 col-xl-6">
-                                    <input type="file" asp-for="Model3DFile" class="form-control form-control-modern" accept=".glb,.stl" />
-                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: GLB, STL. Maks 10MB.</small>
+                                    @if (!string.IsNullOrEmpty(Model.Image3Path))
+                                    {
+                                        <img src="@Model.Image3Path" alt="Ürün Görseli" class="img-thumbnail mb-2"
+                                            style="max-width: 100px;" />
+                                    }
+                                    <input type="file" asp-for="Image3File" class="form-control form-control-modern"
+                                        accept=".jpg,.jpeg,.png,.webp" />
+                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: JPG, PNG, WEBP. Maks
+                                        10MB.</small>
                                 </div>
                             </div>
-
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="IsActive">Durum</label>
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Görsel</label>
                                 <div class="col-lg-7 col-xl-6">
-                                    <input type="checkbox" asp-for="IsActive" />
-                                    <label class="ms-2">Aktif</label>
+                                    @if (!string.IsNullOrEmpty(Model.Image4Path))
+                                    {
+                                        <img src="@Model.Image4Path" alt="Ürün Görseli" class="img-thumbnail mb-2"
+                                            style="max-width: 100px;" />
+                                    }
+                                    <input type="file" asp-for="Image4File" class="form-control form-control-modern"
+                                        accept=".jpg,.jpeg,.png,.webp" />
+                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: JPG, PNG, WEBP. Maks
+                                        10MB.</small>
+                                </div>
+                            </div>
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Görsel</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    @if (!string.IsNullOrEmpty(Model.Image5Path))
+                                    {
+                                        <img src="@Model.Image5Path" alt="Ürün Görseli" class="img-thumbnail mb-2"
+                                            style="max-width: 100px;" />
+                                    }
+                                    <input type="file" asp-for="Image5File" class="form-control form-control-modern"
+                                        accept=".jpg,.jpeg,.png,.webp" />
+                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: JPG, PNG, WEBP. Maks
+                                        10MB.</small>
                                 </div>
                             </div>
 
+                            <!-- Teknik Döküman -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Order">Sıra</label>
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Teknik Döküman
+                                    (PDF)</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="file" asp-for="DataSheetFile" class="form-control form-control-modern"
+                                        accept=".pdf" />
+                                </div>
+                            </div>
+
+                            <!-- 3D Model -->
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">3D Model</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="file" asp-for="Model3DFile" class="form-control form-control-modern"
+                                        accept=".glb,.stl" />
+                                </div>
+                            </div>
+
+                            <!-- Test Data -->
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Test Verileri</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="file" asp-for="TestDataFile" class="form-control form-control-modern"
+                                        accept=".xls,.xlsx" />
+                                </div>
+                            </div>
+
+                            <!-- Scale Data -->
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Ölçü Görsel</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    @if (!string.IsNullOrEmpty(Model.ScaleImagePath))
+                                    {
+                                        <img src="@Model.ScaleImagePath" alt="Ürün Görseli" class="img-thumbnail mb-2"
+                                            style="max-width: 100px;" />
+                                    }
+                                    <input type="file" asp-for="ScaleImageFile" class="form-control form-control-modern"
+                                        accept=".jpg,.jpeg,.png,.webp" />
+                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: JPG, PNG, WEBP. Maks
+                                        10MB.</small>
+                                </div>
+                            </div>
+
+                            <!-- Durum -->
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Durum</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input type="checkbox" asp-for="IsActive" /> <label class="ms-2">Aktif</label>
+                                </div>
+                            </div>
+
+                            <!-- Sıra -->
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Sıra</label>
                                 <div class="col-lg-7 col-xl-6">
                                     <input asp-for="Order" type="number" class="form-control form-control-modern" />
-                                    <span asp-validation-for="Order" class="badge badge-danger"></span>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
             </section>
         </div>
     </div>
+
+    <!-- Aksiyon Butonları -->
     <div class="row action-buttons">
         <div class="col-12 col-md-auto">
             <button type="submit"

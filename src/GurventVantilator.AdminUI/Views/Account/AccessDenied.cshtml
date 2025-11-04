@@ -1,0 +1,17 @@
+@{
+    Layout = "_LayoutLogin";
+    ViewData["Title"] = "Access Denied";
+}
+
+<section class="body-sign">
+    <div class="center-sign">
+        <div class="panel card-sign">
+            <div class="card-body text-center">
+                <i class="bx bx-lock-alt text-danger" style="font-size:48px"></i>
+                <h3 class="mt-3">Erişim Engellendi</h3>
+                <p>Bu sayfaya erişim yetkiniz bulunmamaktadır.</p>
+                <a asp-action="Login" asp-controller="Account" class="btn btn-primary mt-2">Giriş Sayfasına Dön</a>
+            </div>
+        </div>
+    </div>
+</section>

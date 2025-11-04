@@ -1,363 +1,407 @@
 is_global = true
 build_property.TargetFramework = net8.0
-build_property.TargetFramework = net8.0
-build_property.TargetPlatformMinVersion = 
 build_property.TargetPlatformMinVersion = 
 build_property.UsingMicrosoftNETSdkWeb = true
-build_property.UsingMicrosoftNETSdkWeb = true
-build_property.ProjectTypeGuids = 
 build_property.ProjectTypeGuids = 
 build_property.InvariantGlobalization = 
-build_property.InvariantGlobalization = 
-build_property.PlatformNeutralAssembly = 
 build_property.PlatformNeutralAssembly = 
 build_property.EnforceExtendedAnalyzerRules = 
-build_property.EnforceExtendedAnalyzerRules = 
-build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = GurventVantilator.AdminUI
 build_property.RootNamespace = GurventVantilator.AdminUI
-build_property.ProjectDir = /Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/
+build_property.ProjectDir = /Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI
+build_property.MSBuildProjectDirectory = /Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/AboutUs/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/AboutUs/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWJvdXRVcy9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/BeforeAfter/Create.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Account/AccessDenied.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9BY2Nlc3NEZW5pZWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Mb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Account/TestLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9UZXN0TG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/BeforeAfter/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmVmb3JlQWZ0ZXIvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/BeforeAfter/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/BeforeAfter/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmVmb3JlQWZ0ZXIvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/BeforeAfter/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/BeforeAfter/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmVmb3JlQWZ0ZXIvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Blog/Create.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Blog/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZy9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Blog/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Blog/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZy9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Blog/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Blog/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQmxvZy9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Category/Create.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Category/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcnkvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Category/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Category/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcnkvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Category/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Category/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2F0ZWdvcnkvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ChatBotQA/Create.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ChatBotQA/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2hhdEJvdFFBL0NyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ChatBotQA/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ChatBotQA/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2hhdEJvdFFBL0VkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ChatBotQA/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ChatBotQA/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2hhdEJvdFFBL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Comment/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Comment/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29tbWVudC9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Company/Create.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Company/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29tcGFueS9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Company/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Company/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29tcGFueS9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Company/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Company/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29tcGFueS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Contact/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Contact/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29udGFjdC9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Contact/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Contact/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29udGFjdC9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Faq/Create.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Faq/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmFxL0NyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Faq/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Faq/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmFxL0VkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Faq/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Faq/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRmFxL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Home/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Home/Partials/_HomeLatestBlogs.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Home/Partials/_HomeLatestBlogs.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9QYXJ0aWFscy9fSG9tZUxhdGVzdEJsb2dzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Home/Partials/_HomeLatestContacts.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Home/Partials/_HomeLatestContacts.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9QYXJ0aWFscy9fSG9tZUxhdGVzdENvbnRhY3RzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Home/Partials/_HomeLatestServices.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Home/Partials/_HomeLatestServices.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9QYXJ0aWFscy9fSG9tZUxhdGVzdFNlcnZpY2VzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Home/Partials/_HomeLatestTeamMembers.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Home/Partials/_HomeLatestTeamMembers.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9QYXJ0aWFscy9fSG9tZUxhdGVzdFRlYW1NZW1iZXJzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Home/Partials/_HomeStats.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Home/Partials/_HomeStats.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9QYXJ0aWFscy9fSG9tZVN0YXRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Menu/Create.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Menu/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudS9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Menu/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Menu/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudS9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Menu/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Menu/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/PageImage/Create.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/PageImage/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGFnZUltYWdlL0NyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/PageImage/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/PageImage/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGFnZUltYWdlL0VkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/PageImage/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/PageImage/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGFnZUltYWdlL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Product/Create.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Product/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdC9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Product/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Product/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdC9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Product/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Product/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdC9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ProductCategory/Create.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ProductApplication/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdEFwcGxpY2F0aW9uL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ProductApplication/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdEFwcGxpY2F0aW9uL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ProductApplication/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdEFwcGxpY2F0aW9uL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ProductCategory/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdENhdGVnb3J5L0NyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ProductCategory/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ProductCategory/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdENhdGVnb3J5L0VkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ProductCategory/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ProductCategory/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdENhdGVnb3J5L0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Project/Create.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ProductContentFeature/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdENvbnRlbnRGZWF0dXJlL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ProductContentFeature/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdENvbnRlbnRGZWF0dXJlL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ProductContentFeature/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZHVjdENvbnRlbnRGZWF0dXJlL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Profile/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvZmlsZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Project/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvamVjdC9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Project/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Project/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvamVjdC9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Project/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Project/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvamVjdC9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ProjectFeature/Create.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ProjectFeature/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvamVjdEZlYXR1cmUvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ProjectFeature/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ProjectFeature/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvamVjdEZlYXR1cmUvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ProjectFeature/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ProjectFeature/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUHJvamVjdEZlYXR1cmUvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/SeoSetting/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/SeoSetting/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VvU2V0dGluZy9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Service/Create.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Service/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VydmljZS9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Service/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Service/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VydmljZS9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Service/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Service/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VydmljZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ServiceFaq/Create.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ServiceFaq/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VydmljZUZhcS9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ServiceFaq/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ServiceFaq/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VydmljZUZhcS9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ServiceFaq/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ServiceFaq/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VydmljZUZhcS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ServiceFeature/Create.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ServiceFeature/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VydmljZUZlYXR1cmUvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ServiceFeature/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ServiceFeature/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VydmljZUZlYXR1cmUvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ServiceFeature/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/ServiceFeature/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VydmljZUZlYXR1cmUvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Shared/Error.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Shared/Partials/_ContentHeader.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Shared/Partials/_ContentHeader.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL1BhcnRpYWxzL19Db250ZW50SGVhZGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Shared/Partials/_Header.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Shared/Partials/_Header.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL1BhcnRpYWxzL19IZWFkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Shared/Partials/_Notifications.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Shared/Partials/_Notifications.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL1BhcnRpYWxzL19Ob3RpZmljYXRpb25zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Shared/Partials/_Sidebar.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Shared/Partials/_Sidebar.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL1BhcnRpYWxzL19TaWRlYmFyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Shared/Partials/_SidebarRight.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Shared/Partials/_SidebarRight.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL1BhcnRpYWxzL19TaWRlYmFyUmlnaHQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Shared/_ValidationScriptsPartial.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Shared/_LayoutLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXRMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/SiteInfo/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/SiteInfo/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2l0ZUluZm8vRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Slider/Create.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Slider/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2xpZGVyL0NyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Slider/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Slider/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2xpZGVyL0VkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Slider/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Slider/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2xpZGVyL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/SocialMediaInfo/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/SocialMediaInfo/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU29jaWFsTWVkaWFJbmZvL0VkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Tag/Create.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Tag/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGFnL0NyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Tag/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Tag/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGFnL0VkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Tag/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Tag/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGFnL0luZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/TeamMember/Create.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/TeamMember/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVhbU1lbWJlci9DcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/TeamMember/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/TeamMember/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVhbU1lbWJlci9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/TeamMember/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/TeamMember/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVhbU1lbWJlci9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Testimonial/Create.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Testimonial/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVzdGltb25pYWwvQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Testimonial/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Testimonial/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVzdGltb25pYWwvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Testimonial/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Testimonial/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVGVzdGltb25pYWwvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/VersionInfo/Create.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/User/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/User/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVXNlci9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/VersionInfo/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVmVyc2lvbkluZm8vQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/VersionInfo/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/VersionInfo/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVmVyc2lvbkluZm8vRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/VersionInfo/Index.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/VersionInfo/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVmVyc2lvbkluZm8vSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/VisionMission/Edit.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/VisionMission/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVmlzaW9uTWlzc2lvbi9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/_ViewImports.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/_ViewStart.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Users/firatramazano/Development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Shared/_Layout.cshtml]
+[/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-mnaryyjr8k

@@ -3,42 +3,66 @@ using FluentValidation.AspNetCore;
 using GurventVantilator.AdminUI.Validators.Company;
 using GurventVantilator.Application.Extensions;
 using GurventVantilator.Application.Validators;
+using GurventVantilator.Domain.Identity;
 using GurventVantilator.Infrastructure.Data;
 using GurventVantilator.Infrastructure.Extensions;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// DbContext kaydı
+// -------------------- DATABASE --------------------
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// -------------------- APPLICATION & INFRASTRUCTURE --------------------
 builder.Services.AddApplicationServices();
-
 builder.Services.AddInfrastructureServices(builder.Configuration);
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
+// -------------------- IDENTITY COOKIE SETTINGS --------------------
+// Kullanıcı giriş yapmamışsa otomatik yönlendirme ayarları
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Account/Login";              // Login sayfası
+    options.AccessDeniedPath = "/Account/AccessDenied"; // Yetki yoksa
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(60);  // Oturum süresi
+    options.SlidingExpiration = true;                   // Aktif kullanımda süre yenilensin
+    options.Cookie.HttpOnly = true;
+    options.Cookie.Name = "GurventVantilator.Auth";             // Cookie ismi
+});
 
-// FluentValidation entegrasyonu (yeni yöntem)
+// -------------------- CONTROLLERS --------------------
+builder.Services.AddControllersWithViews(options =>
+{
+    // Tüm controller'lara global Authorize filtresi uygula
+    var policy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+
+    options.Filters.Add(new AuthorizeFilter(policy));
+});
+
+// -------------------- FLUENT VALIDATION --------------------
 builder.Services.AddFluentValidationAutoValidation(options =>
 {
     options.DisableDataAnnotationsValidation = true;
-}).AddFluentValidationClientsideAdapters();
+})
+.AddFluentValidationClientsideAdapters();
 
-// Validatorların bulunduğu assembly’i tara
+// Validatorların bulunduğu assembly’leri tara
 builder.Services.AddValidatorsFromAssemblyContaining<CompanyCreateViewModelValidator>();
 builder.Services.AddValidatorsFromAssemblyContaining<VersionInfoDtoValidator>();
-// Add services to the container.
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// -------------------- MIDDLEWARE PIPELINE --------------------
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -47,10 +71,25 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Authentication → Authorization sırası ÖNEMLİ
+app.UseAuthentication();
 app.UseAuthorization();
 
+// -------------------- ROUTING --------------------
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+// -------------------- DATABASE SEED --------------------
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var db = services.GetRequiredService<AppDbContext>();
+    var roleManager = services.GetRequiredService<RoleManager<ApplicationRole>>();
+    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+
+    await DbSeeder.SeedAsync(db, roleManager, userManager);
+}
+
 app.Run();
+

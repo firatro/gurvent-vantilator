@@ -21,6 +21,7 @@ namespace GurventVantilator.Domain.Entities
         public string TaxOffice { get; set; } = string.Empty;
         public string WaNumber { get; set; } = string.Empty;
         public string TNumber { get; set; } = string.Empty;
+        public string? WaSupportNumber { get; set; } = string.Empty;
         public string? LogoPath { get; set; }
 
     }

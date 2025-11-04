@@ -1,0 +1,16 @@
+@{
+    Layout = null;
+}
+
+<form asp-action="Login" method="post">
+    <label>Kullanıcı veya Email</label><br />
+    <input name="userNameOrEmail" value="DevAdmin" /><br />
+
+    <label>Şifre</label><br />
+    <input name="password" type="password" value="DevAdmin!123" /><br />
+
+    <label>Beni Hatırla</label>
+    <input type="checkbox" name="rememberMe" checked /><br /><br />
+
+    <button type="submit">Giriş Yap</button>
+</form>
