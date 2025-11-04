@@ -1,16 +1,19 @@
 using GurventVantilator.Domain.Entities;
-using GurventVantilator.Domain.Identity;
+using GurventVantilator.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace GurventVantilator.Infrastructure.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, int>
     {
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
         {
         }
+
+        #region DbSets
         public DbSet<Service> Services { get; set; }
         public DbSet<ServiceFeature> ServiceFeatures { get; set; }
         public DbSet<ServiceFaq> ServiceFaqs { get; set; }
@@ -42,26 +45,46 @@ namespace GurventVantilator.Infrastructure.Data
         public DbSet<ProductApplication> ProductApplications { get; set; }
         public DbSet<ProductTestData> ProductTestDatas { get; set; }
         public DbSet<ProductContentFeature> ProductContentFeatures { get; set; }
+        #endregion
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+            // Identity tablolarını kurmadan önce base çağır
             base.OnModelCreating(modelBuilder);
 
-            // Service - Feature ilişki ayarı
+            // 🔹 Identity tablolarını yeniden adlandır
+            modelBuilder.Entity<ApplicationUser>().ToTable("Users");
+            modelBuilder.Entity<ApplicationRole>().ToTable("Roles");
+            modelBuilder.Entity<IdentityUserRole<int>>().ToTable("UserRoles");
+            modelBuilder.Entity<IdentityUserLogin<int>>().ToTable("UserLogins");
+            modelBuilder.Entity<IdentityUserToken<int>>().ToTable("UserTokens");
+            modelBuilder.Entity<IdentityRoleClaim<int>>().ToTable("RoleClaims");
+            modelBuilder.Entity<IdentityUserClaim<int>>().ToTable("UserClaims");
+
+            // 🔹 Varsayılan roller
+            modelBuilder.Entity<ApplicationRole>().HasData(
+                new ApplicationRole { Id = 1, Name = "DevAdmin", NormalizedName = "DEVADMIN", Description = "Tüm yetkilere sahip geliştirici" },
+                new ApplicationRole { Id = 2, Name = "Admin", NormalizedName = "ADMIN", Description = "Yönetim paneli yöneticisi" },
+                new ApplicationRole { Id = 3, Name = "User", NormalizedName = "USER", Description = "WebUI kullanıcıları" }
+            );
+
+            // 🔹 Domain konfigürasyonlarını uygula
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+
+            // 🔹 Servis ilişkileri
             modelBuilder.Entity<Service>()
                 .HasMany(s => s.Features)
                 .WithOne(f => f.Service)
                 .HasForeignKey(f => f.ServiceId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // Service - Faq ilişki ayarı
             modelBuilder.Entity<Service>()
                 .HasMany(s => s.Faqs)
                 .WithOne(f => f.Service)
                 .HasForeignKey(f => f.ServiceId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // BlogTag (N:N) composite key
+            // 🔹 BlogTag composite key
             modelBuilder.Entity<BlogTag>()
                 .HasKey(bt => new { bt.BlogId, bt.TagId });
 
@@ -75,57 +98,23 @@ namespace GurventVantilator.Infrastructure.Data
                 .WithMany(t => t.BlogTags)
                 .HasForeignKey(bt => bt.TagId);
 
-            // Blog -> Category (1:N)
+            // 🔹 Blog ilişkileri
             modelBuilder.Entity<Blog>()
                 .HasOne(b => b.Category)
                 .WithMany(c => c.Blogs)
                 .HasForeignKey(b => b.CategoryId);
 
-            // Blog -> Comment (1:N)
             modelBuilder.Entity<Comment>()
                 .HasOne(c => c.Blog)
                 .WithMany(b => b.Comments)
                 .HasForeignKey(c => c.BlogId);
 
+            // 🔹 Menü parent-child ilişkisi
             modelBuilder.Entity<Menu>()
                 .HasOne(m => m.Parent)
                 .WithMany(m => m.Children)
                 .HasForeignKey(m => m.ParentId)
                 .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<ApplicationUser>().ToTable("Users");
-            modelBuilder.Entity<ApplicationRole>().ToTable("Roles");
-
-            modelBuilder.Entity<IdentityUserRole<int>>(entity =>
-            {
-                entity.ToTable("UserRoles");
-                entity.HasKey(r => new { r.UserId, r.RoleId });
-            });
-
-            modelBuilder.Entity<IdentityUserLogin<int>>(entity =>
-            {
-                entity.ToTable("UserLogins");
-                entity.HasKey(l => new { l.LoginProvider, l.ProviderKey });
-            });
-
-            modelBuilder.Entity<IdentityUserToken<int>>(entity =>
-            {
-                entity.ToTable("UserTokens");
-                entity.HasKey(t => new { t.UserId, t.LoginProvider, t.Name });
-            });
-
-            modelBuilder.Entity<IdentityRoleClaim<int>>(entity =>
-            {
-                entity.ToTable("RoleClaims");
-                entity.HasKey(rc => rc.Id);
-            });
-
-            modelBuilder.Entity<IdentityUserClaim<int>>(entity =>
-            {
-                entity.ToTable("UserClaims");
-                entity.HasKey(uc => uc.Id);
-            });
-
         }
     }
 }

@@ -1,10 +1,11 @@
 @using GurventVantilator.Application.DTOs
+@using GurventVantilator.Infrastructure.Identity
 @model IEnumerable<UserDto>
 
 @{
     ViewData["Title"] = "Kullanıcı Listesi";
+    var allRoles = ViewBag.AllRoles as List<ApplicationRole>;
 }
-
 
 <div class="row">
     <div class="col">
@@ -15,13 +16,15 @@
                         <div class="row align-items-center mb-3">
                             <div class="col-12 col-lg-auto mb-3 mb-lg-0">
                                 <a asp-action="Create"
-                                    class="btn btn-primary btn-md font-weight-semibold btn-py-2 px-4">+ Kullanıcı
-                                    Ekle</a>
+                                    class="btn btn-primary btn-md font-weight-semibold btn-py-2 px-4">
+                                    + Kullanıcı Ekle
+                                </a>
                             </div>
                         </div>
                     </div>
+
                     <table class="table table-ecommerce-simple table-striped mb-0" id="datatable-ecommerce-list"
-                        style="min-width: 550px;">
+                        style="min-width: 950px;">
                         <thead>
                             <tr>
                                 <th width="30" class="text-center">#</th>
@@ -29,42 +32,80 @@
                                 <th class="text-center">Ad Soyad</th>
                                 <th class="text-center">E-posta</th>
                                 <th class="text-center">Roller</th>
+                                <th class="text-center">Rol İşlemleri</th>
                                 <th class="text-center">Durum</th>
-                                <th width="30" class="text-center">İşlemler</th>
+                                <th width="250" class="text-center">İşlemler</th>
                             </tr>
                         </thead>
                         <tbody>
                             @if (Model == null || !Model.Any())
                             {
                                 <tr>
-                                    <td colspan="7" class="text-center text-muted">
-                                        Hiç kayıt bulunamadı.
-                                    </td>
+                                    <td colspan="8" class="text-center text-muted">Hiç kayıt bulunamadı.</td>
                                 </tr>
                             }
                             else
                             {
                                 int i = 1;
-                                @foreach (var item in Model)
+                                foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td class="text-center"><strong><a href="#">@i</a></strong></td>
-                                        <td class="text-center"><strong><a href="#">@item.UserName</a></strong></td>
+                                        <td class="text-center"><strong>@i</strong></td>
+                                        <td class="text-center"><strong>@item.UserName</strong></td>
                                         <td class="text-center">@($"{item.FirstName} {item.LastName}")</td>
                                         <td class="text-center">@item.Email</td>
+
+                                        <!-- Roller -->
                                         <td class="text-center">
-                                            @foreach (var role in item.Roles)
+                                            @if (item.Roles.Any())
                                             {
-                                                @if (@role.ToLower() == "devadmin")
+                                                foreach (var role in item.Roles)
                                                 {
-                                                    <span class="badge badge-dark">@role.ToLower()</span>
-                                                }
-                                                else
-                                                {
-                                                    <span class="badge badge-primary">@role.ToLower()</span>
+                                                    <span class="badge @(role.ToLower() == "devadmin" ? "bg-dark" : "bg-primary") mx-1">
+                                                        @role.ToLower()
+                                                    </span>
                                                 }
                                             }
+                                            else
+                                            {
+                                                <span class="text-muted">Rol atanmadı</span>
+                                            }
                                         </td>
+
+                                        <!-- Rol Ekle/Kaldır -->
+                                        <td class="text-center">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                <form asp-action="AddRole" method="post" class="d-flex me-2">
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" name="userId" value="@item.Id" />
+                                                    <select name="roleName" class="form-select form-select-sm me-1">
+                                                        @foreach (var role in allRoles)
+                                                        {
+                                                            <option value="@role.Name">@role.Name</option>
+                                                        }
+                                                    </select>
+                                                    <button type="submit" class="btn btn-success btn-xs" title="Rol Ekle">
+                                                        <i class="bx bx-plus"></i>
+                                                    </button>
+                                                </form>
+
+                                                <form asp-action="RemoveRole" method="post" class="d-flex">
+                                                    @Html.AntiForgeryToken()
+                                                    <input type="hidden" name="userId" value="@item.Id" />
+                                                    <select name="roleName" class="form-select form-select-sm me-1">
+                                                        @foreach (var role in item.Roles)
+                                                        {
+                                                            <option value="@role">@role</option>
+                                                        }
+                                                    </select>
+                                                    <button type="submit" class="btn btn-danger btn-xs" title="Rol Kaldır">
+                                                        <i class="bx bx-minus"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+
+                                        <!-- Durum -->
                                         <td class="text-center">
                                             <button type="button"
                                                 class="btn btn-xs toggle-status @(item.IsActive ? "btn-success" : "btn-secondary")"
@@ -72,9 +113,10 @@
                                                 @(item.IsActive ? "Aktif" : "Pasif")
                                             </button>
                                         </td>
-                                        <td width="250" class="text-center">
+
+                                        <!-- İşlemler -->
+                                        <td class="text-center">
                                             <div class="btn-group d-flex" role="group">
-                                                <!-- 🔹 Şifre Sıfırla -->
                                                 <form asp-action="ResetPassword" method="post" class="d-inline w-100 m-1">
                                                     @Html.AntiForgeryToken()
                                                     <input type="hidden" name="id" value="@item.Id" />
@@ -84,6 +126,7 @@
                                                         <i class="bx bx-key"></i> Şifre Sıfırla
                                                     </button>
                                                 </form>
+
                                                 @if (User.IsInRole("DevAdmin"))
                                                 {
                                                     <a href="#deleteModal"
@@ -94,14 +137,15 @@
                                                 }
                                             </div>
                                         </td>
-
                                     </tr>
                                     i++;
                                 }
                             }
                         </tbody>
                     </table>
+
                     <hr class="solid mt-5 opacity-4">
+
                     <!-- Kullanıcı Silme Modal -->
                     <div id="deleteModal" class="modal-block mfp-hide">
                         <section class="card">
@@ -136,7 +180,13 @@
 </div>
 
 @section Scripts {
+    <script src="~/js/examples/examples.modals.js"></script>
+    <script src="~/vendor/pnotify/pnotify.custom.js"></script>
     <script>
+        function setDeleteUserId(userId) {
+            document.getElementById("userId").value = userId;
+        }
+
         document.querySelectorAll('.toggle-status').forEach(btn => {
             btn.addEventListener('click', async () => {
                 const id = btn.getAttribute('data-id');
@@ -162,14 +212,5 @@
                 }
             });
         });
-    </script>
-
-
-    <script src="~/js/examples/examples.modals.js"></script>
-    <script src="~/vendor/pnotify/pnotify.custom.js"></script>
-    <script>
-        function setDeleteUserId(userId) {
-            document.getElementById("userId").value = userId;
-        }
     </script>
 }

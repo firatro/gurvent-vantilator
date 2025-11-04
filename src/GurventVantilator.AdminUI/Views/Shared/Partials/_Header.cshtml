@@ -19,12 +19,20 @@
         <div id="userbox" class="userbox">
             <a href="#" data-bs-toggle="dropdown">
                 <figure class="profile-picture">
-                    <img src="~/img/!logged-user.jpg" alt="Profile Image" class="rounded-circle"
-                        data-lock-picture="~/img/!logged-user.jpg" />
+                    @if (User.IsInRole("DevAdmin"))
+                    {
+                        <img src="~/img/profile/devadmin.png" alt="Profile Image" class="rounded-circle" />
+                    }
+                    else
+                    {
+                        <img src="~/img/profile/admin.png" alt="Profile Image" class="rounded-circle" />
+                    }
                 </figure>
-                <div class="profile-info" data-lock-name="Profile Image" data-lock-email="info@gurvent.com">
-                    <span class="name">Fırat Ramazano</span>
-                    <span class="role">Administrator</span>
+                <div class="profile-info" data-lock-name="Profile Image">
+                    <span class="name">@User.FindFirst("FullName")?.Value</span>
+                    <span class="role">
+                        @(User.IsInRole("DevAdmin") ? "Dev Admin" : "Admin")
+                    </span>
                 </div>
 
                 <i class="fa custom-caret"></i>
@@ -34,12 +42,21 @@
                 <ul class="list-unstyled mb-2">
                     <li class="divider"></li>
                     <li>
-                        <a role="menuitem" tabindex="-1" href="#"><i
-                                class="bx bx-user-circle"></i> Profilim</a>
+                        <a role="menuitem" tabindex="-1" href="@Url.Action("Index", "Profile")">
+                            <i class="bx bx-user-circle"></i> Profilim
+                        </a>
                     </li>
+
                     <li>
-                        <a role="menuitem" tabindex="-1" href="#"><i class="bx bx-power-off"></i>
-                            Güvenli Çıkış</a>
+                        <form id="logoutForm" asp-controller="Account" asp-action="Logout" method="post"
+                            style="display:none;">
+                            @Html.AntiForgeryToken()
+                        </form>
+
+                        <a role="menuitem" tabindex="-1"
+                            href="javascript:document.getElementById('logoutForm').submit();">
+                            <i class="bx bx-power-off"></i> Güvenli Çıkış
+                        </a>
                     </li>
                 </ul>
             </div>

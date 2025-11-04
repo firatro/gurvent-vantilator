@@ -87,7 +87,7 @@
                         </ul>
                     </li>
                     <li
-                        class="nav-parent @(ViewContext.RouteData.Values["controller"]!.ToString() == "Product" || ViewContext.RouteData.Values["controller"]!.ToString() == "ProductApplication" || ViewContext.RouteData.Values["controller"]!.ToString() == "ProductApplication"  || ViewContext.RouteData.Values["controller"]!.ToString() == "ProductContentFeature"? "nav-expanded nav-active" : "")">
+                        class="nav-parent @(ViewContext.RouteData.Values["controller"]!.ToString() == "Product" || ViewContext.RouteData.Values["controller"]!.ToString() == "ProductApplication" || ViewContext.RouteData.Values["controller"]!.ToString() == "ProductApplication" || ViewContext.RouteData.Values["controller"]!.ToString() == "ProductContentFeature" ? "nav-expanded nav-active" : "")">
                         <a class="nav-link" href="#">
                             <i class='bx bx-purchase-tag'></i>
                             <span>Ürünler</span>
@@ -276,16 +276,18 @@
                             <span>Sürüm Yönetimi</span>
                         </a>
                     </li>
-                    @if (User.IsInRole("DevAdmin"))
-                    {
-                        <li
-                            class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "User" ? "nav-active" : "")">
-                            <a asp-controller="User" asp-action="Index">
-                                <i class='bx bx-user-circle'></i>
-                                <span>Kullanıcı Yönetimi</span>
-                            </a>
-                        </li>
-                    }
+                    <li class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "User" ? "nav-active" : "")">
+                        <a asp-controller="User" asp-action="Index">
+                            <i class='bx bx-user-circle'></i>
+                            <span>Kullanıcı Yönetimi</span>
+                        </a>
+                    </li>
+                    <li class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "Role" ? "nav-active" : "")">
+                        <a asp-controller="Role" asp-action="Index">
+                            <i class='bx bx-checkbox-checked'></i>
+                            <span>Rol Yönetimi</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
 

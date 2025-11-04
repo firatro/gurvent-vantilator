@@ -1,7 +1,6 @@
-using GurventVantilator.Domain.Identity;
+using GurventVantilator.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-
 
 namespace GurventVantilator.Infrastructure.Data
 {
@@ -12,17 +11,32 @@ namespace GurventVantilator.Infrastructure.Data
             RoleManager<ApplicationRole> roleManager,
             UserManager<ApplicationUser> userManager)
         {
+            // Veritabanını oluştur / migrate et
             await context.Database.MigrateAsync();
 
-            // 1️⃣ Roller
-            string[] roles = { "Admin", "DevAdmin" };
-            foreach (var role in roles)
+            // 1️⃣ Rolleri oluştur
+            string[] roles = { "DevAdmin", "Admin", "User" };
+            foreach (var roleName in roles)
             {
-                if (!await roleManager.RoleExistsAsync(role))
-                    await roleManager.CreateAsync(new ApplicationRole(role));
+                if (!await roleManager.RoleExistsAsync(roleName))
+                {
+                    var role = new ApplicationRole
+                    {
+                        Name = roleName,
+                        NormalizedName = roleName.ToUpper(),
+                        Description = roleName switch
+                        {
+                            "DevAdmin" => "Tüm yetkilere sahip geliştirici",
+                            "Admin" => "Yönetim paneli yöneticisi",
+                            "User" => "Sadece WebUI tarafında oturum açabilir",
+                            _ => null
+                        }
+                    };
+                    await roleManager.CreateAsync(role);
+                }
             }
 
-            // 2️⃣ DevAdmin kullanıcı
+            // 2️⃣ DevAdmin kullanıcısı
             var devEmail = "devadmin@firatramazano.com";
             var devUser = await userManager.FindByEmailAsync(devEmail);
             if (devUser == null)
@@ -40,12 +54,11 @@ namespace GurventVantilator.Infrastructure.Data
                 var result = await userManager.CreateAsync(user, "DevAdmin!123");
                 if (result.Succeeded)
                 {
-                    // 🔹 DevAdmin hem DevAdmin hem Admin rolüne sahip
                     await userManager.AddToRolesAsync(user, new[] { "DevAdmin", "Admin" });
                 }
             }
 
-            // 3️⃣ Admin kullanıcı
+            // 3️⃣ Admin kullanıcısı
             var adminEmail = "admin@firatramazano.com";
             var adminUser = await userManager.FindByEmailAsync(adminEmail);
             if (adminUser == null)
@@ -63,7 +76,6 @@ namespace GurventVantilator.Infrastructure.Data
                 var result = await userManager.CreateAsync(user, "Admin!123");
                 if (result.Succeeded)
                 {
-                    // 🔹 Admin sadece Admin rolüne sahip
                     await userManager.AddToRoleAsync(user, "Admin");
                 }
             }

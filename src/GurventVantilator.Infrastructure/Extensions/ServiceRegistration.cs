@@ -2,9 +2,9 @@
 
 using GurventVantilator.Application.Interfaces.Repositories;
 using GurventVantilator.Application.Interfaces.Services;
-using GurventVantilator.Domain.Identity;
 using GurventVantilator.Domain.Interfaces.Repositories;
 using GurventVantilator.Infrastructure.Data;
+using GurventVantilator.Infrastructure.Identity;
 using GurventVantilator.Infrastructure.Persistence.Repositories;
 using GurventVantilator.Infrastructure.Repositories;
 using GurventVantilator.Infrastructure.Services;

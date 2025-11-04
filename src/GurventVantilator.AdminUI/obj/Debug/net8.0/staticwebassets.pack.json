@@ -665,6 +665,14 @@
       "PackagePath": "staticwebassets/img/product/rsd12f.webp"
     },
     {
+      "Id": "/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/profile/admin.png",
+      "PackagePath": "staticwebassets/img/profile/admin.png"
+    },
+    {
+      "Id": "/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/profile/devadmin.png",
+      "PackagePath": "staticwebassets/img/profile/devadmin.png"
+    },
+    {
       "Id": "/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.AdminUI/wwwroot/img/project/default-image1.jpg",
       "PackagePath": "staticwebassets/img/project/default-image1.jpg"
     },

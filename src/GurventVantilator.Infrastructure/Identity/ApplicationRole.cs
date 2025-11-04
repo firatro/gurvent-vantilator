@@ -1,10 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace GurventVantilator.Domain.Identity
+namespace GurventVantilator.Infrastructure.Identity
 {
     public class ApplicationRole : IdentityRole<int>
     {
-        public ApplicationRole() : base() { }
-        public ApplicationRole(string roleName) : base(roleName) { }
+        public string? Description { get; set; }
     }
 }

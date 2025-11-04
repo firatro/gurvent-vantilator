@@ -1,7 +1,7 @@
 using GurventVantilator.Application.Common;
 using GurventVantilator.Application.DTOs;
 using GurventVantilator.Application.Interfaces.Repositories;
-using GurventVantilator.Domain.Identity;
+using GurventVantilator.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 

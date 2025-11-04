@@ -3,9 +3,9 @@ using FluentValidation.AspNetCore;
 using GurventVantilator.AdminUI.Validators.Company;
 using GurventVantilator.Application.Extensions;
 using GurventVantilator.Application.Validators;
-using GurventVantilator.Domain.Identity;
 using GurventVantilator.Infrastructure.Data;
 using GurventVantilator.Infrastructure.Extensions;
+using GurventVantilator.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
@@ -33,15 +33,22 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.Cookie.Name = "GurventVantilator.Auth";             // Cookie ismi
 });
 
+builder.Services.AddAuthorization(options =>
+{
+    // Yönetim paneline yalnızca Admin ve DevAdmin rollerine izin ver
+    options.AddPolicy("AdminPanelAccess", policy =>
+        policy.RequireRole("Admin", "DevAdmin"));
+});
+
 // -------------------- CONTROLLERS --------------------
 builder.Services.AddControllersWithViews(options =>
 {
-    // Tüm controller'lara global Authorize filtresi uygula
-    var policy = new AuthorizationPolicyBuilder()
-        .RequireAuthenticatedUser()
+    // 🔹 Yönetim paneli için global rol policy
+    var adminPolicy = new AuthorizationPolicyBuilder()
+        .RequireRole("Admin", "DevAdmin")
         .Build();
 
-    options.Filters.Add(new AuthorizeFilter(policy));
+    options.Filters.Add(new AuthorizeFilter(adminPolicy));
 });
 
 // -------------------- FLUENT VALIDATION --------------------

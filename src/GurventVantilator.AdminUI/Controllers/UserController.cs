@@ -1,35 +1,107 @@
 using GurventVantilator.Application.DTOs;
 using GurventVantilator.Application.Interfaces.Services;
+using GurventVantilator.Infrastructure.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GurventVantilator.AdminUI.Controllers
 {
-    [Authorize(Roles = "DevAdmin")]
+    [Authorize(Roles = "Admin,DevAdmin")]
     public class UserController : BaseController
     {
         private readonly IUserService _userService;
+        private readonly RoleManager<ApplicationRole> _roleManager;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public UserController(
             IUserService userService,
-            IFileService fileService
+            IFileService fileService,
+            RoleManager<ApplicationRole> roleManager,
+            UserManager<ApplicationUser> userManager
         ) : base(fileService)
         {
             _userService = userService;
+            _roleManager = roleManager;
+            _userManager = userManager;
         }
 
         // ✅ Kullanıcı Listesi
         public async Task<IActionResult> Index()
         {
             var result = await _userService.GetAllAsync();
-
             if (!result.Success || result.Data == null)
             {
                 SetErrorMessage(result.ErrorMessage ?? "Kullanıcı listesi yüklenemedi.");
                 return View(new List<UserDto>());
             }
 
-            return View(result.Data);
+            var users = result.Data;
+
+            // 🔹 Admin, DevAdmin'i göremesin
+            if (User.IsInRole("Admin") && !User.IsInRole("DevAdmin"))
+            {
+                users = users
+                    .Where(u => !u.Roles.Any(r => r.Equals("DevAdmin", StringComparison.OrdinalIgnoreCase)))
+                    .ToList();
+            }
+
+            var allRoles = _roleManager.Roles.ToList();
+            ViewBag.AllRoles = allRoles;
+
+            return View(users);
+        }
+
+        // ✅ Kullanıcıya Rol Ekle
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddRole(int userId, string roleName)
+        {
+            var user = await _userManager.FindByIdAsync(userId.ToString());
+            if (user == null)
+            {
+                SetErrorMessage("Kullanıcı bulunamadı.");
+                return RedirectToAction(nameof(Index));
+            }
+
+            if (!await _roleManager.RoleExistsAsync(roleName))
+            {
+                SetErrorMessage("Rol bulunamadı.");
+                return RedirectToAction(nameof(Index));
+            }
+
+            var result = await _userManager.AddToRoleAsync(user, roleName);
+            if (!result.Succeeded)
+            {
+                SetErrorMessage("Rol atanırken bir hata oluştu.");
+                return RedirectToAction(nameof(Index));
+            }
+
+            SetSuccessMessage($"'{roleName}' rolü {user.FirstName} {user.LastName} kullanıcısına atandı.");
+            return RedirectToAction(nameof(Index));
+        }
+
+        // ✅ Kullanıcıdan Rol Kaldır
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemoveRole(int userId, string roleName)
+        {
+            var user = await _userManager.FindByIdAsync(userId.ToString());
+            if (user == null)
+            {
+                SetErrorMessage("Kullanıcı bulunamadı.");
+                return RedirectToAction(nameof(Index));
+            }
+
+            var result = await _userManager.RemoveFromRoleAsync(user, roleName);
+            if (!result.Succeeded)
+            {
+                SetErrorMessage("Rol kaldırılırken bir hata oluştu.");
+                return RedirectToAction(nameof(Index));
+            }
+
+            SetSuccessMessage($"'{roleName}' rolü {user.FirstName} {user.LastName} kullanıcısından kaldırıldı.");
+            return RedirectToAction(nameof(Index));
         }
 
         // ✅ Kullanıcı Oluşturma (GET)
@@ -59,7 +131,7 @@ namespace GurventVantilator.AdminUI.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // ✅ Kullanıcı Aktif/Pasif Durum Değiştirme
+        // ✅ Kullanıcı Durumu Değiştirme
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ToggleStatus(int id, bool isActive)
