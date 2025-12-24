@@ -1,12 +1,15 @@
-namespace GurventVantilator.AdminUI.Models.ProductContentFeature
+using GurventVantilator.Application.DTOs;
+
+public class ProductContentFeatureViewModel
 {
-    public class ProductContentFeatureViewModel
-    {
-        public int Id { get; set; }
-        public int ProductId { get; set; }
-        public string? ProductName { get; set; }  
-        public string Key { get; set; } = string.Empty;
-        public string Value { get; set; } = string.Empty;
-        public int? Order { get; set; }
-    }
+    public int Id { get; set; }
+
+    public int? ProductId { get; set; }          // ✔ Index methodunda kullanılıyor
+    public string ProductName { get; set; } = "";  // ✔ Ürün adını göstermek için
+    public int ProductModelId { get; set; }
+    public string ProductModelName { get; set; } = "";
+    public string Key { get; set; } = string.Empty;
+    public string Value { get; set; } = string.Empty;
+
+    public int? Order { get; set; }
 }

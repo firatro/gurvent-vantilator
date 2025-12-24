@@ -11,5 +11,7 @@ namespace GurventVantilator.Application.Interfaces.Services
         Task<Result<ProductContentFeatureDto>> AddAsync(ProductContentFeatureDto dto);
         Task<Result<bool>> UpdateAsync(ProductContentFeatureDto dto);
         Task<Result<bool>> DeleteAsync(int id);
+        Task<Result<List<ProductContentFeatureDto>>> GetByModelIdAsync(int modelId);
+
     }
 }

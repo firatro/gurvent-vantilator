@@ -1,43 +1,48 @@
-using GurventVantilator.AdminUI.Models.ProductContentFeature;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GurventVantilator.AdminUI.Models.Product
 {
     public class ProductCreateViewModel
     {
-        // Temel bilgiler
+        // Temel
+        public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Code { get; set; } = string.Empty;
         public string? Description { get; set; }
 
-        // Boyut
-        public string? Diameter { get; set; }
-        public string? DiameterUnit { get; set; } // mm, cm, inch
+        // Seri & Model
+        public int? ProductModelId { get; set; }
+        public IEnumerable<SelectListItem>? ProductModelList { get; set; }
 
-        // Hava debisi
-        public string? AirFlow { get; set; }
-        public string? AirFlowUnit { get; set; } // m³/h, m³/s, L/s
+        public int? ProductSeriesId { get; set; }
+        public IEnumerable<SelectListItem>? ProductSeriesList { get; set; }
 
-        // Basınç
-        public string? Pressure { get; set; }
-        public string? PressureUnit { get; set; } // Pa, mmH₂O, inH₂O
+        // Kullanım Tipi & Çalışma Koşulu
+        public List<int> SelectedUsageTypeIds { get; set; } = new();
+        public IEnumerable<SelectListItem>? UsageTypeList { get; set; }
 
-        // Güç
-        public string? Power { get; set; }
-        public string? PowerUnit { get; set; } // kW, W, HP
+        public List<int> SelectedWorkingConditionIds { get; set; } = new();
+        public IEnumerable<SelectListItem>? WorkingConditionList { get; set; }
 
-        // Elektriksel
-        public string? Voltage { get; set; } // V
-        public string? Frequency { get; set; } // Hz
+        // İçerik Alanları
+        public string? ContentTitle { get; set; }
+        public string? ContentDescription { get; set; }
+        public List<ProductContentFeatureViewModel> ContentFeatures { get; set; } = new();
 
         // Performans
-        public string? Speed { get; set; } // rpm
-        public string? SpeedUnit { get; set; } // rpm
-        public string? NoiseLevel { get; set; } // dB(A)
-        public string? NoiseLevelUnit { get; set; } // dB(A)
-        public string? SpeedControl { get; set; }
+        public double? AirFlow { get; set; }
+        public string? AirFlowUnit { get; set; }
 
-        // Dosyalar
+        public double? TotalPressure { get; set; }
+        public string? TotalPressureUnit { get; set; }
+
+        public string? Power { get; set; }
+        public double? Voltage { get; set; }
+        public double? Frequency { get; set; }
+        public string? SpeedControl { get; set; }
+        public double? Temperature { get; set; }
+
+        // Dosya Alanları (Upload)
         public IFormFile? Image1File { get; set; }
         public IFormFile? Image2File { get; set; }
         public IFormFile? Image3File { get; set; }
@@ -48,22 +53,21 @@ namespace GurventVantilator.AdminUI.Models.Product
         public IFormFile? TestDataFile { get; set; }
         public IFormFile? ScaleImageFile { get; set; }
 
-        // İlişkiler
-        public int ProductCategoryId { get; set; }
-        public IEnumerable<SelectListItem>? ProductCategoryList { get; set; }
+        // Kaydedilmiş Dosya Yolları (Edit için)
+        public string? Image1Path { get; set; }
+        public string? Image2Path { get; set; }
+        public string? Image3Path { get; set; }
+        public string? Image4Path { get; set; }
+        public string? Image5Path { get; set; }
+        public string? DataSheetPath { get; set; }
+        public string? Model3DPath { get; set; }
+        public string? TestDataPath { get; set; }
+        public string? ScaleImagePath { get; set; }
 
-        public List<int> SelectedApplicationIds { get; set; } = new();
-        public IEnumerable<SelectListItem>? ProductApplicationList { get; set; }
-
-        // Ortak alanlar
+        // Ortak
         public bool IsActive { get; set; } = true;
         public int? Order { get; set; } = 0;
-
-        public string? ContentTitle { get; set; }
-        public string? ContentDescription { get; set; }
-
-        // Çoklu özellikler (key-value)
-        public List<ProductContentFeatureViewModel> ContentFeatures { get; set; } = new();
-
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }

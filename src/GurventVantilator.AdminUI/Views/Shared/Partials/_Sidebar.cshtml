@@ -4,6 +4,18 @@
     var activeVersion = await VersionService.GetActiveAsync();
 }
 
+@{
+    var currentController = ViewContext.RouteData.Values["controller"]?.ToString();
+    bool isProductMenuActive =
+    currentController == "Product" ||
+    currentController == "ProductSeries" ||
+    currentController == "ProductModel" ||
+    currentController == "ProductUsageType" ||
+    currentController == "ProductWorkingCondition" ||
+    currentController == "TestData";
+}
+
+
 
 <aside id="sidebar-left" class="sidebar-left">
 
@@ -84,28 +96,44 @@
                                     - Proje Özellik Yönet
                                 </a>
                             </li>
+                                <!-- 🔥 TEST DATA YÖNETİMİ -->
+                            <li class="@(currentController == "TestData" ? "nav-active" : "")">
+                                <a class="nav-link" asp-controller="TestData" asp-action="Index">
+                                    Test Datası Yönetimi
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li
-                        class="nav-parent @(ViewContext.RouteData.Values["controller"]!.ToString() == "Product" || ViewContext.RouteData.Values["controller"]!.ToString() == "ProductApplication" || ViewContext.RouteData.Values["controller"]!.ToString() == "ProductApplication" || ViewContext.RouteData.Values["controller"]!.ToString() == "ProductContentFeature" ? "nav-expanded nav-active" : "")">
+                        class="nav-parent @(ViewContext.RouteData.Values["controller"]!.ToString() == "Product" || ViewContext.RouteData.Values["controller"]!.ToString() == "ProductApplication" || ViewContext.RouteData.Values["controller"]!.ToString() == "ProductApplication" || ViewContext.RouteData.Values["controller"]!.ToString() == "ProductContentFeature" || ViewContext.RouteData.Values["controller"]!.ToString() == "ProductSeries" || ViewContext.RouteData.Values["controller"]!.ToString() == "ProductModel" || ViewContext.RouteData.Values["controller"]!.ToString() == "ProductUsageType" || ViewContext.RouteData.Values["controller"]!.ToString() == "ProductWorkingCondition" ? "nav-expanded nav-active" : "")">
                         <a class="nav-link" href="#">
                             <i class='bx bx-purchase-tag'></i>
                             <span>Ürünler</span>
                         </a>
                         <ul class="nav nav-children">
                             <li>
+                                <a class="nav-link" asp-controller="ProductWorkingCondition" asp-action="Index">
+                                    - Çalışma Ortamı Yönetimi
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" asp-controller="ProductUsageType" asp-action="Index">
+                                    - Kullanım Alanı Yönetimi
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" asp-controller="ProductSeries" asp-action="Index">
+                                    - Ürün Seri Yönetimi
+                                </a>
+                            </li>
+                            <li>
+                                <a class="nav-link" asp-controller="ProductModel" asp-action="Index">
+                                    - Ürün Model Yönetimi
+                                </a>
+                            </li>
+                            <li>
                                 <a class="nav-link" asp-controller="Product" asp-action="Index">
-                                    - Ürünleri Yönet
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link" asp-controller="ProductCategory" asp-action="Index">
-                                    - Kategori Yönet
-                                </a>
-                            </li>
-                            <li>
-                                <a class="nav-link" asp-controller="ProductApplication" asp-action="Index">
-                                    - Uygulama Alanı Yönet
+                                    - Ürün Yönetimi
                                 </a>
                             </li>
                             <li>
@@ -113,8 +141,16 @@
                                     - Ürün İçerik Özellik Yönet
                                 </a>
                             </li>
+
+                                <!-- 🔥 TEST DATA YÖNETİMİ -->
+                            <li class="@(currentController == "TestData" ? "nav-active" : "")">
+                                <a class="nav-link" asp-controller="TestData" asp-action="Index">
+                                    - Test Datası Yönetimi
+                                </a>
+                            </li>
                         </ul>
                     </li>
+
                     <li
                         class="nav-parent @(ViewContext.RouteData.Values["controller"]!.ToString() == "Blog" || ViewContext.RouteData.Values["controller"]!.ToString() == "Category" || ViewContext.RouteData.Values["controller"]!.ToString() == "Tag" || ViewContext.RouteData.Values["controller"]!.ToString() == "Comment" ? "nav-expanded nav-active" : "")">
                         <a class="nav-link" href="#">

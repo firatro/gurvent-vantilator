@@ -41,18 +41,25 @@ namespace GurventVantilator.Infrastructure.Data
         public DbSet<PageImage> PageImages { get; set; }
         public DbSet<VersionInfo> VersionInfos { get; set; }
         public DbSet<Product> Products { get; set; }
-        public DbSet<ProductCategory> ProductCategories { get; set; }
-        public DbSet<ProductApplication> ProductApplications { get; set; }
+        public DbSet<ProductSeries> ProductSeries { get; set; }
+        public DbSet<ProductModel> ProductModels { get; set; }
+        public DbSet<ProductUsageType> ProductUsageTypes { get; set; }
+        public DbSet<ProductWorkingCondition> ProductWorkingConditions { get; set; }
         public DbSet<ProductTestData> ProductTestDatas { get; set; }
         public DbSet<ProductContentFeature> ProductContentFeatures { get; set; }
+        public DbSet<ProductModelDocument> ProductModelDocuments { get; set; }
+        public DbSet<ProductTestDataPoint> ProductTestPoints => Set<ProductTestDataPoint>();
+
+
+        // public DbSet<ProductCategory> ProductCategories { get; set; }
+        // public DbSet<ProductApplication> ProductApplications { get; set; }
+
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Identity tablolarını kurmadan önce base çağır
             base.OnModelCreating(modelBuilder);
 
-            // 🔹 Identity tablolarını yeniden adlandır
             modelBuilder.Entity<ApplicationUser>().ToTable("Users");
             modelBuilder.Entity<ApplicationRole>().ToTable("Roles");
             modelBuilder.Entity<IdentityUserRole<int>>().ToTable("UserRoles");
@@ -61,17 +68,14 @@ namespace GurventVantilator.Infrastructure.Data
             modelBuilder.Entity<IdentityRoleClaim<int>>().ToTable("RoleClaims");
             modelBuilder.Entity<IdentityUserClaim<int>>().ToTable("UserClaims");
 
-            // 🔹 Varsayılan roller
             modelBuilder.Entity<ApplicationRole>().HasData(
                 new ApplicationRole { Id = 1, Name = "DevAdmin", NormalizedName = "DEVADMIN", Description = "Tüm yetkilere sahip geliştirici" },
                 new ApplicationRole { Id = 2, Name = "Admin", NormalizedName = "ADMIN", Description = "Yönetim paneli yöneticisi" },
                 new ApplicationRole { Id = 3, Name = "User", NormalizedName = "USER", Description = "WebUI kullanıcıları" }
             );
 
-            // 🔹 Domain konfigürasyonlarını uygula
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
 
-            // 🔹 Servis ilişkileri
             modelBuilder.Entity<Service>()
                 .HasMany(s => s.Features)
                 .WithOne(f => f.Service)
@@ -84,7 +88,6 @@ namespace GurventVantilator.Infrastructure.Data
                 .HasForeignKey(f => f.ServiceId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // 🔹 BlogTag composite key
             modelBuilder.Entity<BlogTag>()
                 .HasKey(bt => new { bt.BlogId, bt.TagId });
 
@@ -98,7 +101,6 @@ namespace GurventVantilator.Infrastructure.Data
                 .WithMany(t => t.BlogTags)
                 .HasForeignKey(bt => bt.TagId);
 
-            // 🔹 Blog ilişkileri
             modelBuilder.Entity<Blog>()
                 .HasOne(b => b.Category)
                 .WithMany(c => c.Blogs)
@@ -109,12 +111,20 @@ namespace GurventVantilator.Infrastructure.Data
                 .WithMany(b => b.Comments)
                 .HasForeignKey(c => c.BlogId);
 
-            // 🔹 Menü parent-child ilişkisi
             modelBuilder.Entity<Menu>()
                 .HasOne(m => m.Parent)
                 .WithMany(m => m.Children)
                 .HasForeignKey(m => m.ParentId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<ProductModel>()
+                .HasMany(m => m.ModelFeatures)
+                .WithOne(f => f.ProductModel)
+                .HasForeignKey(f => f.ProductModelId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.ApplyConfiguration(new ProductTestDataConfiguration());
+            modelBuilder.ApplyConfiguration(new ProductTestDataPointConfiguration());
         }
     }
 }

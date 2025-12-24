@@ -1,44 +1,54 @@
-using GurventVantilator.AdminUI.Models.ProductContentFeature;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GurventVantilator.AdminUI.Models.Product
 {
     public class ProductEditViewModel
     {
-        // Temel bilgiler
+        // ======================================================
+        // 🧱 TEMEL BİLGİLER
+        // ======================================================
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Code { get; set; } = string.Empty;
         public string? Description { get; set; }
 
-        // Boyut
-        public string? Diameter { get; set; }
-        public string? DiameterUnit { get; set; }
+        // ======================================================
+        // 🔹 SERİ VE MODEL
+        // ======================================================
+        public int? ProductSeriesId { get; set; }
+        public IEnumerable<SelectListItem>? ProductSeriesList { get; set; }
 
-        // Hava debisi
+        public int? ProductModelId { get; set; }
+        public IEnumerable<SelectListItem>? ProductModelList { get; set; }
+
+        // ======================================================
+        // 🔹 KULLANIM TİPİ VE ÇALIŞMA KOŞULU
+        // ======================================================
+        public List<int> SelectedUsageTypeIds { get; set; } = new();
+        public IEnumerable<SelectListItem>? UsageTypeList { get; set; }
+
+        public List<int> SelectedWorkingConditionIds { get; set; } = new();
+        public IEnumerable<SelectListItem>? WorkingConditionList { get; set; }
+
+        // ======================================================
+        // ⚙️ PERFORMANS PARAMETRELERİ
+        // ======================================================
         public string? AirFlow { get; set; }
         public string? AirFlowUnit { get; set; }
 
-        // Basınç
-        public string? Pressure { get; set; }
-        public string? PressureUnit { get; set; }
+        public string? TotalPressure { get; set; }
+        public string? TotalPressureUnit { get; set; }
 
-        // Güç
         public string? Power { get; set; }
-        public string? PowerUnit { get; set; }
-
-        // Elektriksel
         public string? Voltage { get; set; }
         public string? Frequency { get; set; }
 
-        // Performans
-        public string? Speed { get; set; }
-        public string? SpeedUnit { get; set; }
-        public string? NoiseLevel { get; set; }
-        public string? NoiseLevelUnit { get; set; }
-        public string? SpeedControl { get; set; } = "No Regulation";
+        public string? SpeedControl { get; set; }
+        public double? Temperature { get; set; }
 
-        // Dosyalar
+        // ======================================================
+        // 🖼️ DOSYA ALANLARI (YENİ YÜKLEME)
+        // ======================================================
         public IFormFile? Image1File { get; set; }
         public IFormFile? Image2File { get; set; }
         public IFormFile? Image3File { get; set; }
@@ -49,6 +59,9 @@ namespace GurventVantilator.AdminUI.Models.Product
         public IFormFile? TestDataFile { get; set; }
         public IFormFile? ScaleImageFile { get; set; }
 
+        // ======================================================
+        // 🗂️ MEVCUT DOSYA YOLLARI
+        // ======================================================
         public string? Image1Path { get; set; }
         public string? Image2Path { get; set; }
         public string? Image3Path { get; set; }
@@ -59,20 +72,19 @@ namespace GurventVantilator.AdminUI.Models.Product
         public string? TestDataPath { get; set; }
         public string? ScaleImagePath { get; set; }
 
-        // İlişkiler
-        public int ProductCategoryId { get; set; }
-        public IEnumerable<SelectListItem>? ProductCategoryList { get; set; }
-
-        public List<int> SelectedApplicationIds { get; set; } = new();
-        public IEnumerable<SelectListItem>? ProductApplicationList { get; set; }
-
-        // Ortak alanlar
-        public bool IsActive { get; set; }
-        public int? Order { get; set; } = 0;
+        // ======================================================
+        // 🧩 İÇERİK ALANLARI
+        // ======================================================
         public string? ContentTitle { get; set; }
         public string? ContentDescription { get; set; }
-
-        // Çoklu özellikler (key-value)
         public List<ProductContentFeatureViewModel> ContentFeatures { get; set; } = new();
+
+        // ======================================================
+        // ⚙️ GENEL ALANLAR
+        // ======================================================
+        public bool IsActive { get; set; }
+        public int? Order { get; set; } = 0;
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
     }
 }

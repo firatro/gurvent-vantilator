@@ -2,336 +2,291 @@
 @model ProductCreateViewModel
 
 @{
-    ViewData["Title"] = "Ürün Ekle";
-}
-
-@if (ViewBag.ProductCategoryList == null)
-{
-    <div class="alert alert-danger">ProductCategoryList boş geldi!</div>
-}
-@if (ViewBag.ProductApplications == null)
-{
-    <div class="alert alert-danger">ProductApplications boş geldi!</div>
+    ViewData["Title"] = "Yeni Ürün Ekle";
 }
 
 <form class="ecommerce-form action-buttons-fixed" asp-action="Create" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+
     <div class="row mt-2">
         <div class="col">
             <section class="card card-modern card-big-info">
                 <div class="card-body">
+
                     <div class="row">
+                        <!-- LEFT SIDE (ICON + TITLE) -->
                         <div class="col-lg-2-5 col-xl-1-5">
-                            <i class="card-big-info-icon bx bx-spreadsheet"></i>
-                            <h2 class="card-big-info-title">Ürün Ekle</h2>
-                            <p class="card-big-info-desc">Ürün eklemek için bilgileri doldurun.</p>
+                            <i class="card-big-info-icon bx bx-cube"></i>
+                            <h2 class="card-big-info-title">Yeni Ürün</h2>
+                            <p class="card-big-info-desc">
+                                Ürün bilgilerini eksiksiz doldurarak yeni bir ürün ekleyebilirsiniz.
+                            </p>
                         </div>
+
+                        <!-- RIGHT SIDE (FORM FIELDS) -->
                         <div class="col-lg-3-5 col-xl-4-5">
 
-                            <!-- Ürün Adı -->
+                            <!-- TEMEL BİLGİLER -->
+                            <h4 class="mb-3 mt-2">Temel Bilgiler</h4>
+
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Name">Ürün
-                                    Adı</label>
+                                <label asp-for="Name" class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">
+                                    Ürün Adı
+                                </label>
                                 <div class="col-lg-7 col-xl-6">
                                     <input asp-for="Name" class="form-control form-control-modern" />
                                     <span asp-validation-for="Name" class="badge badge-danger"></span>
                                 </div>
                             </div>
 
-                            <!-- Ürün Kodu -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0" asp-for="Code">Ürün
-                                    Kodu</label>
+                                <label asp-for="Code" class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">
+                                    Ürün Kodu
+                                </label>
                                 <div class="col-lg-7 col-xl-6">
                                     <input asp-for="Code" class="form-control form-control-modern" />
                                     <span asp-validation-for="Code" class="badge badge-danger"></span>
                                 </div>
                             </div>
 
-                            <!-- Açıklama -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
-                                    asp-for="Description">Açıklama</label>
+                                <label asp-for="Description" class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">
+                                    Açıklama
+                                </label>
                                 <div class="col-lg-7 col-xl-6">
-                                    <textarea asp-for="Description" rows="4"
+                                    <textarea asp-for="Description" rows="3"
                                         class="form-control form-control-modern"></textarea>
                                 </div>
                             </div>
 
-                            <!-- Kategori -->
+                            <!-- SERİ & MODEL -->
+                            <h4 class="mt-4 mb-3">Seri ve Model</h4>
+
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
-                                    asp-for="ProductCategoryId">Kategori</label>
+                                <label asp-for="ProductSeriesId"
+                                    class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Seri</label>
                                 <div class="col-lg-7 col-xl-6">
-                                    <select asp-for="ProductCategoryId" asp-items="ViewBag.ProductCategoryList"
+                                    <select asp-for="ProductSeriesId" asp-items="ViewBag.SeriesList"
                                         class="form-control form-control-modern">
-                                        <option value="">Kategori Seçiniz</option>
+                                        <option value="">-- Seçiniz --</option>
                                     </select>
-                                    <span asp-validation-for="ProductCategoryId" class="badge badge-danger"></span>
+                                    <span asp-validation-for="ProductSeriesId" class="badge badge-danger"></span>
                                 </div>
                             </div>
 
-                            <!-- Uygulama Alanları -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Uygulama
-                                    Alanları</label>
+                                <label asp-for="ProductModelId"
+                                    class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Model</label>
                                 <div class="col-lg-7 col-xl-6">
-                                    <select asp-for="SelectedApplicationIds" asp-items="ViewBag.ProductApplications"
-                                        class="form-control form-control-modern" multiple size="5">
+                                    <select asp-for="ProductModelId" asp-items="ViewBag.ModelList"
+                                        class="form-control form-control-modern">
+                                        <option value="">-- Seçiniz --</option>
                                     </select>
-                                    <small class="text-muted d-block mt-1">Birden fazla uygulama alanı
-                                        seçebilirsiniz.</small>
+                                    <span asp-validation-for="ProductModelId" class="badge badge-danger"></span>
                                 </div>
                             </div>
 
-                            <!-- Çap -->
-                            <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Çap</label>
-                                <div class="col-lg-4 col-xl-4">
-                                    <input asp-for="Diameter" class="form-control form-control-modern"
-                                        placeholder="Değer giriniz" />
-                                </div>
-                                <div class="col-lg-3 col-xl-2">
-                                    <select asp-for="DiameterUnit" class="form-control form-control-modern">
-                                        <option value="mm">mm</option>
-                                        <option value="cm">cm</option>
-                                        <option value="inch">inch</option>
-                                    </select>
+                            <!-- KULLANIM & ÇALIŞMA KOŞULLARI -->
+                            <h4 class="mt-4 mb-3">Kullanım ve Çalışma Koşulları</h4>
+
+                            <div class="form-group row pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Kullanım Tipleri</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <div class="border rounded p-2">
+                                        @foreach (var ut in (IEnumerable<SelectListItem>)ViewBag.UsageTypeList)
+                                        {
+                                            <div class="form-check">
+                                                <input type="checkbox" name="SelectedUsageTypeIds" value="@ut.Value"
+                                                    class="form-check-input"
+                                                    @(Model.SelectedUsageTypeIds.Contains(int.Parse(ut.Value)) ? "checked" :
+                                                                                                    "") />
+                                                <label class="form-check-label">@ut.Text</label>
+                                            </div>
+                                        }
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Hava Debisi -->
-                            <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Hava Debisi</label>
-                                <div class="col-lg-4 col-xl-4">
-                                    <input asp-for="AirFlow" class="form-control form-control-modern"
-                                        placeholder="Min" />
-                                </div>
-                                <div class="col-lg-3 col-xl-2">
-                                    <select asp-for="AirFlowUnit" class="form-control form-control-modern">
-                                        <option value="m³/h">m³/h</option>
-                                        <option value="m³/s">m³/s</option>
-                                        <option value="L/s">L/s</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <!-- Basınç -->
-                            <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Basınç</label>
-                                <div class="col-lg-4 col-xl-4">
-                                    <input asp-for="Pressure" class="form-control form-control-modern"
-                                        placeholder="Min" />
-                                </div>
-                                <div class="col-lg-3 col-xl-2">
-                                    <select asp-for="PressureUnit" class="form-control form-control-modern">
-                                        <option value="Pa">Pa</option>
-                                        <option value="mmH₂O">mmH₂O</option>
-                                        <option value="inH₂O">inH₂O</option>
-                                    </select>
+                            <div class="form-group row pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Çalışma
+                                    Koşulları</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <div class="border rounded p-2">
+                                        @foreach (var wc in (IEnumerable<SelectListItem>)ViewBag.WorkingConditionList)
+                                        {
+                                            <div class="form-check">
+                                                <input type="checkbox" name="SelectedWorkingConditionIds" value="@wc.Value"
+                                                    class="form-check-input"
+                                                    @(Model.SelectedWorkingConditionIds.Contains(int.Parse(wc.Value)) ?
+                                                                                                    "checked" : "") />
+                                                <label class="form-check-label">@wc.Text</label>
+                                            </div>
+                                        }
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Güç -->
+                            <!-- PERFORMANS -->
+                            <h4 class="mt-4 mb-3">Performans Parametreleri</h4>
+
+                            <!-- AirFlow + Unit -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Güç</label>
-                                <div class="col-lg-4 col-xl-4">
-                                    <input asp-for="Power" class="form-control form-control-modern"
-                                        placeholder="Değer giriniz" />
-                                </div>
-                                <div class="col-lg-3 col-xl-2">
-                                    <select asp-for="PowerUnit" class="form-control form-control-modern">
-                                        <option value="kW">kW</option>
-                                        <option value="W">W</option>
-                                        <option value="HP">HP</option>
-                                    </select>
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">
+                                    Hava Debisi
+                                </label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <input asp-for="AirFlow" class="form-control form-control-modern" />
+                                        </div>
+                                        <div class="col-5">
+                                            <select asp-for="AirFlowUnit" class="form-control form-control-modern">
+                                                <option value="">-- Birim --</option>
+                                                <option value="m³/h">m³/h</option>
+                                                <option value="m³/s">m³/s</option>
+                                                <option value="L/s">L/s</option>
+                                            </select>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                            <!-- Voltage / Frequency / Speed / Noise -->
+                            <!-- TotalPressure + Unit -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Voltaj (V)</label>
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">
+                                    Basınç
+                                </label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <input asp-for="TotalPressure" class="form-control form-control-modern" />
+                                        </div>
+                                        <div class="col-5">
+                                            <select asp-for="TotalPressureUnit"
+                                                class="form-control form-control-modern">
+                                                <option value="">-- Birim --</option>
+                                                <option value="Pa">Pa</option>
+                                                <option value="mmH₂O">mmH₂O</option>
+                                                <option value="inchH₂O">inchH₂O</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Power -->
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">
+                                    Güç (kW)
+                                </label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="Power" class="form-control form-control-modern" />
+                                </div>
+                            </div>
+
+                            <!-- Voltage -->
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">
+                                    Gerilim (V)
+                                </label>
                                 <div class="col-lg-7 col-xl-6">
                                     <input asp-for="Voltage" class="form-control form-control-modern" />
                                 </div>
                             </div>
 
+                            <!-- Frequency -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Frekans (Hz)</label>
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">
+                                    Frekans (Hz)
+                                </label>
                                 <div class="col-lg-7 col-xl-6">
                                     <input asp-for="Frequency" class="form-control form-control-modern" />
                                 </div>
                             </div>
 
-                            <!-- Devir -->
+                            <!-- SpeedControl -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Devir</label>
-                                <div class="col-lg-4 col-xl-4">
-                                    <input asp-for="Speed" class="form-control form-control-modern"
-                                        placeholder="Değer giriniz" />
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">
+                                    Hız Kontrol Tipi
+                                </label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="SpeedControl" class="form-control form-control-modern"
+                                        placeholder="Inverter, Triac vb." />
                                 </div>
-                                <div class="col-lg-3 col-xl-2">
-                                    <select asp-for="SpeedUnit" class="form-control form-control-modern">
-                                        <option value="rpm">rpm</option>
-                                        <option value="rps">rps</option>
+                            </div>
+
+                            <!-- Temperature -->
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">
+                                    Sıcaklık (°C)
+                                </label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="Temperature" class="form-control form-control-modern" />
+                                </div>
+                            </div>
+
+
+                            <!-- DOSYALAR -->
+                            <h4 class="mt-4 mb-3">Görseller ve Dosyalar</h4>
+
+                            @{
+                                var fileInputs = new[]
+                                {
+                                    new { Name = "Image1File", Title = "Ana Ürün Görseli" },
+                                    new { Name = "Image2File", Title = "Ek Görsel 2" },
+                                    new { Name = "Image3File", Title = "Ek Görsel 3" },
+                                    new { Name = "Image4File", Title = "Ek Görsel 4" },
+                                    new { Name = "Image5File", Title = "Ek Görsel 5" },
+                                    new { Name = "DataSheetFile", Title = "DataSheet (PDF)" },
+                                    new { Name = "Model3DFile", Title = "3D Model (.glb)" },
+                                    new { Name = "TestDataFile", Title = "Test Data" },
+                                    new { Name = "ScaleImageFile", Title = "Ölçek Görseli" }
+                                };
+                            }
+                            @foreach (var item in fileInputs)
+                            {
+                                <div class="form-group row align-items-center pb-3">
+                                    <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">@item.Title</label>
+                                    <div class="col-lg-7 col-xl-6">
+                                        <input type="file" name="@item.Name" id="@item.Name" class="form-control form-control-modern" />
+                                    </div>
+                                </div>
+                            }
+
+
+
+                            <!-- GENEL -->
+                            <h4 class="mt-4 mb-3">Genel Bilgiler</h4>
+
+                            <div class="form-group row align-items-center pb-3">
+                                <label asp-for="Order" class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">
+                                    Sıra
+                                </label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="Order" class="form-control form-control-modern" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row align-items-center pb-3">
+                                <label asp-for="IsActive"
+                                    class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Durum</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <select asp-for="IsActive" class="form-control form-control-modern">
+                                        <option value="true">Aktif</option>
+                                        <option value="false">Pasif</option>
                                     </select>
-                                </div>
-                            </div>
-
-
-                            <!-- Ses Seviyesi -->
-                            <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Ses Seviyesi</label>
-                                <div class="col-lg-4 col-xl-4">
-                                    <input asp-for="NoiseLevel" class="form-control form-control-modern"
-                                        placeholder="Değer giriniz" />
-                                </div>
-                                <div class="col-lg-3 col-xl-2">
-                                    <select asp-for="NoiseLevelUnit" class="form-control form-control-modern">
-                                        <option value="dB(A)">dB(A)</option>
-                                        <option value="dB">dB</option>
-                                    </select>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Speed Control
-                                    Method</label>
-                                <div class="col-lg-7 col-xl-6">
-                                    <select asp-for="SpeedControl" class="form-control form-control-modern">
-                                        <option value="No Regulation">No Regulation</option>
-                                        <option value="V - Voltage">V - Voltage</option>
-                                        <option value="Hz - Frequency">Hz - Frequency</option>
-                                    </select>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">İçerik Başlık</label>
-                                <div class="col-lg-7 col-xl-6">
-                                    <input asp-for="ContentTitle" class="form-control form-control-modern" />
-                                </div>
-                            </div>
-
-                            <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">İçerik Detay</label>
-                                <div class="col-lg-7 col-xl-6">
-                                    <textarea asp-for="ContentDescription" class="form-control form-control-modern"
-                                        rows="4"></textarea>
-                                </div>
-                            </div>
-
-                            <!-- Görsel / Belgeler -->
-                            <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Görsel</label>
-                                <div class="col-lg-7 col-xl-6">
-                                    <input type="file" asp-for="Image1File" class="form-control form-control-modern"
-                                        accept=".jpg,.jpeg,.png,.webp" />
-                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: JPG, PNG, WEBP. Maks
-                                        10MB.</small>
-                                </div>
-                            </div>
-                            <!-- Görsel / Belgeler -->
-                            <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Görsel</label>
-                                <div class="col-lg-7 col-xl-6">
-                                    <input type="file" asp-for="Image2File" class="form-control form-control-modern"
-                                        accept=".jpg,.jpeg,.png,.webp" />
-                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: JPG, PNG, WEBP. Maks
-                                        10MB.</small>
-                                </div>
-                            </div>
-                            <!-- Görsel / Belgeler -->
-                            <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Görsel</label>
-                                <div class="col-lg-7 col-xl-6">
-                                    <input type="file" asp-for="Image3File" class="form-control form-control-modern"
-                                        accept=".jpg,.jpeg,.png,.webp" />
-                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: JPG, PNG, WEBP. Maks
-                                        10MB.</small>
-                                </div>
-                            </div>
-                            <!-- Görsel / Belgeler -->
-                            <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Görsel</label>
-                                <div class="col-lg-7 col-xl-6">
-                                    <input type="file" asp-for="Image4File" class="form-control form-control-modern"
-                                        accept=".jpg,.jpeg,.png,.webp" />
-                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: JPG, PNG, WEBP. Maks
-                                        10MB.</small>
-                                </div>
-                            </div>
-                            <!-- Görsel / Belgeler -->
-                            <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Görsel</label>
-                                <div class="col-lg-7 col-xl-6">
-                                    <input type="file" asp-for="Image5File" class="form-control form-control-modern"
-                                        accept=".jpg,.jpeg,.png,.webp" />
-                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: JPG, PNG, WEBP. Maks
-                                        10MB.</small>
-                                </div>
-                            </div>
-
-                            <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Teknik Döküman
-                                    (PDF)</label>
-                                <div class="col-lg-7 col-xl-6">
-                                    <input type="file" asp-for="DataSheetFile" class="form-control form-control-modern"
-                                        accept=".pdf" />
-                                </div>
-                            </div>
-
-                            <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">3D Model</label>
-                                <div class="col-lg-7 col-xl-6">
-                                    <input type="file" asp-for="Model3DFile" class="form-control form-control-modern"
-                                        accept=".glb,.stl" />
-                                </div>
-                            </div>
-
-                            <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Test Verisi</label>
-                                <div class="col-lg-7 col-xl-6">
-                                    <input type="file" asp-for="TestDataFile" class="form-control form-control-modern"
-                                        accept=".xls,.xlsx" />
-                                </div>
-                            </div>
-
-                            <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Ölçü Görsel</label>
-                                <div class="col-lg-7 col-xl-6">
-                                    <input type="file" asp-for="ScaleImageFile" class="form-control form-control-modern"
-                                        accept=".jpg,.jpeg,.png,.webp" />
-                                    <small class="text-muted d-block mt-1">Desteklenen formatlar: JPG, PNG, WEBP. Maks
-                                        10MB.</small>
-                                </div>
-                            </div>
-
-                            <!-- Durum -->
-                            <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Durum</label>
-                                <div class="col-lg-7 col-xl-6">
-                                    <input type="checkbox" asp-for="IsActive" /> <label class="ms-2">Aktif</label>
-                                </div>
-                            </div>
-
-                            <!-- Sıra -->
-                            <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Sıra</label>
-                                <div class="col-lg-7 col-xl-6">
-                                    <input asp-for="Order" type="number" class="form-control form-control-modern" />
                                 </div>
                             </div>
 
                         </div>
                     </div>
+
                 </div>
             </section>
         </div>
     </div>
 
-    <!-- Aksiyon butonları -->
+    <!-- ACTION BUTTONS -->
     <div class="row action-buttons">
         <div class="col-12 col-md-auto">
             <button type="submit"
@@ -342,8 +297,9 @@
         </div>
         <div class="col-12 col-md-auto px-md-0 mt-3 mt-md-0">
             <a asp-action="Index"
-                class="cancel-button btn btn-light btn-px-4 py-3 border font-weight-semibold text-color-dark text-3">Geri
-                Dön</a>
+                class="cancel-button btn btn-light btn-px-4 py-3 border font-weight-semibold text-color-dark text-3">
+                Geri Dön
+            </a>
         </div>
     </div>
 </form>

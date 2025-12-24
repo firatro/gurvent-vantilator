@@ -1,0 +1,336 @@
+@using GurventVantilator.AdminUI.Models.ProductModel
+@model ProductModelEditViewModel
+
+@{
+    ViewData["Title"] = "Model Güncelle";
+}
+
+<form class="ecommerce-form action-buttons-fixed" asp-action="Edit" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" id="DeletedFeatureIds" name="DeletedFeatureIdsString" />
+
+    <div class="row mt-2">
+        <div class="col">
+            <section class="card card-modern card-big-info">
+                <div class="card-body">
+                    <div class="row">
+
+                        <!-- LEFT INFO -->
+                        <div class="col-lg-2-5 col-xl-1-5">
+                            <i class="card-big-info-icon bx bx-edit-alt"></i>
+                            <h2 class="card-big-info-title">Model Güncelle</h2>
+                            <p class="card-big-info-desc">
+                                Model bilgilerini aşağıdan güncelleyebilirsiniz.
+                            </p>
+                        </div>
+
+                        <!-- RIGHT -->
+                        <div class="col-lg-3-5 col-xl-4-5">
+
+                            <!-- NAME -->
+                            <div class="form-group row pb-3">
+                                <label asp-for="Name" class="col-lg-5 col-xl-3 control-label text-lg-end">Adı</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="Name" class="form-control form-control-modern" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- CODE -->
+                            <div class="form-group row pb-3">
+                                <label asp-for="Code" class="col-lg-5 col-xl-3 control-label text-lg-end">Kodu</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="Code" class="form-control form-control-modern" />
+                                    <span asp-validation-for="Code" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- CONTENT -->
+                            <h4 class="mt-4 mb-3">İçerik Bilgileri</h4>
+
+                            <div class="form-group row pb-3">
+                                <label asp-for="ContentTitle" class="col-lg-5 col-xl-3 control-label text-lg-end">İçerik
+                                    Başlığı</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="ContentTitle" class="form-control form-control-modern" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row pb-3">
+                                <label asp-for="ContentDescription"
+                                    class="col-lg-5 col-xl-3 control-label text-lg-end">İçerik Açıklaması</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <textarea asp-for="ContentDescription" rows="3"
+                                        class="form-control form-control-modern"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- SERIES -->
+                            <div class="form-group row pb-3">
+                                <label asp-for="ProductSeriesId"
+                                    class="col-lg-5 col-xl-3 control-label text-lg-end">Seri</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <select asp-for="ProductSeriesId" asp-items="ViewBag.SeriesList"
+                                        class="form-control form-control-modern">
+                                        <option value="">-- Seri Seçiniz --</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- USAGE TYPES -->
+                            <h4 class="mt-4 mb-2">Kullanım Tipleri</h4>
+                            <div class="form-group row pb-3">
+                                <div class="col-lg-7 col-xl-6 offset-lg-5 offset-xl-3 border rounded p-2">
+                                    @foreach (var ut in (IEnumerable<SelectListItem>)ViewBag.UsageTypeList)
+                                    {
+                                        <div class="form-check">
+                                            <input type="checkbox" name="SelectedUsageTypeIds" value="@ut.Value"
+                                                class="form-check-input"
+                                                @(Model.SelectedUsageTypeIds.Contains(int.Parse(ut.Value)) ? "checked" :
+                                                                                            "") />
+                                            <label class="form-check-label">@ut.Text</label>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <!-- WORKING CONDITIONS -->
+                            <h4 class="mt-4 mb-2">Çalışma Koşulları</h4>
+                            <div class="form-group row pb-3">
+                                <div class="col-lg-7 col-xl-6 offset-lg-5 offset-xl-3 border rounded p-2">
+                                    @foreach (var wc in (IEnumerable<SelectListItem>)ViewBag.WorkingConditionList)
+                                    {
+                                        <div class="form-check">
+                                            <input type="checkbox" name="SelectedWorkingConditionIds" value="@wc.Value"
+                                                class="form-check-input"
+                                                @(Model.SelectedWorkingConditionIds.Contains(int.Parse(wc.Value)) ?
+                                                                                            "checked" : "") />
+                                            <label class="form-check-label">@wc.Text</label>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <!-- PERFORMANCE -->
+                            <h4 class="mt-4 mb-3">Performans Parametreleri</h4>
+
+                            <!-- AirFlow -->
+                            <div class="form-group row pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end">Hava Debisi</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <input asp-for="AirFlow" class="form-control form-control-modern" />
+                                        </div>
+                                        <div class="col-5">
+                                            <select asp-for="AirFlowUnit" class="form-control form-control-modern">
+                                                <option value="">-- Birim --</option>
+                                                <option value="m³/h">m³/h</option>
+                                                <option value="m³/s">m³/s</option>
+                                                <option value="L/s">L/s</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Pressure -->
+                            <div class="form-group row pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end">Basınç</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <div class="row">
+                                        <div class="col-7">
+                                            <input asp-for="TotalPressure" class="form-control form-control-modern" />
+                                        </div>
+                                        <div class="col-5">
+                                            <select asp-for="TotalPressureUnit"
+                                                class="form-control form-control-modern">
+                                                <option value="">-- Birim --</option>
+                                                <option value="Pa">Pa</option>
+                                                <option value="mmH₂O">mmH₂O</option>
+                                                <option value="inchH₂O">inchH₂O</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- POWER -->
+                            <div class="form-group row pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end">Güç (kW)</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="Power" class="form-control form-control-modern" />
+                                </div>
+                            </div>
+
+                            <!-- VOLTAGE -->
+                            <div class="form-group row pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end">Gerilim (V)</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="Voltage" class="form-control form-control-modern" />
+                                </div>
+                            </div>
+
+                            <!-- FREQUENCY -->
+                            <div class="form-group row pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end">Frekans (Hz)</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="Frequency" class="form-control form-control-modern" />
+                                </div>
+                            </div>
+
+                            <!-- SPEED CONTROL -->
+                            <div class="form-group row pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end">Hız Kontrol Tipi</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="SpeedControl" class="form-control form-control-modern" />
+                                </div>
+                            </div>
+
+                            <!-- TEMPERATURE -->
+                            <div class="form-group row pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end">Sıcaklık (°C)</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="Temperature" class="form-control form-control-modern" />
+                                </div>
+                            </div>
+
+                            <!-- STATIC FAN PROPERTIES (same as your version, unchanged) -->
+                            @* sizin orijinal kodunuz burada aynen kalacak *@
+
+
+                            <!-- MODEL FEATURES -->
+                            <h4 class="mt-4 mb-3">Model Özellikleri</h4>
+
+                            <div class="form-group row pb-3">
+                                <div class="col-lg-5 col-xl-3 control-label text-lg-end">
+                                    <button type="button" id="add-feature-btn" class="btn btn-success mt-2">
+                                        <i class="bx bx-plus"></i> Özellik Ekle
+                                    </button>
+                                </div>
+
+                                <div class="col-lg-7 col-xl-6">
+                                    <div id="feature-list">
+
+                                        @for (int i = 0; i < Model.ModelFeatures.Count; i++)
+                                        {
+                                            <div class="border p-3 mb-3 rounded bg-light">
+                                                <input type="hidden" name="ModelFeatures[@i].Id"
+                                                    value="@Model.ModelFeatures[i].Id" />
+                                                <input type="hidden" name="ModelFeatures[@i].Order"
+                                                    value="@Model.ModelFeatures[i].Order" />
+
+                                                <div class="mb-2">
+                                                    <label>Özellik Adı</label>
+                                                    <input class="form-control" name="ModelFeatures[@i].FeatureName"
+                                                        value="@Model.ModelFeatures[i].FeatureName" />
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-6">
+                                                        <label>Standart Değer</label>
+                                                        <input class="form-control" name="ModelFeatures[@i].StandardValue"
+                                                            value="@Model.ModelFeatures[i].StandardValue" />
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label>Opsiyonel Değer</label>
+                                                        <input class="form-control" name="ModelFeatures[@i].OptionalValue"
+                                                            value="@Model.ModelFeatures[i].OptionalValue" />
+                                                    </div>
+                                                </div>
+
+                                                <button type="button" class="btn btn-danger btn-sm mt-2 remove-feature-btn">
+                                                    <i class="bx bx-trash"></i> Sil
+                                                </button>
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div> <!-- RIGHT END -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- ACTION BUTTONS -->
+    <div class="row action-buttons">
+        <div class="col-md-auto">
+            <button type="submit" class="btn btn-primary btn-px-4 py-3 font-weight-semibold">
+                <i class="bx bx-save text-4 me-2"></i> Kaydet
+            </button>
+        </div>
+
+        <div class="col-md-auto mt-3 mt-md-0 px-md-0">
+            <a asp-action="Index" class="btn btn-light btn-px-4 py-3 border font-weight-semibold">Geri Dön</a>
+        </div>
+    </div>
+
+</form>
+
+
+<script>
+    let featureIndex = @Model.ModelFeatures.Count;
+    let deletedFeatures = [];
+
+    // Yeni Özellik Ekleme
+    document.getElementById("add-feature-btn").addEventListener("click", function () {
+
+        const html = `
+            <div class="border p-3 mb-3 rounded bg-light">
+                <input type="hidden" name="ModelFeatures[${featureIndex}].Id" value="0" />
+                <input type="hidden" name="ModelFeatures[${featureIndex}].Order" value="${featureIndex}" />
+
+                <div class="mb-2">
+                    <label>Özellik Adı</label>
+                    <input class="form-control"
+                        name="ModelFeatures[${featureIndex}].FeatureName" />
+                </div>
+
+                <div class="row">
+                    <div class="col-6">
+                        <label>Standart Değer</label>
+                        <input class="form-control"
+                            name="ModelFeatures[${featureIndex}].StandardValue" />
+                    </div>
+                    <div class="col-6">
+                        <label>Opsiyonel Değer</label>
+                        <input class="form-control"
+                            name="ModelFeatures[${featureIndex}].OptionalValue" />
+                    </div>
+                </div>
+
+                <button type="button" class="btn btn-danger btn-sm mt-2 remove-feature-btn">
+                    <i class="bx bx-trash"></i> Sil
+                </button>
+            </div>
+        `;
+
+        document.getElementById("feature-list").insertAdjacentHTML("beforeend", html);
+        featureIndex++;
+    });
+
+    // Özellik silme
+    document.addEventListener("click", function (e) {
+        const btn = e.target.closest(".remove-feature-btn");
+        if (!btn) return;
+
+        const wrapper = btn.closest(".border");
+        const idInput = wrapper.querySelector('input[name*=".Id"]');
+
+        if (idInput && idInput.value !== "0") {
+            deletedFeatures.push(idInput.value);
+        }
+
+        wrapper.remove();
+    });
+
+    // Form submit
+    document.querySelector("form").addEventListener("submit", function () {
+        document.getElementById("DeletedFeatureIds").value = deletedFeatures.join(",");
+    });
+</script>

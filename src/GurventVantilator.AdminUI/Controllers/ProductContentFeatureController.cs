@@ -1,6 +1,5 @@
-using GurventVantilator.Application.Interfaces.Services;
 using GurventVantilator.Application.DTOs;
-using GurventVantilator.AdminUI.Models.ProductContentFeature;
+using GurventVantilator.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -8,65 +7,70 @@ namespace GurventVantilator.AdminUI.Controllers
 {
     public class ProductContentFeatureController : Controller
     {
-        private readonly IProductContentFeatureService _service;
+        private readonly IProductContentFeatureService _featureService;
+        private readonly IProductModelService _modelService;
         private readonly IProductService _productService;
 
-        public ProductContentFeatureController(IProductContentFeatureService service, IProductService productService)
+        public ProductContentFeatureController(
+            IProductContentFeatureService featureService,
+            IProductModelService modelService, IProductService productService)
         {
-            _service = service;
+            _featureService = featureService;
+            _modelService = modelService;
             _productService = productService;
         }
 
-        #region INDEX
-        public async Task<IActionResult> Index(int? productId)
+        // ================================================================
+        // INDEX
+        // ================================================================
+        public async Task<IActionResult> Index(int? modelId)
         {
-            // 🔹 Özellikleri al
-            var result = await _service.GetAllAsync();
-            if (!result.Success || result.Data == null)
-                return View(new List<ProductContentFeatureViewModel>());
-
-            // 🔹 Ürün listesini al
+            var featureResult = await _featureService.GetAllAsync();
+            var modelResult = await _modelService.GetAllAsync();
             var productResult = await _productService.GetAllAsync();
-            var productList = productResult.Success && productResult.Data != null
-                ? productResult.Data
-                : new List<ProductDto>();
 
-            // 🔹 Ürünleri dictionary'e çevir (id -> name)
-            var productDict = productList.ToDictionary(p => p.Id, p => p.Name);
+            var modelList = modelResult.Success ? modelResult.Data : new List<ProductModelDto>();
+            var modelDict = modelList.ToDictionary(x => x.Id, x => x.Name);
 
-            // 🔹 ViewModel listesi oluştur
-            var list = result.Data.Select(x => new ProductContentFeatureViewModel
-            {
-                Id = x.Id,
-                ProductId = x.ProductId,
-                ProductName = productDict.ContainsKey(x.ProductId) ? productDict[x.ProductId] : "—",
-                Key = x.Key,
-                Value = x.Value,
-                Order = x.Order
-            }).ToList();
+            var productList = productResult.Success ? productResult.Data : new List<ProductDto>();
+            var productDict = productList.ToDictionary(x => x.Id, x => x.Name);
 
-            // 🔹 Filtre uygulanmışsa
-            if (productId.HasValue && productId.Value > 0)
-                list = list.Where(x => x.ProductId == productId.Value).ToList();
+            var list = featureResult.Data
+                .Where(f => f.ProductModelId.HasValue)
+                .Select(f => new ProductContentFeatureViewModel
+                {
+                    Id = f.Id,
+                    ProductModelId = f.ProductModelId ?? 0,
+                    ProductName = productDict.ContainsKey(f.ProductId ?? 0)
+                        ? productDict[f.ProductId ?? 0]
+                        : "—",
+                    ProductModelName = modelDict.ContainsKey(f.ProductModelId ?? 0)
+                        ? modelDict[f.ProductModelId ?? 0]
+                        : "—",
+                    Key = f.Key,
+                    Value = f.Value,
+                    Order = f.Order
+                }).ToList();
 
-            // 🔹 Dropdown için ürün listesi
-            ViewBag.Products = new SelectList(productList, "Id", "Name", productId);
+            if (modelId.HasValue)
+                list = list.Where(x => x.ProductModelId == modelId.Value).ToList();
+
+            ViewBag.Models = new SelectList(modelList, "Id", "Name", modelId);
 
             return View(list);
         }
 
-        #endregion
-
-        #region CREATE
+        // ================================================================
+        // CREATE
+        // ================================================================
         public async Task<IActionResult> Create()
         {
-            var products = await _productService.GetAllAsync();
-            ViewBag.Products = new SelectList(products.Data, "Id", "Name");
+            var models = await _modelService.GetAllAsync();
+            ViewBag.Models = new SelectList(models.Data, "Id", "Name");
             return View();
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductContentFeatureViewModel vm)
         {
             if (!ModelState.IsValid)
@@ -74,48 +78,47 @@ namespace GurventVantilator.AdminUI.Controllers
 
             var dto = new ProductContentFeatureDto
             {
-                ProductId = vm.ProductId,
+                ProductModelId = vm.ProductModelId,
                 Key = vm.Key,
                 Value = vm.Value,
                 Order = vm.Order
             };
 
-            var result = await _service.AddAsync(dto);
+            var result = await _featureService.AddAsync(dto);
             if (!result.Success)
             {
-                ModelState.AddModelError("", result.ErrorMessage ?? "Kayıt eklenemedi.");
+                ModelState.AddModelError("", result.ErrorMessage ?? "Ekleme başarısız.");
                 return View(vm);
             }
 
-            TempData["SuccessMessage"] = "İçerik özelliği başarıyla eklendi.";
-            return RedirectToAction(nameof(Index));
+            TempData["SuccessMessage"] = "Özellik eklendi.";
+            return RedirectToAction(nameof(Index), new { modelId = vm.ProductModelId });
         }
-        #endregion
 
-        #region EDIT
+        // ================================================================
+        // EDIT
+        // ================================================================
         public async Task<IActionResult> Edit(int id)
         {
-            var result = await _service.GetByIdAsync(id);
-            if (!result.Success || result.Data == null)
-                return NotFound();
+            var result = await _featureService.GetByIdAsync(id);
 
             var vm = new ProductContentFeatureViewModel
             {
                 Id = result.Data.Id,
-                ProductId = result.Data.ProductId,
+                ProductModelId = result.Data.ProductModelId ?? 0,
                 Key = result.Data.Key,
                 Value = result.Data.Value,
                 Order = result.Data.Order
             };
 
-            var products = await _productService.GetAllAsync();
-            ViewBag.Products = new SelectList(products.Data, "Id", "Name", vm.ProductId);
+            var models = await _modelService.GetAllAsync();
+            ViewBag.Models = new SelectList(models.Data, "Id", "Name", vm.ProductModelId);
 
             return View(vm);
         }
 
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(ProductContentFeatureViewModel vm)
         {
             if (!ModelState.IsValid)
@@ -124,37 +127,34 @@ namespace GurventVantilator.AdminUI.Controllers
             var dto = new ProductContentFeatureDto
             {
                 Id = vm.Id,
-                ProductId = vm.ProductId,
+                ProductModelId = vm.ProductModelId,
                 Key = vm.Key,
                 Value = vm.Value,
                 Order = vm.Order
             };
 
-            var result = await _service.UpdateAsync(dto);
+            var result = await _featureService.UpdateAsync(dto);
             if (!result.Success)
             {
-                ModelState.AddModelError("", result.ErrorMessage ?? "Kayıt güncellenemedi.");
+                ModelState.AddModelError("", result.ErrorMessage ?? "Güncelleme başarısız.");
                 return View(vm);
             }
 
-            TempData["SuccessMessage"] = "İçerik özelliği başarıyla güncellendi.";
-            return RedirectToAction(nameof(Index));
+            TempData["SuccessMessage"] = "Özellik güncellendi.";
+            return RedirectToAction(nameof(Index), new { modelId = vm.ProductModelId });
         }
-        #endregion
 
-        #region DELETE
+        // ================================================================
+        // DELETE
+        // ================================================================
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
-            var result = await _service.DeleteAsync(id);
-            if (!result.Success)
-                TempData["ErrorMessage"] = result.ErrorMessage ?? "Kayıt silinemedi.";
-            else
-                TempData["SuccessMessage"] = "Kayıt başarıyla silindi.";
+            var result = await _featureService.DeleteAsync(id);
+            TempData[result.Success ? "SuccessMessage" : "ErrorMessage"]
+                = result.Success ? "Silindi" : result.ErrorMessage;
 
             return RedirectToAction(nameof(Index));
         }
-        #endregion
     }
 }

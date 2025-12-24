@@ -29,6 +29,9 @@ namespace GurventVantilator.Application.Enums
         Product = 7,
 
         [Display(Name = "Ürün Kategorileri")]
-        ProductCategory = 8
+        ProductCategory = 8,
+
+        [Display(Name = "Konfigüratör")]
+        FanSelector = 9
     }
 }

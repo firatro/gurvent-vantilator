@@ -1,0 +1,143 @@
+@using GurventVantilator.AdminUI.Models.TestData
+@model TestDataIndexViewModel
+
+@{
+    ViewData["Title"] = "Test Datası Yönetimi";
+}
+
+<div class="row">
+    <div class="col">
+        <div class="card card-modern">
+            <div class="card-body">
+                <div class="datatables-header-footer-wrapper mt-2">
+
+                    <!-- ===== HEADER ===== -->
+                    <div class="datatable-header">
+                        <div class="row align-items-end mb-3">
+
+                            <!-- ÜRÜN SEÇ -->
+                            <div class="col-12 col-lg-5 mb-2 mb-lg-0">
+                                <label class="form-label fw-bold">Ürün Seç</label>
+                                <select class="form-select" id="productSelect">
+                                    <option value="">Ürün seçiniz...</option>
+                                    @foreach (var p in Model.Products)
+                                    {
+                                        <option value="@p.Id">@p.Name</option>
+                                    }
+                                </select>
+                            </div>
+
+                            <!-- TEST DATA YÜKLE -->
+                            <div class="col-12 col-lg-auto">
+                                <a id="uploadBtn"
+                                    class="btn btn-primary btn-md font-weight-semibold btn-py-2 px-4 disabled" href="#">
+                                    + Test Datası Yükle
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- ===== TABLE ===== -->
+                    <table class="table table-ecommerce-simple table-striped mb-0" id="datatable-ecommerce-list"
+                        style="min-width: 750px;">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Ürün</th>
+                                <th class="text-center">Test Adı</th>
+                                <th class="text-center">Çap (mm)</th>
+                                <th class="text-center">Test Tarihi</th>
+                                <th class="text-center">Durum</th>
+                                <th width="220" class="text-center">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @if (!Model.TestDatas.Any())
+                            {
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted">
+                                        Henüz test datası eklenmemiş.
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var item in Model.TestDatas)
+                                {
+                                    <tr>
+                                        <td class="text-center">
+                                            <strong>@item.ProductName</strong>
+                                        </td>
+
+                                        <td class="text-center">
+                                            @item.TestName
+                                        </td>
+
+                                        <td class="text-center">
+                                            @item.Diameter
+                                        </td>
+
+                                        <td class="text-center">
+                                            @item.TestDate?.ToString("dd.MM.yyyy")
+                                        </td>
+
+                                        <td class="text-center">
+                                            @if (item.IsActive)
+                                            {
+                                                <span class="badge bg-success">Aktif</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-secondary">Pasif</span>
+                                            }
+                                        </td>
+
+                                        <td class="text-center">
+                                            <div class="btn-group d-flex" role="group">
+
+                                                <a class="btn btn-info btn-xs w-100 m-1 rounded" asp-controller="TestData"
+                                                    asp-action="Detail" asp-route-productId="@item.ProductId">
+                                                    <i class="fas fa-chart-line"></i>
+                                                    Detay
+                                                </a>
+
+                                                <a class="btn btn-success btn-xs w-100 m-1 rounded" asp-controller="TestData"
+                                                    asp-action="Create" asp-route-productId="@item.ProductId">
+                                                    <i class="fas fa-upload"></i>
+                                                    Yeni Test
+                                                </a>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+        const productSelect = document.getElementById('productSelect');
+        const uploadBtn = document.getElementById('uploadBtn');
+
+        productSelect.addEventListener('change', function () {
+            if (this.value) {
+                uploadBtn.classList.remove('disabled');
+                uploadBtn.href = `/TestData/Create?productId=${this.value}`;
+            } else {
+                uploadBtn.classList.add('disabled');
+                uploadBtn.href = '#';
+            }
+        });
+    </script>
+
+}

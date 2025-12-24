@@ -1,0 +1,145 @@
+@model IEnumerable<GurventVantilator.Application.DTOs.ProductWorkingConditionDto>
+
+@{
+    ViewData["Title"] = "Çalışma Koşulları";
+}
+
+<div class="row">
+    <div class="col">
+        <section class="card card-modern">
+            <div class="card-body">
+
+                <div class="datatables-header-footer-wrapper mt-2">
+
+                    <!-- HEADER -->
+                    <div class="datatable-header mb-3">
+                        <div class="row align-items-center">
+                            <div class="col-12 col-lg-auto mb-3 mb-lg-0">
+                                <a asp-action="Create"
+                                    class="btn btn-primary btn-md font-weight-semibold btn-py-2 px-4">
+                                    + Yeni Ekle
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TABLE -->
+                    <table class="table table-ecommerce-simple table-striped mb-0" id="datatable-working-list"
+                        style="min-width: 750px;">
+                        <thead>
+                            <tr>
+                                <th width="40" class="text-center">Id</th>
+                                <th class="text-center">Adı</th>
+                                <th class="text-center">Açıklama</th>
+                                <th class="text-center">Durum</th>
+                                @* <th width="60" class="text-center">Sıra</th> *@
+                                @* <th width="80" class="text-center">Ürün Sayısı</th> *@
+                                <th width="200" class="text-center">İşlemler</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if (Model == null || !Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="7" class="text-center text-muted">
+                                        Kayıt bulunamadı.
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="text-center"><strong>@item.Id</strong></td>
+
+                                        <td class="text-center">
+                                            <strong>@item.Name</strong>
+                                        </td>
+
+                                        <td class="text-center">@item.Description</td>
+
+                                        <td class="text-center">
+                                            @if (item.IsActive)
+                                            {
+                                                <span class="badge bg-success">Aktif</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-secondary">Pasif</span>
+                                            }
+                                        </td>
+
+                                        @* <td class="text-center">@item.Order</td> *@
+
+                                        @* <td class="text-center">@item.ProductCount</td> *@
+
+                                        <td width="200" class="text-center">
+                                            <div class="btn-group d-flex" role="group">
+
+                                                <a class="btn btn-primary btn-xs w-100 m-1 rounded" asp-action="Edit"
+                                                    asp-route-id="@item.Id">
+                                                    <i class="far fa-edit"></i> Düzenle
+                                                </a>
+
+                                                <a href="#deleteModal"
+                                                    class="btn btn-danger btn-xs w-100 m-1 rounded modal-basic"
+                                                    onclick="setDeleteWorkingId(@item.Id)">
+                                                    <i class="far fa-trash-alt"></i> Sil
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+
+                    <hr class="solid mt-5 opacity-4">
+
+                    <!-- DELETE MODAL -->
+                    <div id="deleteModal" class="modal-block mfp-hide">
+                        <section class="card">
+                            <header class="card-header">
+                                <h2 class="card-title">Çalışma Koşulu Sil</h2>
+                            </header>
+
+                            <div class="card-body">
+                                <div class="modal-wrapper">
+                                    <div class="modal-text">
+                                        <p class="mb-0">Bu çalışma koşulunu silmek istediğinizden emin misiniz?</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <footer class="card-footer">
+                                <form id="DeleteForm" asp-action="Delete" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" id="workingId" />
+
+                                    <div class="text-end">
+                                        <button type="submit" class="btn btn-danger">Sil</button>
+                                        <button type="button" class="btn btn-default modal-dismiss">Vazgeç</button>
+                                    </div>
+                                </form>
+                            </footer>
+                        </section>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/examples/examples.modals.js"></script>
+
+    <script>
+        function setDeleteWorkingId(id) {
+            document.getElementById("workingId").value = id;
+        }
+    </script>
+}

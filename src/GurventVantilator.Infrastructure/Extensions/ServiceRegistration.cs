@@ -4,6 +4,7 @@ using GurventVantilator.Application.Interfaces.Repositories;
 using GurventVantilator.Application.Interfaces.Services;
 using GurventVantilator.Domain.Interfaces.Repositories;
 using GurventVantilator.Infrastructure.Data;
+using GurventVantilator.Infrastructure.Data.Repositories;
 using GurventVantilator.Infrastructure.Identity;
 using GurventVantilator.Infrastructure.Persistence.Repositories;
 using GurventVantilator.Infrastructure.Repositories;
@@ -50,15 +51,18 @@ namespace GurventVantilator.Infrastructure.Extensions
             services.AddScoped<IPageImageRepository, PageImageRepository>();
             services.AddScoped<IVersionInfoRepository, VersionInfoRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
-            services.AddScoped<IProductApplicationRepository, ProductApplicationRepository>();
+            services.AddScoped<IProductUsageTypeRepository, ProductUsageTypeRepository>();
+            services.AddScoped<IProductWorkingConditionRepository, ProductWorkingConditionRepository>();
+            services.AddScoped<IProductModelRepository, ProductModelRepository>();
+            services.AddScoped<IProductSeriesRepository, ProductSeriesRepository>();
             services.AddScoped<IProductTestDataRepository, ProductTestDataRepository>();
             services.AddScoped<IProductContentFeatureRepository, ProductContentFeatureRepository>();
+            services.AddScoped<IProductModelDocumentRepository, ProductModelDocumentRepository>();
+            services.AddScoped<IProductTestDataPointRepository, ProductTestDataPointRepository>();
 
             // File Upload
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<IFileValidator, FileValidator>();
-            services.AddScoped<IProductTestDataImportService, ProductTestDataImportService>();
 
             // Authentication Kayıtları
             services.AddScoped<IAuthRepository, AuthRepository>();

@@ -1,7 +1,7 @@
-@model GurventVantilator.AdminUI.Models.ProductContentFeature.ProductContentFeatureViewModel
+@model ProductContentFeatureViewModel
 
 @{
-    ViewData["Title"] = "Yeni İçerik Özelliği Ekle";
+    ViewData["Title"] = "Yeni Model Özelliği Ekle";
 }
 
 <form class="ecommerce-form action-buttons-fixed" asp-action="Create" method="post" enctype="multipart/form-data">
@@ -12,12 +12,13 @@
             <section class="card card-modern card-big-info">
                 <div class="card-body">
                     <div class="row">
+
                         <!-- Sol Bilgi Paneli -->
                         <div class="col-lg-2-5 col-xl-1-5">
                             <i class="card-big-info-icon bx bx-list-check"></i>
-                            <h2 class="card-big-info-title">Yeni Özellik</h2>
+                            <h2 class="card-big-info-title">Yeni Model Özelliği</h2>
                             <p class="card-big-info-desc">
-                                Ürün için yeni bir içerik özelliği ekleyin.
+                                Seçilen modele yeni bir içerik özelliği ekleyin.
                                 Başlık, içerik ve sıra bilgilerini doldurun.
                             </p>
                         </div>
@@ -25,54 +26,63 @@
                         <!-- Sağ Form Alanları -->
                         <div class="col-lg-3-5 col-xl-4-5">
 
+                            <!-- MODEL DROPDOWN -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0 "
-                                    asp-for="ProductId">Ürün</label>
+                                <label asp-for="ProductModelId"
+                                    class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">
+                                    Model
+                                </label>
                                 <div class="col-lg-7 col-xl-6">
-                                    <select class="form-control form-control-modern" asp-for="ProductId"
-                                        asp-items="ViewBag.Products">
+                                    <select asp-for="ProductModelId" asp-items="ViewBag.Models"
+                                        class="form-control form-control-modern">
                                         <option value="">Seçiniz...</option>
                                     </select>
-                                    <span asp-validation-for="ProductId" class="badge badge-danger"></span>
+                                    <span asp-validation-for="ProductModelId" class="badge badge-danger"></span>
                                 </div>
                             </div>
 
+                            <!-- KEY -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0 "
-                                    asp-for="Key">Başlık (Key)</label>
+                                <label asp-for="Key" class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">
+                                    Başlık (Key)
+                                </label>
                                 <div class="col-lg-7 col-xl-6">
-                                    <input type="text" class="form-control form-control-modern" asp-for="Key" />
+                                    <input asp-for="Key" type="text" class="form-control form-control-modern" />
                                     <span asp-validation-for="Key" class="badge badge-danger"></span>
                                 </div>
                             </div>
 
+                            <!-- VALUE -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0 "
-                                    asp-for="Value">İçerik (Value)</label>
+                                <label asp-for="Value" class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">
+                                    İçerik (Value)
+                                </label>
                                 <div class="col-lg-7 col-xl-6">
-                                    <textarea class="form-control form-control-modern" asp-for="Value"
-                                        rows="3"></textarea>
+                                    <textarea asp-for="Value" rows="3"
+                                        class="form-control form-control-modern"></textarea>
                                     <span asp-validation-for="Value" class="badge badge-danger"></span>
                                 </div>
                             </div>
 
+                            <!-- ORDER -->
                             <div class="form-group row align-items-center pb-3">
-                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0 "
-                                    asp-for="Order">Sıra</label>
+                                <label asp-for="Order" class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">
+                                    Sıra
+                                </label>
                                 <div class="col-lg-7 col-xl-6">
-                                    <input type="number" class="form-control form-control-modern" asp-for="Order" />
+                                    <input asp-for="Order" type="number" class="form-control form-control-modern" />
                                     <span asp-validation-for="Order" class="badge badge-danger"></span>
                                 </div>
                             </div>
 
-                        </div>
+                        </div> <!-- /RIGHT -->
                     </div>
                 </div>
             </section>
         </div>
     </div>
 
-    <!-- Action Buttons -->
+    <!-- ACTION BUTTONS -->
     <div class="row action-buttons">
         <div class="col-12 col-md-auto">
             <button type="submit"
@@ -88,4 +98,5 @@
             </a>
         </div>
     </div>
+
 </form>

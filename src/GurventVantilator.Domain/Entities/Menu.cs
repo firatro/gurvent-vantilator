@@ -30,6 +30,7 @@ namespace GurventVantilator.Domain.Entities
         AboutUs = 5,
         HomePage = 6,
         Product = 7,
-        ProductCategory = 8
+        ProductCategory = 8,
+        FanSelector = 9
     }
 }

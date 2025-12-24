@@ -11,16 +11,17 @@ public class MenuController : Controller
     private readonly IServiceService _serviceService;
     private readonly IProjectService _projectService;
     private readonly IProductService _productService;
-    private readonly IProductCategoryService _productCategoryService;
+    // private readonly IProductCategoryService _productCategoryService;
 
 
-    public MenuController(IMenuService menuService, IServiceService serviceService, IProjectService projectService, IProductService productService, IProductCategoryService productCategoryService)
+    // public MenuController(IMenuService menuService, IServiceService serviceService, IProjectService projectService, IProductService productService, IProductCategoryService productCategoryService)
+    public MenuController(IMenuService menuService, IServiceService serviceService, IProjectService projectService, IProductService productService)
     {
         _menuService = menuService;
         _serviceService = serviceService;
         _projectService = projectService;
         _productService = productService;
-        _productCategoryService = productCategoryService;
+        // _productCategoryService = productCategoryService;
     }
 
     public async Task<IActionResult> Index()
@@ -181,11 +182,11 @@ public class MenuController : Controller
         else
             ViewBag.Products = new SelectList(new List<object>(), "Id", "Name");
 
-        var productCategories = await _productCategoryService.GetAllAsync();
-        if (productCategories.Success && productCategories.Data != null)
-            ViewBag.ProductCategories = new SelectList(productCategories.Data, "Id", "Name", selectedProductCategoryId);
-        else
-            ViewBag.ProductCategories = new SelectList(new List<object>(), "Id", "Name");
+        // var productCategories = await _productCategoryService.GetAllAsync();
+        // if (productCategories.Success && productCategories.Data != null)
+        //     ViewBag.ProductCategories = new SelectList(productCategories.Data, "Id", "Name", selectedProductCategoryId);
+        // else
+        //     ViewBag.ProductCategories = new SelectList(new List<object>(), "Id", "Name");
 
     }
 

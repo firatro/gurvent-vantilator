@@ -22,6 +22,7 @@ namespace GurventVantilator.Application.Services
             {
                 Id = x.Id,
                 ProductId = x.ProductId,
+                ProductModelId = x.ProductModelId,
                 Key = x.Key,
                 Value = x.Value,
                 Order = x.Order
@@ -40,6 +41,7 @@ namespace GurventVantilator.Application.Services
             {
                 Id = entity.Id,
                 ProductId = entity.ProductId,
+                ProductModelId = entity.ProductModelId,
                 Key = entity.Key,
                 Value = entity.Value,
                 Order = entity.Order
@@ -65,6 +67,7 @@ namespace GurventVantilator.Application.Services
         {
             var entity = new ProductContentFeature
             {
+                ProductModelId = dto.ProductModelId,
                 ProductId = dto.ProductId,
                 Key = dto.Key,
                 Value = dto.Value,
@@ -99,5 +102,22 @@ namespace GurventVantilator.Application.Services
             await _repository.DeleteAsync(entity);
             return Result<bool>.Ok(true);
         }
+
+        public async Task<Result<List<ProductContentFeatureDto>>> GetByModelIdAsync(int modelId)
+        {
+            var list = await _repository.GetByModelIdAsync(modelId);
+
+            var dtoList = list.Select(x => new ProductContentFeatureDto
+            {
+                Id = x.Id,
+                ProductModelId = x.ProductModelId ?? 0,
+                Key = x.Key,
+                Value = x.Value,
+                Order = x.Order
+            }).ToList();
+
+            return Result<List<ProductContentFeatureDto>>.Ok(dtoList);
+        }
+
     }
 }

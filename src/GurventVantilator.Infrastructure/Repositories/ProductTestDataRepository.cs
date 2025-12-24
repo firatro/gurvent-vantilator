@@ -1,5 +1,4 @@
 using GurventVantilator.Domain.Entities;
-using GurventVantilator.Domain.Interfaces.Repositories;
 using GurventVantilator.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,61 +7,46 @@ namespace GurventVantilator.Infrastructure.Persistence.Repositories;
 public class ProductTestDataRepository : IProductTestDataRepository
 {
     private readonly AppDbContext _context;
-    public ProductTestDataRepository(AppDbContext ctx) => _context = ctx;
 
-    public async Task AddRangeAsync(IEnumerable<ProductTestData> entities, CancellationToken ct = default)
+    public ProductTestDataRepository(AppDbContext context)
     {
-        await _context.Set<ProductTestData>().AddRangeAsync(entities, ct);
-        await _context.SaveChangesAsync(ct);
+        _context = context;
     }
 
-    public async Task DeleteByProductIdAsync(int productId, CancellationToken ct = default)
+    public async Task<ProductTestData?> GetActiveByProductIdAsync(int productId)
     {
-        await _context.Set<ProductTestData>()
-            .Where(x => x.ProductId == productId)
-            .ExecuteDeleteAsync(ct);
+        return await _context.ProductTestDatas
+            .Include(x => x.Points)
+            .FirstOrDefaultAsync(x =>
+                x.ProductId == productId &&
+                x.IsActive);
     }
 
-    public async Task<ProductTestData?> GetByProductIdAsync(int productId)
+    public async Task<ProductTestData?> GetByIdAsync(int id)
+    {
+        return await _context.ProductTestDatas
+            .Include(x => x.Points)
+            .FirstOrDefaultAsync(x => x.Id == id);
+    }
+
+    public async Task AddAsync(ProductTestData testData)
+    {
+        _context.ProductTestDatas.Add(testData);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdateAsync(ProductTestData testData)
+    {
+        _context.ProductTestDatas.Update(testData);
+        await _context.SaveChangesAsync();
+    }
+    public async Task<List<ProductTestData>> GetListWithProductAsync()
     {
         return await _context.ProductTestDatas
             .AsNoTracking()
-            .FirstOrDefaultAsync(x => x.ProductId == productId);
-    }
-
-
-    public async Task<List<ProductTestData>> GetByProductIdsAsync(List<int> productIds)
-    {
-        return await _context.ProductTestDatas
             .Include(x => x.Product)
-            .Where(x => productIds.Contains(x.ProductId))
-            .AsNoTracking()
+            .OrderByDescending(x => x.CreatedAt)
             .ToListAsync();
     }
-
-    public async Task<List<ProductTestPointRow>> GetQ1Pt1ByProductIdsAsync(List<int> productIds)
-    {
-        return await _context.ProductTestDatas
-            .Where(x => productIds.Contains(x.ProductId))
-            .Select(x => new ProductTestPointRow
-            {
-                ProductId = x.ProductId,
-                ProductName = x.Product.Name,
-                Q1 = x.Q1,     // yalnızca Q1
-                Pt1 = x.Pt1    // yalnızca Pt1
-            })
-            .AsNoTracking()
-            .ToListAsync();
-    }
-
-    public async Task<List<ProductTestData>> GetAllByProductIdAsync(int productId)
-    {
-        return await _context.ProductTestDatas
-            .Where(x => x.ProductId == productId)
-            .AsNoTracking()
-            .ToListAsync();
-    }
-
-
 
 }

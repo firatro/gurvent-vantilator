@@ -1,0 +1,101 @@
+@model SeriesDetailViewModel
+
+@await Component.InvokeAsync("Breadcrumb", new {
+title = Model.Series.Name,
+pageTitle = "Modeller",
+pageKey = "Product",
+parentUrl = Url.Action("Index", "Product")
+})
+
+<div class="it-service-2-area p-relative z-index-1 pt-125 pb-95">
+    <div class="container">
+
+        <div class="row mb-5">
+            <div class="col-12 text-center">
+                <h2>@Model.Series.Name</h2>
+                <p>@Model.Series.Description</p>
+            </div>
+        </div>
+
+        <div class="row">
+            @foreach (var m in Model.Models)
+            {
+                <div class="col-xl-4 col-lg-4 col-md-6 wow itfadeUp" data-wow-duration=".9s">
+                    <div class="it-service-2-item it-img-anim-wrap mb-35">
+
+                        <div class="fix p-relative">
+                            <div class="it-service-2-thumb fix it-img-anim"
+                                data-displacement="assets/img/webgl/pattern-1.jpg" data-intensity="0.6" data-speedin="1"
+                                data-speedout="1">
+                                <img class="w-100" src="https://admin.gurvent.firatramazano.com/@m.Image1Path"
+                                    style="height:180px; object-fit:contain; padding:15px" />
+                            </div>
+                            <div class="it-service-2-icon">
+                                <span>
+                                    <svg width="38" height="38" viewBox="0 0 38 38" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="19" cy="19" r="18" stroke="white" stroke-width="2" />
+                                        <circle cx="19" cy="19" r="3" fill="white" />
+
+                                        <!-- Blade 1 -->
+                                        <path d="M19 4
+                         C22 4, 25 7, 25 10
+                         C25 12, 23 14, 21 14
+                         C19 14, 18 12, 18 10
+                         C18 7, 17 4, 19 4Z" fill="white" />
+
+                                        <!-- Blade 2 -->
+                                        <path d="M34 19
+                         C34 22, 31 25, 28 25
+                         C26 25, 24 23, 24 21
+                         C24 19, 26 18, 28 18
+                         C31 18, 34 17, 34 19Z" fill="white" />
+
+                                        <!-- Blade 3 -->
+                                        <path d="M19 34
+                         C16 34, 13 31, 13 28
+                         C13 26, 15 24, 17 24
+                         C19 24, 20 26, 20 28
+                         C20 31, 21 34, 19 34Z" fill="white" />
+
+                                        <!-- Blade 4 -->
+                                        <path d="M4 19
+                         C4 16, 7 13, 10 13
+                         C12 13, 14 15, 14 17
+                         C14 19, 12 20, 10 20
+                         C7 20, 4 21, 4 19Z" fill="white" />
+                                    </svg>
+
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="it-service-2-content">
+                            <h4 class="it-service-2-title">
+                                <a class="border-line-black"
+                                    href="@Url.Action("Detail", "Model", new { id = m.Id, source = Context.Request.Query["source"] })">
+                                    @m.Name</a>
+                            </h4>
+                            <p>@m.Description</p>
+
+                            <a class="it-blog-btn border-line-orange"
+                                href="@Url.Action("Detail", "Model", new { id = m.Id, source = Context.Request.Query["source"] })">
+                                MODELİ İNCELE
+                                <span>
+                                    <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M10.0035 3.90804L1.41153 12.5L0 11.0885L8.59097 2.49651H1.01922V0.5H12V11.4808H10.0035V3.90804Z"
+                                            fill="currentcolor" />
+                                    </svg>
+                                </span>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>

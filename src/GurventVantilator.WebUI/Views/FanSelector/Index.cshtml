@@ -1,551 +1,615 @@
-@using GurventVantilator.Application.DTOs
+@model ProductPageViewModel
 @{
-    ViewData["Title"] = "Fan Seçim Sihirbazı";
+    ViewData["Title"] = "Fan Seçici";
+}
+<style>
+.custom-range {
+    height: 8px;
+    border-radius: 5px;
+    background: linear-gradient(
+        to right,
+        #296299 0%,
+        #296299 10%,
+        #296299 10%,
+        #296299 100%
+    );
 }
 
-<style>
-    #fanChartContainer {
-        width: 100%;
-        height: 420px;
-        margin: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+.custom-range::-webkit-slider-thumb {
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #296299;
+    border-radius: 50%;
+    cursor: pointer;
+}
 
-    #fanChart {
-        width: 100% !important;
-        height: 100% !important;
-        display: block;
-    }
+.custom-range::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: #296299;
+    border-radius: 50%;
+    cursor: pointer;
+}
 </style>
 
+<h1 class="text-center" style="color:#296299; margin-top:20px;">
+    Kategoriler
+</h1>
 
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <div class="alert alert-warning text-center">@Model.ErrorMessage</div>
+}
 
-<!-- breadcrumb-area-start -->
-<div class="it-breadcrumb-area it-breadcrumb-overlay z-index-1 fix p-relative"
-    data-background="~/img/breadcrumb/breadcrumb.jpg">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-xl-8 col-lg-8 col-md-7">
-                <div class="it-breadcrumb-content">
-                    <div class="it-breadcrumb-title-box">
-                        <h3 class="it-breadcrumb-title it-split-text it-split-in-right">Fan Seçim Sihirbazı</h3>
-                    </div>
-                    <div class="it-breadcrumb-list-wrap">
-                        <div class="it-breadcrumb-list">
-                            <span><a href="/">Ana Sayfa</a></span>
-                            <span class="dvdr">
-                                <svg width="6" height="9" viewBox="0 0 6 9" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M0.728891 0L0 0.728893L3.76852 4.5L0 8.27111L0.728891 9L5.23148 4.5L0.728891 0Z"
-                                        fill="#E03B3B" />
-                                </svg>
-                            </span>
-                            <span><a href="#">Fan Seçim Sihirbazı</a></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-md-5 text-end">
-                <img src="~/img/hero/favicon.png" alt="favicon" width="48" />
-            </div>
-        </div>
-    </div>
-</div>
-<!-- breadcrumb-area-end -->
-
-
-<!-- fan-selector-area-start -->
-<div class="it-cost-calculator-area pt-125 pb-130">
+<div class="postbox-area it-blog-style-2 pt-130 pb-130">
     <div class="container">
 
-        <div class="text-center mb-70">
-            <span class="it-section-subtitle">Fan Özelliklerini Seçin</span>
-            <h4 class="it-section-title mb-0">Fan Seçim Sihirbazı</h4>
-        </div>
+    <div class="d-flex justify-content-center mb-4">
+        <div class="btn-group bg-light rounded-pill p-1">
 
-        <div class="row">
-            <div class="col-12">
-                <div class="it-cost-calculator-wrap p-4 rounded">
+            <!-- Kategori -->
+            <a href="@Url.Action("Index", "FanSelector", new {
+                    mode = "category",
+                    usageId = Model.SelectedUsageId,
+                    workingId = Model.SelectedWorkingId,
+                    seriesId = Model.SelectedSeriesId,
+                    modelId = Model.SelectedModelId
+                })"
+            class="btn rounded-pill @((Model.ViewMode == "category") ? "text-white" : "btn-light")"
+            style="@(Model.ViewMode == "category" ? "background-color:#296299;" : "")">
+                Katalog Görünümü
+            </a>
 
-                    <!-- Application -->
-                    <div class="it-cost-calculator-input-box mb-35">
-                        <label>Uygulama Alanı</label>
-                        <div class="postbox__select">
-                            <select id="applicationSelect">
-                                <option value="">Hepsi</option>
-                                @foreach (var app in (IEnumerable<ProductApplicationDto>)ViewBag.Applications)
-                                {
-                                    <option value="@app.Id">@app.Name</option>
-                                }
-                            </select>
-                        </div>
-                    </div>
+            <!-- Parametre -->
+            <a href="@Url.Action("Index", "FanSelector", new {
+                    mode = "parameter",
+                    usageId = Model.SelectedUsageId,
+                    workingId = Model.SelectedWorkingId,
+                    seriesId = Model.SelectedSeriesId,
+                    modelId = Model.SelectedModelId
+                })"
+            class="btn rounded-pill @((Model.ViewMode == "parameter") ? "text-white" : "btn-light")"
+            style="@(Model.ViewMode == "parameter" ? "background-color:#296299;" : "")">
+                Performansa Göre
+            </a>
 
-                    <!-- Category -->
-                    <div class="it-cost-calculator-input-box mb-35">
-                        <label>Ürün Kategorisi</label>
-                        <div class="postbox__select">
-                            <select id="categorySelect">
-                                <option value="">Hepsi</option>
-                                @foreach (var cat in (IEnumerable<ProductCategoryDto>)ViewBag.Categories)
-                                {
-                                    <option value="@cat.Id">@cat.Name</option>
-                                }
-                            </select>
-                        </div>
-                    </div>
+            <!-- SIFIRLA -->
+            <a href="@Url.Action("Index", "FanSelector")"
+            class="btn btn-outline-danger rounded-pill ms-1">
+                <i class="fa-solid fa-rotate-left me-1"></i>
+                Sıfırla
+            </a>
 
-                    <!-- Air Flow -->
-                    <div class="it-cost-calculator-input-box mb-35">
-                        <label>Hava Akışı</label>
-                        <div class="d-flex align-items-center gap-2">
-                            <input type="number" id="airFlowInput" placeholder="Değer giriniz">
-                            <div class="postbox__select">
-                                <select id="airFlowUnit">
-                                    <option value="m³/h">m³/h</option>
-                                    <option value="m³/s">m³/s</option>
-                                    <option value="L/s">L/s</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Pressure -->
-                    <div class="it-cost-calculator-input-box mb-35">
-                        <label> Basınç</label>
-                        <div class="d-flex align-items-center gap-2">
-                            <input type="number" id="pressureInput" placeholder="Basınç değerini giriniz">
-                            <div class="postbox__select">
-                                <select id="pressureUnit">
-                                    <option value="Pa">Pa</option>
-                                    <option value="mmH₂O">mmH₂O</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Tolerans (%) -->
-                    <div class="it-cost-calculator-input-box mb-35">
-                        <label>Tolerans (%)</label>
-                        <div class="d-flex align-items-center gap-2">
-                            <input type="number" id="toleranceInput" placeholder="Örn. 10" value="10" min="0" max="100"
-                                step="1">
-                        </div>
-                    </div>
-
-
-                    <button id="performanceToggle" class="it-btn-orange bg-secondary w-100 mb-35"
-                        style="display: flex; align-items: center; justify-content: space-between;">
-                        <span>
-                            <span class="text-1">PERFORMANS PARAMETRELERİ</span>
-                            <span class="text-2">PERFORMANS PARAMETRELERİ</span>
-                        </span>
-                        <span id="performanceIcon" style="transition: transform 0.3s;">&#9660;</span>
-                    </button>
-
-                    <!-- Performans Parametreleri İçeriği -->
-                    <div id="performanceParameters" style="display: none; transition: all 0.3s ease;">
-
-                        <!-- Diameter -->
-                        <div class="it-cost-calculator-input-box mb-35">
-                            <label>Çap (Diameter)</label>
-                            <div class="d-flex align-items-center gap-2">
-                                <input type="number" id="diameterInput" placeholder="Değer giriniz">
-                                <div class="postbox__select">
-                                    <select id="diameterUnit">
-                                        <option value="mm">mm</option>
-                                        <option value="cm">cm</option>
-                                        <option value="inch">inch</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Power -->
-                        <div class="it-cost-calculator-input-box mb-35">
-                            <label>Motor Gücü</label>
-                            <div class="d-flex align-items-center gap-2">
-                                <input type="number" id="powerInput" placeholder="Değer giriniz">
-                                <div class="postbox__select">
-                                    <select id="powerUnit">
-                                        <option value="W">W</option>
-                                        <option value="kW">kW</option>
-                                        <option value="HP">HP</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Voltage -->
-                        <div class="it-cost-calculator-input-box mb-35">
-                            <label>Gerilim (Voltage)</label>
-                            <div class="d-flex align-items-center gap-2">
-                                <input type="number" id="voltageInput" placeholder="Volt cinsinden giriniz">
-                                <div class="postbox__select">
-                                    <select id="voltageUnit">
-                                        <option value="V">V</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Speed -->
-                        <div class="it-cost-calculator-input-box mb-35">
-                            <label>Dönüş Hızı (Speed)</label>
-                            <div class="d-flex align-items-center gap-2">
-                                <input type="number" id="speedInput" placeholder="rpm">
-                                <div class="postbox__select">
-                                    <select id="speedUnit">
-                                        <option value="rpm">rpm</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Noise Level -->
-                        <div class="it-cost-calculator-input-box mb-35">
-                            <label>Ses Seviyesi (Noise Level)</label>
-                            <div class="d-flex align-items-center gap-2">
-                                <input type="number" id="noiseInput" placeholder="dB(A)">
-                            </div>
-                        </div>
-
-                        <!-- Frequency -->
-                        <div class="it-cost-calculator-input-box mb-35">
-                            <label>Frekans</label>
-                            <div class="postbox__select">
-                                <select id="frequencySelect">
-                                    <option value="">Hepsi</option>
-                                    <option value="50">50 Hz</option>
-                                    <option value="60">60 Hz</option>
-                                </select>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Button -->
-                    <div class="text-center">
-                        <button id="fanSelectorBtn" class="it-btn-orange w-100 mb-35">
-                            <span>
-                                <span class="text-1">Uygun Fanları Bul</span>
-                                <span class="text-2">Uygun Fanları Bul</span>
-                            </span>
-                            <i>
-                                <svg width="12" height="13" viewBox="0 0 12 13" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M10.0035 3.90804L1.41153 12.5L0 11.0885L8.59097 2.49651H1.01922V0.5H12V11.4808H10.0035V3.90804Z"
-                                        fill="white" />
-                                </svg>
-                            </i>
-                        </button>
-                    </div>
-
-                    <div class="col-12 text-center container-fluid">
-                        <div id="fanChartContainer" class="mt-5" style="display:none;">
-                            <canvas id="fanChart"></canvas>
-                        </div>
-                    </div>
-
-                    <!-- Results -->
-                    <div class="fan-results mt-5"></div>
-                </div>
-            </div>
         </div>
     </div>
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+
+    @* === GERİ BUTONU === *@
+    @if (Model.HasModel)
+    {
+        <!-- Ürün → Model -->
+        <a href="@Url.Action("Index","FanSelector", new {
+                usageId = Model.SelectedUsageId,
+                workingId = Model.SelectedWorkingId,
+                seriesId = Model.SelectedSeriesId,
+                mode = Model.ViewMode
+            })"
+           class="btn btn-outline-secondary rounded-pill">
+            <i class="fa fa-arrow-left me-1"></i> Modellere Dön
+        </a>
+    }
+    else if (Model.HasSeries)
+    {
+        <!-- Model → Seri -->
+        <a href="@Url.Action("Index","FanSelector", new {
+                usageId = Model.SelectedUsageId,
+                workingId = Model.SelectedWorkingId,
+                mode = Model.ViewMode
+            })"
+           class="btn btn-outline-secondary rounded-pill">
+            <i class="fa fa-arrow-left me-1"></i> Serilere Dön
+        </a>
+    }
+    else if (Model.HasUsageOrWorking)
+    {
+        <!-- Seri → Menü -->
+        <a href="@Url.Action("Index","FanSelector", new {
+                mode = Model.ViewMode
+            })"
+           class="btn btn-outline-secondary rounded-pill">
+            <i class="fa fa-arrow-left me-1"></i> Kategorilere Dön
+        </a>
+    }
 </div>
-<!-- fan-selector-area-end -->
+<nav class="mb-4 text-muted small">
+    <span>Kategoriler</span>
+
+    @if (Model.HasUsageOrWorking)
+    {
+        <span> / Seri</span>
+    }
+    @if (Model.HasSeries)
+    {
+        <span> / Model</span>
+    }
+    @if (Model.HasModel)
+    {
+        <span> / Ürün</span>
+    }
+</nav>
 
 
+
+
+        @if (Model.ViewMode == "category")
+        {
+            <div class="row gx-35">
+
+                <!-- LEFT SIDEBAR -->
+                <div class="col-xl-4 col-lg-4">
+                    <div class="sidebar-left">
+
+                        <!-- ÇALIŞMA ORTAMI -->
+                        <div class="sidebar-widget mb-30" id="working-section">
+                            <h4 class="sidebar-widget-title mb-25">Çalışma Ortamı</h4>
+
+
+                            @foreach (var wc in Model.WorkingConditions)
+                            {
+                                <a class="working-item"
+                                    href="@Url.Action("Index", new {
+                                        usageId = Model.SelectedUsageId,
+                                        workingId = wc.Id,
+                                        mode = "category",
+                                        scroll = "usage"
+                                    })">
+
+                                    <div class="sidebar-widget-list mb-15">
+                                        @wc.Name
+                                        <span>
+                                            <svg width="12" height="12">
+                                                <path d="M10.0035 3.40804L1.41153 12L0 10.5885L8.59097 1.99651H1.01922V0H12V10.9808H10.0035V3.40804Z"
+                                                    fill="currentcolor" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </a>
+                            }
+                        </div>
+
+                        <!-- KULLANIM ALANI -->
+                        <div class="sidebar-widget mb-30" id="usage-section">
+                            <h4 class="sidebar-widget-title mb-25">Kullanım Alanı</h4>
+
+
+                            @foreach (var ut in Model.UsageTypes)
+                            {
+                                <a class="category-item"
+                                    href="@Url.Action("Index", new {
+                                        usageId = ut.Id,
+                                        workingId = Model.SelectedWorkingId,
+                                        mode = "category",
+                                        scroll = "results"
+                                    })">
+
+
+                                    <div class="sidebar-widget-list mb-15">
+                                        @ut.Name
+                                        <span>
+                                            <svg width="12" height="12">
+                                                <path d="M10.0035 3.40804L1.41153 12L0 10.5885L8.59097 1.99651H1.01922V0H12V10.9808H10.0035V3.40804Z"
+                                                    fill="currentcolor" />
+                                            </svg>
+                                        </span>
+                                    </div>
+                                </a>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <!-- RIGHT CONTENT -->
+                <div class="col-xl-8 col-lg-8">
+                    <div id="seriesContainer">
+
+                        @* 1) SERİ SEÇİLMEDİ — SERİLERİ GÖSTER *@
+                        @if (!Model.SelectedSeriesId.HasValue)
+                        {
+                            @await Html.PartialAsync("_SeriesList", new SeriesListViewModel {
+                                Series = Model.Series,
+                                SelectedUsageId = Model.SelectedUsageId,
+                                SelectedWorkingId = Model.SelectedWorkingId
+                            })
+                        }
+
+                        @* 2) SERİ SEÇİLDİ AMA MODEL SEÇİLMEDİ — MODELLERİ GÖSTER *@
+                        else if (Model.SelectedSeriesId.HasValue && !Model.SelectedModelId.HasValue)
+                        {
+                            @await Html.PartialAsync("_ModelList", new ModelListViewModel {
+                                Models = Model.Models,
+                                SelectedSeriesId = Model.SelectedSeriesId,
+                                SelectedSeriesName = Model.SelectedSeriesName,
+                                SelectedUsageId = Model.SelectedUsageId,
+                                SelectedWorkingId = Model.SelectedWorkingId
+                            })
+                        }
+
+                        @* 3) MODEL SEÇİLDİ — ÜRÜNLERİ GÖSTER *@
+                        else if (Model.SelectedModelId.HasValue)
+                        {
+                            <h3>@Model.SelectedModelName Ürünleri</h3>
+                            @await Html.PartialAsync("_ProductList", Model.Products)
+                        }
+
+                    </div>
+                </div>
+
+
+            </div>
+        }
+        @if (Model.ViewMode == "parameter")
+{
+    <!-- PARAMETRE ARAMA EKRANI + SONUÇLAR YAN YANA -->
+    <section class="checkout-area pb-70 pt-50">
+        <div class="container">
+            <div class="row">
+
+                <!-- SOL: PARAMETRE FORMU -->
+                <div class="col-lg-6">
+                    <div class="checkbox-form">
+                        <h3>Fan Parametre Seçimi</h3>
+
+                        <form id="fanParamForm">
+                            <div class="row">
+
+                                <!-- AirFlow -->
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>Debi (AirFlow)</label>
+                                        <input type="number" name="AirFlow" placeholder="Örn: 5000">
+                                    </div>
+                                </div>
+
+                                <!-- AirFlowUnit -->
+                                <div class="col-md-6">
+                                    <div class="country-select">
+                                        <label>Debi Birimi (AirFlowUnit)</label>
+                                        <select name="AirFlowUnit">
+                                            @* <option value="">Seçiniz</option> *@
+                                            <option value="m3/h">m³/h</option>
+                                            @* <option value="m3/s">m³/s</option>
+                                            <option value="cfm">cfm</option> *@
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- TotalPressure -->
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>Toplam Basınç (TotalPressure)</label>
+                                        <input type="number" name="TotalPressure" placeholder="Örn: 300">
+                                    </div>
+                                </div>
+
+                                <!-- TotalPressureUnit -->
+                                <div class="col-md-6">
+                                    <div class="country-select">
+                                        <label>Basınç Birimi (TotalPressureUnit)</label>
+                                        <select name="TotalPressureUnit">
+                                            @* <option value="">Seçiniz</option> *@
+                                            <option value="Pa">Pa</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Temperature -->
+                                <div class="col-md-6">
+                                    <div class="checkout-form-list">
+                                        <label>Sıcaklık (Temperature)</label>
+                                        <input type="number" name="Temperature" placeholder="Örn: 50" disabled="true">
+                                    </div>
+                                </div>
+
+                                <!-- SpeedControl -->
+                                <div class="col-md-6">
+                                    <div class="country-select">
+                                        <label>Sürüş Biçimi</label>
+                                         <select name="SpeedControl">
+                                            <option value="">Hepsi</option>
+                                            <option value="DirectCoupled">Direkt Akuple</option>
+                                            <option value="FrequencyDriver">Sürücüyle</option>
+                                            @* <option value="Pneumatic">Pnömatik</option> *@
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Usage -->
+                                <div class="col-md-6">
+                                    <div class="country-select">
+                                        <label>Kullanım Alanı</label>
+                                        <select name="UsageId">
+                                            <option value="">Seçiniz</option>
+                                            @foreach (var u in Model.UsageTypes)
+                                            {
+                                                <option value="@u.Id">@u.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Working -->
+                                <div class="col-md-6">
+                                    <div class="country-select">
+                                        <label>Çalışma Koşulu</label>
+                                        <select name="WorkingId">
+                                            <option value="">Seçiniz</option>
+                                            @foreach (var w in Model.WorkingConditions)
+                                            {
+                                                <option value="@w.Id">@w.Name</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Tolerans -->
+                                <div class="col-md-12">
+                                    <div class="checkout-form-list">
+                                        <label>
+                                            Tolerans (%)
+                                        </label>
+                                        <div class="d-flex align-items-center gap-3">
+                                            <!-- Range -->
+                                            <div class="flex-fill position-relative">
+                                                <input
+                                                    type="range"
+                                                    class="form-range custom-range"
+                                                    id="toleransRange"
+                                                    min="0"
+                                                    max="100"
+                                                    step="1"
+                                                    value="10">
+                                            </div>
+                                            <!-- Number Input -->
+                                            <div style="width: 100px;">
+                                                <div class="input-group">
+                                                    <input
+                                                        type="number"
+                                                        id="toleransInput"
+                                                        name="Tolerans"
+                                                        min="0"
+                                                        max="100"
+                                                        value="10">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Submit Button -->
+                                <div class="order-button-payment mt-20">
+                                    <button class="it-btn-orange d-flex justify-content-center align-items-center" type="submit">
+                                        <span>
+                                            <span class="text-1">FANLARI GETİR</span>
+                                            <span class="text-2">FANLARI GETİR</span>
+                                        </span>
+                                    </button>
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+
+                <!-- SAĞ: ARAMA SONUÇLARI -->
+                <div class="col-lg-6">
+                    <div class="your-order mb-30">
+                        <h3>Fan Arama Sonuçları</h3>
+
+                        <div class="your-order-table table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="text-start"><strong>Ürün</strong></th>
+                                        <th class="text-center"><strong>Debi (m³/h)</strong></th>
+                                        <th class="text-center"><strong>Basınç (Pa)</strong></th>
+                                        <th class="text-center"><strong>Devir (RPM)</strong></th>
+                                        <th class="text-center"><strong>Güç (kW)</strong></th>
+                                        <th class="text-center"><strong>Ses (dB)</strong></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="resultsBody">
+
+                                    <!-- ÜRÜNLER AJAX İLE GELECEK -->
+                                    <tr>
+                                        <td colspan="6" class="text-center text-muted">Henüz filtreleme yapılmadı.</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+}
+
+
+    </div>
+</div>
 
 @section Scripts {
 
-    <!-- Toggle Script -->
-    <script>
-        document.getElementById("performanceToggle").addEventListener("click", function () {
-            const content = document.getElementById("performanceParameters");
-            const icon = document.getElementById("performanceIcon");
-            const isHidden = content.style.display === "none" || content.style.display === "";
-            content.style.display = isHidden ? "block" : "none";
-            icon.style.transform = isHidden ? "rotate(180deg)" : "rotate(0deg)";
-        });
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
 
-    </script>
+        // Sadece mobil ve tablet
+        if (window.innerWidth > 991) return;
 
+        const params = new URLSearchParams(window.location.search);
+        const scrollTarget = params.get("scroll");
 
-    <script>
-        Chart.register(window['chartjs-plugin-annotation']);
+        let target = null;
+        let yOffset = 0;
 
-        const fanChartContainer = document.getElementById("fanChartContainer");
-        const fanCanvas = document.getElementById("fanChart");
-        let fanChart = null;
-
-        // 🔹 GRAFİĞİ ÇİZ
-        function drawFanChart(curves, workingPoint = null) {
-            fanChartContainer.style.display = "block";
-            fanCanvas.width = fanChartContainer.clientWidth;
-            fanCanvas.height = 420;
-
-            if (fanChart) fanChart.destroy();
-
-            const ctx = fanCanvas.getContext('2d');
-            const datasets = curves.map(curve => {
-                const color = "#0d2c6b";
-                const gradient = ctx.createLinearGradient(0, 0, 0, fanCanvas.height);
-                gradient.addColorStop(0, Chart.helpers.color(color).alpha(0.25).rgbString());
-                gradient.addColorStop(0, Chart.helpers.color(color).alpha(0.25).rgbString());
-
-                return {
-                    label: curve.productName,
-                    data: curve.points.map(p => ({ x: p.q, y: p.pt })),
-                    borderColor: color,
-                    backgroundColor: gradient,
-                    tension: 0,
-                    fill: false, // 👈 başlangıçta kapalı
-                    pointRadius: 0,
-                    borderWidth: 1
-                };
-            });
-
-            fanChart = new Chart(fanCanvas, {
-                type: "line",
-                data: { datasets },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        x: {
-                            type: "linear",
-                            title: { display: true, text: "Hava Akışı (m³/h)" },
-                            grid: { color: "#eee" }
-                        },
-                        y: {
-                            title: { display: true, text: "Basınç (Pa)" },
-                            grid: { color: "#eee" }
-                        }
-                    },
-                    plugins: {
-                        legend: { position: "bottom" },
-                        annotation: {
-                            annotations: {
-                                // 🔸 Working Point (Nokta)
-                                wpDot: {
-                                    type: "point",
-                                    display: workingPoint && workingPoint.x && workingPoint.y,
-                                    xValue: workingPoint?.x || 0,
-                                    yValue: workingPoint?.y || 0,
-                                    backgroundColor: "#0d2c6b",
-                                    borderColor: "#fff",
-                                    borderWidth: 0.5,
-                                    radius: 6
-                                },
-                                // 🔸 Working Point Etiketi
-                                wpLabel: {
-                                    type: "label",
-                                    display: workingPoint && workingPoint.x && workingPoint.y,
-                                    xValue: workingPoint?.x || 0,
-                                    yValue: workingPoint?.y || 0,
-                                    xAdjust: 30,
-                                    yAdjust: -20,
-                                    content: workingPoint
-                                        ? [`Working Point (${workingPoint.x}, ${workingPoint.y})`]
-                                        : [],
-                                    font: { size: 12, style: "italic" },
-                                    color: "#0d2c6b"
-                                },
-                                // 🔸 Crosshair (dikey ve yatay çizgiler)
-                                crossX: {
-                                    type: "line",
-                                    xMin: 0,
-                                    xMax: 0,
-                                    borderColor: "rgba(255,99,132,0.4)",
-                                    borderWidth: 1,
-                                    display: false
-                                },
-                                crossY: {
-                                    type: "line",
-                                    yMin: 0,
-                                    yMax: 0,
-                                    borderColor: "rgba(255,99,132,0.4)",
-                                    borderWidth: 1,
-                                    display: false
-                                }
-                            }
-                        }
-                    },
-                    interaction: { mode: "nearest", intersect: false }
-                }
-            });
-
-            // 🔹 Tooltip etiketi
-            const hoverLabel = document.createElement("div");
-            hoverLabel.style.position = "absolute";
-            hoverLabel.style.background = "rgba(0,0,0,0.75)";
-            hoverLabel.style.color = "#fff";
-            hoverLabel.style.fontSize = "12px";
-            hoverLabel.style.padding = "4px 6px";
-            hoverLabel.style.borderRadius = "4px";
-            hoverLabel.style.pointerEvents = "none";
-            hoverLabel.style.display = "none";
-            hoverLabel.style.transition = "opacity 0.1s ease";
-            fanChartContainer.appendChild(hoverLabel);
-
-            // 🔹 Mouse hareketiyle anlık değerleri göster
-            fanCanvas.addEventListener("mousemove", (event) => {
-                const chartArea = fanChart.chartArea;
-                const xScale = fanChart.scales.x;
-                const yScale = fanChart.scales.y;
-                const rect = fanCanvas.getBoundingClientRect();
-
-                const mouseX = event.clientX - rect.left;
-                const mouseY = event.clientY - rect.top;
-
-                // Eksen dışına çıkarsa gizle
-                if (
-                    mouseX < chartArea.left ||
-                    mouseX > chartArea.right ||
-                    mouseY < chartArea.top ||
-                    mouseY > chartArea.bottom
-                ) {
-                    hoverLabel.style.display = "none";
-                    fanChart.options.plugins.annotation.annotations.crossX.display = false;
-                    fanChart.options.plugins.annotation.annotations.crossY.display = false;
-                    fanChart.update("none");
-                    return;
-                }
-
-                const xValue = xScale.getValueForPixel(mouseX).toFixed(0);
-                const yValue = yScale.getValueForPixel(mouseY).toFixed(0);
-
-                // 🔸 Etiketi göster
-                hoverLabel.textContent = `Hava Akışı: ${xValue} m³/h | Basınç: ${yValue} Pa`;
-                hoverLabel.style.left = `${mouseX + 20}px`;
-                hoverLabel.style.top = `${mouseY + 20}px`;
-                hoverLabel.style.display = "block";
-                hoverLabel.style.opacity = "1";
-
-                // 🔸 Crosshair çizgilerini göster
-                const ann = fanChart.options.plugins.annotation.annotations;
-                ann.crossX.display = true;
-                ann.crossY.display = true;
-                ann.crossX.xMin = ann.crossX.xMax = xValue;
-                ann.crossY.yMin = ann.crossY.yMax = yValue;
-                fanChart.update("none");
-            });
-
-            // 🔹 Hover dolgu davranışı
-            fanChart.options.onHover = (event, activeElements) => {
-                if (!activeElements.length) {
-                    fanChart.data.datasets.forEach(ds => {
-                        ds.fill = false;
-                        ds.borderWidth = 3;
-                    });
-                    fanChart.update("none");
-                    return;
-                }
-
-                const hoveredIndex = activeElements[0].datasetIndex;
-
-                fanChart.data.datasets.forEach((ds, i) => {
-                    ds.fill = i === hoveredIndex;
-                    ds.borderWidth = i === hoveredIndex ? 3 : 1;
-                });
-
-                fanChart.update("none");
-            };
-
-            // 🔹 Mouse çıktığında dolguları sıfırla
-            fanCanvas.addEventListener("mouseleave", () => {
-                fanChart.data.datasets.forEach(ds => {
-                    ds.fill = false;
-                    ds.borderWidth = 1;
-                });
-                fanChart.update("none");
-            });
-
-
+        if (scrollTarget === "usage") {
+            target = document.getElementById("usage-section");
+            yOffset = -50; // Kullanım Alanı hizası
         }
 
-        // 🔹 Working Point güncelleme
-        function updateWorkingPoint() {
-            if (!fanChart) return;
-
-            const x = parseFloat(document.getElementById("airFlowInput").value);
-            const y = parseFloat(document.getElementById("pressureInput").value);
-            const ann = fanChart.options.plugins.annotation.annotations;
-
-            if (!isNaN(x) && !isNaN(y)) {
-                ann.wpDot.display = true;
-                ann.wpLabel.display = true;
-
-                ann.wpDot.xValue = x;
-                ann.wpDot.yValue = y;
-                ann.wpLabel.xValue = x;
-                ann.wpLabel.yValue = y;
-                ann.wpLabel.content = [`Working Point (${x}, ${y})`];
-
-                fanChart.update();
-            } else {
-                ann.wpDot.display = false;
-                ann.wpLabel.display = false;
-                fanChart.update();
-            }
+        if (scrollTarget === "results") {
+            target = document.getElementById("seriesContainer");
+            yOffset = -100; // Sonuçlar biraz yukarıdan başlasın
         }
 
-        // 🔹 “Uygun Fanları Bul” butonu
-        document.getElementById("fanSelectorBtn").addEventListener("click", function (e) {
-            e.preventDefault();
-
-            const data = {
-                applicationId: parseInt(document.getElementById("applicationSelect").value) || null,
-                categoryId: parseInt(document.getElementById("categorySelect").value) || null,
-                diameter: parseFloat(document.getElementById("diameterInput").value) || null,
-                airFlow: parseFloat(document.getElementById("airFlowInput").value) || null,
-                pressure: parseFloat(document.getElementById("pressureInput").value) || null,
-                tolerancePercent: parseFloat(document.getElementById("toleranceInput").value) || 10,
-                power: parseFloat(document.getElementById("powerInput").value) || null,
-                voltage: parseFloat(document.getElementById("voltageInput").value) || null,
-                frequency: parseFloat(document.getElementById("frequencySelect").value) || null,
-                speed: parseFloat(document.getElementById("speedInput").value) || null,
-                noiseLevel: parseFloat(document.getElementById("noiseInput").value) || null
-            };
-
-            const workingPoint = {
-                x: parseFloat(document.getElementById("airFlowInput").value) || null,
-                y: parseFloat(document.getElementById("pressureInput").value) || null
-            };
-
-            const resultsDiv = document.querySelector(".fan-results");
-            resultsDiv.innerHTML = `
-                                                <div class="text-center py-5">
-                                                    <div class="spinner-border text-warning" role="status"></div>
-                                                    <p class="text-muted mt-3 mb-0">Uygun fanlar aranıyor...</p>
-                                                </div>`;
-
+        if (target) {
             setTimeout(() => {
-                fetch('@Url.Action("FilterProductsWithCurves", "FanSelector")', {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(data)
-                })
-                    .then(r => { if (!r.ok) throw new Error("Sunucu hatası"); return r.json(); })
-                    .then(res => {
-                        resultsDiv.innerHTML = res.html;
-                        drawFanChart(res.curves, workingPoint);
-                    })
-                    .catch(err => {
-                        console.error(err);
-                        resultsDiv.innerHTML = "<div class='alert alert-danger'>Ürünler getirilirken hata oluştu.</div>";
-                    });
-            }, 1000);
-        });
+                const y =
+                    target.getBoundingClientRect().top +
+                    window.pageYOffset +
+                    yOffset;
 
-        document.getElementById("airFlowInput").addEventListener("input", updateWorkingPoint);
-        document.getElementById("pressureInput").addEventListener("input", updateWorkingPoint);
-    </script>
+                window.scrollTo({
+                    top: y,
+                    behavior: "smooth"
+                });
+            }, 300);
+        }
+    });
+</script>
+
+
+
+<script>
+    // MODE SWITCH
+    document.querySelectorAll(".switch-btn").forEach(btn => {
+        btn.addEventListener("click", function () {
+            let mode = this.dataset.mode;
+
+            window.location.href =
+                `@Url.Action("Index","FanSelector")?mode=${mode}`
+                + "&usageId=@Model.SelectedUsageId"
+                + "&workingId=@Model.SelectedWorkingId"
+                + "&seriesId=@Model.SelectedSeriesId"
+                + "&modelId=@Model.SelectedModelId";
+        });
+    });
+</script>
+
+<script>
+    document.getElementById("fanParamForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+
+        fetch('@Url.Action("SearchFans", "FanSelector")', {
+            method: 'POST',
+            body: formData
+        })
+        .then(res => res.json())
+        .then(data => {
+
+            const tbody = document.getElementById("resultsBody");
+            tbody.innerHTML = "";
+
+            if (!data || data.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">
+                            Uygun fan bulunamadı
+                        </td>
+                    </tr>`;
+                return;
+            }
+
+            data.forEach(p => {
+                tbody.innerHTML += `
+                    <tr class="result-row" data-product-id="${p.productId}" style="cursor:pointer;">
+                        <td class="text-start">${p.productName}</td>
+                        <td class="text-center">${p.airFlow ?? "-"}</td>
+                        <td class="text-center">${p.totalPressure ?? "-"}</td>
+                        <td class="text-center">${p.rpm ?? "-"}</td>
+                        <td class="text-center">${p.power ?? "-"}</td>
+                        <td class="text-center">${p.sound ?? "-"}</td>
+                    </tr>`;
+            });
+
+                document.getElementById("resultsBody").addEventListener("click", function (e) {
+                    const row = e.target.closest("tr[data-product-id]");
+                    if (!row) return;
+
+                    const productId = row.getAttribute("data-product-id");
+
+                    // 1️⃣ Route ile (önerilen)
+                    window.location.href = `/Product/Performance/${productId}`;
+
+                    // 2️⃣ Eğer query string kullanıyorsan (alternatif)
+                    // window.location.href = `/Product/Performance?id=${productId}`;
+                });
+
+
+        });
+    });
+</script>
+<script>
+    const range = document.getElementById("toleransRange");
+    const input = document.getElementById("toleransInput");
+
+    function updateUI(value) {
+        value = Math.min(100, Math.max(0, value));
+
+        range.value = value;
+        input.value = value;
+
+        const percent = (value / 100) * 100;
+
+        range.style.background = `
+            linear-gradient(
+                to right,
+                #0d6efd 0%,
+                #0d6efd ${percent}%,
+                #dee2e6 ${percent}%,
+                #dee2e6 100%
+            )
+        `;
+    }
+
+    // Slider → Input
+    range.addEventListener("input", () => {
+        updateUI(range.value);
+    });
+
+    // Input → Slider
+    input.addEventListener("input", () => {
+        updateUI(input.value);
+    });
+
+    // İlk yükleme
+    updateUI(range.value);
+</script>
+
+<script>
+    const range = document.getElementById("toleransRange");
+    const input = document.getElementById("toleransInput");
+
+    // Range → Number
+    range.addEventListener("input", () => {
+        input.value = range.value;
+    });
+
+    // Number → Range
+    input.addEventListener("input", () => {
+        let val = Math.max(0, Math.min(100, input.value));
+        input.value = val;
+        range.value = val;
+    });
+</script>
 
 }

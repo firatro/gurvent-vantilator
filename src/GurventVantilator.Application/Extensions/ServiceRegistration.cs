@@ -37,12 +37,18 @@ namespace GurventVantilator.Application.Extensions
             services.AddScoped<IPageImageService, PageImageManager>();
             services.AddScoped<IVersionInfoService, VersionInfoManager>();
             services.AddScoped<IProductService, ProductManager>();
-            services.AddScoped<IProductCategoryService, ProductCategoryManager>();
-            services.AddScoped<IProductApplicationService, ProductApplicationManager>();
+            services.AddScoped<IProductSeriesService, ProductSeriesManager>();
+            services.AddScoped<IProductModelService, ProductModelManager>();
+            services.AddScoped<IProductUsageTypeService, ProductUsageTypeManager>();
+            services.AddScoped<IProductWorkingConditionService, ProductWorkingConditionManager>();
             services.AddScoped<IProductTestDataService, ProductTestDataManager>();
             services.AddScoped<IProductContentFeatureService, ProductContentFeatureManager>();
             services.AddScoped<IAuthService, AuthManager>();
             services.AddScoped<IUserService, UserManager>();
+            services.AddScoped<IProductModelDocumentService, ProductModelDocumentManager>();
+            services.AddScoped<IFanChartService, FanChartManager>();
+            services.AddScoped<IWorkingPointService, WorkingPointManager>();
+            services.AddScoped<IFanSearchService, FanSearchManager>();
 
             return services;
         }

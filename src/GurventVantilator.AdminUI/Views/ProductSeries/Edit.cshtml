@@ -1,0 +1,123 @@
+@model GurventVantilator.Application.DTOs.ProductSeriesDto
+
+@{
+    bool isEdit = Model.Id > 0;
+    ViewData["Title"] = isEdit ? "Seri Güncelle" : "Yeni Seri Ekle";
+}
+
+<form class="ecommerce-form action-buttons-fixed"
+      asp-action="@(isEdit ? "Edit" : "Create")"
+      method="post"
+      enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    <input type="hidden" asp-for="Id" />
+
+    <div class="row mt-2">
+        <div class="col">
+            <section class="card card-modern card-big-info">
+                <div class="card-body">
+                    <div class="row">
+
+                        <!-- LEFT SIDE INFO -->
+                        <div class="col-lg-2-5 col-xl-1-5">
+                            <i class="card-big-info-icon bx bx-layer"></i>
+                            <h2 class="card-big-info-title">@ViewData["Title"]</h2>
+                            <p class="card-big-info-desc">
+                                Seriye ait bilgileri aşağıdaki alanlardan düzenleyebilirsiniz.
+                            </p>
+                        </div>
+
+                        <!-- FORM AREA -->
+                        <div class="col-lg-3-5 col-xl-4-5">
+
+                            <!-- NAME -->
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                       asp-for="Name">Seri Adı</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="Name" class="form-control form-control-modern" />
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- IMAGE UPLOAD + PREVIEW -->
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">Resim</label>
+
+                                <div class="col-lg-7 col-xl-6">
+
+                                    @if (!string.IsNullOrEmpty(Model.ImagePath))
+                                    {
+                                        <div class="mb-2">
+                                            <img src="@Model.ImagePath"
+                                                 class="img-fluid rounded"
+                                                 style="max-height:140px;border:1px solid #ddd;" />
+                                        </div>
+                                    }
+
+                                    <input type="file"
+                                           asp-for="ImageFile"
+                                           class="form-control form-control-modern"
+                                           accept="image/*" />
+
+                                    <span asp-validation-for="ImageFile" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- DESCRIPTION -->
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                       asp-for="Description">Açıklama</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <textarea asp-for="Description"
+                                              class="form-control form-control-modern"
+                                              rows="3"></textarea>
+                                </div>
+                            </div>
+
+                            <!-- ORDER -->
+                            @* <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                       asp-for="Order">Sıra</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="Order" class="form-control form-control-modern" />
+                                </div>
+                            </div> *@
+
+                            <!-- STATUS -->
+                            <div class="form-group row align-items-center pb-3">
+                                <label class="col-lg-5 col-xl-3 control-label text-lg-end mb-0"
+                                       asp-for="IsActive">Durum</label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <select asp-for="IsActive" class="form-control form-control-modern">
+                                        <option value="true" selected="@Model.IsActive">Aktif</option>
+                                        <option value="false" selected="@(!Model.IsActive)">Pasif</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                        </div> <!-- END FORM AREA -->
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- ACTION BUTTONS -->
+    <div class="row action-buttons">
+        <div class="col-12 col-md-auto">
+            <button type="submit"
+                    class="submit-button btn btn-primary btn-px-4 py-3 d-flex align-items-center font-weight-semibold line-height-1"
+                    data-loading-text="Loading...">
+                <i class="bx bx-save text-4 me-2"></i> Kaydet
+            </button>
+        </div>
+
+        <div class="col-12 col-md-auto px-md-0 mt-3 mt-md-0">
+            <a asp-action="Index"
+               class="cancel-button btn btn-light btn-px-4 py-3 border font-weight-semibold text-color-dark text-3">
+                Geri Dön
+            </a>
+        </div>
+    </div>
+</form>

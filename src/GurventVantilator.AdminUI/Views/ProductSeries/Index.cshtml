@@ -1,0 +1,216 @@
+@model IEnumerable<GurventVantilator.Application.DTOs.ProductSeriesDto>
+
+@{
+    ViewData["Title"] = "Seri Yönetimi";
+}
+
+<div class="row">
+    <div class="col">
+        <section class="card card-modern">
+            <div class="card-body">
+                <div class="datatables-header-footer-wrapper mt-2">
+
+                    <!-- HEADER -->
+                    <div class="datatable-header mb-3">
+                        <div class="row align-items-center">
+                            <div class="col-12 col-lg-auto mb-3 mb-lg-0">
+                                <a asp-action="Create"
+                                    class="btn btn-primary btn-md font-weight-semibold btn-py-2 px-4">
+                                    + Yeni Seri
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TABLE -->
+                    <table class="table table-ecommerce-simple table-striped mb-0" id="datatable-series-list"
+                        style="min-width: 650px;">
+                        <thead>
+                            <tr>
+                                <th width="40" class="text-center">Id</th>
+                                <th class="text-center">Adı</th>
+                                <th class="text-center">Açıklama</th>
+                                <th class="text-center">Durum</th>
+                                @* <th width="60" class="text-center">Sıra</th> *@
+                                <th width="160" class="text-center">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model == null || !Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="6" class="text-center text-muted">
+                                        Hiç kayıt bulunamadı.
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="text-center">
+                                            <strong><a href="#">@item.Id</a></strong>
+                                        </td>
+
+                                        <td class="text-center">
+                                            <strong>@item.Name</strong>
+                                        </td>
+
+                                        <td class="text-center">@item.Description</td>
+
+                                        <td class="text-center">
+                                            <span id="status-@item.Id"
+                                                class="badge @(item.IsActive ? "bg-success" : "bg-secondary") toggle-status"
+                                                style="cursor: pointer;" data-id="@item.Id" data-active="@item.IsActive">
+
+                                                @(item.IsActive ? "Aktif" : "Pasif")
+                                            </span>
+                                        </td>
+
+
+                                        @* <td class="text-center">@item.Order</td> *@
+
+                                        <td class="text-center">
+                                            <div class="btn-group d-flex" role="group">
+                                                <a class="btn btn-info btn-xs w-100 m-1 rounded clone-series"
+                                                    data-id="@item.Id">
+                                                    <i class="fas fa-copy"></i>
+                                                </a>
+
+                                                <a class="btn btn-primary btn-xs w-100 m-1 rounded" asp-action="Edit"
+                                                    asp-route-id="@item.Id">
+                                                    <i class="far fa-edit"></i>
+                                                </a>
+
+                                                <a href="#deleteModal"
+                                                    class="btn btn-danger btn-xs w-100 m-1 rounded modal-basic"
+                                                    onclick="setDeleteSeriesId(@item.Id)">
+                                                    <i class="far fa-trash-alt"></i>
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+
+                    <!-- FOOTER SEPARATOR -->
+                    <hr class="solid mt-5 opacity-4">
+
+                    <!-- DELETE MODAL -->
+                    <div id="deleteModal" class="modal-block mfp-hide">
+                        <section class="card">
+                            <header class="card-header">
+                                <h2 class="card-title">Seri Silme</h2>
+                            </header>
+
+                            <div class="card-body">
+                                <div class="modal-wrapper">
+                                    <div class="modal-text">
+                                        <p class="mb-0">Bu seriyi silmek istediğinize emin misiniz?</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <footer class="card-footer">
+                                <form id="DeleteForm" asp-action="Delete" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" id="seriesId" />
+                                    <div class="text-end">
+                                        <button type="submit" class="btn btn-danger">Sil</button>
+                                        <button type="button" class="btn btn-default modal-dismiss">Vazgeç</button>
+                                    </div>
+                                </form>
+                            </footer>
+                        </section>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/examples/examples.modals.js"></script>
+    <script src="~/vendor/pnotify/pnotify.custom.js"></script>
+
+    <script>
+        function setDeleteSeriesId(id) {
+            document.getElementById("seriesId").value = id;
+        }
+    </script>
+
+    <script>
+        $(document).on("click", ".toggle-status", function () {
+            var span = $(this);
+            var id = span.data("id");
+
+            $.ajax({
+                url: '/ProductSeries/ToggleStatus',
+                type: 'POST',
+                data: { id: id },
+                success: function (res) {
+                    if (res.success) {
+
+                        // Yeni durum bilgisi
+                        if (res.isActive) {
+                            span.removeClass("bg-secondary").addClass("bg-success");
+                            span.text("Aktif");
+                            span.data("active", true);
+                        } else {
+                            span.removeClass("bg-success").addClass("bg-secondary");
+                            span.text("Pasif");
+                            span.data("active", false);
+                        }
+
+                        // Bildirim
+                        new PNotify({
+                            title: 'Başarılı',
+                            text: 'Durum güncellendi.',
+                            type: 'success'
+                        });
+                    }
+                    else {
+                        new PNotify({
+                            title: 'Hata',
+                            text: res.message,
+                            type: 'error'
+                        });
+                    }
+                }
+            });
+        });
+
+        $(document).on("click", ".clone-series", function () {
+            var id = $(this).data("id");
+
+            $.ajax({
+                url: '/ProductSeries/Clone',
+                type: 'POST',
+                data: { id: id },
+                success: function (res) {
+                    if (res.success) {
+                        new PNotify({
+                            title: 'Kopyalandı',
+                            text: 'Seri başarılı şekilde kopyalandı.',
+                            type: 'success'
+                        });
+
+                        setTimeout(() => location.reload(), 800);
+                    } else {
+                        new PNotify({
+                            title: 'Hata',
+                            text: res.message,
+                            type: 'error'
+                        });
+                    }
+                }
+            });
+        });
+
+    </script>
+
+}

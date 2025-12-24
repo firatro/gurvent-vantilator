@@ -1,0 +1,451 @@
+@model GurventVantilator.WebUI.Models.ModelDetailViewModel
+
+@await Component.InvokeAsync("Breadcrumb", new
+{
+    title = "Fanlarımız",
+pageTitle = ViewData["ModelName"].ToString(),
+pageKey = "Product",
+parentUrl = Url.Action("Detail", "Model")
+})
+
+@{
+     // Listeyi 2 kolona bölüyoruz
+     int half = (int)Math.Ceiling(Model.ContentFeatures.Count / 2.0);
+     var left = Model.ContentFeatures.Take(half).ToList();
+     var right = Model.ContentFeatures.Skip(half).ToList();
+ }
+
+@{
+    var source = Context.Request.Query["source"].ToString();
+}
+
+<div class="it-shop-details__area pt-120 pb-95">
+    <div class="container">
+        <div class="it-shop-details__top-wrap mb-120">
+            <div class="row">
+                <div class="col-xl-6 col-lg-5">
+                    @{
+                        // Modeldeki görselleri liste yapısına alıyoruz
+                        var images = new List<string>();
+
+                        if (!string.IsNullOrEmpty(Model.Image1Path)) images.Add(Model.Image1Path);
+                        if (!string.IsNullOrEmpty(Model.Image2Path)) images.Add(Model.Image2Path);
+                        if (!string.IsNullOrEmpty(Model.Image3Path)) images.Add(Model.Image3Path);
+                        if (!string.IsNullOrEmpty(Model.Image4Path)) images.Add(Model.Image4Path);
+                        if (!string.IsNullOrEmpty(Model.Image5Path)) images.Add(Model.Image5Path);
+
+                        // Slider ID oluştur
+                        string prefix = "modelImg";
+                    }
+
+                    <div class="it-shop-details__wrapper">
+
+                        <!-- ========== BÜYÜK GÖRSEL ALANI ========== -->
+                        <div class="it-shop-details__tab-content-box mb-20">
+                            <div class="tab-content" id="nav-tabContent">
+
+                                @for (int i = 0; i < images.Count; i++)
+                                {
+                                    var img = images[i];
+                                    string bigId = $"{prefix}-big-{i}";
+                                    string tabId = $"{prefix}-tab-{i}";
+                                    bool isActive = i == 0;
+
+                                    <div class="tab-pane fade @(isActive ? "show active" : "")"
+                                        id="@bigId" role="tabpanel" aria-labelledby="@tabId">
+
+                                        <div class="it-shop-details__tab-big-img">
+                                            <img src="http://admin.gurvent.firatramazano.com/@img" alt="@Model.Name" style="height:400px; padding:25px" />
+                                        </div>
+
+                                    </div>
+                                }
+                            </div>
+                        </div>
+
+                        <!-- ========== KÜÇÜK THUMBNAILLER ========== -->
+                        <div class="it-shop-details__tab-btn-box">
+                            <nav>
+                                <div class="nav nav-tab justify-content-center" id="nav-tab" role="tablist">
+
+                                    @for (int i = 0; i < images.Count; i++)
+                                    {
+                                        var img = images[i];
+                                        string bigId = $"{prefix}-big-{i}";
+                                        string tabId = $"{prefix}-tab-{i}";
+                                        bool isActive = i == 0;
+
+                                        <button class="nav-links @(isActive ? "active" : "")"
+                                                id="@tabId" data-bs-toggle="tab"
+                                                data-bs-target="#@bigId" type="button"
+                                                role="tab" aria-selected="@(isActive ? "true" : "false")">
+
+                                            <img src="http://admin.gurvent.firatramazano.com/@img"
+                                                style="width:70px; height:70px; object-fit:cover;" />
+
+                                        </button>
+                                    }
+
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-lg-7">
+                    <div class="it-shop-details__right-wrap">
+                    @if (!string.IsNullOrEmpty(source))
+                    {
+                        <div class="mb-15">
+                            @if (source == "fanselector")
+                            {
+                                <a href="@Url.Action("Index", "FanSelector")"
+                                class="btn btn-sm btn-outline-secondary">
+                                    ← Başa Dön
+                                </a>
+                            }
+                            else if (source == "series")
+                            {
+                                <a href="@Url.Action("Index", "Product")"
+                                class="btn btn-sm btn-outline-secondary">
+                                    ← Başa Dön
+                                </a>
+                            }
+                        </div>
+                    }
+
+                                            <h3 class="it-shop-details__title-sm mb-30">@Model.Code </h3>
+                        <div class="it-shop-details__price d-flex align-items-center">
+                            <span style="margin-left:0px">@Model.Name</span>
+                        </div>
+                        <div class="it-shop-details__quantity-wrap">
+                            <div class="it-shop-details__text pb-10">
+                                <p>
+                                    @Model.Description
+                                </p>
+                            </div>
+                            <div class="it-shop-details__Category pb-35">
+                                <span>
+                                    <i>Kullanım Tipi:</i>
+                                    @string.Join(", ", Model.UsageTypeNames)
+                                </span>
+
+                                <span>
+                                    <i>Çalışma Alanı:</i>
+                                    @string.Join(", ", Model.WorkingConditionNames)
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="productdetails-tabs">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-12">
+                        <div class="product-additional-tab">
+                            <div class="pro-details-nav theme-bg-2 mb-30">
+                                <ul class="nav nav-tab pro-details-nav-btn justify-content-center" id="myTabs"
+                                    role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-links active" id="home-tab-1" data-bs-toggle="tab"
+                                            data-bs-target="#home-1" type="button" role="tab" aria-controls="home-1"
+                                            aria-selected="true"><span>Açıklama</span></button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-links" id="information-tab" data-bs-toggle="tab"
+                                            data-bs-target="#additional-information" type="button" role="tab"
+                                            aria-controls="additional-information"
+                                            aria-selected="false"><span>Donanım</span></button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-links" id="reviews-tab" data-bs-toggle="tab"
+                                            data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews"
+                                            aria-selected="false"><span>Ölçek Görseli</span></button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-links" id="products-tab" data-bs-toggle="tab"
+                                            data-bs-target="#products" type="button" role="tab" aria-controls="products"
+                                            aria-selected="false"><span>Ürünler</span></button>
+                                    </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-links" id="documents-tab" data-bs-toggle="tab"
+                                            data-bs-target="#documents" type="button" role="tab" aria-controls="documents"
+                                            aria-selected="false"><span>Dokümanlar</span></button>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="tab-content it-content-tab" id="myTabContent-2">
+                                <div class="tab-para tab-pane fade show active" id="home-1" role="tabpanel"
+                                    aria-labelledby="home-tab-1">
+                                    <div class="it-sv-details-content mb-40">
+                                        <h5 class="it-inner-title">@Model.ContentTitle</h5>
+                                        <p>
+                                            @Model.ContentDescription
+                                        </p>
+                                    </div>
+                                    <div class="it-sv-details-content">
+                                        <h5 class="it-inner-title pb-10">Özellikler</h5>
+
+                                        @if (Model.ContentFeatures != null && Model.ContentFeatures.Any())
+                                        {
+                                        
+
+                                            <div class="row">
+
+                                                <!-- LEFT COLUMN -->
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="it-sv-details-list mb-60">
+                                                        <ul>
+                                                            @foreach (var feature in left)
+                                                            {
+                                                                <li>
+                                                                    <span>
+                                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <mask id="mask0" style="mask-type:luminance"
+                                                                                maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
+                                                                                <path d="M20 0H0V20H20V0Z" fill="white" />
+                                                                            </mask>
+                                                                            <g mask="url(#mask0)">
+                                                                                <path
+                                                                                    d="M10.7148 0.513672L11.4571 2.94776C12.6555 6.87762 15.8995 9.69541 19.75 10.1512C15.9196 10.5053 12.6638 13.2798 11.494 17.1865L10.7148 19.7888"
+                                                                                    stroke="#E03B3B" />
+                                                                                <path d="M19.5833 10.1641H0" stroke="#E03B3B" />
+                                                                            </g>
+                                                                        </svg>
+                                                                    </span>
+
+                                                                    <p><b>@feature.Key</b> – @feature.Value</p>
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                                <!-- RIGHT COLUMN -->
+                                                <div class="col-lg-6 col-md-6">
+                                                    <div class="it-sv-details-list mb-60">
+                                                        <ul>
+                                                            @foreach (var feature in right)
+                                                            {
+                                                                <li>
+                                                                    <span>
+                                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none"
+                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                            <mask id="mask0b" style="mask-type:luminance"
+                                                                                maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
+                                                                                <path d="M20 0H0V20H20V0Z" fill="white" />
+                                                                            </mask>
+                                                                            <g mask="url(#mask0b)">
+                                                                                <path
+                                                                                    d="M10.7148 0.513672L11.4571 2.94776C12.6555 6.87762 15.8995 9.69541 19.75 10.1512C15.9196 10.5053 12.6638 13.2798 11.494 17.1865L10.7148 19.7888"
+                                                                                    stroke="#E03B3B" />
+                                                                                <path d="M19.5833 10.1641H0" stroke="#E03B3B" />
+                                                                            </g>
+                                                                        </svg>
+                                                                    </span>
+
+                                                                    <p><b>@feature.Key</b> – @feature.Value</p>
+                                                                </li>
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <div class="alert alert-dark">Bu modele ait özellik eklenmemiş.</div>
+                                        }
+
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="additional-information" role="tabpanel" aria-labelledby="information-tab">
+                                    <div class="product__details-info table-responsive mb-35">
+
+                                        @if (Model.ModelFeatures == null || !Model.ModelFeatures.Any())
+                                        {
+                                            <div class="alert alert-dark mt-3">
+                                                Bu modele ait özellik bulunmamaktadır.
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                            <table class="table table-striped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Özellik</th>
+                                                        <th>Standart</th>
+                                                        <th>Opsiyonel</th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    @foreach (var item in Model.ModelFeatures.OrderBy(f => f.Order))
+                                                    {
+                                                        <tr>
+                                                            <td class="add-info">@item.FeatureName</td>
+                                                            <td class="add-info-list">@item.StandardValue</td>
+                                                            <td class="add-info-list">@item.OptionalValue</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        }
+
+                                    </div>
+                                </div>
+
+
+
+                                <div class="tab-pane fade" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+                                    <div class="product-details-review mb-35">
+                                        @if (!string.IsNullOrEmpty(Model.ScaleImagePath))
+                                        {
+                                            <img src="@Model.ScaleImagePath" class="img-fluid rounded" alt="Ölçek Görseli" style="max-width:100%; height:auto;" />
+                                        }
+                                        else
+                                        {
+                                            <div class="alert alert-dark mt-3">
+                                                Bu modele ait performans bilgisi bulunmamaktadır.
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+
+                               <div class="tab-pane fade" id="products" role="tabpanel" aria-labelledby="products-tab">
+                                    <div class="product-details-review mb-35">
+
+                                        @if (Model.Products != null && Model.Products.Any())
+                                        {
+                                            <div class="table-responsive">
+                                                <table class="table table-striped table-bordered table-hover align-middle">
+                                                    <thead class="table-dark">
+                                                        <tr>
+                                                            <th>Model</th>
+                                                            <th>Kod</th>
+                                                            <th>Hava Debisi<br /><small>(m³/h)</small></th>
+                                                            <th>Toplam Basınç<br /><small>(Pa)</small></th>
+                                                            <th>Motor Gücü<br /><small>(W)</small></th>
+                                                            <th>Gerilim<br /><small>(V)</small></th>
+                                                            <th>Frekans<br /><small>(Hz)</small></th>
+                                                            <th>Sıcaklık<br /><small>(°C)</small></th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        @foreach (var p in Model.Products)
+                                                        {
+                                                            <tr style="cursor:pointer"
+                                                                onclick="window.location='@Url.Action("Performance","Product", new { id = p.Id })'">
+
+                                                                <td>@p.Name</td>
+                                                                <td>@p.Code</td>
+
+                                                                <!-- AirFlow -->
+                                                                <td>
+                                                                    @if (p.AirFlow.HasValue)
+                                                                    {
+                                                                        @($"{p.AirFlow} {p.AirFlowUnit}")
+                                                                    }
+                                                                </td>
+
+                                                                <!-- TotalPressure -->
+                                                                <td>
+                                                                    @if (p.TotalPressure.HasValue)
+                                                                    {
+                                                                        @($"{p.TotalPressure} {p.TotalPressureUnit}")
+                                                                    }
+                                                                </td>
+
+                                                                <!-- Power -->
+                                                                <td>@p.Power</td>
+
+                                                                <!-- Voltage -->
+                                                                <td>
+                                                                    @if (p.Voltage.HasValue)
+                                                                    {
+                                                                        @($"{p.Voltage} V")
+                                                                    }
+                                                                </td>
+
+                                                                <!-- Frequency -->
+                                                                <td>
+                                                                    @if (p.Frequency.HasValue)
+                                                                    {
+                                                                        @($"{p.Frequency} Hz")
+                                                                    }
+                                                                </td>
+
+                                                                <!-- Temperature -->
+                                                                <td>
+                                                                    @if (p.Temperature.HasValue)
+                                                                    {
+                                                                        @($"{p.Temperature} °C")
+                                                                    }
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        }
+                                        else
+                                        {
+                                           <div class="alert alert-dark mt-3">
+                                                Bu modele ait performans bilgisi bulunmamaktadır.
+                                            </div>
+                                        }
+
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="tab-pane fade" id="documents" role="tabpanel" aria-labelledby="documents-tab">
+                                    <div class="product__details-info table-responsive mb-35">
+
+                                        <div class="container">
+                                            <div class="row g-3">
+
+                                                @if (Model.Documents != null && Model.Documents.Any())
+                                                {
+                                                    foreach (var doc in Model.Documents)
+                                                    {
+                                                        <div class="col-12 col-md-4">
+                                                            <a href="https://admin.gurvent.firatramazano.com/@doc.FilePath"
+                                                            class="it-btn-orange d-flex justify-content-center"
+                                                            style="width:100%;"
+                                                            target="_blank">
+                                                                <span>
+                                                                    <span class="text-1">@System.IO.Path.GetFileNameWithoutExtension(doc.Title)</span>
+                                                                    <span class="text-2">@System.IO.Path.GetFileNameWithoutExtension(doc.Title)</span>
+                                                                </span>
+                                                            </a>
+                                                        </div>
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    <div class="alert alert-dark mt-3">
+                                                        Bu modele ait performans bilgisi bulunmamaktadır.
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

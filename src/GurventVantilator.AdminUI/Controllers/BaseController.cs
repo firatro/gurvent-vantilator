@@ -1,5 +1,6 @@
 using GurventVantilator.Application.Common;
 using GurventVantilator.Application.DTOs;
+using GurventVantilator.Application.Enums;
 using GurventVantilator.Application.Interfaces.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -15,12 +16,12 @@ namespace GurventVantilator.AdminUI.Controllers
             _fileService = fileService;
         }
 
-        protected async Task<string?> SaveImageAsync(IFormFile? file, string folderPath)
+        protected async Task<string?> SaveImageAsync(IFormFile? file, string folderPath, FileType fileType)
         {
             if (file == null)
                 return null;
 
-            return await _fileService.SaveFileAsync(file, folderPath, fileType: Application.Enums.FileType.Image);
+            return await _fileService.SaveFileAsync(file, folderPath, fileType: fileType);
         }
 
         protected void DeleteFileIfExists(string? filePath, string folderPath)

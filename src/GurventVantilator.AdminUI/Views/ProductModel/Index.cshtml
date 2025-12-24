@@ -1,0 +1,207 @@
+@model IEnumerable<GurventVantilator.Application.DTOs.ProductModelDto>
+
+@{
+    ViewData["Title"] = "Model Yönetimi";
+}
+
+<div class="row">
+    <div class="col">
+        <section class="card card-modern">
+            <div class="card-body">
+
+                <div class="datatables-header-footer-wrapper mt-2">
+
+                    <!-- HEADER -->
+                    <div class="datatable-header mb-3">
+                        <div class="row align-items-center">
+                            <div class="col-12 col-lg-auto mb-3 mb-lg-0">
+                                <a asp-action="Create"
+                                    class="btn btn-primary btn-md font-weight-semibold btn-py-2 px-4">
+                                    + Yeni Model
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TABLE -->
+                    <table class="table table-ecommerce-simple table-striped mb-0" id="datatable-model-list"
+                        style="min-width: 1100px;">
+
+                        <thead>
+                            <tr>
+                                <th width="50" class="text-center">Id</th>
+                                <th width="80" class="text-center">Resim</th>
+                                <th class="text-center">Model Adı</th>
+                                <th class="text-center">Kodu</th>
+                                <th class="text-center">Seri</th>
+                                <th class="text-center">Kullanım Tipleri</th>
+                                <th class="text-center">Çalışma Koşulları</th>
+                                <th class="text-center">Durum</th>
+                                @* <th width="80" class="text-center">Sıra</th> *@
+                                <th width="180" class="text-center">İşlemler</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @if (Model == null || !Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="10" class="text-center text-muted py-4">
+                                        <i class="fas fa-info-circle"></i> Hiç model bulunamadı.
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <!-- ID -->
+                                        <td class="text-center">
+                                            <strong>@item.Id</strong>
+                                        </td>
+
+                                        <!-- IMAGE -->
+                                        <td class="text-center">
+                                            @if (!string.IsNullOrEmpty(item.Image1Path))
+                                            {
+                                                <img src="@item.Image1Path" class="img-thumbnail"
+                                                    style="width:55px; height:55px; object-fit:cover;" />
+                                            }
+                                            else
+                                            {
+                                                <span class="text-muted">Yok</span>
+                                            }
+                                        </td>
+
+                                        <!-- NAME -->
+                                        <td class="text-center"><strong>@item.Name</strong></td>
+
+                                        <!-- CODE -->
+                                        <td class="text-center">@item.Code</td>
+
+                                        <!-- SERIES -->
+                                        <td class="text-center">@item.ProductSeriesName</td>
+
+                                        <!-- USAGE TYPES -->
+                                        <td class="text-center">
+                                            @if (item.UsageTypeNames?.Any() == true)
+                                            {
+                                                foreach (var ut in item.UsageTypeNames)
+                                                {
+                                                    <span class="badge bg-info me-1">@ut</span>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <span class="text-muted">-</span>
+                                            }
+                                        </td>
+
+                                        <!-- WORKING CONDITIONS -->
+                                        <td class="text-center">
+                                            @if (item.WorkingConditionNames?.Any() == true)
+                                            {
+                                                foreach (var wc in item.WorkingConditionNames)
+                                                {
+                                                    <span class="badge bg-warning text-dark me-1">@wc</span>
+                                                }
+                                            }
+                                            else
+                                            {
+                                                <span class="text-muted">-</span>
+                                            }
+                                        </td>
+
+                                        <!-- STATUS -->
+                                        <td class="text-center">
+                                            @if (item.IsActive)
+                                            {
+                                                <span class="badge bg-success">Aktif</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="badge bg-secondary">Pasif</span>
+                                            }
+                                        </td>
+
+                                        <!-- ORDER -->
+                                        @* <td class="text-center">@item.Order</td> *@
+
+                                        <!-- ACTIONS -->
+                                        <td class="text-center">
+                                            <div class="btn-group d-flex" role="group">
+                                                <a asp-action="Copy" asp-route-id="@item.Id"
+                                                    class="btn btn-info btn-xs w-100 m-1 rounded">
+                                                    <i class="fas fa-copy"></i>
+                                                </a>
+
+                                                <a asp-action="Edit" asp-route-id="@item.Id"
+                                                    class="btn btn-primary btn-xs w-100 m-1 rounded">
+                                                    <i class='far fa-edit'></i>
+                                                </a>
+
+                                                <a href="#deleteModal"
+                                                    class="btn btn-danger btn-xs w-100 m-1 rounded modal-basic"
+                                                    onclick="setDeleteModelId(@item.Id)">
+                                                    <i class='far fa-trash-alt'></i>
+                                                </a>
+
+                                            </div>
+                                        </td>
+
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+
+                    </table>
+
+                    <!-- DELETE MODAL -->
+                    <hr class="solid mt-5 opacity-4" />
+
+                    <div id="deleteModal" class="modal-block mfp-hide">
+                        <section class="card">
+                            <header class="card-header">
+                                <h2 class="card-title">Model Silme</h2>
+                            </header>
+
+                            <div class="card-body">
+                                <div class="modal-wrapper">
+                                    <div class="modal-text">
+                                        <p>Bu modeli silmek istediğinize emin misiniz?</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <footer class="card-footer">
+                                <form id="Delete" asp-action="Delete" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" id="modelId" />
+
+                                    <div class="row">
+                                        <div class="col-md-12 text-end">
+                                            <button type="submit" class="btn btn-danger">Sil</button>
+                                            <button type="button" class="btn btn-default modal-dismiss">Vazgeç</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </footer>
+                        </section>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/examples/examples.modals.js"></script>
+    <script>
+        function setDeleteModelId(id) {
+            document.getElementById("modelId").value = id;
+        }
+    </script>
+}

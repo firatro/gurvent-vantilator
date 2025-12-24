@@ -18,6 +18,7 @@ namespace GurventVantilator.Infrastructure.Repositories
         {
             var query = _context.ProductContentFeatures
                 .Include(p => p.Product)
+                .Include(pM => pM.ProductModel)
                 .AsQueryable();
 
             if (asNoTracking)
@@ -64,5 +65,20 @@ namespace GurventVantilator.Infrastructure.Repositories
             _context.ProductContentFeatures.Remove(feature);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<ProductContentFeature>> GetByModelIdAsync(int modelId, bool asNoTracking = false)
+        {
+            var query = _context.ProductContentFeatures
+                .Where(x => x.ProductModelId == modelId)
+                .OrderBy(x => x.Order)
+                .AsQueryable();
+
+            if (asNoTracking)
+                query = query.AsNoTracking();
+
+            return await query.ToListAsync();
+        }
+
+
     }
 }

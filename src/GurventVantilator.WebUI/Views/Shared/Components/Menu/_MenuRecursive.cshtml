@@ -40,11 +40,13 @@ else
             case "Project":
                 return Url.Action("Index", "Project", new { id = menu.ProjectId }) ?? "#";
             case "Product":
-                return Url.Action("Detail", "Product", new { id = menu.ProductId }) ?? "#";
+                return Url.Action("Index", "Product", new { id = menu.ProductId }) ?? "#";
             case "ProductCategory":
-                return Url.Action(action: "ListByCategory", "Product", new { id = menu.ProductCategoryId }) ?? "#";
+                return Url.Action(action: "Index", "Product", new { id = menu.ProductCategoryId }) ?? "#";
             case "Blog":
                 return Url.Action("Index", "Blog") ?? "#";
+            case "FanSelector":
+                return Url.Action("Index", "FanSelector") ?? "#";
             case "Contact":
                 return Url.Action("Index", "Contact") ?? "#";
             case "AboutUs":

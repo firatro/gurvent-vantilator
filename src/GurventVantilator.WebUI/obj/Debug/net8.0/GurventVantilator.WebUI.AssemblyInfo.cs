@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GurventVantilator.WebUI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+55de0a05bef2cb45ebd7a4babb644e264cf6aeee")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0a3fe1d589a7b934874d648c88c95276e9b027d")]
 [assembly: System.Reflection.AssemblyProductAttribute("GurventVantilator.WebUI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GurventVantilator.WebUI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

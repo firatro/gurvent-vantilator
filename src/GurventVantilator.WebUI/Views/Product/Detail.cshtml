@@ -8,34 +8,54 @@
                     <div class="it-shop-details__wrapper">
                         <div class="it-shop-details__tab-content-box mb-20">
                             <div class="tab-content" id="nav-tabContent">
-                                <div class="tab-pane fade show active" id="nav-one" role="tabpanel"
-                                    aria-labelledby="nav-one-tab">
-                                    <div class="it-shop-details__tab-big-img">
-                                        <img src="http://localhost:5034/@Model.Image1Path" alt="">
+                                @if (!string.IsNullOrEmpty(Model.Image1Path))
+                                {
+                                    <div class="tab-pane fade show active" id="nav-one" role="tabpanel"
+                                        aria-labelledby="nav-one-tab">
+                                        <div class="it-shop-details__tab-big-img">
+                                            <img src="http://admin.gurvent.firatramazano.com/@Model.Image1Path" alt="">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="tab-pane fade" id="nav-two" role="tabpanel" aria-labelledby="nav-two-tab">
-                                    <div class="it-shop-details__tab-big-img">
-                                        <img src="http://localhost:5034/@Model.Image2Path" alt="">
+                                }
+                                
+                               @if (!string.IsNullOrEmpty(Model.Image2Path))
+                                {
+                                    <div class="tab-pane fade" id="nav-two" role="tabpanel" aria-labelledby="nav-two-tab">
+                                        <div class="it-shop-details__tab-big-img">
+                                            <img src="http://admin.gurvent.firatramazano.com/@Model.Image2Path" alt="">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="tab-pane fade" id="nav-three" role="tabpanel"
-                                    aria-labelledby="nav-three-tab">
-                                    <div class="it-shop-details__tab-big-img">
-                                        <img src="http://localhost:5034/@Model.Image3Path" alt="">
+                                }
+
+                                @if (!string.IsNullOrEmpty(Model.Image3Path))
+                                {
+                                    <div class="tab-pane fade" id="nav-three" role="tabpanel"
+                                        aria-labelledby="nav-three-tab">
+                                        <div class="it-shop-details__tab-big-img">
+                                            <img src="http://admin.gurvent.firatramazano.com/@Model.Image3Path" alt="">
+                                        </div>
+                                     </div>
+                                }
+                                
+                                @if (!string.IsNullOrEmpty(Model.Image4Path))
+                                {
+                                    <div class="tab-pane fade" id="nav-four" role="tabpanel" aria-labelledby="nav-four-tab">
+                                        <div class="it-shop-details__tab-big-img">
+                                            <img src="http://admin.gurvent.firatramazano.com/@Model.Image4Path" alt="">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="tab-pane fade" id="nav-four" role="tabpanel" aria-labelledby="nav-four-tab">
-                                    <div class="it-shop-details__tab-big-img">
-                                        <img src="http://localhost:5034/@Model.Image4Path" alt="">
+                                }
+                                
+                                @if (!string.IsNullOrEmpty(Model.Image5Path))
+                                {
+                                    <div class="tab-pane fade" id="nav-four4" role="tabpanel"
+                                        aria-labelledby="nav-four-tab">
+                                        <div class="it-shop-details__tab-big-img">
+                                            <img src="http://admin.gurvent.firatramazano.com/@Model.Image5Path" alt="">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="tab-pane fade" id="nav-four4" role="tabpanel"
-                                    aria-labelledby="nav-four-tab">
-                                    <div class="it-shop-details__tab-big-img">
-                                        <img src="http://localhost:5034/@Model.Image5Path" alt="">
-                                    </div>
-                                </div>
+                                }
+                                
                             </div>
                         </div>
                         <div class="it-shop-details__tab-btn-box">
@@ -44,28 +64,44 @@
                                     <button class="nav-links active" id="nav-one-tab" data-bs-toggle="tab"
                                         data-bs-target="#nav-one" type="button" role="tab" aria-controls="nav-one"
                                         aria-selected="true">
-                                        <img src="http://localhost:5034/@Model.Image1Path" alt="">
+                                        <img src="http://admin.gurvent.firatramazano.com/@Model.Image1Path" alt="">
                                     </button>
-                                    <button class="nav-links" id="nav-two-tab" data-bs-toggle="tab"
-                                        data-bs-target="#nav-two" type="button" role="tab" aria-controls="nav-two"
-                                        aria-selected="false">
-                                        <img src="http://localhost:5034/@Model.Image2Path" alt="">
-                                    </button>
-                                    <button class="nav-links" id="nav-three-tab" data-bs-toggle="tab"
-                                        data-bs-target="#nav-three" type="button" role="tab" aria-controls="nav-three"
-                                        aria-selected="false">
-                                        <img src="http://localhost:5034/@Model.Image3Path" alt="">
-                                    </button>
-                                    <button class="nav-links" id="nav-four-tab" data-bs-toggle="tab"
-                                        data-bs-target="#nav-four" type="button" role="tab" aria-controls="nav-four"
-                                        aria-selected="false">
-                                        <img src="http://localhost:5034/@Model.Image4Path" alt="">
-                                    </button>
-                                    <button class="nav-links" id="nav-four4-tab" data-bs-toggle="tab"
-                                        data-bs-target="#nav-four4" type="button" role="tab" aria-controls="nav-four4"
-                                        aria-selected="false">
-                                        <img src="http://localhost:5034/@Model.Image5Path" alt="">
-                                    </button>
+                                    @if (!string.IsNullOrEmpty(Model.Image2Path))
+                                    {
+                                        <button class="nav-links" id="nav-two-tab" 
+                                                data-bs-toggle="tab" data-bs-target="#nav-two"
+                                                type="button" role="tab" aria-controls="nav-two">
+                                            <img src="http://admin.gurvent.firatramazano.com/@Model.Image2Path" alt="">
+                                        </button>
+                                    }
+
+                                    @if (!string.IsNullOrEmpty(Model.Image3Path))
+                                    {
+                                        <button class="nav-links" id="nav-three-tab" data-bs-toggle="tab"
+                                            data-bs-target="#nav-three" type="button" role="tab" aria-controls="nav-three"
+                                            aria-selected="false">
+                                            <img src="http://admin.gurvent.firatramazano.com/@Model.Image3Path" alt="">
+                                        </button>
+                                    }
+
+                                    @if (!string.IsNullOrEmpty(Model.Image4Path))
+                                    {
+                                        <button class="nav-links" id="nav-four-tab" data-bs-toggle="tab"
+                                            data-bs-target="#nav-four" type="button" role="tab" aria-controls="nav-four"
+                                            aria-selected="false">
+                                            <img src="http://admin.gurvent.firatramazano.com/@Model.Image4Path" alt="">
+                                        </button>
+                                    }
+                              
+                                    @if (!string.IsNullOrEmpty(Model.Image5Path))
+                                    {
+                                        <button class="nav-links" id="nav-four4-tab" data-bs-toggle="tab"
+                                            data-bs-target="#nav-four4" type="button" role="tab" aria-controls="nav-four4"
+                                            aria-selected="false">
+                                            <img src="http://admin.gurvent.firatramazano.com/@Model.Image5Path" alt="">
+                                        </button>
+                                    }
+                                    
                                 </div>
                             </nav>
                         </div>
@@ -127,10 +163,6 @@
 
                                     <i class="fa-solid fa-cube"></i></a>
                                 }
-                            </div>
-                            <div class="it-shop-details__Category pb-35">
-                                <span><i>Kategori:</i> @Model.ProductCategoryName</span>
-                                <span><i>Hız Kontrolü: </i> @Model.SpeedControl</span>
                             </div>
                             @* <div class="it-shop-details__social">
                                 <span>Share with friends:</span>
@@ -344,14 +376,6 @@
                                                     <td class="add-info-list">@Model.Code</td>
                                                 </tr>
 
-                                                <!-- Boyut -->
-                                                @if (Model.Diameter.HasValue)
-                                                {
-                                                    <tr>
-                                                        <td class="add-info fw-bold">Çap</td>
-                                                        <td class="add-info-list">@Model.Diameter @Model.DiameterUnit</td>
-                                                    </tr>
-                                                }
 
                                                 <!-- Hava Debisi -->
                                                 @if (Model.AirFlow.HasValue)
@@ -362,23 +386,6 @@
                                                     </tr>
                                                 }
 
-                                                <!-- Basınç -->
-                                                @if (Model.Pressure.HasValue)
-                                                {
-                                                    <tr>
-                                                        <td class="add-info fw-bold">Statik Basınç</td>
-                                                        <td class="add-info-list">@Model.Pressure @Model.PressureUnit</td>
-                                                    </tr>
-                                                }
-
-                                                <!-- Güç -->
-                                                @if (Model.Power.HasValue)
-                                                {
-                                                    <tr>
-                                                        <td class="add-info fw-bold">Motor Gücü</td>
-                                                        <td class="add-info-list">@Model.Power @Model.PowerUnit</td>
-                                                    </tr>
-                                                }
 
                                                 <!-- Elektriksel Değerler -->
                                                 @if (Model.Voltage.HasValue)
@@ -396,21 +403,6 @@
                                                     </tr>
                                                 }
 
-                                                <!-- Performans -->
-                                                @if (Model.Speed.HasValue)
-                                                {
-                                                    <tr>
-                                                        <td class="add-info fw-bold">Devir</td>
-                                                        <td class="add-info-list">@Model.Speed rpm</td>
-                                                    </tr>
-                                                }
-                                                @if (Model.NoiseLevel.HasValue)
-                                                {
-                                                    <tr>
-                                                        <td class="add-info fw-bold">Ses Seviyesi</td>
-                                                        <td class="add-info-list">@Model.NoiseLevel dB(A)</td>
-                                                    </tr>
-                                                }
                                                 @if (!string.IsNullOrWhiteSpace(Model.SpeedControl))
                                                 {
                                                     <tr>
@@ -477,7 +469,7 @@
                                     aria-labelledby="reviews-tab">
                                     <div class="row">
                                         <div class="col-12">
-                                            <img src="http://localhost:5034/@Model.ScaleImagePath">
+                                            <img src="http://admin.gurvent.firatramazano.com/@Model.ScaleImagePath">
                                         </div>
                                     </div>
                                 </div>

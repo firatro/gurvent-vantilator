@@ -1,7 +1,6 @@
 using GurventVantilator.Application.DTOs;
 using GurventVantilator.AdminUI.Models.Product;
 using System.Globalization;
-using GurventVantilator.AdminUI.Models.ProductContentFeature;
 
 namespace GurventVantilator.AdminUI.Mappings
 {
@@ -9,43 +8,36 @@ namespace GurventVantilator.AdminUI.Mappings
     {
         #region CreateViewModel → DTO
         public static ProductDto ToDto(this ProductCreateViewModel vm,
-                                       string? image1Path, string? image2Path, string? image3Path, string? image4Path, string? image5Path,
-                                       string? dataSheetPath = null,
-                                       string? model3DPath = null, string? testDataPath = null, string? scaleImagePath = null)
+            string? image1Path, string? image2Path, string? image3Path, string? image4Path, string? image5Path,
+            string? dataSheetPath = null,
+            string? model3DPath = null,
+            string? testDataPath = null,
+            string? scaleImagePath = null)
         {
             return new ProductDto
             {
+                // Temel Bilgiler
                 Name = vm.Name,
                 Code = vm.Code,
                 Description = vm.Description,
-                CreatedAt = DateTime.Now,
+                CreatedAt = DateTime.UtcNow,
 
-                // Boyut
-                Diameter = ParseDouble(vm.Diameter),
-                DiameterUnit = vm.DiameterUnit,
-
-                // Hava debisi
-                AirFlow = ParseDouble(vm.AirFlow),
-                AirFlowUnit = vm.AirFlowUnit,
-
-                // Basınç
-                Pressure = ParseDouble(vm.Pressure),
-                PressureUnit = vm.PressureUnit,
-
-                // Güç
-                Power = ParseDouble(vm.Power),
-                PowerUnit = vm.PowerUnit,
-
-                // Elektriksel
-                Voltage = ParseDouble(vm.Voltage),
-                Frequency = ParseDouble(vm.Frequency),
+                // İlişkiler
+                ProductModelId = vm.ProductModelId,
+                ProductSeriesId = vm.ProductSeriesId,
+                UsageTypeIds = vm.SelectedUsageTypeIds,
+                WorkingConditionIds = vm.SelectedWorkingConditionIds,
 
                 // Performans
-                Speed = ParseDouble(vm.Speed),
-                SpeedUnit = vm.SpeedUnit,
-                NoiseLevel = ParseDouble(vm.NoiseLevel),
-                NoiseLevelUnit = vm.NoiseLevelUnit,
+                AirFlow = vm.AirFlow,
+                AirFlowUnit = vm.AirFlowUnit,
+                TotalPressure = vm.TotalPressure,
+                TotalPressureUnit = vm.TotalPressureUnit,
+                Power = vm.Power,
+                Voltage = vm.Voltage,
+                Frequency = vm.Frequency,
                 SpeedControl = vm.SpeedControl,
+                Temperature = vm.Temperature,
 
                 // Dosyalar
                 Image1Path = image1Path,
@@ -58,12 +50,7 @@ namespace GurventVantilator.AdminUI.Mappings
                 TestDataPath = testDataPath,
                 ScaleImagePath = scaleImagePath,
 
-                ProductCategoryId = vm.ProductCategoryId,
-                IsActive = vm.IsActive,
-                Order = vm.Order,
-
-                // Uygulama alanı ID'leri
-                SelectedApplicationIds = vm.SelectedApplicationIds ?? new List<int>(),
+                // İçerik Alanları
                 ContentTitle = vm.ContentTitle,
                 ContentDescription = vm.ContentDescription,
                 ContentFeatures = vm.ContentFeatures.Select(f => new ProductContentFeatureDto
@@ -72,9 +59,13 @@ namespace GurventVantilator.AdminUI.Mappings
                     Value = f.Value
                 }).ToList(),
 
+                // Ortak
+                IsActive = vm.IsActive,
+                Order = vm.Order
             };
         }
         #endregion
+
 
         #region DTO → EditViewModel
         public static ProductEditViewModel ToEditViewModel(this ProductDto dto)
@@ -86,34 +77,24 @@ namespace GurventVantilator.AdminUI.Mappings
                 Code = dto.Code,
                 Description = dto.Description,
 
-                // Boyut
-                Diameter = dto.Diameter?.ToString(CultureInfo.InvariantCulture),
-                DiameterUnit = dto.DiameterUnit,
-
-                // Hava debisi
-                AirFlow = dto.AirFlow?.ToString(CultureInfo.InvariantCulture),
-                AirFlowUnit = dto.AirFlowUnit,
-
-                // Basınç
-                Pressure = dto.Pressure?.ToString(CultureInfo.InvariantCulture),
-                PressureUnit = dto.PressureUnit,
-
-                // Güç
-                Power = dto.Power?.ToString(CultureInfo.InvariantCulture),
-                PowerUnit = dto.PowerUnit,
-
-                // Elektriksel
-                Voltage = dto.Voltage?.ToString(CultureInfo.InvariantCulture),
-                Frequency = dto.Frequency?.ToString(CultureInfo.InvariantCulture),
+                // İlişkiler
+                ProductModelId = dto.ProductModelId,
+                ProductSeriesId = dto.ProductSeriesId,
+                SelectedUsageTypeIds = dto.UsageTypeIds,
+                SelectedWorkingConditionIds = dto.WorkingConditionIds,
 
                 // Performans
-                Speed = dto.Speed?.ToString(CultureInfo.InvariantCulture),
-                NoiseLevel = dto.NoiseLevel?.ToString(CultureInfo.InvariantCulture),
-                NoiseLevelUnit = dto.NoiseLevelUnit,
+                AirFlow = dto.AirFlow?.ToString(CultureInfo.InvariantCulture),
+                AirFlowUnit = dto.AirFlowUnit,
+                TotalPressure = dto.TotalPressure?.ToString(CultureInfo.InvariantCulture),
+                TotalPressureUnit = dto.TotalPressureUnit,
+                Power = dto.Power,
+                Voltage = dto.Voltage?.ToString(CultureInfo.InvariantCulture),
+                Frequency = dto.Frequency?.ToString(CultureInfo.InvariantCulture),
                 SpeedControl = dto.SpeedControl,
-                SpeedUnit = dto.SpeedUnit,
+                Temperature = dto.Temperature,
 
-                // Dosyalar
+                // Dosya Yolları
                 Image1Path = dto.Image1Path,
                 Image2Path = dto.Image2Path,
                 Image3Path = dto.Image3Path,
@@ -124,12 +105,7 @@ namespace GurventVantilator.AdminUI.Mappings
                 TestDataPath = dto.TestDataPath,
                 ScaleImagePath = dto.ScaleImagePath,
 
-                ProductCategoryId = dto.ProductCategoryId,
-                IsActive = dto.IsActive,
-                Order = dto.Order ?? 0,
-
-                // Seçili uygulama alanları
-                SelectedApplicationIds = dto.SelectedApplicationIds ?? new List<int>(),
+                // İçerik
                 ContentTitle = dto.ContentTitle,
                 ContentDescription = dto.ContentDescription,
                 ContentFeatures = dto.ContentFeatures.Select(f => new ProductContentFeatureViewModel
@@ -138,17 +114,22 @@ namespace GurventVantilator.AdminUI.Mappings
                     Value = f.Value
                 }).ToList(),
 
+                // Ortak
+                IsActive = dto.IsActive,
+                Order = dto.Order ?? 0
             };
         }
         #endregion
 
+
         #region EditViewModel → DTO
         public static ProductDto ToDto(this ProductEditViewModel vm,
-                                       string? image1Path, string? image2Path, string? image3Path, string? image4Path, string? image5Path,
-                                       string? dataSheetPath,
-                                       string? model3DPath,
-                                       string? testDataPath, string? scaleImagePath,
-                                       DateTime createdAt)
+            string? image1Path, string? image2Path, string? image3Path, string? image4Path, string? image5Path,
+            string? dataSheetPath,
+            string? model3DPath,
+            string? testDataPath,
+            string? scaleImagePath,
+            DateTime createdAt)
         {
             return new ProductDto
             {
@@ -157,35 +138,24 @@ namespace GurventVantilator.AdminUI.Mappings
                 Code = vm.Code,
                 Description = vm.Description,
                 CreatedAt = createdAt,
+                UpdatedAt = DateTime.UtcNow,
 
-                // Boyut
-                Diameter = ParseDouble(vm.Diameter),
-                DiameterUnit = vm.DiameterUnit,
-
-                // Hava debisi
-                AirFlow = ParseDouble(vm.AirFlow),
-                AirFlowUnit = vm.AirFlowUnit,
-
-                // Basınç
-                Pressure = ParseDouble(vm.Pressure),
-                PressureUnit = vm.PressureUnit,
-
-                // Güç
-                Power = ParseDouble(vm.Power),
-                PowerUnit = vm.PowerUnit,
-
-                // Elektriksel
-                Voltage = ParseDouble(vm.Voltage),
-                Frequency = ParseDouble(vm.Frequency),
+                // İlişkiler
+                ProductModelId = vm.ProductModelId,
+                ProductSeriesId = vm.ProductSeriesId,
+                UsageTypeIds = vm.SelectedUsageTypeIds,
+                WorkingConditionIds = vm.SelectedWorkingConditionIds,
 
                 // Performans
-                Speed = ParseDouble(vm.Speed),
-                SpeedUnit = vm.SpeedUnit,
-                NoiseLevel = ParseDouble(vm.NoiseLevel),
-                NoiseLevelUnit = vm.NoiseLevelUnit,
-                ContentDescription = vm.ContentDescription,
-                ContentTitle = vm.ContentTitle,
+                AirFlow = ParseDouble(vm.AirFlow),
+                AirFlowUnit = vm.AirFlowUnit,
+                TotalPressure = ParseDouble(vm.TotalPressure),
+                TotalPressureUnit = vm.TotalPressureUnit,
+                Power = vm.Power,
+                Voltage = ParseDouble(vm.Voltage),
+                Frequency = ParseDouble(vm.Frequency),
                 SpeedControl = vm.SpeedControl,
+                Temperature = vm.Temperature,
 
                 // Dosyalar
                 Image1Path = image1Path,
@@ -198,14 +168,22 @@ namespace GurventVantilator.AdminUI.Mappings
                 TestDataPath = testDataPath,
                 ScaleImagePath = scaleImagePath,
 
-                ProductCategoryId = vm.ProductCategoryId,
-                IsActive = vm.IsActive,
-                Order = vm.Order ?? 0,
+                // İçerik
+                ContentTitle = vm.ContentTitle,
+                ContentDescription = vm.ContentDescription,
+                ContentFeatures = vm.ContentFeatures.Select(f => new ProductContentFeatureDto
+                {
+                    Key = f.Key,
+                    Value = f.Value
+                }).ToList(),
 
-                SelectedApplicationIds = vm.SelectedApplicationIds ?? new List<int>()
+                // Ortak
+                IsActive = vm.IsActive,
+                Order = vm.Order
             };
         }
         #endregion
+
 
         #region Helper
         private static double? ParseDouble(string? value)

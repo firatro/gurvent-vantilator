@@ -1,6 +1,5 @@
-@model ProductListViewModel
+@* @model ProductListViewModel
 
-<!-- breadcrumb-area-start -->
 @await Component.InvokeAsync("Breadcrumb", new
 {
     title = "Ürünlerimiz",
@@ -9,9 +8,7 @@ pageKey = "Product",
 parentUrl = Url.Action("Index", "Product")
 })
 
-<!-- breadcrumb-area-end -->
 
-<!-- service-area-start -->
 <div class="it-service-2-area p-relative z-index-1 pt-125 pb-95">
     <div class="container">
         <div class="row">
@@ -71,10 +68,6 @@ parentUrl = Url.Action("Index", "Product")
                                     href="@Url.Action("Detail", "Product", new { id = @product.Id })">
                                     Detay
                                 </a>
-                                @* <a class="it-btn-orange d-none d-md-flex bg-dark" target="_blank"
-                                    href="/Product/ModelViewer?path=https://admin.gurvent.firatramazano.com/@product.Model3DPath">
-                                    3D Model
-                                </a> *@
                             </div>
                         </div>
                     </div>
@@ -83,5 +76,4 @@ parentUrl = Url.Action("Index", "Product")
             }
         </div>
     </div>
-</div>
-<!-- service-area-end -->
+</div> *@

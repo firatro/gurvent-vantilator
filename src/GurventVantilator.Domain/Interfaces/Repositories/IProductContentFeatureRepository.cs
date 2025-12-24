@@ -10,5 +10,6 @@ namespace GurventVantilator.Domain.Interfaces.Repositories
         Task AddAsync(ProductContentFeature feature);
         Task UpdateAsync(ProductContentFeature feature);
         Task DeleteAsync(ProductContentFeature feature);
+        Task<IEnumerable<ProductContentFeature>> GetByModelIdAsync(int modelId, bool asNoTracking = false);
     }
 }

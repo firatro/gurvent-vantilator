@@ -702,6 +702,16 @@ namespace GurventVantilator.Infrastructure.Migrations
                             Slug = "iletisim",
                             Title = "İletişim",
                             Url = "/iletisim"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            IsActive = true,
+                            LinkType = 9,
+                            Order = 8,
+                            Slug = "konfigurator",
+                            Title = "Konfigüratör",
+                            Url = "/fanselector"
                         });
                 });
 
@@ -819,14 +829,6 @@ namespace GurventVantilator.Infrastructure.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<double?>("Diameter")
-                        .HasPrecision(10, 2)
-                        .HasColumnType("float(10)");
-
-                    b.Property<string>("DiameterUnit")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
                     b.Property<double?>("Frequency")
                         .HasPrecision(10, 2)
                         .HasColumnType("float(10)");
@@ -836,16 +838,20 @@ namespace GurventVantilator.Infrastructure.Migrations
                         .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("Image2Path")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("Image3Path")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("Image4Path")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<string>("Image5Path")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
@@ -859,52 +865,44 @@ namespace GurventVantilator.Infrastructure.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("nvarchar(150)");
 
-                    b.Property<double?>("NoiseLevel")
-                        .HasPrecision(10, 2)
-                        .HasColumnType("float(10)");
-
-                    b.Property<string>("NoiseLevelUnit")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
                     b.Property<int?>("Order")
                         .HasColumnType("int");
 
-                    b.Property<double?>("Power")
-                        .HasPrecision(10, 3)
-                        .HasColumnType("float(10)");
+                    b.Property<string>("Power")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PowerUnit")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                    b.Property<int?>("ProductModelId")
+                        .HasColumnType("int");
 
-                    b.Property<double?>("Pressure")
-                        .HasPrecision(10, 2)
-                        .HasColumnType("float(10)");
-
-                    b.Property<string>("PressureUnit")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
-
-                    b.Property<int>("ProductCategoryId")
+                    b.Property<int?>("ProductSeriesId")
                         .HasColumnType("int");
 
                     b.Property<string>("ScaleImagePath")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<double?>("SoundLevel")
+                        .HasColumnType("float");
 
                     b.Property<double?>("Speed")
-                        .HasPrecision(10, 2)
-                        .HasColumnType("float(10)");
+                        .HasColumnType("float");
 
                     b.Property<string>("SpeedControl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SpeedUnit")
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                    b.Property<double?>("Temperature")
+                        .HasColumnType("float");
 
                     b.Property<string>("TestDataPath")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<double?>("TotalPressure")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
+
+                    b.Property<string>("TotalPressureUnit")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -915,271 +913,11 @@ namespace GurventVantilator.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductCategoryId");
+                    b.HasIndex("ProductModelId");
+
+                    b.HasIndex("ProductSeriesId");
 
                     b.ToTable("Products", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AirFlow = 200.0,
-                            AirFlowUnit = "m³/h",
-                            Code = "25",
-                            ContentDescription = "RSD serisi fanlar, gelişmiş kanat geometrisi sayesinde düşük enerji tüketimiyle maksimum hava debisi sağlar. Bu tasarım, sessiz ve verimli çalışma performansı sunar.",
-                            ContentTitle = "Yüksek Verimli Fan Teknolojisi",
-                            CreatedAt = new DateTime(2025, 9, 10, 14, 30, 0, 0, DateTimeKind.Unspecified),
-                            DataSheetPath = "/datasheet/product/RSD25.pdf",
-                            Description = "Tek emişli Santrifuj gövdeye direk akuple bağlanmış geriye eğik seyrek aerofoil kanatlıdır. 80⁰C de daimi çalışmaya uygundur. Hafif hizmet modelidir. Gövde 4 değişik açıda çalışmaya uygun yapıya sahiptir ( 90⁰ - 180⁰ – 270 ⁰ – 360⁰ ). Detaylar Data-sheet sayfasında belirtilmiştir.",
-                            Diameter = 100.0,
-                            DiameterUnit = "mm",
-                            Frequency = 50.0,
-                            Image1Path = "/img/product/product1.webp",
-                            Image2Path = "/img/product/product1.webp",
-                            Image3Path = "/img/product/product1.webp",
-                            Image4Path = "/img/product/product1.webp",
-                            Image5Path = "/img/product/product1.webp",
-                            IsActive = true,
-                            Model3DPath = "/model/product/RSD25.glb",
-                            Name = "RSD25",
-                            NoiseLevel = 65.0,
-                            NoiseLevelUnit = "dB(A)",
-                            Order = 1,
-                            Power = 0.25,
-                            PowerUnit = "kW",
-                            Pressure = 50.0,
-                            PressureUnit = "Pa",
-                            ProductCategoryId = 2,
-                            ScaleImagePath = "img/product/product1.webp",
-                            Speed = 2800.0,
-                            SpeedControl = "Hz - Frequency",
-                            SpeedUnit = "rpm",
-                            TestDataPath = "/test-data/product/RSD25.xslx",
-                            Voltage = 220.0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            AirFlow = 200.0,
-                            AirFlowUnit = "m³/h",
-                            Code = "22P2",
-                            ContentDescription = "Galvaniz kaplama çelik gövde yapısı sayesinde uzun ömürlü kullanım sunar. Korozyon ve dış etkenlere karşı yüksek direnç gösterir, bakım ihtiyacını en aza indirir.",
-                            ContentTitle = "Dayanıklı Gövde Yapısı",
-                            CreatedAt = new DateTime(2025, 9, 10, 14, 30, 0, 0, DateTimeKind.Unspecified),
-                            DataSheetPath = "/datasheet/product/RSD22P2.pdf",
-                            Description = "Tek emişli Santrifuj gövdeye direk akuple bağlanmış geriye eğik seyrek aerofoil kanatlıdır. 80⁰C de daimi çalışmaya uygundur. Hafif hizmet modelidir. Gövde 4 değişik açıda çalışmaya uygun yapıya sahiptir ( 90⁰ - 180⁰ – 270 ⁰ – 360⁰ ). Detaylar Data-sheet sayfasında belirtilmiştir.",
-                            Diameter = 100.0,
-                            DiameterUnit = "mm",
-                            Frequency = 50.0,
-                            Image1Path = "/img/product/product2.webp",
-                            Image2Path = "/img/product/product2.webp",
-                            Image3Path = "/img/product/product2.webp",
-                            Image4Path = "/img/product/product2.webp",
-                            Image5Path = "/img/product/product2.webp",
-                            IsActive = true,
-                            Model3DPath = "/model/product/RSD22P2.glb",
-                            Name = "RSD 22P2",
-                            NoiseLevel = 65.0,
-                            NoiseLevelUnit = "dB(A)",
-                            Order = 2,
-                            Power = 0.25,
-                            PowerUnit = "kW",
-                            Pressure = 50.0,
-                            PressureUnit = "Pa",
-                            ProductCategoryId = 3,
-                            ScaleImagePath = "img/product/product1.webp",
-                            Speed = 2800.0,
-                            SpeedControl = "Hz - Frequency",
-                            SpeedUnit = "rpm",
-                            TestDataPath = "/test-data/product/RSD22P2.xslx",
-                            Voltage = 220.0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            AirFlow = 200.0,
-                            AirFlowUnit = "m³/h",
-                            Code = "20B2",
-                            ContentDescription = "IE2 verimlilik sınıfına sahip motor, 80°C’de sürekli çalışmaya uygundur. Titreşim seviyesi minimize edilmiştir ve sessiz çalışma için özel dengeleme sistemi bulunur.",
-                            ContentTitle = "Motor Performansı ve Güvenilirlik",
-                            CreatedAt = new DateTime(2025, 9, 10, 14, 30, 0, 0, DateTimeKind.Unspecified),
-                            DataSheetPath = "/datasheet/product/RSD20B2.pdf",
-                            Description = "Tek emişli Santrifuj gövdeye direk akuple bağlanmış geriye eğik seyrek aerofoil kanatlıdır. 80⁰C de daimi çalışmaya uygundur. Hafif hizmet modelidir. Gövde 4 değişik açıda çalışmaya uygun yapıya sahiptir ( 90⁰ - 180⁰ – 270 ⁰ – 360⁰ ). Detaylar Data-sheet sayfasında belirtilmiştir.",
-                            Diameter = 100.0,
-                            DiameterUnit = "mm",
-                            Frequency = 50.0,
-                            Image1Path = "/img/product/product3.webp",
-                            Image2Path = "/img/product/product3.webp",
-                            Image3Path = "/img/product/product3.webp",
-                            Image4Path = "/img/product/product3.webp",
-                            Image5Path = "/img/product/product3.webp",
-                            IsActive = true,
-                            Model3DPath = "/model/product/RSD20B2.glb",
-                            Name = "RSD 20B2",
-                            NoiseLevel = 65.0,
-                            NoiseLevelUnit = "dB(A)",
-                            Order = 3,
-                            Power = 0.25,
-                            PowerUnit = "kW",
-                            Pressure = 50.0,
-                            PressureUnit = "Pa",
-                            ProductCategoryId = 3,
-                            ScaleImagePath = "img/product/product1.webp",
-                            Speed = 2800.0,
-                            SpeedControl = "Hz - Frequency",
-                            SpeedUnit = "rpm",
-                            TestDataPath = "/test-data/product/RSD20B2.xslx",
-                            Voltage = 220.0
-                        },
-                        new
-                        {
-                            Id = 4,
-                            AirFlow = 200.0,
-                            AirFlowUnit = "m³/h",
-                            Code = "18B2",
-                            ContentDescription = "Fan gövdesi, 90°, 180°, 270° ve 360° açılarda çalışmaya uygun şekilde tasarlanmıştır. Bu özellik, farklı uygulama senaryolarında kolay montaj ve kurulum avantajı sağlar.",
-                            ContentTitle = "Kolay Montaj ve Esnek Kullanım",
-                            CreatedAt = new DateTime(2025, 9, 10, 14, 30, 0, 0, DateTimeKind.Unspecified),
-                            DataSheetPath = "/datasheet/product/RSD18B2.pdf",
-                            Description = "Tek emişli Santrifuj gövdeye direk akuple bağlanmış geriye eğik seyrek aerofoil kanatlıdır. 80⁰C de daimi çalışmaya uygundur. Hafif hizmet modelidir. Gövde 4 değişik açıda çalışmaya uygun yapıya sahiptir ( 90⁰ - 180⁰ – 270 ⁰ – 360⁰ ). Detaylar Data-sheet sayfasında belirtilmiştir.",
-                            Diameter = 100.0,
-                            DiameterUnit = "mm",
-                            Frequency = 50.0,
-                            Image1Path = "/img/product/product4.webp",
-                            Image2Path = "/img/product/product4.webp",
-                            Image3Path = "/img/product/product4.webp",
-                            Image4Path = "/img/product/product4.webp",
-                            Image5Path = "/img/product/product4.webp",
-                            IsActive = true,
-                            Model3DPath = "/model/product/RSD18B2.glb",
-                            Name = "RSD 18B2",
-                            NoiseLevel = 65.0,
-                            NoiseLevelUnit = "dB(A)",
-                            Order = 4,
-                            Power = 0.25,
-                            PowerUnit = "kW",
-                            Pressure = 50.0,
-                            PressureUnit = "Pa",
-                            ProductCategoryId = 3,
-                            ScaleImagePath = "img/product/product1.webp",
-                            Speed = 2800.0,
-                            SpeedControl = "Hz - Frequency",
-                            SpeedUnit = "rpm",
-                            TestDataPath = "/test-data/product/RSD18B2.xslx",
-                            Voltage = 220.0
-                        });
-                });
-
-            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductApplication", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ProductApplications");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Endüstriyel Havalandırma"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Tarım ve Seracılık"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Gıda Üretimi"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Tünel ve Otopark Havalandırma"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "Laboratuvar ve Kimya"
-                        });
-                });
-
-            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductCategory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("Order")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ParentCategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ParentCategoryId");
-
-                    b.ToTable("ProductCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            Name = "Santrifuj Fanlar",
-                            Order = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            Name = "Metal Fanlar",
-                            Order = 1,
-                            ParentCategoryId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2025, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            Name = "Plastik Fanlar",
-                            Order = 2,
-                            ParentCategoryId = 1
-                        });
                 });
 
             modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductContentFeature", b =>
@@ -1198,7 +936,10 @@ namespace GurventVantilator.Infrastructure.Migrations
                     b.Property<int?>("Order")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int?>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductModelId")
                         .HasColumnType("int");
 
                     b.Property<string>("Value")
@@ -1210,108 +951,12 @@ namespace GurventVantilator.Infrastructure.Migrations
 
                     b.HasIndex("ProductId");
 
-                    b.ToTable("ProductContentFeatures", (string)null);
+                    b.HasIndex("ProductModelId");
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Key = "Fan Tipi",
-                            Order = 1,
-                            ProductId = 1,
-                            Value = "Santrifüj Geriye Eğik Kanatlı"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Key = "Gövde Yapısı",
-                            Order = 2,
-                            ProductId = 1,
-                            Value = "Galvaniz kaplama çelik gövde"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Key = "Motor Tipi",
-                            Order = 3,
-                            ProductId = 1,
-                            Value = "Direk akuple, 80°C sürekli çalışma"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Key = "Fan Tipi",
-                            Order = 1,
-                            ProductId = 2,
-                            Value = "Geriye eğik seyrek aerofoil kanatlı"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Key = "Malzeme",
-                            Order = 2,
-                            ProductId = 2,
-                            Value = "Alüminyum pervane, çelik gövde"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Key = "Kullanım Alanı",
-                            Order = 3,
-                            ProductId = 2,
-                            Value = "Havalandırma ve soğutma sistemleri"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Key = "Fan Tipi",
-                            Order = 1,
-                            ProductId = 3,
-                            Value = "Tek emişli santrifüj fan"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Key = "Montaj Açısı",
-                            Order = 2,
-                            ProductId = 3,
-                            Value = "4 farklı açıda çalışmaya uygun (90°,180°,270°,360°)"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Key = "Verimlilik",
-                            Order = 3,
-                            ProductId = 3,
-                            Value = "Yüksek statik basınç ve düşük gürültü"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Key = "Fan Tipi",
-                            Order = 1,
-                            ProductId = 4,
-                            Value = "Geriye eğik seyrek aerofoil kanatlı"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Key = "Motor Sınıfı",
-                            Order = 2,
-                            ProductId = 4,
-                            Value = "IP55 koruma sınıfı, IE2 verimlilik"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Key = "Uygulama",
-                            Order = 3,
-                            ProductId = 4,
-                            Value = "Hafif hizmet tipi sanayi havalandırması"
-                        });
+                    b.ToTable("ProductContentFeatures", (string)null);
                 });
 
-            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductTestData", b =>
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -1319,86 +964,283 @@ namespace GurventVantilator.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ProductId")
+                    b.Property<double?>("AirFlow")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
+
+                    b.Property<string>("AirFlowUnit")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("BodyMaterialOptional")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("BodyMaterialStandard")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CarryingBracketOptional")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CarryingBracketStandard")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ColdResistanceOptional")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ColdResistanceStandard")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContentDescription")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContentTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETUTCDATE()");
+
+                    b.Property<string>("DataSheetPath")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<double?>("Frequency")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
+
+                    b.Property<string>("HeatResistanceOptional")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HeatResistanceStandard")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image1Path")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Image2Path")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Image3Path")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Image4Path")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Image5Path")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("ImpellerMaterialOptional")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImpellerMaterialStandard")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Model3DPath")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("MotorProtectionCapOptional")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MotorProtectionCapStandard")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<int?>("Order")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("Pt1")
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("Power")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Pt10")
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<int>("ProductSeriesId")
+                        .HasColumnType("int");
 
-                    b.Property<decimal>("Pt11")
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("ScaleImagePath")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
-                    b.Property<decimal>("Pt12")
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("SpeedControl")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Pt2")
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<double?>("Temperature")
+                        .HasColumnType("float");
 
-                    b.Property<decimal>("Pt3")
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("TestDataPath")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
 
-                    b.Property<decimal>("Pt4")
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<double?>("TotalPressure")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
 
-                    b.Property<decimal>("Pt5")
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<string>("TotalPressureUnit")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
 
-                    b.Property<decimal>("Pt6")
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
-                    b.Property<decimal>("Pt7")
-                        .HasColumnType("decimal(18,3)");
-
-                    b.Property<decimal>("Pt8")
-                        .HasColumnType("decimal(18,3)");
-
-                    b.Property<decimal>("Pt9")
-                        .HasColumnType("decimal(18,3)");
-
-                    b.Property<decimal>("Q1")
-                        .HasColumnType("decimal(18,3)");
-
-                    b.Property<decimal>("Q10")
-                        .HasColumnType("decimal(18,3)");
-
-                    b.Property<decimal>("Q11")
-                        .HasColumnType("decimal(18,3)");
-
-                    b.Property<decimal>("Q12")
-                        .HasColumnType("decimal(18,3)");
-
-                    b.Property<decimal>("Q2")
-                        .HasColumnType("decimal(18,3)");
-
-                    b.Property<decimal>("Q3")
-                        .HasColumnType("decimal(18,3)");
-
-                    b.Property<decimal>("Q4")
-                        .HasColumnType("decimal(18,3)");
-
-                    b.Property<decimal>("Q5")
-                        .HasColumnType("decimal(18,3)");
-
-                    b.Property<decimal>("Q6")
-                        .HasColumnType("decimal(18,3)");
-
-                    b.Property<decimal>("Q7")
-                        .HasColumnType("decimal(18,3)");
-
-                    b.Property<decimal>("Q8")
-                        .HasColumnType("decimal(18,3)");
-
-                    b.Property<decimal>("Q9")
-                        .HasColumnType("decimal(18,3)");
+                    b.Property<double?>("Voltage")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductSeriesId");
 
-                    b.ToTable("ProductTestData", (string)null);
+                    b.ToTable("ProductModels", (string)null);
+                });
+
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductModelDocument", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FilePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ProductModelId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductModelId");
+
+                    b.ToTable("ProductModelDocuments");
+                });
+
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductModelFeature", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FeatureName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OptionalValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductModelId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StandardValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductModelId");
+
+                    b.ToTable("ProductModelFeature");
+                });
+
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductSeries", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductSeries", (string)null);
+                });
+
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductUsageType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductUsageTypes", (string)null);
+                });
+
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductWorkingCondition", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductWorkingConditions", (string)null);
                 });
 
             modelBuilder.Entity("GurventVantilator.Domain.Entities.Project", b =>
@@ -1522,80 +1364,6 @@ namespace GurventVantilator.Infrastructure.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("ProjectFeatures");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Name = "Yüksek debili santrifüj fanlar",
-                            ProjectId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Name = "Enerji verimli motor sistemi",
-                            ProjectId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Name = "Otomasyon kontrol paneli",
-                            ProjectId = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Name = "Sessiz çalışma standardı",
-                            ProjectId = 1
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Name = "HEPA filtre entegrasyonu",
-                            ProjectId = 2
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Name = "Hijyenik paslanmaz fan gövdesi",
-                            ProjectId = 2
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Name = "Sürekli çalışma için optimize motor",
-                            ProjectId = 2
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Name = "Düşük gürültü seviyesi (<45 dB)",
-                            ProjectId = 2
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Name = "ATEX sertifikalı fan üretimi",
-                            ProjectId = 3
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Name = "Korozyona dayanıklı malzeme",
-                            ProjectId = 3
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Name = "Yüksek sıcaklığa dayanıklı yataklama",
-                            ProjectId = 3
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Name = "Basınç kontrollü hava akışı",
-                            ProjectId = 3
-                        });
                 });
 
             modelBuilder.Entity("GurventVantilator.Domain.Entities.SeoSetting", b =>
@@ -2842,19 +2610,338 @@ namespace GurventVantilator.Infrastructure.Migrations
                     b.ToTable("UserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ProductProductApplication", b =>
+            modelBuilder.Entity("ProductModelProductUsageType", b =>
                 {
-                    b.Property<int>("ApplicationsId")
+                    b.Property<int>("ProductModelsId")
                         .HasColumnType("int");
 
+                    b.Property<int>("UsageTypesId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductModelsId", "UsageTypesId");
+
+                    b.HasIndex("UsageTypesId");
+
+                    b.ToTable("ProductModelUsageType", (string)null);
+                });
+
+            modelBuilder.Entity("ProductModelProductWorkingCondition", b =>
+                {
+                    b.Property<int>("ProductModelsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WorkingConditionsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductModelsId", "WorkingConditionsId");
+
+                    b.HasIndex("WorkingConditionsId");
+
+                    b.ToTable("ProductModelWorkingCondition", (string)null);
+                });
+
+            modelBuilder.Entity("ProductProductUsageType", b =>
+                {
                     b.Property<int>("ProductsId")
                         .HasColumnType("int");
 
-                    b.HasKey("ApplicationsId", "ProductsId");
+                    b.Property<int>("UsageTypesId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("ProductsId");
+                    b.HasKey("ProductsId", "UsageTypesId");
 
-                    b.ToTable("ProductProductApplications", (string)null);
+                    b.HasIndex("UsageTypesId");
+
+                    b.ToTable("ProductUsageTypeProducts", (string)null);
+                });
+
+            modelBuilder.Entity("ProductProductWorkingCondition", b =>
+                {
+                    b.Property<int>("ProductsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("WorkingConditionsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductsId", "WorkingConditionsId");
+
+                    b.HasIndex("WorkingConditionsId");
+
+                    b.ToTable("ProductWorkingConditionProducts", (string)null);
+                });
+
+            modelBuilder.Entity("ProductTestData", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<double?>("AirPower")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
+
+                    b.Property<double?>("CalculatedPower")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double?>("Current")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
+
+                    b.Property<double?>("Diameter")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<double?>("MechanicalEfficiency")
+                        .HasPrecision(5, 2)
+                        .HasColumnType("float(5)");
+
+                    b.Property<double?>("Pd")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductModelId")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("Ps")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
+
+                    b.Property<double?>("Pt")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
+
+                    b.Property<double?>("Q")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
+
+                    b.Property<string>("SourceFileName")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<double?>("Speed")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
+
+                    b.Property<DateTime?>("TestDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("TestName")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<double?>("TotalEfficiency")
+                        .HasPrecision(5, 2)
+                        .HasColumnType("float(5)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductModelId");
+
+                    b.HasIndex("ProductId", "IsActive");
+
+                    b.ToTable("ProductTestDatas", (string)null);
+                });
+
+            modelBuilder.Entity("ProductTestDataPoint", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<double?>("AirPower")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Current")
+                        .HasPrecision(10, 4)
+                        .HasColumnType("float(10)");
+
+                    b.Property<double?>("Db1")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Db10")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Db11")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Db12")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Db2")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Db3")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Db4")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Db5")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Db6")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Db7")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Db8")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Db9")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("MechanicalEfficiency")
+                        .HasPrecision(6, 2)
+                        .HasColumnType("float(6)");
+
+                    b.Property<double?>("Pd")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Power")
+                        .HasPrecision(12, 4)
+                        .HasColumnType("float(12)");
+
+                    b.Property<int>("ProductTestDataId")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("Ps")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Pt1")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Pt10")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Pt11")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Pt12")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Pt2")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Pt3")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Pt4")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Pt5")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Pt6")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Pt7")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Pt8")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Pt9")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Q1")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Q10")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Q11")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Q12")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Q2")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Q3")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Q4")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Q5")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Q6")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Q7")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Q8")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double?>("Q9")
+                        .HasPrecision(14, 6)
+                        .HasColumnType("float(14)");
+
+                    b.Property<double>("RPM")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
+
+                    b.Property<int>("RowNumber")
+                        .HasColumnType("int");
+
+                    b.Property<double?>("Speed")
+                        .HasPrecision(10, 2)
+                        .HasColumnType("float(10)");
+
+                    b.Property<double?>("TotalEfficiency")
+                        .HasPrecision(6, 2)
+                        .HasColumnType("float(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductTestDataId", "RowNumber");
+
+                    b.ToTable("ProductTestDataPoints", (string)null);
                 });
 
             modelBuilder.Entity("GurventVantilator.Domain.Entities.Blog", b =>
@@ -2910,23 +2997,19 @@ namespace GurventVantilator.Infrastructure.Migrations
 
             modelBuilder.Entity("GurventVantilator.Domain.Entities.Product", b =>
                 {
-                    b.HasOne("GurventVantilator.Domain.Entities.ProductCategory", "ProductCategory")
+                    b.HasOne("GurventVantilator.Domain.Entities.ProductModel", "ProductModel")
                         .WithMany("Products")
-                        .HasForeignKey("ProductCategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .HasForeignKey("ProductModelId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
-                    b.Navigation("ProductCategory");
-                });
+                    b.HasOne("GurventVantilator.Domain.Entities.ProductSeries", "ProductSeries")
+                        .WithMany()
+                        .HasForeignKey("ProductSeriesId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
-            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductCategory", b =>
-                {
-                    b.HasOne("GurventVantilator.Domain.Entities.ProductCategory", "ParentCategory")
-                        .WithMany("SubCategories")
-                        .HasForeignKey("ParentCategoryId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                    b.Navigation("ProductModel");
 
-                    b.Navigation("ParentCategory");
+                    b.Navigation("ProductSeries");
                 });
 
             modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductContentFeature", b =>
@@ -2934,21 +3017,49 @@ namespace GurventVantilator.Infrastructure.Migrations
                     b.HasOne("GurventVantilator.Domain.Entities.Product", "Product")
                         .WithMany("ContentFeatures")
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("GurventVantilator.Domain.Entities.ProductModel", "ProductModel")
+                        .WithMany("ContentFeatures")
+                        .HasForeignKey("ProductModelId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.Navigation("Product");
+
+                    b.Navigation("ProductModel");
                 });
 
-            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductTestData", b =>
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductModel", b =>
                 {
-                    b.HasOne("GurventVantilator.Domain.Entities.Product", "Product")
-                        .WithMany("TestData")
-                        .HasForeignKey("ProductId")
+                    b.HasOne("GurventVantilator.Domain.Entities.ProductSeries", "ProductSeries")
+                        .WithMany("Models")
+                        .HasForeignKey("ProductSeriesId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("ProductSeries");
+                });
+
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductModelDocument", b =>
+                {
+                    b.HasOne("GurventVantilator.Domain.Entities.ProductModel", "ProductModel")
+                        .WithMany("Documents")
+                        .HasForeignKey("ProductModelId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Product");
+                    b.Navigation("ProductModel");
+                });
+
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductModelFeature", b =>
+                {
+                    b.HasOne("GurventVantilator.Domain.Entities.ProductModel", "ProductModel")
+                        .WithMany("ModelFeatures")
+                        .HasForeignKey("ProductModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductModel");
                 });
 
             modelBuilder.Entity("GurventVantilator.Domain.Entities.ProjectFeature", b =>
@@ -3035,19 +3146,90 @@ namespace GurventVantilator.Infrastructure.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ProductProductApplication", b =>
+            modelBuilder.Entity("ProductModelProductUsageType", b =>
                 {
-                    b.HasOne("GurventVantilator.Domain.Entities.ProductApplication", null)
+                    b.HasOne("GurventVantilator.Domain.Entities.ProductModel", null)
                         .WithMany()
-                        .HasForeignKey("ApplicationsId")
+                        .HasForeignKey("ProductModelsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("GurventVantilator.Domain.Entities.ProductUsageType", null)
+                        .WithMany()
+                        .HasForeignKey("UsageTypesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProductModelProductWorkingCondition", b =>
+                {
+                    b.HasOne("GurventVantilator.Domain.Entities.ProductModel", null)
+                        .WithMany()
+                        .HasForeignKey("ProductModelsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GurventVantilator.Domain.Entities.ProductWorkingCondition", null)
+                        .WithMany()
+                        .HasForeignKey("WorkingConditionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProductProductUsageType", b =>
+                {
                     b.HasOne("GurventVantilator.Domain.Entities.Product", null)
                         .WithMany()
                         .HasForeignKey("ProductsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("GurventVantilator.Domain.Entities.ProductUsageType", null)
+                        .WithMany()
+                        .HasForeignKey("UsageTypesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProductProductWorkingCondition", b =>
+                {
+                    b.HasOne("GurventVantilator.Domain.Entities.Product", null)
+                        .WithMany()
+                        .HasForeignKey("ProductsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GurventVantilator.Domain.Entities.ProductWorkingCondition", null)
+                        .WithMany()
+                        .HasForeignKey("WorkingConditionsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ProductTestData", b =>
+                {
+                    b.HasOne("GurventVantilator.Domain.Entities.Product", "Product")
+                        .WithMany("TestData")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GurventVantilator.Domain.Entities.ProductModel", null)
+                        .WithMany("TestData")
+                        .HasForeignKey("ProductModelId");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("ProductTestDataPoint", b =>
+                {
+                    b.HasOne("ProductTestData", "ProductTestData")
+                        .WithMany("Points")
+                        .HasForeignKey("ProductTestDataId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ProductTestData");
                 });
 
             modelBuilder.Entity("GurventVantilator.Domain.Entities.Blog", b =>
@@ -3074,11 +3256,22 @@ namespace GurventVantilator.Infrastructure.Migrations
                     b.Navigation("TestData");
                 });
 
-            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductCategory", b =>
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductModel", b =>
                 {
+                    b.Navigation("ContentFeatures");
+
+                    b.Navigation("Documents");
+
+                    b.Navigation("ModelFeatures");
+
                     b.Navigation("Products");
 
-                    b.Navigation("SubCategories");
+                    b.Navigation("TestData");
+                });
+
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductSeries", b =>
+                {
+                    b.Navigation("Models");
                 });
 
             modelBuilder.Entity("GurventVantilator.Domain.Entities.Project", b =>
@@ -3096,6 +3289,11 @@ namespace GurventVantilator.Infrastructure.Migrations
             modelBuilder.Entity("GurventVantilator.Domain.Entities.Tag", b =>
                 {
                     b.Navigation("BlogTags");
+                });
+
+            modelBuilder.Entity("ProductTestData", b =>
+                {
+                    b.Navigation("Points");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,5 +1,4 @@
-@using GurventVantilator.Application.DTOs
-@model IEnumerable<ProductDto>
+@model IEnumerable<GurventVantilator.Application.DTOs.ProductDto>
 
 @{
     ViewData["Title"] = "Ürün Yönetimi";
@@ -10,126 +9,97 @@
         <div class="card card-modern">
             <div class="card-body">
                 <div class="datatables-header-footer-wrapper mt-2">
+
+                    <!-- HEADER -->
                     <div class="datatable-header">
                         <div class="row align-items-center mb-3">
                             <div class="col-12 col-lg-auto mb-3 mb-lg-0">
-                                <a asp-action="Create" class="btn btn-primary btn-md font-weight-semibold btn-py-2 px-4">
-                                    <i class="bx bx-plus"></i> Ürün Ekle
+                                <a asp-action="Create"
+                                    class="btn btn-primary btn-md font-weight-semibold btn-py-2 px-4">
+                                    + Yeni Ürün
                                 </a>
-                            </div>
-
-                            <!-- 🔹 Filtreleme Alanları -->
-                            <div class="col-12 col-lg">
-                                <form method="get" asp-action="Index" class="row g-2 align-items-center">
-                                    <div class="col-md-4">
-                                        <input type="text" name="search" class="form-control form-control-modern"
-                                               placeholder="Ürün adı veya kodu ara..." value="@Context.Request.Query["search"]" />
-                                    </div>
-                                    <div class="col-md-3">
-                                        <select name="categoryId" class="form-control form-control-modern"
-                                                asp-items="ViewBag.ProductCategories">
-                                            <option value="">Tüm Kategoriler</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <select name="isActive" class="form-control form-control-modern">
-                                            <option value="">Tümü</option>
-                                            <option value="true" selected="@("true" == Context.Request.Query["isActive"])">Aktif</option>
-                                            <option value="false" selected="@("false" == Context.Request.Query["isActive"])">Pasif</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <button type="submit" class="btn btn-dark w-100">
-                                            <i class="bx bx-search"></i> Filtrele
-                                        </button>
-                                    </div>
-                                </form>
                             </div>
                         </div>
                     </div>
 
-                    <!-- 🔹 Ürün Tablosu -->
-                    <table class="table table-ecommerce-simple table-striped mb-0" id="datatable-ecommerce-list" style="min-width: 750px;">
+                    <!-- TABLE -->
+                    <table class="table table-ecommerce-simple table-striped mb-0" id="datatable-ecommerce-list"
+                        style="min-width: 650px;">
                         <thead>
                             <tr>
                                 <th width="40" class="text-center">Id</th>
-                                <th class="text-center">Görsel</th>
-                                <th class="text-center">Ürün Adı</th>
-                                <th class="text-center">Ürün Kodu</th>
-                                <th class="text-center">Kategori</th>
-                                <th class="text-center">Durum</th>
-                                <th width="200" class="text-center">İşlemler</th>
+                                <th class="text-center">Adı</th>
+                                <th class="text-center">Kodu</th>
+                                <th class="text-center">Seri</th>
+                                <th class="text-center">Model</th>
+                                @* <th class="text-center">Durum</th>
+                                <th class="text-center">Sıra</th> *@
+                                <th width="140" class="text-center">İşlemler</th>
                             </tr>
                         </thead>
                         <tbody>
                             @if (Model == null || !Model.Any())
                             {
                                 <tr>
-                                    <td colspan="7" class="text-center text-muted py-4">
-                                        <i class="bx bx-info-circle text-5 me-1"></i> Henüz kayıt bulunamadı.
+                                    <td colspan="8" class="text-center text-muted">
+                                        Kayıt bulunamadı.
                                     </td>
                                 </tr>
                             }
                             else
                             {
-                                @foreach (var item in Model)
+                                foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td class="text-center align-middle"><strong>@item.Id</strong></td>
-
-                                        <td class="text-center align-middle">
-                                            @if (!string.IsNullOrEmpty(item.Image1Path))
-                                            {
-                                                <img src="@item.Image1Path" alt="@item.Name" class="img-thumbnail" style="max-width:50px;">
-                                            }
-                                            else
-                                            {
-                                                <span class="text-muted">-</span>
-                                            }
-                                        </td>
-
-                                        <td class="text-center align-middle">@item.Name</td>
-                                        <td class="text-center align-middle">@item.Code</td>
-                                        <td class="text-center align-middle">@item.ProductCategoryName</td>
-
-                                        <td class="text-center align-middle">
+                                        <td class="text-center"><strong>@item.Id</strong></td>
+                                        <td class="text-center"><strong>@item.Name</strong></td>
+                                        <td class="text-center">@item.Code</td>
+                                        <td class="text-center">@item.ProductSeriesName</td>
+                                        <td class="text-center">@item.ProductModelName</td>
+                                        @* <td class="text-center">
                                             @if (item.IsActive)
                                             {
                                                 <span class="badge bg-success">Aktif</span>
                                             }
                                             else
                                             {
-                                                <span class="badge bg-danger">Pasif</span>
+                                                <span class="badge bg-secondary">Pasif</span>
                                             }
-                                        </td>
+                                        </td> *@
+                                        @* <td class="text-center">@item.Order</td> *@
 
-                                        <td class="text-center align-middle">
-                                            <div class="btn-group d-flex justify-content-center" role="group">
-                                                <a asp-action="Edit" asp-route-productId="@item.Id"
-                                                   class="btn btn-primary btn-xs m-1 rounded">
+                                        <td width="200" class="text-center">
+                                            <div class="btn-group d-flex" role="group">
+
+                                                <a class="btn btn-primary btn-xs w-100 m-1 rounded" asp-action="Edit"
+                                                    asp-route-id="@item.Id">
                                                     <i class='far fa-edit'></i> Düzenle
                                                 </a>
+
                                                 <a href="#deleteModal"
-                                                   class="btn btn-danger btn-xs m-1 rounded modal-basic"
-                                                   onclick="setDeleteProductId(@item.Id)">
+                                                    class="btn btn-danger btn-xs w-100 m-1 rounded modal-basic"
+                                                    onclick="setDeleteProductId(@item.Id)">
                                                     <i class='far fa-trash-alt'></i> Sil
                                                 </a>
+
                                             </div>
                                         </td>
+
                                     </tr>
                                 }
                             }
                         </tbody>
                     </table>
 
+                    <!-- DELETE MODAL -->
                     <hr class="solid mt-5 opacity-4">
 
-                    <!-- 🔹 Silme Modal -->
                     <div id="deleteModal" class="modal-block mfp-hide">
                         <section class="card">
                             <header class="card-header">
                                 <h2 class="card-title">Ürün Silme</h2>
                             </header>
+
                             <div class="card-body">
                                 <div class="modal-wrapper">
                                     <div class="modal-text">
@@ -137,9 +107,12 @@
                                     </div>
                                 </div>
                             </div>
+
                             <footer class="card-footer">
                                 <form id="Delete" asp-action="Delete" method="post">
-                                    <input type="hidden" name="productId" id="productId" />
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" id="productId" />
+
                                     <div class="row">
                                         <div class="col-md-12 text-end">
                                             <button type="submit" class="btn btn-danger">Sil</button>
@@ -150,6 +123,8 @@
                             </footer>
                         </section>
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -158,7 +133,6 @@
 
 @section Scripts {
     <script src="~/js/examples/examples.modals.js"></script>
-    <script src="~/vendor/pnotify/pnotify.custom.js"></script>
     <script>
         function setDeleteProductId(id) {
             document.getElementById("productId").value = id;

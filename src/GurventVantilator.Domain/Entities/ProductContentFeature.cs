@@ -4,13 +4,17 @@ namespace GurventVantilator.Domain.Entities
     {
         public int Id { get; set; }
 
-        public int ProductId { get; set; }
-        public Product Product { get; set; } = null!;
+        // --- Product bağlantısı ---
+        public int? ProductId { get; set; }
+        public Product? Product { get; set; }
 
-        // Key-Value mantığı
-        public string Key { get; set; } = string.Empty;   // Örn: “Fan Tipi”
-        public string Value { get; set; } = string.Empty; // Örn: “Aksiyal Fan”
+        // --- Model bağlantısı ---
+        public int? ProductModelId { get; set; }
+        public ProductModel? ProductModel { get; set; }
 
-        public int? Order { get; set; } = 0;
+        // --- Feature info ---
+        public string Key { get; set; } = string.Empty;
+        public string Value { get; set; } = string.Empty;
+        public int? Order { get; set; }
     }
 }
