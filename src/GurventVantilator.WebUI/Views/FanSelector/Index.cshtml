@@ -308,10 +308,38 @@
                                 </div>
 
                                 <!-- Temperature -->
-                                <div class="col-md-6">
+                                @* <div class="col-md-6">
                                     <div class="checkout-form-list">
                                         <label>Sıcaklık (Temperature)</label>
                                         <input type="number" name="Temperature" placeholder="Örn: 50" disabled="true">
+                                    </div>
+                                </div>
+
+                                <!-- SpeedControl -->
+                                <div class="col-md-6">
+                                    <div class="country-select">
+                                        <label>Sürüş Biçimi</label>
+                                         <select name="SpeedControl">
+                                            <option value="">Hepsi</option>
+                                            <option value="DirectCoupled">Direkt Akuple</option>
+                                            <option value="FrequencyDriver">Sürücüyle</option>
+                                        </select>
+                                    </div>
+                                </div> *@
+                                
+                                <!-- Voltage -->
+                                <div class="col-md-6">
+                                    <div class="country-select">
+                                        <label>Besleme Voltajı</label>
+                                         <select name="Voltage">
+                                            <option value="">Hepsi</option>
+                                            <option value="3Ph400V/50Hz">3Ph 400V/50Hz</option>
+                                            <option value="3Ph440V/60Hz">3Ph 440V/60Hz</option>
+                                            <option value="1Ph230V/50Hz">1Ph 230V/50Hz</option>
+                                            <option value="1Ph230V/60Hz">1Ph 230V/60Hz</option>
+                                            <option value="EC">EC</option>
+                                            @* <option value="Pneumatic">Pnömatik</option> *@
+                                        </select>
                                     </div>
                                 </div>
 
@@ -545,14 +573,20 @@
                     const row = e.target.closest("tr[data-product-id]");
                     if (!row) return;
 
-                    const productId = row.getAttribute("data-product-id");
+                    const productId = row.dataset.productId;
 
-                    // 1️⃣ Route ile (önerilen)
-                    window.location.href = `/Product/Performance/${productId}`;
+                    const q = document.querySelector('[name="AirFlow"]').value;
+                    const pt = document.querySelector('[name="TotalPressure"]').value;
 
-                    // 2️⃣ Eğer query string kullanıyorsan (alternatif)
-                    // window.location.href = `/Product/Performance?id=${productId}`;
+                    console.log("Giden değerler:", q, pt); // DEBUG
+
+                   const voltage = document.querySelector('[name="Voltage"]')?.value;
+
+                    window.location.href =
+                        `/Product/Performance/${productId}?q=${q}&pt=${pt}&voltage=${encodeURIComponent(voltage ?? "")}`;
+
                 });
+
 
 
         });

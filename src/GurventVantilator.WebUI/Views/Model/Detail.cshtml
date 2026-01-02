@@ -366,7 +366,7 @@ parentUrl = Url.Action("Detail", "Model")
 
                                                                 <!-- Voltage -->
                                                                 <td>
-                                                                    @if (p.Voltage.HasValue)
+                                                                    @if (!string.IsNullOrWhiteSpace(p.Voltage))
                                                                     {
                                                                         @($"{p.Voltage} V")
                                                                     }

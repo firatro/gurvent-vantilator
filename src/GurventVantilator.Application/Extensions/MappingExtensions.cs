@@ -65,6 +65,16 @@ namespace GurventVantilator.Application.Extensions
                 Order = entity.Order,
                 CreatedAt = entity.CreatedAt,
                 UpdatedAt = entity.UpdatedAt
+                ,
+
+                Accessories = entity.Accessories?
+            .Where(x => x.IsActive)
+            .Select(x => new ProductAccessoryDto
+            {
+                AccessoryName = x.AccessoryName,
+                Type = x.Type,
+                ImagePath = x.ImagePath
+            }).ToList() ?? new List<ProductAccessoryDto>()
             };
         }
 

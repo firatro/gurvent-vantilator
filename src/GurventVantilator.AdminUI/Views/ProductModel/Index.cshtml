@@ -128,27 +128,32 @@
                                         <!-- ORDER -->
                                         @* <td class="text-center">@item.Order</td> *@
 
-                                        <!-- ACTIONS -->
                                         <td class="text-center">
-                                            <div class="btn-group d-flex" role="group">
-                                                <a asp-action="Copy" asp-route-id="@item.Id"
-                                                    class="btn btn-info btn-xs w-100 m-1 rounded">
-                                                    <i class="fas fa-copy"></i>
-                                                </a>
+    <div class="btn-group d-flex" role="group">
 
-                                                <a asp-action="Edit" asp-route-id="@item.Id"
-                                                    class="btn btn-primary btn-xs w-100 m-1 rounded">
-                                                    <i class='far fa-edit'></i>
-                                                </a>
+        <a asp-action="Copy" asp-route-id="@item.Id"
+           class="btn btn-info btn-xs w-100 m-1 rounded">
+            <i class="fas fa-copy"></i>
+        </a>
 
-                                                <a href="#deleteModal"
-                                                    class="btn btn-danger btn-xs w-100 m-1 rounded modal-basic"
-                                                    onclick="setDeleteModelId(@item.Id)">
-                                                    <i class='far fa-trash-alt'></i>
-                                                </a>
+        <a asp-action="Edit" asp-route-id="@item.Id"
+           class="btn btn-primary btn-xs w-100 m-1 rounded">
+            <i class="far fa-edit"></i>
+        </a>
 
-                                            </div>
-                                        </td>
+        <form asp-action="Delete" method="post" class="w-100 m-1">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="id" value="@item.Id" />
+            <button type="submit"
+                    class="btn btn-danger btn-xs w-100 rounded"
+                    onclick="return confirm('Bu modeli silmek istediğinize emin misiniz?')">
+                <i class="far fa-trash-alt"></i>
+            </button>
+        </form>
+
+    </div>
+</td>
+
 
                                     </tr>
                                 }

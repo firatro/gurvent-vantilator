@@ -37,6 +37,13 @@ namespace GurventVantilator.AdminUI.Areas.Admin.Controllers
             _logger = logger;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Clone(int id)
+        {
+            await _productService.CloneAsync(id);
+            return RedirectToAction(nameof(Index));
+        }
+
         // ======================================================
         // 📋 Listeleme
         // ======================================================

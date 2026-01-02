@@ -2,6 +2,7 @@ using GurventVantilator.Application.Common;
 using GurventVantilator.Application.DTOs;
 using GurventVantilator.Application.Extensions;
 using GurventVantilator.Application.Interfaces.Services;
+using GurventVantilator.Domain.Entities;
 using GurventVantilator.Domain.Interfaces.Repositories;
 using Microsoft.Extensions.Logging;
 
@@ -14,6 +15,7 @@ namespace GurventVantilator.Application.Services
         private readonly IProductWorkingConditionRepository _workingConditionRepository;
         private readonly IProductModelRepository _productModelRepository;
         private readonly IProductSeriesRepository _productSeriesRepository;
+        private readonly IProductAccessoryRepository _productAccessoryRepository;
         private readonly ILogger<ProductManager> _logger;
 
         public ProductManager(
@@ -22,6 +24,7 @@ namespace GurventVantilator.Application.Services
             IProductWorkingConditionRepository workingConditionRepository,
             IProductModelRepository productModelRepository,
             IProductSeriesRepository productSeriesRepository,
+            IProductAccessoryRepository productAccessoryRepository,
             ILogger<ProductManager> logger)
         {
             _productRepository = productRepository;
@@ -29,6 +32,7 @@ namespace GurventVantilator.Application.Services
             _workingConditionRepository = workingConditionRepository;
             _productModelRepository = productModelRepository;
             _productSeriesRepository = productSeriesRepository;
+            _productAccessoryRepository = productAccessoryRepository;
             _logger = logger;
         }
 
@@ -270,5 +274,45 @@ namespace GurventVantilator.Application.Services
                 return Result<PagedResult<ProductDto>>.Fail("Ürünler yüklenirken hata oluştu.");
             }
         }
+
+        public async Task CloneAsync(int productId)
+        {
+            var product = await _productRepository.GetByIdAsync(productId);
+            if (product == null)
+                throw new Exception("Ürün bulunamadı");
+
+            var newProduct = new Product
+            {
+                Name = product.Name + " (Kopya)",
+                Code = product.Code + "-COPY",
+                ProductSeriesId = product.ProductSeriesId,
+                ProductModelId = product.ProductModelId,
+                IsActive = product.IsActive,
+                Order = product.Order
+            };
+
+            await _productRepository.AddAsync(newProduct);
+            await _productRepository.SaveChangesAsync();
+
+            var accessories = await _productAccessoryRepository
+                .GetByProductIdAsync(productId);
+
+            foreach (var acc in accessories)
+            {
+                var newAcc = new ProductAccessory
+                {
+                    ProductId = newProduct.Id,
+                    AccessoryName = acc.AccessoryName,
+                    Type = acc.Type,
+                    ImagePath = acc.ImagePath,
+                    IsActive = acc.IsActive
+                };
+
+                await _productAccessoryRepository.AddAsync(newAcc);
+            }
+
+            await _productAccessoryRepository.SaveChangesAsync();
+        }
+
     }
 }

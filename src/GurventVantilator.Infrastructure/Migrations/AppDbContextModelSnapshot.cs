@@ -907,9 +907,9 @@ namespace GurventVantilator.Infrastructure.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<double?>("Voltage")
+                    b.Property<string>("Voltage")
                         .HasPrecision(10, 2)
-                        .HasColumnType("float(10)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -918,6 +918,42 @@ namespace GurventVantilator.Infrastructure.Migrations
                     b.HasIndex("ProductSeriesId");
 
                     b.ToTable("Products", (string)null);
+                });
+
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductAccessory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AccessoryName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ArticleNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductAccessories");
                 });
 
             modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductContentFeature", b =>
@@ -1168,7 +1204,7 @@ namespace GurventVantilator.Infrastructure.Migrations
 
                     b.HasIndex("ProductModelId");
 
-                    b.ToTable("ProductModelFeature");
+                    b.ToTable("ProductModelFeatures");
                 });
 
             modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductSeries", b =>
@@ -1229,14 +1265,26 @@ namespace GurventVantilator.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
+
+                    b.Property<int?>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -3012,6 +3060,17 @@ namespace GurventVantilator.Infrastructure.Migrations
                     b.Navigation("ProductSeries");
                 });
 
+            modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductAccessory", b =>
+                {
+                    b.HasOne("GurventVantilator.Domain.Entities.Product", "Product")
+                        .WithMany("Accessories")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("GurventVantilator.Domain.Entities.ProductContentFeature", b =>
                 {
                     b.HasOne("GurventVantilator.Domain.Entities.Product", "Product")
@@ -3251,6 +3310,8 @@ namespace GurventVantilator.Infrastructure.Migrations
 
             modelBuilder.Entity("GurventVantilator.Domain.Entities.Product", b =>
                 {
+                    b.Navigation("Accessories");
+
                     b.Navigation("ContentFeatures");
 
                     b.Navigation("TestData");

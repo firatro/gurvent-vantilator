@@ -59,6 +59,7 @@ namespace GurventVantilator.Infrastructure.Extensions
             services.AddScoped<IProductContentFeatureRepository, ProductContentFeatureRepository>();
             services.AddScoped<IProductModelDocumentRepository, ProductModelDocumentRepository>();
             services.AddScoped<IProductTestDataPointRepository, ProductTestDataPointRepository>();
+            services.AddScoped<IProductAccessoryRepository, ProductAccessoryRepository>();
 
             // File Upload
             services.AddScoped<IFileService, FileService>();

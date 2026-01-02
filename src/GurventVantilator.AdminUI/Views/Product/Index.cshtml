@@ -68,23 +68,37 @@
                                         </td> *@
                                         @* <td class="text-center">@item.Order</td> *@
 
-                                        <td width="200" class="text-center">
+                                        <td width="260" class="text-center">
                                             <div class="btn-group d-flex" role="group">
-
-                                                <a class="btn btn-primary btn-xs w-100 m-1 rounded" asp-action="Edit"
-                                                    asp-route-id="@item.Id">
-                                                    <i class='far fa-edit'></i> Düzenle
+                                                <!-- 📄 KOPYALA -->
+                                                <a class="btn btn-warning btn-xs w-100 m-1 rounded" asp-action="Clone"
+                                                    asp-route-id="@item.Id"
+                                                    onclick="return confirm('Bu ürünü kopyalamak istiyor musunuz?')">
+                                                    <i class="bx bx-copy"></i>
                                                 </a>
 
+                                                <!-- ✏️ DÜZENLE -->
+                                                <a class="btn btn-primary btn-xs w-100 m-1 rounded" asp-action="Edit"
+                                                    asp-route-id="@item.Id">
+                                                    <i class="far fa-edit"></i>
+                                                </a>
+
+                                                <!-- 🔧 AKSESUARLAR -->
+                                                <a class="btn btn-info btn-xs w-100 m-1 rounded"
+                                                    asp-controller="ProductAccessory" asp-action="Index"
+                                                    asp-route-productId="@item.Id">
+                                                    <i class="bx bx-extension"></i>
+                                                </a>
+
+                                                <!-- 🗑️ SİL -->
                                                 <a href="#deleteModal"
                                                     class="btn btn-danger btn-xs w-100 m-1 rounded modal-basic"
                                                     onclick="setDeleteProductId(@item.Id)">
-                                                    <i class='far fa-trash-alt'></i> Sil
+                                                    <i class="far fa-trash-alt"></i>
                                                 </a>
 
                                             </div>
                                         </td>
-
                                     </tr>
                                 }
                             }

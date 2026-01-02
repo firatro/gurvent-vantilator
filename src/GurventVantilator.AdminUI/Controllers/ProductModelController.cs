@@ -2,6 +2,7 @@ using GurventVantilator.AdminUI.Models.ProductModel;
 using GurventVantilator.Application.DTOs;
 using GurventVantilator.Application.Enums;
 using GurventVantilator.Application.Interfaces.Services;
+using GurventVantilator.Application.Mappings;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -283,6 +284,15 @@ namespace GurventVantilator.AdminUI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Delete(int id)
         {
+
+            Console.WriteLine("DELETE ID = " + id);
+
+            if (id <= 0)
+            {
+                SetErrorMessage("ID POST edilmedi.");
+                return RedirectToAction(nameof(Index));
+            }
+
             var existing = await _modelService.GetByIdAsync(id);
 
             if (existing.Success && existing.Data != null)
@@ -336,6 +346,28 @@ namespace GurventVantilator.AdminUI.Controllers
                 .ToList();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Copy(int id)
+        {
+            var result = await _modelService.GetByIdAsync(id);
+            if (!result.Success || result.Data == null)
+            {
+                SetErrorMessage("Kopyalanacak model bulunamadı.");
+                return RedirectToAction(nameof(Index));
+            }
+
+            var copyDto = result.Data.ToCopyDto();
+
+            var addResult = await _modelService.AddAsync(copyDto);
+            if (!addResult.Success)
+            {
+                SetErrorMessage(addResult.ErrorMessage ?? "Model kopyalanamadı.");
+                return RedirectToAction(nameof(Index));
+            }
+
+            SetSuccessMessage("Model tüm verileriyle kopyalandı.");
+            return RedirectToAction(nameof(Edit), new { id = addResult.Data.Id });
+        }
 
     }
 }

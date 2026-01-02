@@ -29,7 +29,7 @@ namespace GurventVantilator.AdminUI.Areas.Admin.Controllers
                 return View(new List<ProductWorkingConditionDto>());
             }
 
-            return View(result.Data.OrderBy(w => w.Order));
+            return View(result.Data);
         }
 
         // ======================================================

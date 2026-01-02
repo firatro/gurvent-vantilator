@@ -25,8 +25,7 @@ namespace GurventVantilator.Application.Validators
                 .WithMessage("Basınç negatif olamaz.");
 
             RuleFor(x => x.Voltage)
-                .GreaterThan(0).When(x => x.Voltage.HasValue)
-                .WithMessage("Voltaj değeri 0'dan büyük olmalıdır.");
+                .MaximumLength(10).WithMessage("Ürün kodu en fazla 10 karakter olabilir.");
 
             RuleFor(x => x.Frequency)
                 .GreaterThan(0).When(x => x.Frequency.HasValue)

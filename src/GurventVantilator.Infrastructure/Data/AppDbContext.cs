@@ -49,6 +49,8 @@ namespace GurventVantilator.Infrastructure.Data
         public DbSet<ProductContentFeature> ProductContentFeatures { get; set; }
         public DbSet<ProductModelDocument> ProductModelDocuments { get; set; }
         public DbSet<ProductTestDataPoint> ProductTestPoints => Set<ProductTestDataPoint>();
+        public DbSet<ProductAccessory> ProductAccessories { get; set; }
+        public DbSet<ProductModelFeature> ProductModelFeatures { get; set; }
 
 
         // public DbSet<ProductCategory> ProductCategories { get; set; }

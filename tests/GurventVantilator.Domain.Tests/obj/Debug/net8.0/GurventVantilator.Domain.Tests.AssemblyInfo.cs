@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GurventVantilator.Domain.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d0a3fe1d589a7b934874d648c88c95276e9b027d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2ee31b505b99f1af894497bf1f41cf9ffa03a5cb")]
 [assembly: System.Reflection.AssemblyProductAttribute("GurventVantilator.Domain.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GurventVantilator.Domain.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -123,5 +123,34 @@ namespace GurventVantilator.Infrastructure.Data.Repositories
 
             return (items, totalCount);
         }
+
+        public async Task<ProductModel?> GetByIdWithDeleteIncludesAsync(int id)
+        {
+            return await _context.ProductModels
+                .Include(x => x.UsageTypes)
+                .Include(x => x.WorkingConditions)
+                .Include(x => x.ContentFeatures)
+                .Include(x => x.ModelFeatures)
+                .Include(x => x.Documents)
+                .Include(x => x.Products) // 🔥 EN KRİTİK
+                .FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public void RemoveContentFeatures(IEnumerable<ProductContentFeature> items)
+        {
+            _context.ProductContentFeatures.RemoveRange(items);
+        }
+
+        public void RemoveModelFeatures(IEnumerable<ProductModelFeature> items)
+        {
+            _context.ProductModelFeatures.RemoveRange(items);
+        }
+
+        public void RemoveDocuments(IEnumerable<ProductModelDocument> items)
+        {
+            _context.ProductModelDocuments.RemoveRange(items);
+        }
+
+
     }
 }

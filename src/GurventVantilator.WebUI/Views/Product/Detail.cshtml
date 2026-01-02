@@ -388,7 +388,7 @@
 
 
                                                 <!-- Elektriksel Değerler -->
-                                                @if (Model.Voltage.HasValue)
+                                                @if (!string.IsNullOrWhiteSpace(Model.Voltage))
                                                 {
                                                     <tr>
                                                         <td class="add-info fw-bold">Gerilim</td>

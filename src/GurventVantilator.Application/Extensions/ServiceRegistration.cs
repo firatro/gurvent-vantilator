@@ -49,6 +49,7 @@ namespace GurventVantilator.Application.Extensions
             services.AddScoped<IFanChartService, FanChartManager>();
             services.AddScoped<IWorkingPointService, WorkingPointManager>();
             services.AddScoped<IFanSearchService, FanSearchManager>();
+            services.AddScoped<IProductAccessoryService, ProductAccessoryManager>();
 
             return services;
         }

@@ -53,6 +53,7 @@ namespace GurventVantilator.Infrastructure.Data.Repositories
                 .Include(p => p.WorkingConditions)
                 .Include(p => p.ContentFeatures)
                 .Include(p => p.TestData)
+                .Include(x => x.Accessories)
                 .FirstOrDefaultAsync(p => p.Id == productId);
         }
 
@@ -177,6 +178,9 @@ namespace GurventVantilator.Infrastructure.Data.Repositories
             return await query.ToListAsync();
         }
 
-
+        public async Task SaveChangesAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }

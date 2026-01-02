@@ -27,5 +27,11 @@ namespace GurventVantilator.Domain.Interfaces.Repositories
 
         // PAGED
         Task<(List<ProductModel> Items, int TotalCount)> GetPagedAsync(int pageNumber, int pageSize);
+        Task<ProductModel?> GetByIdWithDeleteIncludesAsync(int id);
+        void RemoveContentFeatures(IEnumerable<ProductContentFeature> items);
+        void RemoveModelFeatures(IEnumerable<ProductModelFeature> items);
+        void RemoveDocuments(IEnumerable<ProductModelDocument> items);
+
+
     }
 }

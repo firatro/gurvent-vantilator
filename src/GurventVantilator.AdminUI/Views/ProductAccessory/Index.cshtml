@@ -1,0 +1,128 @@
+@using GurventVantilator.Application.DTOs
+@model IEnumerable<ProductAccessoryDto>
+
+@{
+    ViewData["Title"] = "Ürün Aksesuarları";
+}
+
+<div class="row">
+    <div class="col">
+        <div class="card card-modern">
+            <div class="card-body">
+
+                <div class="datatables-header-footer-wrapper mt-2">
+
+                    <!-- HEADER -->
+                    <div class="datatable-header">
+                        <div class="row align-items-center mb-3">
+                            <div class="col-12 col-lg-auto mb-3 mb-lg-0">
+                                <a asp-action="Create" asp-route-productId="@ViewBag.ProductId"
+                                    class="btn btn-primary btn-md font-weight-semibold btn-py-2 px-4">
+                                    + Aksesuar Ekle
+                                </a>
+                            </div>
+                            <div class="col-12 col-lg-auto mb-3 mb-lg-0">
+                                <a href="@Url.Action("Index", "Product")"
+                                    class="btn btn-secondary btn-md font-weight-semibold btn-py-2 px-4">
+                                    Ürün Listesi
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TABLE -->
+                    <table class="table table-ecommerce-simple table-striped mb-0" id="datatable-ecommerce-list"
+                        style="min-width:600px;">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Id</th>
+                                <th class="text-center">Aksesuar Adı</th>
+                                <th class="text-center">Tür</th>
+                                <th class="text-center">Ürün Kodu Numarası</th>
+                                <th class="text-center">Görsel</th>
+                                <th class="text-center">İşlemler</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model == null || !Model.Any())
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center text-muted">
+                                        Kayıt bulunamadı.
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="text-center"><strong>@item.Id</strong></td>
+                                        <td class="text-center">@item.AccessoryName</td>
+                                        <td class="text-center">@item.Type</td>
+                                        <td class="text-center">@item.ArticleNumber</td>
+                                        <td class="text-center">
+                                            @if (!string.IsNullOrEmpty(item.ImagePath))
+                                            {
+                                                <img src="@item.ImagePath" class="img-thumbnail" style="max-width:50px;" />
+                                            }
+                                        </td>
+                                        <td class="text-center" style="width:200px;">
+                                            <div class="btn-group d-flex">
+                                                <a class="btn btn-primary btn-xs w-100 m-1 rounded" asp-action="Edit"
+                                                    asp-route-productAccessoryId="@item.Id">
+                                                    <i class="far fa-edit"></i> Düzenle
+                                                </a>
+
+                                                <a href="#deleteModal"
+                                                    class="btn btn-danger btn-xs w-100 m-1 rounded modal-basic"
+                                                    onclick="setDeleteId(@item.Id)">
+                                                    <i class="far fa-trash-alt"></i> Sil
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+
+                    <!-- DELETE MODAL -->
+                    <div id="deleteModal" class="modal-block mfp-hide">
+                        <section class="card">
+                            <header class="card-header">
+                                <h2 class="card-title">Aksesuar Sil</h2>
+                            </header>
+                            <div class="card-body">
+                                <p>Bu aksesuarı silmek istediğinize emin misiniz?</p>
+                            </div>
+                            <footer class="card-footer">
+                                <form asp-action="Delete" method="post">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="productAccessoryId" id="deleteId" />
+                                    <input type="hidden" name="productId" value="@ViewBag.ProductId" />
+                                    <div class="text-end">
+                                        <button type="submit" class="btn btn-danger">Sil</button>
+                                        <button type="button" class="btn btn-default modal-dismiss">
+                                            Vazgeç
+                                        </button>
+                                    </div>
+                                </form>
+                            </footer>
+                        </section>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/examples/examples.modals.js"></script>
+    <script>
+        function setDeleteId(id) {
+            document.getElementById("deleteId").value = id;
+        }
+    </script>
+}

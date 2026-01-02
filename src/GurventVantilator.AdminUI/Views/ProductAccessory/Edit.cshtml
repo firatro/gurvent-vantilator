@@ -1,0 +1,104 @@
+@using GurventVantilator.AdminUI.Models.ProductAccessory
+@model ProductAccessoryEditViewModel
+
+@{
+    ViewData["Title"] = "Aksesuar Güncelle";
+}
+
+<form class="ecommerce-form action-buttons-fixed" asp-action="Edit" method="post" enctype="multipart/form-data">
+
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="ProductId" />
+    <input type="hidden" asp-for="ImagePath" />
+
+    <div class="row mt-2">
+        <div class="col">
+            <section class="card card-modern card-big-info">
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-lg-2-5 col-xl-1-5">
+                            <i class="card-big-info-icon bx bx-extension"></i>
+                            <h2 class="card-big-info-title">Aksesuar Güncelle</h2>
+                            <p class="card-big-info-desc">
+                                Aksesuar bilgilerini güncelleyin.
+                            </p>
+                        </div>
+
+                        <div class="col-lg-3-5 col-xl-4-5">
+
+                            <!-- Accessory Name -->
+                            <div class="form-group row align-items-center pb-3">
+                                <label asp-for="AccessoryName" class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">
+                                    Aksesuar Adı
+                                </label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="AccessoryName" class="form-control form-control-modern" />
+                                    <span asp-validation-for="AccessoryName" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- Type -->
+                            <div class="form-group row align-items-center pb-3">
+                                <label asp-for="Type" class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">
+                                    Tür
+                                </label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="Type" class="form-control form-control-modern" />
+                                    <span asp-validation-for="Type" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- Article Number -->
+                            <div class="form-group row align-items-center pb-3">
+                                <label asp-for="ArticleNumber" class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">
+                                    Ürün Kod Numarası
+                                </label>
+                                <div class="col-lg-7 col-xl-6">
+                                    <input asp-for="ArticleNumber" class="form-control form-control-modern" />
+                                    <span asp-validation-for="ArticleNumber" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+
+                            <!-- Image -->
+                            <div class="form-group row align-items-center pb-3">
+                                <label asp-for="ImageFile" class="col-lg-5 col-xl-3 control-label text-lg-end mb-0">
+                                    Görsel
+                                </label>
+                                <div class="col-lg-7 col-xl-6">
+                                    @if (!string.IsNullOrEmpty(Model.ImagePath))
+                                    {
+                                        <img src="@Model.ImagePath" class="img-thumbnail mb-2" style="max-width:100px;" />
+                                    }
+                                    <input type="file" asp-for="ImageFile" class="form-control form-control-modern"
+                                        accept=".jpg,.jpeg,.png,.webp" />
+                                    <small class="text-muted d-block mt-1">
+                                        JPG, PNG, WEBP – Maks. 10MB
+                                    </small>
+                                    <span asp-validation-for="ImageFile" class="badge badge-danger"></span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="row action-buttons">
+        <div class="col-12 col-md-auto">
+            <button type="submit"
+                class="submit-button btn btn-primary btn-px-4 py-3 d-flex align-items-center font-weight-semibold">
+                <i class="bx bx-save text-4 me-2"></i> Kaydet
+            </button>
+        </div>
+        <div class="col-12 col-md-auto px-md-0 mt-3 mt-md-0">
+            <a asp-action="Index" asp-route-productId="@Model.ProductId"
+                class="cancel-button btn btn-light btn-px-4 py-3 border font-weight-semibold">
+                Geri Dön
+            </a>
+        </div>
+    </div>
+</form>

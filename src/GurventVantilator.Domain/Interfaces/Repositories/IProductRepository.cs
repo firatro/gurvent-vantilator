@@ -21,7 +21,7 @@ namespace GurventVantilator.Domain.Interfaces.Repositories
    List<int> productIds,
    int? usageId,
    int? workingId);
-
+        Task SaveChangesAsync();
 
     }
 }

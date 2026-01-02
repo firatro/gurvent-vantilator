@@ -38,7 +38,6 @@ namespace GurventVantilator.AdminUI.Validators
             ValidateNumeric(x => x.AirFlow, "Hava debisi geçerli bir sayı olmalıdır.");
             ValidateNumeric(x => x.TotalPressure, "Basınç değeri geçerli bir sayı olmalıdır.");
             ValidateNumeric(x => x.Power, "Güç değeri geçerli bir sayı olmalıdır.");
-            ValidateNumeric(x => x.Voltage, "Voltaj değeri geçerli bir sayı olmalıdır.");
             ValidateNumeric(x => x.Frequency, "Frekans değeri geçerli bir sayı olmalıdır.");
             ValidateNumeric(x => x.Temperature, "Sıcaklık değeri geçerli bir sayı olmalıdır."); // 🔥 artık hata vermez
 

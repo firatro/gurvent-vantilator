@@ -16,6 +16,7 @@ namespace GurventVantilator.Application.Interfaces.Services
         // 🔹 Listeleme ve Filtreleme
         Task<Result<PagedResult<ProductDto>>> GetPagedAsync(int pageNumber, int pageSize);
         Task<Result<List<ProductDto>>> FilterAsync(ProductFilterRequest request);
-        
+        Task CloneAsync(int productId);
+
     }
 }

@@ -16,3 +16,8 @@ REMOTE CONNECTION STRINGS
 "ConnectionStrings": {
     "DefaultConnection": "Server=104.247.162.242\\MSSQLSERVER2019;Database=firatram_musteri_kayit_sistemi_db;user=firatram_musteri_kayit_sistemi_db_admin;password=C^Qz8Dfmfnz*cr49;MultipleActiveResultSets=true;TrustServerCertificate=true"
 },
+
+
+git add .
+git commit -m "Yeni özellik eklendi"
+git push

@@ -69,43 +69,12 @@ namespace GurventVantilator.WebUI.Controllers
             await SetPageImageAsync("Product");
             return View(result.Data);
         }
-
-
-        // [Route("product/listbycategory/{id:int}")]
-        // public async Task<IActionResult> ListByCategory(int id)
-        // {
-        //     var productCategoryResult = await _productCategoryService.GetByIdAsync(id);
-        //     if (!productCategoryResult.Success || productCategoryResult.Data == null)
-        //         return NotFound();
-
-        //     // ✅ Var olan metodu kullanıyoruz:
-        //     var productResult = await _productService.GetProductsByCategoryAsync(id, includeSubCategories: true);
-
-        //     if (!productResult.Success)
-        //     {
-        //         ViewBag.ErrorMessage = productResult.ErrorMessage;
-        //         return View(new ProductListViewModel
-        //         {
-        //             Category = productCategoryResult.Data,
-        //             Products = new List<ProductDto>()
-        //         });
-        //     }
-
-        //     var vm = new ProductListViewModel
-        //     {
-        //         Category = productCategoryResult.Data,
-        //         Products = productResult.Data
-        //     };
-
-        //     return View(vm);
-        // }
-
         public IActionResult ModelViewer(string path)
         {
             return View();
         }
 
-        public async Task<IActionResult> Performance(int id)
+        public async Task<IActionResult> Performance(int id, double? q, double? pt, string? voltage)
         {
             var result = await _productService.GetByIdAsync(id);
             if (!result.Success || result.Data == null)
@@ -113,6 +82,11 @@ namespace GurventVantilator.WebUI.Controllers
 
             var product = result.Data;
             ViewBag.ProductId = id;
+
+            // 🔥 ÇALIŞMA NOKTASI PARAMETRELERİ
+            ViewBag.InitialQ = q;
+            ViewBag.InitialPt = pt;
+            ViewBag.SelectedVoltage = voltage;
 
             return View(product); // ProductDto direkt gidiyor
         }

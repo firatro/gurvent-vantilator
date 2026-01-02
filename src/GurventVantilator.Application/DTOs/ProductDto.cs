@@ -23,7 +23,7 @@ namespace GurventVantilator.Application.DTOs
         public double? TotalPressure { get; set; }
         public string? TotalPressureUnit { get; set; }
         public string? Power { get; set; }
-        public double? Voltage { get; set; }
+        public string? Voltage { get; set; }
         public double? Frequency { get; set; }
         public string? SpeedControl { get; set; }
         public double? Temperature { get; set; }
@@ -41,6 +41,10 @@ namespace GurventVantilator.Application.DTOs
         public int? Order { get; set; } = 0;
         public DateTime CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
+
+        public List<ProductAccessoryDto> Accessories { get; set; }
+    = new();
+
 
     }
 }

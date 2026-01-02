@@ -5,6 +5,94 @@
 }
 
 <style>
+    .accessory-table-wrapper {
+        background: #f8f9fb;
+        border-radius: 12px;
+        padding: 12px;
+    }
+
+    .accessory-table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 8px;
+        font-size: 14px;
+    }
+
+    .accessory-table thead th {
+        text-align: left;
+        padding: 10px 12px;
+        color: #666;
+        font-weight: 600;
+    }
+
+    .accessory-row {
+        background: #fff;
+        border-radius: 10px;
+        transition: all 0.2s ease;
+    }
+
+    .accessory-row:hover {
+        background: #f1f3f5;
+    }
+
+    .accessory-row.active {
+        background: #ffd84d;
+    }
+
+    .accessory-row td {
+        padding: 12px;
+        vertical-align: middle;
+    }
+
+    .img-col img {
+        width: 42px;
+        height: 42px;
+        object-fit: contain;
+    }
+
+    .model-col {
+        font-weight: 600;
+    }
+
+    .type-col {
+        color: #666;
+    }
+
+    .article-col {
+        font-family: monospace;
+    }
+
+    .qty-col {
+        text-align: center;
+    }
+
+    .qty-control {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    .qty-btn {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        border: none;
+        background: #e0e0e0;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    .qty-btn:hover {
+        background: #ccc;
+    }
+
+    .qty-value {
+        min-width: 20px;
+        text-align: center;
+        font-weight: 600;
+    }
+</style>
+<style>
     .metric-table {
         width: 100%;
         border-collapse: collapse;
@@ -88,19 +176,72 @@
 
 <div class="container pt-180">
 
-    <h2 class="mb-4">
-        @(Model.ProductModelCode)
+@{
+    bool isEx =
+        Model.WorkingConditionNames != null &&
+        Model.WorkingConditionNames.Any(x =>
+            x.Equals("Patlayıcı Ortamlar", StringComparison.OrdinalIgnoreCase) ||
+            x.Equals("Patlayıcı ve Kimyasal Ortamlar", StringComparison.OrdinalIgnoreCase)
+        );
+}
+
+@{
+    string selectedVoltage = ViewBag.SelectedVoltage as string;
+    string voltageCode = string.Empty;
+
+    if (!string.IsNullOrEmpty(selectedVoltage))
+    {
+        if (selectedVoltage.StartsWith("3Ph"))
+        {
+            voltageCode = "(T)";
+        }
+        else if (selectedVoltage.StartsWith("1Ph"))
+        {
+            voltageCode = "(M)";
+        }
+    }
+
+    bool showVoltageCode =
+        !string.IsNullOrEmpty(voltageCode)
+        && !(isEx && voltageCode == "(T)");
+}
+
+   <h2 class="mb-4">
+
+    @(Model.ProductModelCode)
 
         @if (!string.IsNullOrEmpty(Model.ProductTestName))
         {
-            <small class="text-muted">@Model.ProductTestName</small>
+            <span>@Model.ProductTestName</span>
         }
 
-        <!-- 🔴 GERÇEK ÇALIŞMA NOKTASI -->
-        <span id="workingPointLabel" style="display:none;">
-            /-
-        </span>
-    </h2>
+
+
+    <!-- 🔴 GERÇEK ÇALIŞMA NOKTASI -->
+    <span id="workingPointLabel" style="display:none;">
+        
+    </span>
+
+    @* 🔥 Patlayıcı Ortamlar → Ex *@
+    @if (isEx)
+    {
+        <span>Ex</span>
+    }
+
+    @* 🔥 VOLTAJ KODU *@
+    @if (!string.IsNullOrEmpty(selectedVoltage) && showVoltageCode)
+    {
+        <span class="ms-1">@voltageCode</span>
+    }
+
+    <a href="@Url.Action("Index", "FanSelector")"
+       class="btn btn-sm btn-outline-secondary">
+        ← Başa Dön
+    </a>
+</h2>
+
+
+
 
 
 
@@ -113,23 +254,22 @@
 
                 <!-- 🔹 SOL SÜTUN (1/3) -->
                 <div class="col-lg-4">
-
-                    @* <!-- META (istersen hidden bırak) -->
-                    <div class="row mb-3" hidden>
-                        <div class="col-6"><b>Q:</b> <span id="meta-q">-</span></div>
-                        <div class="col-6"><b>Pt:</b> <span id="meta-pt">-</span></div>
-                        <div class="col-6"><b>Ps:</b> <span id="meta-ps">-</span></div>
-                        <div class="col-6"><b>Pd:</b> <span id="meta-pd">-</span></div>
-                    </div> *@
-
+                
                     <!-- INPUT FORM -->
                     <form id="workingPointForm" class="row g-3">
-                        <div>
-                            <input type="number" name="Q" placeholder="Debi (AirFlow)">
+                         <div class="it-btn-orange d-flex justify-content-center align-items-center">
+                            <span>
+                                <span class="text-1">İSTENEN KAPASİTE</span>
+                                <span class="text-2">İSTENEN KAPASİTE</span>
+                            </span>
                         </div>
 
                         <div>
-                            <input type="number" name="Pt" placeholder="Basınç (Pt)">
+                            <input type="number" name="Q" id="inputQ" placeholder="Debi (AirFlow)">
+                        </div>
+
+                        <div>
+                            <input type="number" name="Pt" id="inputPt" placeholder="Basınç (Pt)">
                         </div>
                         <div class="order-button-payment mt-20">
                             <button class="it-btn-orange d-flex justify-content-center align-items-center"
@@ -297,10 +437,10 @@
             <div class="row g-4 mt-2">
                 <div class="col-lg-4">
                     <div class="mini-chart-card">
-                        <div class="mini-chart-title">Pressure ratio [-]</div>
-                        <div class="mini-chart-unit">Pt / Ps</div>
+                        <div class="mini-chart-title">Sound level [dB(A)]</div>
+                        <div class="mini-chart-unit">dB(A)</div>
                         <div class="mini-chart-canvas">
-                            <canvas id="chart-pr"></canvas>
+                            <canvas id="chart-db"></canvas>
 
                         </div>
                     </div>
@@ -353,389 +493,342 @@
                 </div>
 
             </div>
+            <div class="row g-4 mt-5 align-items-center">
+
+                @if (Model.Accessories != null && Model.Accessories.Any())
+                {
+                    <hr class="my-5" />
+
+                    <h4 class="mb-3" style="color:#296299;">Aksesuarlar</h4>
+                    <div class="accessory-table-wrapper">
+                        <table class="accessory-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Model</th>
+                                    <th>Type</th>
+                                    <th>Article number</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <!-- ROW -->
+                                @foreach (var item in Model.Accessories)
+                                {
+                                    <tr class="accessory-row">
+                                        <td><img src="@item.ImagePath" /></td>
+                                        <td>@item.AccessoryName</td>
+                                        <td>@item.Type</td>
+                                        <td>@item.ArticleNumber</td>
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                }
+
+
+            </div>
         </div>
     </div>
 </div>
 
-
 @section Scripts {
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <script>
-        let pinnedTooltip = null;
+<script>
+    window.initialWorkingPoint = {
+        q: @(ViewBag.InitialQ != null
+            ? ViewBag.InitialQ.ToString(System.Globalization.CultureInfo.InvariantCulture)
+            : "null"),
+        pt: @(ViewBag.InitialPt != null
+            ? ViewBag.InitialPt.ToString(System.Globalization.CultureInfo.InvariantCulture)
+            : "null")
+    };
+</script>
 
-        let fanChartInstance = null;
+<script>
+    let pinnedTooltip = null;
+    let fanChartInstance = null;
+    const miniCharts = {};
 
-        fetch('/FanChart/GetChart?productId=@productId')
-            .then(res => res.json())
-            .then(chart => {
+    // =========================
+    // STATE UYGULAYICI (TEK MERKEZ)
+    // =========================
+    function applyWorkingPoint(p) {
+        if (!p) return;
+        updateMetaFromPoint(p);
+        updateMiniChartsWorkingPoint(p);
+    }
 
-                const canvas = document.getElementById('fanChart');
-                if (!canvas) return;
+    // =========================
+    // ANA GRAFİK YÜKLE
+    // =========================
+    fetch('/FanChart/GetChart?productId=@productId')
+        .then(res => res.json())
+        .then(chart => {
 
-                Chart.register({
-                    id: 'pinnedTooltipPlugin',
-                    afterDraw(chart) {
-                        if (pinnedTooltip) {
-                            chart.tooltip.setActiveElements(
-                                [pinnedTooltip],
-                                { x: chart.chartArea.left, y: chart.chartArea.top }
-                            );
-                        }
+            const canvas = document.getElementById('fanChart');
+            if (!canvas) return;
+
+            Chart.register({
+                id: 'pinnedTooltipPlugin',
+                afterDraw(chart) {
+                    if (pinnedTooltip) {
+                        chart.tooltip.setActiveElements(
+                            [pinnedTooltip],
+                            { x: chart.chartArea.left, y: chart.chartArea.top }
+                        );
                     }
-                });
-
-                fanChartInstance = new Chart(canvas, {
-                    type: 'line',
-                    data: {
-                        datasets: chart.datasets.map(d => ({
-                            label: d.label,
-                            hidden: d.hideLegend === true,
-                            data: d.data.map(p => ({
-                                x: p.x,
-                                y: p.y,
-                                db: p.db,
-                                ps: p.ps,
-                                pd: p.pd,
-                                speed: p.speed,
-                                current: p.current,
-                                airPower: p.airPower,
-                                totalEfficiency: p.totalEfficiency,
-                                mechanicalEfficiency: p.mechanicalEfficiency
-                            })),
-                            borderWidth: 2,
-                            tension: 0.3,
-                            pointRadius: 0
-                        }))
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        parsing: false,
-                        onClick: function (evt, elements) {
-
-                            if (!elements.length) {
-                                // Boş yere tıklandıysa tooltip’i kaldır
-                                pinnedTooltip = null;
-                                fanChartInstance.tooltip.setActiveElements([]);
-                                fanChartInstance.update();
-                                return;
-                            }
-
-                            const element = elements[0];
-                            const datasetIndex = element.datasetIndex;
-                            const index = element.index;
-
-                            pinnedTooltip = {
-                                datasetIndex,
-                                index
-                            };
-
-                            fanChartInstance.tooltip.setActiveElements(
-                                [{ datasetIndex, index }],
-                                { x: evt.x, y: evt.y }
-                            );
-
-                            fanChartInstance.update();
-
-                            // Eğriyi de seç (senin önceki sistemin)
-                            selectDatasetByIndex(datasetIndex);
-                        },
-
-                        scales: {
-                            x: {
-                                type: 'linear',
-                                title: {
-                                    display: true,
-                                    text: chart.xAxisLabel
-                                },
-                                ticks: {
-                                    stepSize: 250
-                                },
-                                grid: {
-                                    color: '#eee'
-                                }
-                            },
-                            y: {
-                                type: 'linear',
-                                title: {
-                                    display: true,
-                                    text: chart.yAxisLabel
-                                },
-                                ticks: {
-                                    stepSize: 100
-                                },
-                                grid: {
-                                    color: '#eee'
-                                }
-                            }
-                        },
-
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                onClick: function (e, legendItem) {
-                                    selectDatasetByIndex(legendItem.datasetIndex);
-                                }
-                            },
-                            tooltip: {
-                                enabled: true,
-                                callbacks: {
-                                    title: function () {
-                                        return null;
-                                    },
-                                    label: function (ctx) {
-                                        const p = ctx.raw;
-                                        console.log(ctx.raw);
-                                        // 🔥 hover'da tabloyu güncelle
-                                        updateMetaFromPoint(p);
-
-                                        return [
-                                            `Q: ${p.x.toFixed(2)}`,
-                                            `Pt: ${p.y.toFixed(2)}`
-                                        ];
-                                    }
-                                }
-                            },
-                            pinnedTooltipPlugin: {
-                                afterDraw(chart) {
-                                    if (pinnedTooltip) {
-                                        chart.tooltip.setActiveElements(
-                                            [pinnedTooltip],
-                                            { x: chart.chartArea.left, y: chart.chartArea.top }
-                                        );
-                                    }
-                                }
-                            }
-                        },
-
-                        elements: {
-                            line: {
-                                borderWidth: 2
-                            }
-                        }
-                    }
-                });
-
-
-                /* MINI CHARTS */
-                createMiniChart('chart-ps', map(chart, 'ps'), 'Ps [Pa]');
-                createMiniChart('chart-pd', map(chart, 'pd'), 'Pd [Pa]');
-                createMiniChart('chart-pt', map(chart, 'y'), 'Pt [Pa]');
-                createMiniChart('chart-speed', map(chart, 'speed'), 'rpm');
-                createMiniChart('chart-current', map(chart, 'current'), 'A');
-                createMiniChart('chart-power', map(chart, 'airPower'), 'W');
-                createMiniChart('chart-eff-static', map(chart, 'mechanicalEfficiency'), '%');
-                createMiniChart('chart-eff-total', map(chart, 'totalEfficiency'), '%');
-                createMiniChart(
-                    'chart-pr',
-                    chart.datasets.map(d => ({
-                        label: d.label,
-                        data: d.data
-                            .filter(p => p.ps && p.ps !== 0)
-                            .map(p => ({
-                                x: p.x,
-                                y: p.y / p.ps
-                            }))
-                    })),
-                    'Pt / Ps'
-                );
-
-            });
-
-
-        function setWorkingPointFromDatasetLabel(label) {
-            const el = document.getElementById('workingPointLabel');
-            if (!el) return;
-
-            el.innerText = label;     // 🔥 /6/50, /2/40 vb.
-            el.style.display = 'inline-block';
-        }
-
-
-
-        // ================= HELPERS =================
-
-        function selectDatasetByIndex(datasetIndex) {
-            const datasets = fanChartInstance.data.datasets;
-
-            datasets.forEach((ds, i) => {
-                if (i === datasetIndex) {
-                    ds.borderWidth = 5;
-                    ds.borderColor = '#0d6efd';
-                    ds.borderDash = [];
-                } else if (ds.label !== 'Çalışma Noktası') {
-                    ds.borderWidth = 1;
-                    ds.borderColor = '#ccc';
-                    ds.borderDash = [5, 5];
                 }
             });
 
-            const selectedDataset = datasets[datasetIndex];
-            if (selectedDataset?.label) {
-                setWorkingPointFromDatasetLabel(selectedDataset.label);
-            }
-
-            fanChartInstance.update();
-        }
-
-
-        function setMeta(m) {
-            if (!m) return;
-
-            setText('meta-q', m.q ?? m.x);          // Debi
-            setText('meta-ps', m.ps);
-            setText('meta-pd', m.pd);
-            setText('meta-pt', m.pt ?? m.y);        // Toplam basınç
-            setText('meta-current', m.current);
-            setText('meta-speed', m.speed);
-            setText('meta-airpower', m.airPower);
-            setText('meta-total-eff', m.totalEfficiency);
-            setText('meta-mech-eff', m.mechanicalEfficiency);
-        }
-
-
-        function updateMetaFromPoint(p) {
-            if (!p) return;
-
-            setText('meta-q', p.x);
-            setText('meta-ps', p.ps);
-            setText('meta-pd', p.pd);
-            setText('meta-pt', p.y);
-            setText('meta-current', p.current);
-            setText('meta-speed', p.speed);
-            setText('meta-airpower', p.airPower);
-            setText('meta-total-eff', p.totalEfficiency);
-            setText('meta-mech-eff', p.mechanicalEfficiency);
-            setText('meta-db', p.db);
-        }
-
-
-
-        function setText(id, val) {
-            document.getElementById(id).innerText =
-                val !== null && val !== undefined ? val.toFixed(2) : '-';
-        }
-
-        document.getElementById('workingPointForm')
-            .addEventListener('submit', function (e) {
-                e.preventDefault();
-
-                const q = parseFloat(this.querySelector('[name="Q"]').value);
-                const pt = parseFloat(this.querySelector('[name="Pt"]').value);
-
-                if (isNaN(q) || isNaN(pt)) {
-                    alert('Lütfen geçerli Q ve Pt giriniz.');
-                    return;
-                }
-
-                highlightWorkingPoint(q, pt);
-            });
-
-        function highlightWorkingPoint(inputQ, inputPt) {
-
-            let minDistance = Infinity;
-            let closestDatasetIndex = -1;
-
-            // ================================
-            // 1️⃣ En yakın eğriyi bul
-            // ================================
-            fanChartInstance.data.datasets.forEach((dataset, dsIndex) => {
-
-                dataset.data.forEach(p => {
-                    const d = Math.sqrt(
-                        Math.pow(p.x - inputQ, 2) +
-                        Math.pow(p.y - inputPt, 2)
-                    );
-
-                    if (d < minDistance) {
-                        minDistance = d;
-                        closestDatasetIndex = dsIndex;
-                    }
-                });
-            });
-
-            // ================================
-            // 2️⃣ Dataset stillerini güncelle
-            // ================================
-            fanChartInstance.data.datasets.forEach((dataset, index) => {
-
-                if (index === closestDatasetIndex) {
-                    dataset.borderWidth = 5;
-                    dataset.borderColor = '#0d6efd';
-                    dataset.borderDash = [];
-                } else {
-                    dataset.borderWidth = 1;
-                    dataset.borderColor = '#ccc';
-                    dataset.borderDash = [5, 5];
-                }
-            });
-
-            // ================================
-            // 3️⃣ Çalışma noktası (kırmızı nokta)
-            // ================================
-            const workingPointDatasetIndex =
-                fanChartInstance.data.datasets.findIndex(d => d.label === 'Çalışma Noktası');
-
-            if (workingPointDatasetIndex !== -1) {
-                fanChartInstance.data.datasets.splice(workingPointDatasetIndex, 1);
-            }
-
-            fanChartInstance.data.datasets.push({
-                label: 'Çalışma Noktası',
-                data: [{ x: inputQ, y: inputPt }],
-                borderColor: 'red',
-                backgroundColor: 'red',
-                pointRadius: 7,
-                pointHoverRadius: 9,
-                showLine: false
-            });
-
-            fanChartInstance.update();
-
-            // ================================
-            // 4️⃣ GERÇEK TEST ADINI YAZ ( /6/50 )
-            // ================================
-            const closestDataset = fanChartInstance.data.datasets[closestDatasetIndex];
-
-            if (closestDataset && closestDataset.label) {
-                setWorkingPointFromDatasetLabel(closestDataset.label);
-            }
-
-
-        }
-
-        function map(chart, field) {
-            return chart.datasets.map(d => ({
-                label: d.label,
-                data: d.data
-                    .filter(p => p[field] !== null && p[field] !== undefined)
-                    .map(p => ({ x: p.x, y: field === 'y' ? p.y : p[field] }))
-            }));
-        }
-
-        function createMiniChart(canvasId, datasets, yLabel) {
-            const el = document.getElementById(canvasId);
-            if (!el || !datasets.length) return;
-
-            new Chart(el, {
+            fanChartInstance = new Chart(canvas, {
                 type: 'line',
-                data: { datasets },
+                data: {
+                    datasets: chart.datasets.map(d => ({
+                        label: d.label,
+                        hidden: d.hideLegend === true,
+                        data: d.data.map(p => ({
+                            x: p.x,
+                            y: p.y,
+                            ps: p.ps,
+                            pd: p.pd,
+                            speed: p.speed,
+                            current: p.current,
+                            airPower: p.airPower,
+                            totalEfficiency: p.totalEfficiency,
+                            mechanicalEfficiency: p.mechanicalEfficiency,
+                            db: p.db
+                        })),
+                        borderWidth: 2,
+                        tension: 0.3,
+                        pointRadius: 0
+                    }))
+                },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     parsing: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        x: { type: 'linear' },
-                        y: { title: { display: true, text: yLabel } }
+                    onClick: (evt, elements) => {
+                        if (!elements.length) {
+                            pinnedTooltip = null;
+                            fanChartInstance.tooltip.setActiveElements([]);
+                            fanChartInstance.update();
+                            return;
+                        }
+
+                        const { datasetIndex, index } = elements[0];
+                        pinnedTooltip = { datasetIndex, index };
+
+                        const p = fanChartInstance.data.datasets[datasetIndex].data[index];
+                        applyWorkingPoint(p);
+                        selectDatasetByIndex(datasetIndex);
+
+                        fanChartInstance.update();
                     },
-                    elements: {
-                        point: { radius: 0 },
-                        line: { borderWidth: 1.5 }
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            onClick: (_, item) => selectDatasetByIndex(item.datasetIndex)
+                        },
+                        tooltip: {
+                            enabled: true,
+                            callbacks: {
+                                title: () => null,
+                                label: ctx => {
+                                    const p = ctx.raw;
+                                  
+                                    return [`Q: ${p.x.toFixed(2)}`, `Pt: ${p.y.toFixed(2)}`];
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: { type: 'linear', title: { display: true, text: chart.xAxisLabel }},
+                        y: { type: 'linear', title: { display: true, text: chart.yAxisLabel }}
                     }
                 }
             });
+
+            // =========================
+            // MINI GRAFİKLER
+            // =========================
+            createMiniChart('chart-ps', map(chart, 'ps'), 'Ps [Pa]');
+            createMiniChart('chart-pd', map(chart, 'pd'), 'Pd [Pa]');
+            createMiniChart('chart-pt', map(chart, 'y'), 'Pt [Pa]');
+            createMiniChart('chart-speed', map(chart, 'speed'), 'rpm');
+            createMiniChart('chart-current', map(chart, 'current'), 'A');
+            createMiniChart('chart-power', map(chart, 'airPower'), 'W');
+            createMiniChart('chart-eff-static', map(chart, 'mechanicalEfficiency'), '%');
+            createMiniChart('chart-eff-total', map(chart, 'totalEfficiency'), '%');
+            createMiniChart('chart-db', map(chart, 'db'), 'dB(A)');
+
+            // =========================
+            // URL'DEN GELEN ÇALIŞMA NOKTASI
+            // =========================
+            if (window.initialWorkingPoint.q !== null && window.initialWorkingPoint.pt !== null) {
+                const q = parseFloat(window.initialWorkingPoint.q);
+                const pt = parseFloat(window.initialWorkingPoint.pt);
+
+                document.getElementById("inputQ").value = q;
+                document.getElementById("inputPt").value = pt;
+
+                highlightWorkingPoint(q, pt);
+            }
+        });
+
+    // =========================
+    // FORM SUBMIT
+    // =========================
+    document.getElementById('workingPointForm')
+        .addEventListener('submit', e => {
+            e.preventDefault();
+            const q = parseFloat(inputQ.value);
+            const pt = parseFloat(inputPt.value);
+            if (!isNaN(q) && !isNaN(pt)) highlightWorkingPoint(q, pt);
+        });
+
+        function updateWorkingPointLabel(text) {
+            const el = document.getElementById("workingPointLabel");
+            if (!el || !text) return;
+
+            el.textContent = text.startsWith("/") ? text : `/${text}`;
+            el.style.display = "inline";
+            el.style.marginLeft = "6px";
         }
-    </script>
+
+    // =========================
+    // WORKING POINT HESAPLA
+    // =========================
+    function highlightWorkingPoint(inputQ, inputPt) {
+    let minDist = Infinity,
+        closestPoint = null,
+        closestIndex = -1;
+
+    fanChartInstance.data.datasets.forEach((ds, i) => {
+        ds.data.forEach(p => {
+            const d = Math.hypot(p.x - inputQ, p.y - inputPt);
+            if (d < minDist) {
+                minDist = d;
+                closestPoint = p;
+                closestIndex = i;
+            }
+        });
+    });
+
+    // 🔥 ÇALIŞMA NOKTASI DATASET’İ EKLEME (senin mevcut kod)
+    fanChartInstance.data.datasets =
+        fanChartInstance.data.datasets.filter(d => d.label !== 'Çalışma Noktası');
+
+    fanChartInstance.data.datasets.push({
+        label: 'Çalışma Noktası',
+        data: [{ x: inputQ, y: inputPt }],
+        borderColor: 'red',
+        backgroundColor: 'red',
+        pointRadius: 7,
+        showLine: false
+    });
+
+    // 🔥 SEÇİLİ EĞRİYİ VURGULA
+    selectDatasetByIndex(closestIndex);
+    applyWorkingPoint(closestPoint);
+
+    // ✅ İŞTE ARADIĞIN YER BURASI
+    const selectedDataset = fanChartInstance.data.datasets[closestIndex];
+    if (selectedDataset?.label) {
+        updateWorkingPointLabel(selectedDataset.label);
+    }
+
+    fanChartInstance.update();
+}
+
+
+    // =========================
+    // YARDIMCILAR
+    // =========================
+    function selectDatasetByIndex(i) {
+        fanChartInstance.data.datasets.forEach((ds, idx) => {
+            ds.borderWidth = idx === i ? 5 : 1;
+            ds.borderColor = idx === i ? '#0d6efd' : '#ccc';
+            ds.borderDash = idx === i ? [] : [5,5];
+        });
+    }
+
+    function map(chart, field) {
+        return chart.datasets.map(d => ({
+            label: d.label,
+            data: d.data
+                .filter(p => p[field] !== null && p[field] !== undefined)
+                .map(p => ({ x: p.x, y: field === 'y' ? p.y : p[field] }))
+        }));
+    }
+
+    function createMiniChart(id, datasets, yLabel) {
+        const c = new Chart(document.getElementById(id), {
+            type: 'line',
+            data: { datasets },
+            options: {
+                parsing: false,
+                plugins: { legend: { display: false }},
+                scales: { x: { type: 'linear' }, y: { title: { display: true, text: yLabel }}},
+                elements: { point: { radius: 0 }}
+            }
+        });
+        miniCharts[id] = c;
+    }
+
+    function updateMiniChartsWorkingPoint(p) {
+        const map = {
+            "chart-ps": p.ps,
+            "chart-pd": p.pd,
+            "chart-pt": p.y,
+            "chart-speed": p.speed,
+            "chart-current": p.current,
+            "chart-power": p.airPower,
+            "chart-eff-static": p.mechanicalEfficiency,
+            "chart-eff-total": p.totalEfficiency,
+            "chart-db": p.db
+        };
+
+        Object.entries(map).forEach(([id, y]) => {
+            const c = miniCharts[id];
+            if (!c) return;
+
+            c.data.datasets = c.data.datasets.filter(d => d.label !== 'Çalışma Noktası');
+            c.data.datasets.push({
+                label: 'Çalışma Noktası',
+                data: [{ x: p.x, y }],
+                backgroundColor: 'red',
+                borderColor: 'red',
+                pointRadius: 5,
+                showLine: false
+            });
+            c.update();
+        });
+    }
+
+    function updateMetaFromPoint(p) {
+        setText('meta-q', p.x);
+        setText('meta-ps', p.ps);
+        setText('meta-pd', p.pd);
+        setText('meta-pt', p.y);
+        setText('meta-speed', p.speed);
+        setText('meta-current', p.current);
+        setText('meta-airpower', p.airPower);
+        setText('meta-total-eff', p.totalEfficiency);
+        setText('meta-mech-eff', p.mechanicalEfficiency);
+        setText('meta-db', p.db);
+    }
+
+    function setText(id, val) {
+        document.getElementById(id).innerText =
+            val != null ? val.toFixed(2) : '-';
+    }
+</script>
+
+
 }

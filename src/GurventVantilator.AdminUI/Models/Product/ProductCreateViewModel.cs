@@ -37,7 +37,7 @@ namespace GurventVantilator.AdminUI.Models.Product
         public string? TotalPressureUnit { get; set; }
 
         public string? Power { get; set; }
-        public double? Voltage { get; set; }
+        public string? Voltage { get; set; }
         public double? Frequency { get; set; }
         public string? SpeedControl { get; set; }
         public double? Temperature { get; set; }

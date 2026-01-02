@@ -280,19 +280,38 @@ namespace GurventVantilator.Application.Services
         {
             try
             {
-                var entity = await _modelRepository.GetByIdAsync(id);
+                var entity = await _modelRepository.GetByIdWithDeleteIncludesAsync(id);
                 if (entity == null)
                     return Result<bool>.Fail("Model bulunamadı.");
 
+                // ❗ Ürün varsa silme
+                if (entity.Products.Any())
+                {
+                    return Result<bool>.Fail(
+                        "Bu modele bağlı ürünler var. Önce ürünleri silmelisiniz."
+                    );
+                }
+
+                // 🔹 Many-to-Many temizle
+                entity.UsageTypes.Clear();
+                entity.WorkingConditions.Clear();
+
+                // 🔹 Child tablolar
+                _modelRepository.RemoveContentFeatures(entity.ContentFeatures);
+                _modelRepository.RemoveModelFeatures(entity.ModelFeatures);
+                _modelRepository.RemoveDocuments(entity.Documents);
+
                 await _modelRepository.DeleteAsync(entity);
+
                 return Result<bool>.Ok(true);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Model silinemedi. Id={Id}", id);
-                return Result<bool>.Fail("Model silinemedi.");
+                return Result<bool>.Fail("Model silinemedi. İlişkili kayıtlar mevcut.");
             }
         }
+
 
 
         // ======================================================
