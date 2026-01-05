@@ -1,7 +1,7 @@
 using GurventVantilator.Application.DTOs;
 using GurventVantilator.Application.Interfaces.Services;
-using GurventVantilator.WebUI.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using GurventVantilator.Application.DTOs.Pdf;
 
 namespace GurventVantilator.WebUI.Controllers
 {
@@ -13,10 +13,11 @@ namespace GurventVantilator.WebUI.Controllers
         private readonly IProductWorkingConditionService _workingService;
         private readonly IProductSeriesService _seriesService;
         private readonly IProductModelService _modelService;
+        private readonly IPdfService _pdfService;
 
         public ProductController(IProductService productService, IPageImageService pageImageService, IProductTestDataService productTestDataService, IProductUsageTypeService usageService,
         IProductWorkingConditionService workingService,
-        IProductSeriesService seriesService, IProductModelService modelService)
+        IProductSeriesService seriesService, IProductModelService modelService, IPdfService pdfService)
             : base(pageImageService)
         {
             _productService = productService;
@@ -25,6 +26,7 @@ namespace GurventVantilator.WebUI.Controllers
             _workingService = workingService;
             _seriesService = seriesService;
             _modelService = modelService;
+            _pdfService = pdfService;
         }
 
         public async Task<IActionResult> Index()
@@ -89,6 +91,55 @@ namespace GurventVantilator.WebUI.Controllers
             ViewBag.SelectedVoltage = voltage;
 
             return View(product); // ProductDto direkt gidiyor
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GeneratePerformancePdf(
+    [FromBody] ProductPerformancePdfRequestDto request)
+        {
+            if (request == null)
+                return BadRequest("PDF request boş geldi.");
+
+            var result = await _productService.GetByIdAsync(request.ProductId);
+            if (!result.Success || result.Data == null)
+                return NotFound();
+
+            var product = result.Data;
+
+            var header = BuildPdfHeader(product, request.Voltage);
+
+            var pdfBytes = _pdfService.GenerateProductPerformancePdf(
+                product,
+                header,
+                request
+            );
+
+            return File(
+                pdfBytes,
+                "application/pdf",
+                $"{product.ProductModelCode}-performance.pdf"
+            );
+        }
+
+        private ProductPdfHeaderDto BuildPdfHeader(ProductDto product, string? selectedVoltage)
+        {
+            bool isEx = product.WorkingConditionNames != null && product.WorkingConditionNames.Any(x => x.Equals("Patlayıcı Ortamlar", StringComparison.OrdinalIgnoreCase) || x.Equals("Patlayıcı ve Kimyasal Ortamlar", StringComparison.OrdinalIgnoreCase));
+            
+            string voltageCode = string.Empty; if (!string.IsNullOrEmpty(selectedVoltage))
+            {
+                if (selectedVoltage.StartsWith("3Ph")) voltageCode = "(T)";
+                else if (selectedVoltage.StartsWith("1Ph")) voltageCode = "(M)";
+            }
+
+            bool showVoltageCode = !string.IsNullOrEmpty(voltageCode) && !(isEx && voltageCode == "(T)");
+
+            return new ProductPdfHeaderDto
+            {
+                ProductModelCode = product.ProductModelCode,
+                ProductTestName = product.ProductTestName,
+                IsEx = isEx,
+                VoltageCode = showVoltageCode ? voltageCode : null
+            };
         }
 
     }

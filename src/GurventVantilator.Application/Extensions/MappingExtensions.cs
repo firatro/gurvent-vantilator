@@ -50,7 +50,6 @@ namespace GurventVantilator.Application.Extensions
         Value = x.Value
     })
     .ToList() ?? new List<ProductContentFeatureDto>(),
-
                 Image1Path = entity.Image1Path,
                 Image2Path = entity.Image2Path,
                 Image3Path = entity.Image3Path,
@@ -60,20 +59,18 @@ namespace GurventVantilator.Application.Extensions
                 Model3DPath = entity.Model3DPath,
                 TestDataPath = entity.TestDataPath,
                 ScaleImagePath = entity.ScaleImagePath,
-
                 IsActive = entity.IsActive,
                 Order = entity.Order,
                 CreatedAt = entity.CreatedAt,
-                UpdatedAt = entity.UpdatedAt
-                ,
-
+                UpdatedAt = entity.UpdatedAt,
                 Accessories = entity.Accessories?
             .Where(x => x.IsActive)
             .Select(x => new ProductAccessoryDto
             {
                 AccessoryName = x.AccessoryName,
                 Type = x.Type,
-                ImagePath = x.ImagePath
+                ImagePath = x.ImagePath,
+                ArticleNumber = x.ArticleNumber
             }).ToList() ?? new List<ProductAccessoryDto>()
             };
         }

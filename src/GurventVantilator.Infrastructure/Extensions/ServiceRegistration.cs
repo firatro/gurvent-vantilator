@@ -6,6 +6,7 @@ using GurventVantilator.Domain.Interfaces.Repositories;
 using GurventVantilator.Infrastructure.Data;
 using GurventVantilator.Infrastructure.Data.Repositories;
 using GurventVantilator.Infrastructure.Identity;
+using GurventVantilator.Infrastructure.Pdf;
 using GurventVantilator.Infrastructure.Persistence.Repositories;
 using GurventVantilator.Infrastructure.Repositories;
 using GurventVantilator.Infrastructure.Services;
@@ -61,9 +62,15 @@ namespace GurventVantilator.Infrastructure.Extensions
             services.AddScoped<IProductTestDataPointRepository, ProductTestDataPointRepository>();
             services.AddScoped<IProductAccessoryRepository, ProductAccessoryRepository>();
 
+
             // File Upload
             services.AddScoped<IFileService, FileService>();
+
             services.AddScoped<IFileValidator, FileValidator>();
+
+            // PDF Generator
+            QuestPdfSettings.Configure();
+            services.AddScoped<IPdfService, PdfService>();
 
             // Authentication Kayıtları
             services.AddScoped<IAuthRepository, AuthRepository>();

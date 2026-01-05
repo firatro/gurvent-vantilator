@@ -4,7 +4,9 @@ using GurventVantilator.Infrastructure.Extensions;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 
+
 var builder = WebApplication.CreateBuilder(args);
+
 
 // ======================================================
 // 1️⃣ SERVISLER

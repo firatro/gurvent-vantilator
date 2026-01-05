@@ -28,13 +28,6 @@
     <script>
         Chart.register(window['chartjs-plugin-annotation']);
     </script>
-    <style>
-        canvas {
-            max-width: 800px;
-            max-height: 400px;
-        }
-    </style>
-
 </head>
 
 <body id="body" class="it-magic-cursor">
@@ -87,6 +80,7 @@
     <script src="~/js/wow.js"></script>
     <script src="~/js/main.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 
 </html>

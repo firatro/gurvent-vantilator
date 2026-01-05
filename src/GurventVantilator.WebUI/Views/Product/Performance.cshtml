@@ -4,211 +4,44 @@
     int productId = ViewBag.ProductId;
 }
 
-<style>
-    .accessory-table-wrapper {
-        background: #f8f9fb;
-        border-radius: 12px;
-        padding: 12px;
-    }
+<link rel="stylesheet" href="~/css/performance-style.css" />
 
-    .accessory-table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0 8px;
-        font-size: 14px;
-    }
-
-    .accessory-table thead th {
-        text-align: left;
-        padding: 10px 12px;
-        color: #666;
-        font-weight: 600;
-    }
-
-    .accessory-row {
-        background: #fff;
-        border-radius: 10px;
-        transition: all 0.2s ease;
-    }
-
-    .accessory-row:hover {
-        background: #f1f3f5;
-    }
-
-    .accessory-row.active {
-        background: #ffd84d;
-    }
-
-    .accessory-row td {
-        padding: 12px;
-        vertical-align: middle;
-    }
-
-    .img-col img {
-        width: 42px;
-        height: 42px;
-        object-fit: contain;
-    }
-
-    .model-col {
-        font-weight: 600;
-    }
-
-    .type-col {
-        color: #666;
-    }
-
-    .article-col {
-        font-family: monospace;
-    }
-
-    .qty-col {
-        text-align: center;
-    }
-
-    .qty-control {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-    }
-
-    .qty-btn {
-        width: 26px;
-        height: 26px;
-        border-radius: 50%;
-        border: none;
-        background: #e0e0e0;
-        cursor: pointer;
-        font-weight: bold;
-    }
-
-    .qty-btn:hover {
-        background: #ccc;
-    }
-
-    .qty-value {
-        min-width: 20px;
-        text-align: center;
-        font-weight: 600;
-    }
-</style>
-<style>
-    .metric-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 0.9rem;
-    }
-
-    .metric-table tr {
-        border-bottom: 1px solid #e9ecef;
-    }
-
-    .metric-table td {
-        padding: 0.35rem 0.25rem;
-        vertical-align: middle;
-    }
-
-    /* 1️⃣ Açıklama */
-    .metric-table .label {
-        font-weight: 500;
-        color: #296299;
-    }
-
-    /* 2️⃣ Birim */
-    .metric-table .unit {
-        color: #296299;
-        font-size: 0.8rem;
-        text-align: center;
-        width: 60px;
-    }
-
-    /* 3️⃣ Değer */
-    .metric-table .value {
-        text-align: right;
-        font-weight: 700;
-        color: #296299;
-        width: 80px;
-    }
-
-    .metric-table tr:hover {
-        background-color: #f8f9fa;
-    }
-
-    .metric-table .value.active {
-        color: #dc3545;
-    }
-</style>
-
-<style>
-    .mini-chart-card {
-        background: #f2f2f2;
-        border-radius: 14px;
-        padding: 12px 14px;
-        height: 220px;
-        /* 🔥 Hepsi aynı yükseklik */
-        display: flex;
-        flex-direction: column;
-    }
-
-    .mini-chart-title {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: #555;
-        margin-bottom: 6px;
-    }
-
-    .mini-chart-unit {
-        font-size: 0.7rem;
-        color: #777;
-        margin-bottom: 4px;
-    }
-
-    .mini-chart-canvas {
-        flex: 1;
-        position: relative;
-    }
-
-    .mini-chart-canvas canvas {
-        width: 100% !important;
-        height: 100% !important;
-    }
-</style>
 
 <div class="container pt-180">
 
-@{
-    bool isEx =
+    @{
+        bool isEx =
         Model.WorkingConditionNames != null &&
         Model.WorkingConditionNames.Any(x =>
-            x.Equals("Patlayıcı Ortamlar", StringComparison.OrdinalIgnoreCase) ||
-            x.Equals("Patlayıcı ve Kimyasal Ortamlar", StringComparison.OrdinalIgnoreCase)
+        x.Equals("Patlayıcı Ortamlar", StringComparison.OrdinalIgnoreCase) ||
+        x.Equals("Patlayıcı ve Kimyasal Ortamlar", StringComparison.OrdinalIgnoreCase)
         );
-}
-
-@{
-    string selectedVoltage = ViewBag.SelectedVoltage as string;
-    string voltageCode = string.Empty;
-
-    if (!string.IsNullOrEmpty(selectedVoltage))
-    {
-        if (selectedVoltage.StartsWith("3Ph"))
-        {
-            voltageCode = "(T)";
-        }
-        else if (selectedVoltage.StartsWith("1Ph"))
-        {
-            voltageCode = "(M)";
-        }
     }
 
-    bool showVoltageCode =
+    @{
+        string selectedVoltage = ViewBag.SelectedVoltage as string;
+        string voltageCode = string.Empty;
+
+        if (!string.IsNullOrEmpty(selectedVoltage))
+        {
+            if (selectedVoltage.StartsWith("3Ph"))
+            {
+                voltageCode = "(T)";
+            }
+            else if (selectedVoltage.StartsWith("1Ph"))
+            {
+                voltageCode = "(M)";
+            }
+        }
+
+        bool showVoltageCode =
         !string.IsNullOrEmpty(voltageCode)
         && !(isEx && voltageCode == "(T)");
-}
+    }
 
-   <h2 class="mb-4">
+    <h2 class="mb-4">
 
-    @(Model.ProductModelCode)
+        @(Model.ProductModelCode)
 
         @if (!string.IsNullOrEmpty(Model.ProductTestName))
         {
@@ -217,33 +50,34 @@
 
 
 
-    <!-- 🔴 GERÇEK ÇALIŞMA NOKTASI -->
-    <span id="workingPointLabel" style="display:none;">
-        
-    </span>
+        <!-- 🔴 GERÇEK ÇALIŞMA NOKTASI -->
+        <span id="workingPointLabel" style="display:none;">
 
-    @* 🔥 Patlayıcı Ortamlar → Ex *@
-    @if (isEx)
-    {
-        <span>Ex</span>
-    }
+        </span>
 
-    @* 🔥 VOLTAJ KODU *@
-    @if (!string.IsNullOrEmpty(selectedVoltage) && showVoltageCode)
-    {
-        <span class="ms-1">@voltageCode</span>
-    }
+        @* 🔥 Patlayıcı Ortamlar → Ex *@
+        @if (isEx)
+        {
+            <span>Ex</span>
+        }
 
-    <a href="@Url.Action("Index", "FanSelector")"
-       class="btn btn-sm btn-outline-secondary">
-        ← Başa Dön
-    </a>
-</h2>
+        @* 🔥 VOLTAJ KODU *@
+        @if (!string.IsNullOrEmpty(selectedVoltage) && showVoltageCode)
+        {
+            <span class="ms-1">@voltageCode</span>
+        }
 
+        <a href="@Url.Action("Index", "FanSelector")" class="btn btn-sm btn-outline-secondary">
+            ← Başa Dön
+        </a>
+    </h2>
 
 
-
-
+    <div class="mb-3">
+        <button id="btnGeneratePdf" class="btn btn-primary">
+            PDF Oluştur
+        </button>
+    </div>
 
 
     <div class="card shadow-sm">
@@ -254,10 +88,10 @@
 
                 <!-- 🔹 SOL SÜTUN (1/3) -->
                 <div class="col-lg-4">
-                
+
                     <!-- INPUT FORM -->
                     <form id="workingPointForm" class="row g-3">
-                         <div class="it-btn-orange d-flex justify-content-center align-items-center">
+                        <div class="it-btn-orange d-flex justify-content-center align-items-center">
                             <span>
                                 <span class="text-1">İSTENEN KAPASİTE</span>
                                 <span class="text-2">İSTENEN KAPASİTE</span>
@@ -359,6 +193,7 @@
                     </div>
 
                 </div>
+
 
             </div>
             <!-- =================== GRID END =================== -->
@@ -467,368 +302,109 @@
                 </div>
             </div>
 
-            <div class="row g-4 mt-5 align-items-center">
+            <div class="row g-4 mt-3">
 
-                <!-- 🔹 SOL SÜTUN: GÖRSEL (SAĞA DAYALI) -->
-                <div class="col-lg-6 d-flex justify-content-end">
-                    <div class="product-main-image">
-                        <img src="https://admin.gurvent.firatramazano.com/@Model.Image1Path" alt="@Model.Name"
-                            class="img-fluid" style="height:500px; object-fit:contain;" />
+                <div class="row g-4 mt-4 align-items-center">
+
+                    <!-- 🔹 SOL SÜTUN: GÖRSEL (SAĞA DAYALI) -->
+                    <div class="col-lg-6 d-flex justify-content-end">
+                        <div class="product-main-image">
+                            <img src="https://admin.gurvent.firatramazano.com/@Model.Image1Path" alt="@Model.Name"
+                                class="img-fluid" style="height:500px; object-fit:contain;" />
+                        </div>
                     </div>
+
+                    <!-- 🔹 SAĞ SÜTUN: METİN (SOLA DAYALI) -->
+                    <div class="col-lg-6 text-start">
+
+                        <h4 class="fw-bold mb-2" style="color: #296299;">
+                            @Model.Code
+                        </h4>
+
+                        <h5 class="mb-3" style="color: #296299;">@Model.Name</h5>
+
+                        <p class="text-muted mb-4">
+                            @Model.Description
+                        </p>
+
+                    </div>
+
                 </div>
+                <div class="row g-4 mt-5 align-items-center">
 
-                <!-- 🔹 SAĞ SÜTUN: METİN (SOLA DAYALI) -->
-                <div class="col-lg-6 text-start">
+                    @if (Model.Accessories != null && Model.Accessories.Any())
+                    {
+                        <hr class="my-5" />
 
-                    <h4 class="fw-bold mb-2" style="color: #296299;">
-                        @Model.Code
-                    </h4>
-
-                    <h5 class="mb-3" style="color: #296299;">@Model.Name</h5>
-
-                    <p class="text-muted mb-4">
-                        @Model.Description
-                    </p>
-
-                </div>
-
-            </div>
-            <div class="row g-4 mt-5 align-items-center">
-
-                @if (Model.Accessories != null && Model.Accessories.Any())
-                {
-                    <hr class="my-5" />
-
-                    <h4 class="mb-3" style="color:#296299;">Aksesuarlar</h4>
-                    <div class="accessory-table-wrapper">
-                        <table class="accessory-table">
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Model</th>
-                                    <th>Type</th>
-                                    <th>Article number</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <!-- ROW -->
-                                @foreach (var item in Model.Accessories)
-                                {
-                                    <tr class="accessory-row">
-                                        <td><img src="@item.ImagePath" /></td>
-                                        <td>@item.AccessoryName</td>
-                                        <td>@item.Type</td>
-                                        <td>@item.ArticleNumber</td>
+                        <h4 class="mb-3" style="color:#296299;">Aksesuarlar</h4>
+                        <div class="accessory-table-wrapper">
+                            <table class="accessory-table">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Model</th>
+                                        <th>Type</th>
+                                        <th>Article number</th>
                                     </tr>
-                                }
+                                </thead>
+                                <tbody>
+
+                                    <!-- ROW -->
+                                    @foreach (GurventVantilator.Application.DTOs.ProductAccessoryDto item in
+                                                                    Model.Accessories)
+                                    {
+                                        <tr class="accessory-row">
+                                            <td><img src="@item.ImagePath" /></td>
+                                            <td>@item.AccessoryName</td>
+                                            <td>@item.Type</td>
+                                            <td>@item.ArticleNumber</td>
+                                        </tr>
+                                    }
 
 
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    }
+                </div>
+                <div class="row g-4 mt-4 align-items-center">
+
+                    <!-- 🔹 SOL SÜTUN: GÖRSEL (SAĞA DAYALI) -->
+                    <div class="col-lg-12 d-flex">
+                        <div class="product-main-image">
+                            <img src="https://admin.gurvent.firatramazano.com/@Model.ScaleImagePath" alt="@Model.Name"
+                                class="img-fluid" />
+                        </div>
                     </div>
 
-                }
-
-
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 @section Scripts {
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script>
-    window.initialWorkingPoint = {
-        q: @(ViewBag.InitialQ != null
-            ? ViewBag.InitialQ.ToString(System.Globalization.CultureInfo.InvariantCulture)
-            : "null"),
-        pt: @(ViewBag.InitialPt != null
-            ? ViewBag.InitialPt.ToString(System.Globalization.CultureInfo.InvariantCulture)
-            : "null")
-    };
-</script>
-
-<script>
-    let pinnedTooltip = null;
-    let fanChartInstance = null;
-    const miniCharts = {};
-
-    // =========================
-    // STATE UYGULAYICI (TEK MERKEZ)
-    // =========================
-    function applyWorkingPoint(p) {
-        if (!p) return;
-        updateMetaFromPoint(p);
-        updateMiniChartsWorkingPoint(p);
-    }
-
-    // =========================
-    // ANA GRAFİK YÜKLE
-    // =========================
-    fetch('/FanChart/GetChart?productId=@productId')
-        .then(res => res.json())
-        .then(chart => {
-
-            const canvas = document.getElementById('fanChart');
-            if (!canvas) return;
-
-            Chart.register({
-                id: 'pinnedTooltipPlugin',
-                afterDraw(chart) {
-                    if (pinnedTooltip) {
-                        chart.tooltip.setActiveElements(
-                            [pinnedTooltip],
-                            { x: chart.chartArea.left, y: chart.chartArea.top }
-                        );
-                    }
-                }
-            });
-
-            fanChartInstance = new Chart(canvas, {
-                type: 'line',
-                data: {
-                    datasets: chart.datasets.map(d => ({
-                        label: d.label,
-                        hidden: d.hideLegend === true,
-                        data: d.data.map(p => ({
-                            x: p.x,
-                            y: p.y,
-                            ps: p.ps,
-                            pd: p.pd,
-                            speed: p.speed,
-                            current: p.current,
-                            airPower: p.airPower,
-                            totalEfficiency: p.totalEfficiency,
-                            mechanicalEfficiency: p.mechanicalEfficiency,
-                            db: p.db
-                        })),
-                        borderWidth: 2,
-                        tension: 0.3,
-                        pointRadius: 0
-                    }))
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    parsing: false,
-                    onClick: (evt, elements) => {
-                        if (!elements.length) {
-                            pinnedTooltip = null;
-                            fanChartInstance.tooltip.setActiveElements([]);
-                            fanChartInstance.update();
-                            return;
-                        }
-
-                        const { datasetIndex, index } = elements[0];
-                        pinnedTooltip = { datasetIndex, index };
-
-                        const p = fanChartInstance.data.datasets[datasetIndex].data[index];
-                        applyWorkingPoint(p);
-                        selectDatasetByIndex(datasetIndex);
-
-                        fanChartInstance.update();
-                    },
-                    plugins: {
-                        legend: {
-                            position: 'bottom',
-                            onClick: (_, item) => selectDatasetByIndex(item.datasetIndex)
-                        },
-                        tooltip: {
-                            enabled: true,
-                            callbacks: {
-                                title: () => null,
-                                label: ctx => {
-                                    const p = ctx.raw;
-                                  
-                                    return [`Q: ${p.x.toFixed(2)}`, `Pt: ${p.y.toFixed(2)}`];
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        x: { type: 'linear', title: { display: true, text: chart.xAxisLabel }},
-                        y: { type: 'linear', title: { display: true, text: chart.yAxisLabel }}
-                    }
-                }
-            });
-
-            // =========================
-            // MINI GRAFİKLER
-            // =========================
-            createMiniChart('chart-ps', map(chart, 'ps'), 'Ps [Pa]');
-            createMiniChart('chart-pd', map(chart, 'pd'), 'Pd [Pa]');
-            createMiniChart('chart-pt', map(chart, 'y'), 'Pt [Pa]');
-            createMiniChart('chart-speed', map(chart, 'speed'), 'rpm');
-            createMiniChart('chart-current', map(chart, 'current'), 'A');
-            createMiniChart('chart-power', map(chart, 'airPower'), 'W');
-            createMiniChart('chart-eff-static', map(chart, 'mechanicalEfficiency'), '%');
-            createMiniChart('chart-eff-total', map(chart, 'totalEfficiency'), '%');
-            createMiniChart('chart-db', map(chart, 'db'), 'dB(A)');
-
-            // =========================
-            // URL'DEN GELEN ÇALIŞMA NOKTASI
-            // =========================
-            if (window.initialWorkingPoint.q !== null && window.initialWorkingPoint.pt !== null) {
-                const q = parseFloat(window.initialWorkingPoint.q);
-                const pt = parseFloat(window.initialWorkingPoint.pt);
-
-                document.getElementById("inputQ").value = q;
-                document.getElementById("inputPt").value = pt;
-
-                highlightWorkingPoint(q, pt);
-            }
-        });
-
-    // =========================
-    // FORM SUBMIT
-    // =========================
-    document.getElementById('workingPointForm')
-        .addEventListener('submit', e => {
-            e.preventDefault();
-            const q = parseFloat(inputQ.value);
-            const pt = parseFloat(inputPt.value);
-            if (!isNaN(q) && !isNaN(pt)) highlightWorkingPoint(q, pt);
-        });
-
-        function updateWorkingPointLabel(text) {
-            const el = document.getElementById("workingPointLabel");
-            if (!el || !text) return;
-
-            el.textContent = text.startsWith("/") ? text : `/${text}`;
-            el.style.display = "inline";
-            el.style.marginLeft = "6px";
-        }
-
-    // =========================
-    // WORKING POINT HESAPLA
-    // =========================
-    function highlightWorkingPoint(inputQ, inputPt) {
-    let minDist = Infinity,
-        closestPoint = null,
-        closestIndex = -1;
-
-    fanChartInstance.data.datasets.forEach((ds, i) => {
-        ds.data.forEach(p => {
-            const d = Math.hypot(p.x - inputQ, p.y - inputPt);
-            if (d < minDist) {
-                minDist = d;
-                closestPoint = p;
-                closestIndex = i;
-            }
-        });
-    });
-
-    // 🔥 ÇALIŞMA NOKTASI DATASET’İ EKLEME (senin mevcut kod)
-    fanChartInstance.data.datasets =
-        fanChartInstance.data.datasets.filter(d => d.label !== 'Çalışma Noktası');
-
-    fanChartInstance.data.datasets.push({
-        label: 'Çalışma Noktası',
-        data: [{ x: inputQ, y: inputPt }],
-        borderColor: 'red',
-        backgroundColor: 'red',
-        pointRadius: 7,
-        showLine: false
-    });
-
-    // 🔥 SEÇİLİ EĞRİYİ VURGULA
-    selectDatasetByIndex(closestIndex);
-    applyWorkingPoint(closestPoint);
-
-    // ✅ İŞTE ARADIĞIN YER BURASI
-    const selectedDataset = fanChartInstance.data.datasets[closestIndex];
-    if (selectedDataset?.label) {
-        updateWorkingPointLabel(selectedDataset.label);
-    }
-
-    fanChartInstance.update();
-}
+    <script>
+        window.initialWorkingPoint = {
+            q: @(ViewBag.InitialQ != null
+                            ? ViewBag.InitialQ.ToString(System.Globalization.CultureInfo.InvariantCulture)
+                            : "null"),
+            pt: @(ViewBag.InitialPt != null
+                            ? ViewBag.InitialPt.ToString(System.Globalization.CultureInfo.InvariantCulture)
+                            : "null")
+            };
+    </script>
 
 
-    // =========================
-    // YARDIMCILAR
-    // =========================
-    function selectDatasetByIndex(i) {
-        fanChartInstance.data.datasets.forEach((ds, idx) => {
-            ds.borderWidth = idx === i ? 5 : 1;
-            ds.borderColor = idx === i ? '#0d6efd' : '#ccc';
-            ds.borderDash = idx === i ? [] : [5,5];
-        });
-    }
-
-    function map(chart, field) {
-        return chart.datasets.map(d => ({
-            label: d.label,
-            data: d.data
-                .filter(p => p[field] !== null && p[field] !== undefined)
-                .map(p => ({ x: p.x, y: field === 'y' ? p.y : p[field] }))
-        }));
-    }
-
-    function createMiniChart(id, datasets, yLabel) {
-        const c = new Chart(document.getElementById(id), {
-            type: 'line',
-            data: { datasets },
-            options: {
-                parsing: false,
-                plugins: { legend: { display: false }},
-                scales: { x: { type: 'linear' }, y: { title: { display: true, text: yLabel }}},
-                elements: { point: { radius: 0 }}
-            }
-        });
-        miniCharts[id] = c;
-    }
-
-    function updateMiniChartsWorkingPoint(p) {
-        const map = {
-            "chart-ps": p.ps,
-            "chart-pd": p.pd,
-            "chart-pt": p.y,
-            "chart-speed": p.speed,
-            "chart-current": p.current,
-            "chart-power": p.airPower,
-            "chart-eff-static": p.mechanicalEfficiency,
-            "chart-eff-total": p.totalEfficiency,
-            "chart-db": p.db
+    <script>
+        window.performanceData = {
+            productId: @productId,
+            initialWorkingPoint: window.initialWorkingPoint
         };
+    </script>
 
-        Object.entries(map).forEach(([id, y]) => {
-            const c = miniCharts[id];
-            if (!c) return;
-
-            c.data.datasets = c.data.datasets.filter(d => d.label !== 'Çalışma Noktası');
-            c.data.datasets.push({
-                label: 'Çalışma Noktası',
-                data: [{ x: p.x, y }],
-                backgroundColor: 'red',
-                borderColor: 'red',
-                pointRadius: 5,
-                showLine: false
-            });
-            c.update();
-        });
-    }
-
-    function updateMetaFromPoint(p) {
-        setText('meta-q', p.x);
-        setText('meta-ps', p.ps);
-        setText('meta-pd', p.pd);
-        setText('meta-pt', p.y);
-        setText('meta-speed', p.speed);
-        setText('meta-current', p.current);
-        setText('meta-airpower', p.airPower);
-        setText('meta-total-eff', p.totalEfficiency);
-        setText('meta-mech-eff', p.mechanicalEfficiency);
-        setText('meta-db', p.db);
-    }
-
-    function setText(id, val) {
-        document.getElementById(id).innerText =
-            val != null ? val.toFixed(2) : '-';
-    }
-</script>
-
-
+    <script src="~/js/performance-script.js" asp-append-version="true"></script>
 }
