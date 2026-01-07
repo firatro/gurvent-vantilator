@@ -33,10 +33,27 @@ namespace GurventVantilator.Infrastructure.Pdf.Components
                 // 🔹 SAĞ BİLGİ
                 row.RelativeItem(1).AlignRight().Column(col =>
                 {
-                    col.Item().Text(_header.GetDisplayTitle())
-                        .FontSize(16)
-                        .Bold()
-                        .FontColor(Colors.Black);
+                    col.Item().Text(t =>
+                    {
+                        t.Span(_header.ProductModelCode).FontSize(16).Bold();
+
+                        if (!string.IsNullOrEmpty(_header.ProductTestName))
+                            t.Span(" " + _header.ProductTestName).FontSize(16).Bold();
+
+                        if (!string.IsNullOrEmpty(_header.WorkingPointLabel))
+                        {
+                            t.Span(" ");
+                            t.Span(_header.WorkingPointLabel)
+                                .FontSize(16).Bold();
+                        }
+
+                        if (_header.IsEx)
+                            t.Span(" Ex") .FontSize(16).Bold();;
+
+                        if (!string.IsNullOrEmpty(_header.VoltageCode))
+                            t.Span(" " + _header.VoltageCode).FontSize(16).Bold();
+                    });
+
                 });
             });
         }

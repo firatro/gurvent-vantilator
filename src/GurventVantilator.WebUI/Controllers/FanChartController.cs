@@ -34,9 +34,14 @@ public class FanChartController : BaseController
 
 
     // AJAX / API gibi kullanılabilir
-    public async Task<IActionResult> GetChart(int productId)
+    public async Task<IActionResult> GetChart(int productId, string? speedControl, string? voltage)
     {
-        var chart = await _fanChartService.GetChartByProductIdAsync(productId);
+        var chart = await _fanChartService.GetChartByProductIdAsync(
+            productId,
+            speedControl,
+            voltage
+        );
+
         ViewBag.ProductId = productId;
         return Json(chart);
     }

@@ -582,8 +582,14 @@
 
                    const voltage = document.querySelector('[name="Voltage"]')?.value;
 
+                    const speedControl = document.querySelector('[name="SpeedControl"]')?.value;
+
                     window.location.href =
-                        `/Product/Performance/${productId}?q=${q}&pt=${pt}&voltage=${encodeURIComponent(voltage ?? "")}`;
+                        `/Product/Performance/${productId}`
+                        + `?q=${q}`
+                        + `&pt=${pt}`
+                        + `&voltage=${encodeURIComponent(voltage ?? "")}`
+                        + `&speedControl=${encodeURIComponent(speedControl ?? "")}`;
 
                 });
 

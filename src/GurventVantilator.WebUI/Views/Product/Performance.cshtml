@@ -39,7 +39,7 @@
         && !(isEx && voltageCode == "(T)");
     }
 
-    <h2 class="mb-4">
+    <h2 class="mb-4 d-flex align-items-center gap-2">
 
         @(Model.ProductModelCode)
 
@@ -48,20 +48,13 @@
             <span>@Model.ProductTestName</span>
         }
 
+        <span id="workingPointLabel" style="display:none;"></span>
 
-
-        <!-- 🔴 GERÇEK ÇALIŞMA NOKTASI -->
-        <span id="workingPointLabel" style="display:none;">
-
-        </span>
-
-        @* 🔥 Patlayıcı Ortamlar → Ex *@
         @if (isEx)
         {
             <span>Ex</span>
         }
 
-        @* 🔥 VOLTAJ KODU *@
         @if (!string.IsNullOrEmpty(selectedVoltage) && showVoltageCode)
         {
             <span class="ms-1">@voltageCode</span>
@@ -70,14 +63,22 @@
         <a href="@Url.Action("Index", "FanSelector")" class="btn btn-sm btn-outline-secondary">
             ← Başa Dön
         </a>
+
+        <!-- 🔥 SAĞA DAYALI PDF BUTONU -->
+        <div class="pdf-btn-wrapper ms-auto">
+            <button id="btnGeneratePdf" class="btn-pdf">
+                📄 PDF Oluştur
+            </button>
+        </div>
+
+
+
     </h2>
 
 
-    <div class="mb-3">
-        <button id="btnGeneratePdf" class="btn btn-primary">
-            PDF Oluştur
-        </button>
-    </div>
+
+
+
 
 
     <div class="card shadow-sm">
@@ -380,9 +381,20 @@
 
                 </div>
             </div>
+
         </div>
     </div>
+
 </div>
+
+<!-- GLOBAL LOADING OVERLAY -->
+<div id="globalLoader" class="global-loader">
+    <div class="loader-box">
+        <div class="spinner"></div>
+        <div class="loader-text">Lütfen bekleyiniz...</div>
+    </div>
+</div>
+
 
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -395,14 +407,16 @@
             pt: @(ViewBag.InitialPt != null
                             ? ViewBag.InitialPt.ToString(System.Globalization.CultureInfo.InvariantCulture)
                             : "null")
-            };
+                                                                };
     </script>
 
 
     <script>
         window.performanceData = {
             productId: @productId,
-            initialWorkingPoint: window.initialWorkingPoint
+            initialWorkingPoint: window.initialWorkingPoint,
+            speedControl: "@ViewBag.SpeedControl",
+            selectedVoltage: "@ViewBag.SelectedVoltage"
         };
     </script>
 

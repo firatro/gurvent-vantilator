@@ -76,7 +76,7 @@ namespace GurventVantilator.WebUI.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Performance(int id, double? q, double? pt, string? voltage)
+        public async Task<IActionResult> Performance(int id, double? q, double? pt, string? voltage, string? speedControl)
         {
             var result = await _productService.GetByIdAsync(id);
             if (!result.Success || result.Data == null)
@@ -89,7 +89,8 @@ namespace GurventVantilator.WebUI.Controllers
             ViewBag.InitialQ = q;
             ViewBag.InitialPt = pt;
             ViewBag.SelectedVoltage = voltage;
-
+            ViewBag.SpeedControl = speedControl;
+            
             return View(product); // ProductDto direkt gidiyor
         }
 
@@ -124,7 +125,7 @@ namespace GurventVantilator.WebUI.Controllers
         private ProductPdfHeaderDto BuildPdfHeader(ProductDto product, string? selectedVoltage)
         {
             bool isEx = product.WorkingConditionNames != null && product.WorkingConditionNames.Any(x => x.Equals("Patlayıcı Ortamlar", StringComparison.OrdinalIgnoreCase) || x.Equals("Patlayıcı ve Kimyasal Ortamlar", StringComparison.OrdinalIgnoreCase));
-            
+
             string voltageCode = string.Empty; if (!string.IsNullOrEmpty(selectedVoltage))
             {
                 if (selectedVoltage.StartsWith("3Ph")) voltageCode = "(T)";

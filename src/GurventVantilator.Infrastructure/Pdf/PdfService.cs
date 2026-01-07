@@ -15,7 +15,7 @@ namespace GurventVantilator.Infrastructure.Pdf
             ProductPdfHeaderDto header,
             ProductPerformancePdfRequestDto request)
         {
-
+            header.WorkingPointLabel = request.WorkingPointLabel;
             var extraInfo = new ProductPdfExtraInfoDto
             {
                 ProjectName = ".",
@@ -69,7 +69,12 @@ namespace GurventVantilator.Infrastructure.Pdf
                         {
                             // SOL: META TABLO
                             row.RelativeItem(1)
-                                .Component(new PerformanceMetaTableComponent(request.Meta));
+                                .Component(new PerformanceMetaTableComponent(
+                                    request.Meta,
+                                    request.RequestedQ,
+                                    request.RequestedPt
+                                ));
+
 
                             // SAĞ: MINI GRAFİKLER (3x3)
                             row.RelativeItem(2)

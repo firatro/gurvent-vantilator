@@ -11,17 +11,45 @@ public class FanChartManager : IFanChartService
         _testDataRepository = testDataRepository;
     }
 
-    public async Task<FanChartDto> GetChartByProductIdAsync(int productId)
+    public async Task<FanChartDto> GetChartByProductIdAsync(int productId, string? speedControl, string? voltage)
     {
         var testData = await _testDataRepository.GetActiveByProductIdAsync(productId);
 
         if (testData == null || testData.Points == null || !testData.Points.Any())
             return new FanChartDto();
 
+        int? targetHz = null;
+
+        // 1️⃣ Voltage öncelikli
+        if (!string.IsNullOrEmpty(voltage))
+        {
+            if (voltage.EndsWith("50Hz", StringComparison.OrdinalIgnoreCase))
+                targetHz = 50;
+            else if (voltage.EndsWith("60Hz", StringComparison.OrdinalIgnoreCase))
+                targetHz = 60;
+        }
+
+        // 2️⃣ Voltage yoksa → DirectCoupled
+        if (targetHz == null &&
+            string.Equals(speedControl, "DirectCoupled", StringComparison.OrdinalIgnoreCase))
+        {
+            targetHz = 50;
+        }
+
+
         var datasets = new List<FanChartDatasetDto>();
 
         for (int i = 2; i <= 12; i++)
         {
+            string label = CurveLabels.ContainsKey(i)
+                                        ? CurveLabels[i]
+                                        : $"Q{i}";
+
+            // 🔥 Hz FİLTRESİ
+            if (targetHz != null && !label.EndsWith($"/{targetHz}"))
+                continue;
+
+
             var data = new List<FanChartPointDto>();
 
             foreach (var p in testData.Points)
@@ -60,13 +88,15 @@ public class FanChartManager : IFanChartService
             if (!data.Any())
                 continue;
 
+
+
             datasets.Add(new FanChartDatasetDto
             {
                 Label = CurveLabels.ContainsKey(i)
                 ? CurveLabels[i]
                 : $"Q{i}",
                 Data = data.OrderBy(x => x.X).ToList(),
-                HideLegend = i == 1  
+                HideLegend = i == 1
             });
         }
 

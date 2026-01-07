@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Qdu5hskJnZhtrgmPGNr6ZYO9WrkNOrSVUUoiyi6hB8Q=",
+  "Hash": "vGRwpKBJefV9bmOQxV5fqEOE5hb5wraCkmTW2QfNhqY=",
   "Source": "GurventVantilator.WebUI",
   "BasePath": "_content/GurventVantilator.WebUI",
   "Mode": "Default",
@@ -72,6 +72,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/bootstrap.min.css"
+    },
+    {
+      "Identity": "/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.WebUI/wwwroot/css/canvas-style.css",
+      "SourceId": "GurventVantilator.WebUI",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.WebUI/wwwroot/",
+      "BasePath": "_content/GurventVantilator.WebUI",
+      "RelativePath": "css/canvas-style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/canvas-style.css"
     },
     {
       "Identity": "/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.WebUI/wwwroot/css/custom-animation.css",
@@ -205,6 +224,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/css/nice-select.css"
+    },
+    {
+      "Identity": "/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.WebUI/wwwroot/css/performance-style.css",
+      "SourceId": "GurventVantilator.WebUI",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.WebUI/wwwroot/",
+      "BasePath": "_content/GurventVantilator.WebUI",
+      "RelativePath": "css/performance-style.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/css/performance-style.css"
     },
     {
       "Identity": "/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.WebUI/wwwroot/css/slick.css",
@@ -4651,6 +4689,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot/js/ordain-it.js"
+    },
+    {
+      "Identity": "/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.WebUI/wwwroot/js/performance-script.js",
+      "SourceId": "GurventVantilator.WebUI",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.WebUI/wwwroot/",
+      "BasePath": "_content/GurventVantilator.WebUI",
+      "RelativePath": "js/performance-script.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/js/performance-script.js"
     },
     {
       "Identity": "/Users/firatramazano/development/Freelance/Projects/M001_Gurvent_Vantilator/P001_Gurvent_Vantilator/03_Source_Code/GurventVantilator/src/GurventVantilator.WebUI/wwwroot/js/purecounter.js",

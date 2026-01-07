@@ -2,5 +2,5 @@ using GurventVantilator.Application.DTOs.Charts;
 
 public interface IFanChartService
 {
-    Task<FanChartDto> GetChartByProductIdAsync(int productId);
+    Task<FanChartDto> GetChartByProductIdAsync(int productId, string? speedControl, string? voltage);
 }

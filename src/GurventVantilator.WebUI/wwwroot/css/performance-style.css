@@ -203,3 +203,109 @@
         font-size: 14px;
     }
 }
+
+
+/* PDF BUTTON – FINAL */
+/* ================================
+   PDF BUTTON – RESPONSIVE FIX
+================================ */
+
+/* Genel buton görünümü */
+.btn-pdf {
+    background: #296299;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.btn-pdf:hover {
+    background: #1f4d78;
+}
+
+/* Desktop */
+.pdf-btn-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+/* ================================
+   MOBİL OPTİMİZASYON
+================================ */
+@media (max-width: 991.98px) {
+
+    h2.mb-4 {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .pdf-btn-wrapper {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    .btn-pdf {
+        width: 100%;
+        text-align: center;
+        padding: 12px 16px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 575px) {
+    .pdf-btn-wrapper {
+        position: sticky;
+        bottom: 10px;
+        z-index: 20;
+    }
+}
+
+
+
+/* =========================
+   GLOBAL LOADING OVERLAY
+========================= */
+.global-loader {
+    position: fixed;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.85);
+    z-index: 99999;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    pointer-events: all;
+}
+
+.global-loader.active {
+    display: flex;
+}
+
+.loader-box {
+    text-align: center;
+}
+
+.loader-text {
+    margin-top: 14px;
+    font-weight: 600;
+    color: #296299;
+    font-size: 14px;
+}
+
+/* SPINNER */
+.spinner {
+    width: 56px;
+    height: 56px;
+    border: 6px solid #dbe6ef;
+    border-top: 6px solid #296299;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

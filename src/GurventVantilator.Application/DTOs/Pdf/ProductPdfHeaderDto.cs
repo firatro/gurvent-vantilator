@@ -14,6 +14,8 @@ namespace GurventVantilator.Application.DTOs.Pdf
         // 🔹 VOLTAJ KODU (T / M)
         public string? VoltageCode { get; set; }
 
+        public string? WorkingPointLabel { get; set; }
+
         // 🔹 PDF ÜZERİNDE GÖSTERİLECEK TAM BAŞLIK
         public string GetDisplayTitle()
         {

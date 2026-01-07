@@ -4,9 +4,11 @@ namespace GurventVantilator.Application.DTOs.Pdf
     {
         public int ProductId { get; set; }
 
-        // 🔴 ÇALIŞMA NOKTASI
-        public double Q { get; set; }
-        public double Pt { get; set; }
+        // 🔹 KULLANICI GİRİŞİ (İSTENEN)
+        public double RequestedQ { get; set; }
+        public double RequestedPt { get; set; }
+
+        public string? WorkingPointLabel { get; set; }
 
         public string? Voltage { get; set; }
 

@@ -8,10 +8,17 @@ namespace GurventVantilator.Infrastructure.Pdf.Components
     public class PerformanceMetaTableComponent : IComponent
     {
         private readonly PerformanceMetaDto _meta;
+        private readonly double _requestedQ;
+        private readonly double _requestedPt;
 
-        public PerformanceMetaTableComponent(PerformanceMetaDto meta)
+        public PerformanceMetaTableComponent(
+            PerformanceMetaDto meta,
+            double requestedQ,
+            double requestedPt)
         {
             _meta = meta;
+            _requestedQ = requestedQ;
+            _requestedPt = requestedPt;
         }
 
         public void Compose(IContainer container)
@@ -73,8 +80,9 @@ namespace GurventVantilator.Infrastructure.Pdf.Components
                                 .Bold();
                         }
 
-                        Row("Debi (Q)", "m³/h", _meta.Q, false);
-                        Row("Basınç (Pt)", "Pa", _meta.Pt, true);
+                        Row("Debi (Q)", "m³/h", _requestedQ, false);
+                        Row("Basınç (Pt)", "Pa", _requestedPt, true);
+
                     });
 
                 // ==================================================

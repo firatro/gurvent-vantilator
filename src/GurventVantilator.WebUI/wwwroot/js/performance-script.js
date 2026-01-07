@@ -1,3 +1,5 @@
+showLoader("Performans verileri yükleniyor...");
+
 let lastSelected = {
     datasetIndex: null,
     x: null,
@@ -20,8 +22,12 @@ function applyWorkingPoint(p) {
 // =========================
 // ANA GRAFİK YÜKLE
 // =========================
-fetch(`/FanChart/GetChart?productId=${window.performanceData.productId}`)
-    .then(res => res.json())
+fetch(
+  `/FanChart/GetChart`
+  + `?productId=${window.performanceData.productId}`
+  + `&speedControl=${window.performanceData.speedControl || ""}`
+  + `&voltage=${encodeURIComponent(window.performanceData.selectedVoltage || "")}`
+).then(res => res.json())
     .then(chart => {
 
         const canvas = document.getElementById('fanChart');
@@ -168,6 +174,8 @@ fetch(`/FanChart/GetChart?productId=${window.performanceData.productId}`)
 
             highlightWorkingPoint(q, pt);
         }
+
+        hideLoader();
     });
 
 // =========================
@@ -212,7 +220,6 @@ function highlightWorkingPoint(inputQ, inputPt) {
         });
     });
 
-    // 🔥 ÇALIŞMA NOKTASI DATASET’İ EKLEME (senin mevcut kod)
     fanChartInstance.data.datasets =
         fanChartInstance.data.datasets.filter(d => d.label !== 'Çalışma Noktası');
 
@@ -225,18 +232,24 @@ function highlightWorkingPoint(inputQ, inputPt) {
         showLine: false
     });
 
-    // 🔥 SEÇİLİ EĞRİYİ VURGULA
     selectDatasetByIndex(closestIndex);
     applyWorkingPoint(closestPoint);
 
-    // ✅ İŞTE ARADIĞIN YER BURASI
     const selectedDataset = fanChartInstance.data.datasets[closestIndex];
     if (selectedDataset?.label) {
         updateWorkingPointLabel(selectedDataset.label);
     }
 
+    // 🔥 BURASI ÇOK ÖNEMLİ
+    lastSelected = {
+        datasetIndex: closestIndex,
+        x: inputQ,
+        y: inputPt
+    };
+
     fanChartInstance.update('none');
 }
+
 
 
 // =========================
@@ -331,6 +344,14 @@ function setText(id, val) {
         val != null ? val.toFixed(2) : '-';
 }
 
+function getWorkingPointLabel() {
+    const el = document.getElementById("workingPointLabel");
+    if (!el) return null;
+
+    return el.innerText?.trim() || null;
+}
+
+
 // GENERATE PDF HELPERS
 // Canvas → Base64 yardımcı fonksiyonu
 function getCanvasImage(id) {
@@ -378,29 +399,55 @@ function getChartImages() {
 // PDF Payload oluşturucu
 function buildPdfPayload() {
 
+    // fallback: inputlardan oku
     if (!lastSelected || lastSelected.x == null || lastSelected.y == null) {
-        alert("Lütfen önce bir çalışma noktası seçiniz.");
-        return null;
+        const q = parseFloat(document.getElementById("inputQ").value);
+        const pt = parseFloat(document.getElementById("inputPt").value);
+
+        if (!isNaN(q) && !isNaN(pt)) {
+            lastSelected = { x: q, y: pt };
+        } else {
+            alert("Lütfen önce bir çalışma noktası seçiniz.");
+            return null;
+        }
     }
 
     return {
         productId: window.performanceData.productId,
-        q: lastSelected.x,
-        pt: lastSelected.y,
-        voltage: window.performanceData.selectedVoltage || null,
 
+        // 🔥 INPUT’TAN GELENLER
+        requestedQ: parseFloat(document.getElementById("inputQ").value),
+        requestedPt: parseFloat(document.getElementById("inputPt").value),
+
+        // 🔥 GRAFİKTE SEÇİLEN GERÇEK NOKTA
+        meta: getPerformanceMeta(),
+        workingPointLabel: getWorkingPointLabel(),
         charts: getChartImages(),
-        meta: getPerformanceMeta()
+        voltage: window.performanceData.selectedVoltage || null
     };
+
 }
 
-// PDF Oluştur butonuna
 const pdfBtn = document.getElementById("btnGeneratePdf");
 
 if (pdfBtn) {
     pdfBtn.addEventListener("click", () => {
+
+        // 🔥 SAFARI FIX → SEKMEYİ SENKRON AÇ
+        const pdfWindow = window.open("", "_blank");
+
+        showLoader("PDF oluşturuluyor...");
+        pdfBtn.disabled = true;
+        pdfBtn.innerText = "PDF Oluşturuluyor...";
+
         const payload = buildPdfPayload();
-        if (!payload) return;
+        if (!payload) {
+            hideLoader();
+            pdfBtn.disabled = false;
+            pdfBtn.innerText = "📄 PDF Oluştur";
+            pdfWindow.close();
+            return;
+        }
 
         fetch("/Product/GeneratePerformancePdf", {
             method: "POST",
@@ -414,13 +461,43 @@ if (pdfBtn) {
                 return res.blob();
             })
             .then(blob => {
-                const url = window.URL.createObjectURL(blob);
-                window.open(url, "_blank");
+
+                const url = URL.createObjectURL(blob);
+
+                // 🔥 SAFARI İZİN VERİR
+                pdfWindow.location.href = url;
+
             })
             .catch(err => {
                 console.error("PDF ERROR:", err);
+                pdfWindow.close();
+                alert("PDF oluşturulamadı");
+            })
+            .finally(() => {
+                hideLoader();
+                pdfBtn.disabled = false;
+                pdfBtn.innerText = "📄 PDF Oluştur";
             });
-
-
     });
+}
+
+
+// =========================
+// GLOBAL LOADER
+// =========================
+function showLoader(text = "Lütfen bekleyiniz...") {
+    const loader = document.getElementById("globalLoader");
+    if (!loader) return;
+
+    const label = loader.querySelector(".loader-text");
+    if (label) label.innerText = text;
+
+    loader.classList.add("active");
+}
+
+function hideLoader() {
+    const loader = document.getElementById("globalLoader");
+    if (!loader) return;
+
+    loader.classList.remove("active");
 }
